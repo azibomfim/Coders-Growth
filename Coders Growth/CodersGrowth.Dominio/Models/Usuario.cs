@@ -8,9 +8,9 @@ namespace CodersGrowth.Dominio.Models
 {
     public class Usuario
     {
-        public string userName {  get; set; }
-        public int password { get; set; }
-        public int uid { get; set; }
-        public int adventureRank { get; set; }
+        public string NomeDeUsuario {  get; set; }
+        public int Senha { get; set; }
+        public int Uid { get; set; }
+        public int AdventureRank { get; set; }
     }
 }

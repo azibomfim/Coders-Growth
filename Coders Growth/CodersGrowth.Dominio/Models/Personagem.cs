@@ -9,23 +9,23 @@ namespace CodersGrowth.Dominio.Models
 {
     public class Personagem
     {
-        public int id { get; set; }
-        public string charName { get; set; }
-        public int hp { get; set; }
-        public int atk { get; set; }
-        public int def { get; set; }
-        public int em { get; set; }
-        public double taxaCrit { get; set; }
-        public double danoCrit { get; set; }
-        public double bonusCura { get; set; }
-        public double er { get; set; }
-        public double shield { get; set; }
-        public double elementalDmgBonus { get; set; }
-        public bool posse { get; set; }
-        public byte[]? charImg { get; set; }
-        public int conLv { get; set; }
-        public DateTime? aqDate { get; set; }
-        public ElementoEnum elemento { get; set; }
-        public ArmaEnum arma { get; set; }
+        public int Id { get; set; }
+        public string NomePersonagem { get; set; }
+        public int Vida { get; set; }
+        public int Ataque { get; set; }
+        public int Defesa { get; set; }
+        public int ProficienciaElemental { get; set; }
+        public decimal TaxaCrit { get; set; }
+        public decimal DanoCrit { get; set; }
+        public decimal BonusCura { get; set; }
+        public decimal RecargaDeEnergia { get; set; }
+        public decimal Escudo { get; set; }
+        public decimal BonusElemental { get; set; }
+        public bool Posse { get; set; }
+        public byte[]? ImgPersonagem { get; set; }
+        public int ConstelacaoLv { get; set; }
+        public DateTime? DataDeAquisicao { get; set; }
+        public ElementoEnum Elemento { get; set; }
+        public ArmaEnum Arma { get; set; }
     }
 }

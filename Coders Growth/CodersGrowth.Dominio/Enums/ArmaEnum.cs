@@ -9,9 +9,9 @@ namespace CodersGrowth.Dominio.Enums
     public enum ArmaEnum
     {
         Espada,
-        Espadão,
-        Catalizador,
+        Espadao,
+        Catalisador,
         Arco,
-        Lança
+        Lanca
     }
 }
