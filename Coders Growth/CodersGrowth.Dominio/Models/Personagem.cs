@@ -9,6 +9,7 @@ namespace CodersGrowth.Dominio.Models
 {
     public class Personagem
     {
+        public int id { get; set; }
         public string charName { get; set; }
         public int hp { get; set; }
         public int atk { get; set; }
@@ -17,9 +18,9 @@ namespace CodersGrowth.Dominio.Models
         public double taxaCrit { get; set; }
         public double danoCrit { get; set; }
         public double bonusCura { get; set; }
-        double er { get; set; }
+        public double er { get; set; }
         public double shield { get; set; }
-        double elementalDmgBonus { get; set; }
+        public double elementalDmgBonus { get; set; }
         public bool posse { get; set; }
         public byte[]? charImg { get; set; }
         public int conLv { get; set; }
