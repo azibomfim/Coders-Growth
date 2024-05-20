@@ -9,6 +9,6 @@ namespace CodersGrowth.Servicos
 {
     public interface IServicoUsuario
     {
-        public void ObterTodos();
+        public List<Usuario> ObterTodos();
     }
 }

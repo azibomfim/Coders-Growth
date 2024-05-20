@@ -9,7 +9,7 @@ namespace CodersGrowth.Servicos
 {
     public class ServicoUsuario: IServicoUsuario
     {
-        public void ObterTodos()
+        public List<Usuario> ObterTodos()
         {
             throw new NotImplementedException();
         }

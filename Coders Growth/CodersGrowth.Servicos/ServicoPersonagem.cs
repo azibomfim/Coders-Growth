@@ -9,7 +9,7 @@ namespace CodersGrowth.Servicos
 {
     public class ServicoPersonagem: IServicoPersonagem
     {
-        public void ObterTodos()
+        public List<Personagem> ObterTodos()
         {
             throw new NotImplementedException();
         }
