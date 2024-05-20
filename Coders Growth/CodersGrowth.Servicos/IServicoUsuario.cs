@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using CodersGrowth.Dominio.Models;
 
-namespace CodersGrowth.Dominio
+namespace CodersGrowth.Servicos
 {
-    public interface IServicoPersonagem
+    public interface IServicoUsuario
     {
         public void ObterTodos();
     }

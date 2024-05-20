@@ -5,15 +5,17 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodersGrowth", "Coders Growth\CodersGrowth.csproj", "{5F87C4B7-A873-4624-B993-43A58567D9F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodersGrowth.Dominio", "CodersGrowth.Dominio\CodersGrowth.Dominio.csproj", "{E110CB54-CD7E-48F5-95A2-2497F9CAD103}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodersGrowth.Dominio", "CodersGrowth.Dominio\CodersGrowth.Dominio.csproj", "{E110CB54-CD7E-48F5-95A2-2497F9CAD103}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodersGrowth.Infra", "CodersGrowth.Infra\CodersGrowth.Infra.csproj", "{34BBF56B-9ECD-456C-82D5-876A24A54C6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodersGrowth.Infra", "CodersGrowth.Infra\CodersGrowth.Infra.csproj", "{34BBF56B-9ECD-456C-82D5-876A24A54C6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodersGrowth.Forms", "CodersGrowth.Forms\CodersGrowth.Forms.csproj", "{103E298F-8A1A-471C-8165-B17E87F13F18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodersGrowth.Forms", "CodersGrowth.Forms\CodersGrowth.Forms.csproj", "{103E298F-8A1A-471C-8165-B17E87F13F18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodersGrowth.Web", "CodersGrowth.Web\CodersGrowth.Web.csproj", "{E6FDD883-A38B-4F76-8CE6-C6FB319D1F48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodersGrowth.Web", "CodersGrowth.Web\CodersGrowth.Web.csproj", "{E6FDD883-A38B-4F76-8CE6-C6FB319D1F48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodersGrowth.Testes", "CodersGrowth.Testes\CodersGrowth.Testes.csproj", "{1C63F742-96D0-48A5-B7F5-524773605489}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodersGrowth.Testes", "CodersGrowth.Testes\CodersGrowth.Testes.csproj", "{1C63F742-96D0-48A5-B7F5-524773605489}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodersGrowth.Servicos", "CodersGrowth.Servicos\CodersGrowth.Servicos.csproj", "{84FDE4F0-CB38-4E48-ABDF-5900BD5AED13}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{1C63F742-96D0-48A5-B7F5-524773605489}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C63F742-96D0-48A5-B7F5-524773605489}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C63F742-96D0-48A5-B7F5-524773605489}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84FDE4F0-CB38-4E48-ABDF-5900BD5AED13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84FDE4F0-CB38-4E48-ABDF-5900BD5AED13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84FDE4F0-CB38-4E48-ABDF-5900BD5AED13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84FDE4F0-CB38-4E48-ABDF-5900BD5AED13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
