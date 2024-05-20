@@ -22,4 +22,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CodersGrowth.Dominio\CodersGrowth.Dominio.csproj" />
+    <ProjectReference Include="..\CodersGrowth.Servicos\CodersGrowth.Servicos.csproj" />
+  </ItemGroup>
+
 </Project>
