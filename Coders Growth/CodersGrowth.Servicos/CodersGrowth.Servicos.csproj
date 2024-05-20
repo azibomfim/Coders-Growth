@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CodersGrowth.Dominio\CodersGrowth.Dominio.csproj" />
+    <ProjectReference Include="..\CodersGrowth.Infra\CodersGrowth.Infra.csproj" />
   </ItemGroup>
 
 </Project>
