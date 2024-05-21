@@ -7,6 +7,8 @@ using CodersGrowth.Dominio.Models;
 using CodersGrowth.Dominio;
 using CodersGrowth.Servicos;
 using System.Security.Authentication.ExtendedProtection;
+using Xunit.Microsoft.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CodersGrowth.Testes
 {
@@ -15,9 +17,14 @@ namespace CodersGrowth.Testes
         public static ServiceCollection Servicos { get; private set; }
         public ModuloDeInjecao()
         {
-            var servicos = new ServiceCollection();
-
-            servicos.AddSingleton<IServicoPersonagem, ServicoPersonagem>();
-
-
+            Servicos = new ServiceCollection();
+            Servicos.AddScoped<IServicoPersonagem, ServicoPersonagem>();
+            Servicos.AddScoped<IServicoUsuario, ServicoUsuario>();
         }
+
+        public static ServiceProvider BuildServiceProvider()
+        {
+            return Servicos.BuildServiceProvider();
+        }
+    }
+}
