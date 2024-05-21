@@ -9,7 +9,7 @@ using CodersGrowth.Dominio.Models;
 
 namespace CodersGrowth.Testes
 {
-    public class PersonagemRepositorioMock : IPersonagemMock
+    public class PersonagemRepositorioMock : IPersonagem
     {
         public PersonagemRepositorioMock()
         {

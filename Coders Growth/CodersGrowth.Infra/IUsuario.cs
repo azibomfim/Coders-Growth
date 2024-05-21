@@ -8,12 +8,12 @@ using CodersGrowth.Dominio.Models;
 
 namespace CodersGrowth.Infra
 {
-    public interface IUsuarioMock
+    public interface IUsuario
     {
         public List<Usuario> ObterTodos();
-        Usuario ObterPorId(int Uid);
-        string Cadastrar(Usuario usuario);
-        string Atualizar(Usuario usuario);
-        string Remover(Usuario usuario);
+        public Usuario ObterPorId(int Uid);
+        public string Cadastrar();
+        public string Atualizar();
+        public string Remover();
     }
 }

@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace CodersGrowth.Infra
 {
-    public interface IPersonagemMock
+    public interface IPersonagem
     {
         public List<Personagem> ObterTodos();
-        Personagem ObterPorId(int Id);
-        string Cadastrar(Personagem personagem);
-        string Atualizar(Personagem personagem);
-        string Remover(Personagem personagem);
+        public Personagem ObterPorId(int Id);
+        public string Cadastrar();
+        public string Atualizar();
+        public string Remover();
     }
 }

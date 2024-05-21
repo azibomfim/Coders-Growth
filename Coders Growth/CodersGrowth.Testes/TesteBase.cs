@@ -13,18 +13,17 @@ namespace CodersGrowth.Testes
 {
     public class TesteBase : IDisposable
     {
-        protected ServiceProvider ProviderService { get; private set; }
+        protected ServiceProvider ServiceProvider;
 
-        public TesteBase() {
+        protected TesteBase() {
             var servicos = new ServiceCollection();
-            servicos.AddSingleton<IPersonagemMock, PersonagemRepositorioMock>();
-            servicos.AddSingleton<IUsuarioMock, UsuarioRepositorioMock>();
+            ModuloDeInjecao.BindServices(servicos);
 
-            ProviderService = servicos.BuildServiceProvider();
+            ServiceProvider = servicos.BuildServiceProvider();
         }
         public void Dispose()
         {
-            ProviderService.Dispose();
+            ServiceProvider.Dispose();
         }
     }
 }
