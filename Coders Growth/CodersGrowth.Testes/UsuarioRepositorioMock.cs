@@ -16,12 +16,12 @@ namespace CodersGrowth.Testes
             throw new NotImplementedException();
         }
 
-        public string Atualizar(Usuario usuario)
+        public void Atualizar()
         {
             throw new NotImplementedException();
         }
 
-        public string Cadastrar(Usuario usuario) 
+        public void Cadastrar() 
         {  
             throw new NotImplementedException();
         }
@@ -37,7 +37,7 @@ namespace CodersGrowth.Testes
             return usuario;
         }
 
-        public string Remover(Usuario usuario)
+        public void Remover()
         {
             throw new NotImplementedException();
         }

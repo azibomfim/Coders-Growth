@@ -12,8 +12,8 @@ namespace CodersGrowth.Infra
     {
         public List<Usuario> ObterTodos();
         public Usuario ObterPorId(int Uid);
-        public string Cadastrar();
-        public string Atualizar();
-        public string Remover();
+        public void Cadastrar();
+        public void Atualizar();
+        public void Remover();
     }
 }

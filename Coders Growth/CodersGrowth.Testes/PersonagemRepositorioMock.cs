@@ -16,12 +16,12 @@ namespace CodersGrowth.Testes
             throw new NotImplementedException();
         }
 
-        public string Atualizar(Personagem personagem)
+        public void Atualizar()
         {
             throw new NotImplementedException();
         }
 
-        public string Cadastrar(Personagem personagem)
+        public void Cadastrar()
         {
             throw new NotImplementedException();
         }
@@ -37,7 +37,7 @@ namespace CodersGrowth.Testes
             return personagem;
         }
 
-        public string Remover(Personagem personagem)
+        public void Remover()
         {
             throw new NotImplementedException();
         }
