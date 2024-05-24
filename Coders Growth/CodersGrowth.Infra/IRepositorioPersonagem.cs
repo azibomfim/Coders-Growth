@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CodersGrowth.Infra
 {
-    public interface IPersonagem
+    public interface IRepositorioPersonagem
     {
         public List<Personagem> ObterTodos();
         public Personagem ObterPorId(int Id);

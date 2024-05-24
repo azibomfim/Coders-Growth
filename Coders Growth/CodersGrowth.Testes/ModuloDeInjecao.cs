@@ -19,8 +19,8 @@ namespace CodersGrowth.Testes
         {
             Servicos.AddScoped<IServicoPersonagem, ServicoPersonagem>();
             Servicos.AddScoped<IServicoUsuario, ServicoUsuario>();
-            Servicos.AddScoped<IPersonagem, PersonagemRepositorioMock>();
-            Servicos.AddScoped<IUsuario, UsuarioRepositorioMock>();
+            Servicos.AddScoped<IRepositorioPersonagem, PersonagemRepositorioMock>();
+            Servicos.AddScoped<IRepositorioUsuario, UsuarioRepositorioMock>();
         }
     }
 }

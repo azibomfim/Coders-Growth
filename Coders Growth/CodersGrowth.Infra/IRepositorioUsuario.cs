@@ -8,7 +8,7 @@ using CodersGrowth.Dominio.Models;
 
 namespace CodersGrowth.Infra
 {
-    public interface IUsuario
+    public interface IRepositorioUsuario
     {
         public List<Usuario> ObterTodos();
         public Usuario ObterPorId(int Uid);
