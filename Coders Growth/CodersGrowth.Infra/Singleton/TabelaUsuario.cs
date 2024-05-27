@@ -3,23 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CodersGrowth.Dominio.Models;
 
 namespace CodersGrowth.Infra.Singleton
 {
     public sealed class TabelaUsuario
     {
-        public static TabelaUsuario instance;
+        private static List<Usuario> InstanciaUsuario = new();
+        private static readonly List<Usuario> Usuarios = new List<Usuario>();
+
         private TabelaUsuario() { }
-        public static TabelaUsuario Instance
+        public static List<Usuario> Instancia
         {
             get
             {
-                if (instance == null)
-                    lock (typeof(TabelaUsuario))
-                        if (instance == null) instance = new TabelaUsuario();
+                if (InstanciaUsuario == null)
+                {
+                    InstanciaUsuario = Usuarios;
+                }
 
-                return instance;
+                return InstanciaUsuario;
             }
         }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodersGrowth.Dominio.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,17 +9,20 @@ namespace CodersGrowth.Infra.Singleton
 {
     public sealed class TabelaPersonagem
     {
-        public static TabelaPersonagem instance;
+        private static List<Personagem> InstanciaPersonagem = new();
+        private static readonly List<Personagem> Personagens = new List<Personagem>();
+
         private TabelaPersonagem() { }
-        public static TabelaPersonagem Instance
+        public static List<Personagem> Instancia
         {
             get
             {
-                if (instance == null)
-                    lock (typeof(TabelaPersonagem))
-                        if (instance == null) instance = new TabelaPersonagem();
+                if (InstanciaPersonagem == null)
+                {
+                    InstanciaPersonagem = Personagens;
+                }
 
-                return instance;
+                return InstanciaPersonagem;
             }
         }
     }
