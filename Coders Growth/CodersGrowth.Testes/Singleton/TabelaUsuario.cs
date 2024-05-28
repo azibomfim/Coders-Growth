@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CodersGrowth.Dominio.Models;
 
-namespace CodersGrowth.Infra.Singleton
+namespace CodersGrowth.Testes.Singleton
 {
     public sealed class TabelaUsuario
     {

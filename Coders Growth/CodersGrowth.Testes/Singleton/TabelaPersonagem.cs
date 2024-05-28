@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CodersGrowth.Infra.Singleton
+namespace CodersGrowth.Testes.Singleton
 {
     public sealed class TabelaPersonagem
     {
