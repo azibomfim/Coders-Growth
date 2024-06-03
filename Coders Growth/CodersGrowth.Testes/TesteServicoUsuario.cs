@@ -10,10 +10,10 @@ namespace CodersGrowth.Testes
 {
     public class TesteServicoUsuario : TesteBase
     {
-        private IServicoUsuario usuario;
+        private IServicoUsuario servicoU;
         public TesteServicoUsuario()
         {
-            var usuario = ServiceProvider.GetService<IServicoUsuario>();
+            var servicoU = ServiceProvider.GetService<IServicoUsuario>();
         }
 
         [Fact]

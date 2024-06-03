@@ -12,13 +12,12 @@ namespace CodersGrowth.Testes
 {
     public class TesteServicoPersonagem : TesteBase
     {
-        private IServicoPersonagem personagem;
+        private IServicoPersonagem servicoP;
         public TesteServicoPersonagem()
         {
-            var personagem = ServiceProvider.GetService<IServicoPersonagem>();
+            var servicoP = ServiceProvider.GetService<IServicoPersonagem>();
         }
         [Fact]
         public void aaaa() { }
-        
     }
 }

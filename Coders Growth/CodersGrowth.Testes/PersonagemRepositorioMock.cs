@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CodersGrowth.Infra;
 using CodersGrowth.Dominio;
 using CodersGrowth.Dominio.Models;
+using CodersGrowth.Testes.Singleton;
 
 namespace CodersGrowth.Testes
 {
@@ -13,7 +14,7 @@ namespace CodersGrowth.Testes
     {
         public PersonagemRepositorioMock()
         {
-            throw new NotImplementedException();
+            TabelaPersonagem.Instancia.Add(List<Personagem>);
         }
 
         public void Atualizar()
