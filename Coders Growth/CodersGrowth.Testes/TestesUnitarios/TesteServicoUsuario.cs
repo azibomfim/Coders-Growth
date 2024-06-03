@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace CodersGrowth.Testes.TestesUnitarios
 {
-    public class UsuarioTeste : TesteBase
+    public class TesteServicoUsuario : TesteBase
     {
         private IServicoUsuario servicoU;
-        public UsuarioTeste()
+        public TesteServicoUsuario()
         {
             servicoU = ServiceProvider.GetService<IServicoUsuario>();
         }

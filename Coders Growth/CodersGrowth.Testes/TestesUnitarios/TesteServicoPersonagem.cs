@@ -11,10 +11,10 @@ using CodersGrowth.Servicos.Servicos;
 namespace CodersGrowth.Testes.TestesUnitarios
 {
 
-    public class PersonagemTeste : TesteBase
+    public class TesteServicoPersonagem : TesteBase
     {
         protected IServicoPersonagem servicoP;
-        public PersonagemTeste()
+        public TesteServicoPersonagem()
         {
             servicoP = ServiceProvider.GetService<IServicoPersonagem>();
         }   
