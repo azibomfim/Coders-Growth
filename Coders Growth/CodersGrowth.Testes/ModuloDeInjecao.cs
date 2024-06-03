@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using CodersGrowth.Dominio.Models;
 using CodersGrowth.Dominio;
-using CodersGrowth.Servicos;
-using CodersGrowth.Infra;
+using CodersGrowth.Dominio.Interfaces;
 using System.Security.Authentication.ExtendedProtection;
 using Xunit.Microsoft.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
+using CodersGrowth.Servicos.InterfaceServico;
+using CodersGrowth.Servicos.Servicos;
+using CodersGrowth.Testes.RepositoriosMock;
 
 namespace CodersGrowth.Testes
 {

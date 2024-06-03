@@ -4,11 +4,11 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using CodersGrowth.Servicos;
+using CodersGrowth.Servicos.InterfaceServico;
 using Microsoft.Extensions.DependencyInjection;
 
 
-namespace CodersGrowth.Testes
+namespace CodersGrowth.Testes.TestesDeServico
 {
     public class TesteServicoPersonagem : TesteBase
     {

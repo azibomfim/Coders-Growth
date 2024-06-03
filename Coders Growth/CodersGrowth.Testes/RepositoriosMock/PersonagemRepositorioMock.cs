@@ -3,19 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CodersGrowth.Infra;
-using CodersGrowth.Dominio;
+using CodersGrowth.Dominio.Interfaces;
 using CodersGrowth.Dominio.Models;
 using CodersGrowth.Testes.Singleton;
 
-namespace CodersGrowth.Testes
+namespace CodersGrowth.Testes.RepositoriosMock
 {
     public class PersonagemRepositorioMock : IRepositorioPersonagem
     {
-        public PersonagemRepositorioMock()
-        {
-            TabelaPersonagem.Instancia.Add(List<Personagem>);
-        }
+        private readonly List<Personagem> _repository = TabelaPersonagem.Instancia;
 
         public void Atualizar()
         {
@@ -34,8 +30,7 @@ namespace CodersGrowth.Testes
 
         public List<Personagem> ObterTodos()
         {
-            List<Personagem> personagem = new List<Personagem>();
-            return personagem;
+            return _repository;
         }
 
         public void Remover()

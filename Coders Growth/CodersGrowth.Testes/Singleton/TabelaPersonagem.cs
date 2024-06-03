@@ -118,7 +118,7 @@ namespace CodersGrowth.Testes.Singleton
                  ConstelacaoLv = 6,
                  DataDeAquisicao = DateTime.Now,
                  Elemento = ElementoEnum.Geo,
-                 Arma = ArmaEnum.l,
+                 Arma = ArmaEnum.Lanca,
             }
         };
 
