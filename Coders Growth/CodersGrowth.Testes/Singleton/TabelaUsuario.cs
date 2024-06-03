@@ -54,7 +54,7 @@ namespace CodersGrowth.Testes.Singleton
         {
             get
             {
-                if (InstanciaUsuario == null)
+                if (!InstanciaUsuario.Any())
                 {
                     InstanciaUsuario = Usuarios;
                 }

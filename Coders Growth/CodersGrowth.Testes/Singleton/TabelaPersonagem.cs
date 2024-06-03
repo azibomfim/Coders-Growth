@@ -127,7 +127,7 @@ namespace CodersGrowth.Testes.Singleton
         {
             get
             {
-                if (InstanciaPersonagem == null)
+                if (!InstanciaPersonagem.Any())
                 {
                     InstanciaPersonagem = Personagens;
                 }

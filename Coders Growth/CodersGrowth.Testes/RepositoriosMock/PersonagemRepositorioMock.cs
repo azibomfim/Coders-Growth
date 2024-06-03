@@ -11,7 +11,7 @@ namespace CodersGrowth.Testes.RepositoriosMock
 {
     public class PersonagemRepositorioMock : IRepositorioPersonagem
     {
-        private readonly List<Personagem> _repository = TabelaPersonagem.Instancia;
+        //private readonly List<Personagem> _repository = TabelaPersonagem.Instancia;
 
         public void Atualizar()
         {
@@ -30,6 +30,7 @@ namespace CodersGrowth.Testes.RepositoriosMock
 
         public List<Personagem> ObterTodos()
         {
+            List<Personagem> _repository = TabelaPersonagem.Instancia;
             return _repository;
         }
 

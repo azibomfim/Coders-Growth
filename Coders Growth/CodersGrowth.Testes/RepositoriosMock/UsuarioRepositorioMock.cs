@@ -12,12 +12,7 @@ namespace CodersGrowth.Testes.RepositoriosMock
 {
     public class UsuarioRepositorioMock : IRepositorioUsuario
     {
-        private readonly List<Usuario> _repository = TabelaUsuario.Instancia;
-        public UsuarioRepositorioMock() 
-        {
-            throw new NotImplementedException();
-        }
-
+        //private readonly List<Usuario> _repository = TabelaUsuario.Instancia;
         public void Atualizar()
         {
             throw new NotImplementedException();
@@ -35,6 +30,7 @@ namespace CodersGrowth.Testes.RepositoriosMock
 
         public List<Usuario> ObterTodos() 
         {
+            List<Usuario> _repository = TabelaUsuario.Instancia;
             return _repository;
         }
 
