@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CodersGrowth.Infra
+namespace CodersGrowth.Dominio.Interfaces
 {
     public interface IRepositorioPersonagem
     {

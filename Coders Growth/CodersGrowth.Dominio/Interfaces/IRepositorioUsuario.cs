@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using CodersGrowth.Dominio;
 using CodersGrowth.Dominio.Models;
 
-namespace CodersGrowth.Infra
+namespace CodersGrowth.Dominio.Interfaces
 {
     public interface IRepositorioUsuario
     {

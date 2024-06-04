@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using CodersGrowth.Dominio.Models;
 
-namespace CodersGrowth.Servicos
+namespace CodersGrowth.Servicos.InterfaceServico
 {
-    public interface IServicoUsuario
+    public interface IServicoPersonagem
     {
-        public List<Usuario> ObterTodos();
+        public List<Personagem> ObterTodos();
     }
 }

@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CodersGrowth.Dominio.Models;
 
 namespace CodersGrowth.Servicos
 {
-    public class ServicoPersonagem: IServicoPersonagem
+    class Program
     {
-        public List<Personagem> ObterTodos()
+        static void Main(string[] args)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Hello World");
         }
     }
 }
-
-

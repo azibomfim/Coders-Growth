@@ -4,18 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CodersGrowth.Infra;
-using CodersGrowth.Dominio;
+using CodersGrowth.Dominio.Interfaces;
 using CodersGrowth.Dominio.Models;
+using CodersGrowth.Testes.Singleton;
 
-namespace CodersGrowth.Testes
+namespace CodersGrowth.Testes.RepositoriosMock
 {
     public class UsuarioRepositorioMock : IRepositorioUsuario
     {
-        public UsuarioRepositorioMock() 
-        {
-            throw new NotImplementedException();
-        }
-
+        //private readonly List<Usuario> _repository = TabelaUsuario.Instancia;
         public void Atualizar()
         {
             throw new NotImplementedException();
@@ -33,8 +30,8 @@ namespace CodersGrowth.Testes
 
         public List<Usuario> ObterTodos() 
         {
-            List<Usuario> usuario = new List<Usuario>();
-            return usuario;
+            List<Usuario> _repository = TabelaUsuario.Instancia;
+            return _repository;
         }
 
         public void Remover()
