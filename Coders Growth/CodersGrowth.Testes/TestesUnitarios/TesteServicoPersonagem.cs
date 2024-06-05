@@ -26,5 +26,13 @@ namespace CodersGrowth.Testes.TestesUnitarios
             Assert.NotNull(listaDePersonagens);
             Assert.Equal(5, listaDePersonagens.Count);
         }
+        [Fact]
+        public void ObterPorId()
+        {
+            var personagensPorId = servicoP.ObterPorId(Id);
+
+            Assert.NotNull(personagensPorId);
+            Assert.Equal(5, personagensPorId.Count);
+        }
     }
 }

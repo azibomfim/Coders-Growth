@@ -25,7 +25,12 @@ namespace CodersGrowth.Testes.RepositoriosMock
 
         public Usuario ObterPorId(int Uid)
         {
-            throw new NotImplementedException();
+            List<Usuario> Usuarios = TabelaUsuario.Instancia;
+            var usuariosPorId = Usuarios.Where(Usuario => Usuario.Uid == Uid);
+            foreach (var usuario in usuariosPorId)
+            {
+                return usuario;
+            }
         }
 
         public List<Usuario> ObterTodos() 
