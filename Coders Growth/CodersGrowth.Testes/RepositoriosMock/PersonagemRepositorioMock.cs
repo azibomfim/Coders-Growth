@@ -28,7 +28,7 @@ namespace CodersGrowth.Testes.RepositoriosMock
             var personagensPorId = from Personagem in Personagens
                                    where Personagem.Id == Id
                                    select Personagem;
-            foreach(var personagem in personagensPorId)
+            var personagem = personagensPorId.FirstOrDefault();
             {
                 return personagem;
             }

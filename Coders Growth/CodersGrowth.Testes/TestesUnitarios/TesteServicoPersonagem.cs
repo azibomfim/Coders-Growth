@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CodersGrowth.Dominio.Models;
 using CodersGrowth.Servicos.InterfaceServico;
 using CodersGrowth.Servicos.Servicos;
+using CodersGrowth.Testes.Singleton;
 
 namespace CodersGrowth.Testes.TestesUnitarios
 {
@@ -29,10 +30,11 @@ namespace CodersGrowth.Testes.TestesUnitarios
         [Fact]
         public void ObterPorId()
         {
+            int Id = 1;
             var personagensPorId = servicoP.ObterPorId(Id);
 
             Assert.NotNull(personagensPorId);
-            Assert.Equal(5, personagensPorId.Count);
+            Assert.Equal(1, personagensPorId);
         }
     }
 }

@@ -12,7 +12,6 @@ namespace CodersGrowth.Testes.RepositoriosMock
 {
     public class UsuarioRepositorioMock : IRepositorioUsuario
     {
-        //private readonly List<Usuario> _repository = TabelaUsuario.Instancia;
         public void Atualizar()
         {
             throw new NotImplementedException();
@@ -27,7 +26,7 @@ namespace CodersGrowth.Testes.RepositoriosMock
         {
             List<Usuario> Usuarios = TabelaUsuario.Instancia;
             var usuariosPorId = Usuarios.Where(Usuario => Usuario.Uid == Uid);
-            foreach (var usuario in usuariosPorId)
+            var usuario = usuariosPorId.FirstOrDefault();
             {
                 return usuario;
             }

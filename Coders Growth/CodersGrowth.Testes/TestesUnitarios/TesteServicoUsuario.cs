@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CodersGrowth.Dominio.Models;
 
 namespace CodersGrowth.Testes.TestesUnitarios
 {
@@ -28,10 +29,11 @@ namespace CodersGrowth.Testes.TestesUnitarios
         [Fact]
         public void ObterPorId()
         {
-            var usuariosPorId = servicoU.ObterPorId(int Uid);
+            int Uid = 1;
+            var usuariosPorId = servicoU.ObterPorId(Uid);
 
             Assert.NotNull(usuariosPorId);
-            Assert.Equal(5, usuariosPorId.Count);
+            Assert.(1, usuariosPorId.Count);
         }
     }
 }
