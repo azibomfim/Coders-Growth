@@ -25,15 +25,12 @@ namespace CodersGrowth.Testes.RepositoriosMock
         public Personagem ObterPorId(int Id)
         {
             List<Personagem> Personagens = TabelaPersonagem.Instancia;
-            var personagensPorId = from Personagem in Personagens
-                                   where Personagem.Id == Id
-                                   select Personagem;
-            var personagem = personagensPorId.FirstOrDefault();
+            var personagensPorId = Personagens.FirstOrDefault(Personagem => Personagem.Id == Id);
             {
-                return personagem;
+                return personagensPorId;
             }
         }
-
+    }
         public List<Personagem> ObterTodos()
         {
             List<Personagem> _repository = TabelaPersonagem.Instancia;

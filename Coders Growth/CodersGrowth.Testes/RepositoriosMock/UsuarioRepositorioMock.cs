@@ -25,10 +25,9 @@ namespace CodersGrowth.Testes.RepositoriosMock
         public Usuario ObterPorId(int Uid)
         {
             List<Usuario> Usuarios = TabelaUsuario.Instancia;
-            var usuariosPorId = Usuarios.Where(Usuario => Usuario.Uid == Uid);
-            var usuario = usuariosPorId.FirstOrDefault();
+            var usuariosPorId = Usuarios.FirstOrDefault(Usuario => Usuario.Uid == Uid);
             {
-                return usuario;
+                return usuariosPorId;
             }
         }
 
