@@ -44,11 +44,10 @@ namespace CodersGrowth.Testes.TestesUnitarios
         [InlineData(285128)]
         public void deve_retornar_um_erro_ao_passar_id_inexistente(int Uid)
         {
-            var usuariosPorId = servicoU.ObterPorId(Uid);
-            Assert.Equal(Uid, usuariosPorId.Uid);
-            Assert.Throws(usuariosPorId, () => {
-                throw new 
-            });
+            var mensagemDeErroU = Assert.Throws<Exception>(() => servicoU.ObterPorId(Uid));
+
+            Assert.Contains("Usuário não encontrado.", mensagemDeErroU.Message);
+
         }
     }
 }

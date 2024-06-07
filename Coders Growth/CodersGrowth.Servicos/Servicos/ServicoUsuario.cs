@@ -22,7 +22,7 @@ namespace CodersGrowth.Servicos.Servicos
         }
         public Usuario ObterPorId(int Uid)
         {
-            return _usuariorepositorio.ObterPorId(Uid) ?? throw new Exception("usuario nao encontrado");
+            return _usuariorepositorio.ObterPorId(Uid) ?? throw new Exception("Usuário não encontrado.");
         }
     }
 }

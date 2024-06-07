@@ -8,6 +8,7 @@ using CodersGrowth.Dominio.Models;
 using CodersGrowth.Servicos.InterfaceServico;
 using CodersGrowth.Servicos.Servicos;
 using CodersGrowth.Testes.Singleton;
+using System.Security.Cryptography;
 
 namespace CodersGrowth.Testes.TestesUnitarios
 {
@@ -41,12 +42,13 @@ namespace CodersGrowth.Testes.TestesUnitarios
 
         [Theory]
         [InlineData(0)]
-        [InlineData(6)]
+        [InlineData(6786876)]
         [InlineData(28518)]
         public void deve_retornar_um_erro_ao_passar_id_inexistente(int Id)
         {
-            var usuariosPorId = servicoP.ObterPorId(Id);
-            Assert.Equal(Id, usuariosPorId.Id);
+            var mensagemDeErroP = Assert.Throws<Exception>(() => servicoP.ObterPorId(Id));
+
+            Assert.Contains("Personagem não encontrado.", mensagemDeErroP.Message);
         }
     }
 }

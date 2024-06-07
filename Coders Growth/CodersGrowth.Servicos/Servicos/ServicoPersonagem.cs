@@ -22,7 +22,7 @@ namespace CodersGrowth.Servicos.Servicos
         }
         public Personagem ObterPorId(int Id)
         {
-            return _personagemrepositorio.ObterPorId(Id);
+            return _personagemrepositorio.ObterPorId(Id) ?? throw new Exception("Personagem não encontrado.");
         }
     }
 }
