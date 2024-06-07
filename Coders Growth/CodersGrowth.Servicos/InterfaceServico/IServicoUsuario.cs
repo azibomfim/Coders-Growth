@@ -10,5 +10,6 @@ namespace CodersGrowth.Servicos.InterfaceServico
     public interface IServicoUsuario
     {
         public List<Usuario> ObterTodos();
+        public Usuario ObterPorId(int Uid);
     }
 }

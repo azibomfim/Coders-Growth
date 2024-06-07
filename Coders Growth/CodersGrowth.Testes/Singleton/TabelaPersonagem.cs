@@ -13,7 +13,7 @@ namespace CodersGrowth.Testes.Singleton
     public sealed class TabelaPersonagem
     {
         private static List<Personagem> InstanciaPersonagem = new();
-        private static readonly List<Personagem> Personagens = new List<Personagem>()
+        public static readonly List<Personagem> Personagens = new List<Personagem>()
         {
             new Personagem()
             {

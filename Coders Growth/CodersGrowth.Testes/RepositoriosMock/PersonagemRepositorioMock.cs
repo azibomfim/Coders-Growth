@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using CodersGrowth.Dominio.Interfaces;
@@ -11,8 +12,6 @@ namespace CodersGrowth.Testes.RepositoriosMock
 {
     public class PersonagemRepositorioMock : IRepositorioPersonagem
     {
-        //private readonly List<Personagem> _repository = TabelaPersonagem.Instancia;
-
         public void Atualizar()
         {
             throw new NotImplementedException();
@@ -25,9 +24,13 @@ namespace CodersGrowth.Testes.RepositoriosMock
 
         public Personagem ObterPorId(int Id)
         {
-            throw new NotImplementedException();
+            List<Personagem> Personagens = TabelaPersonagem.Instancia;
+            var personagensPorId = Personagens.FirstOrDefault(Personagem => Personagem.Id == Id);
+            {
+                return personagensPorId;
+            }
         }
-
+    
         public List<Personagem> ObterTodos()
         {
             List<Personagem> _repository = TabelaPersonagem.Instancia;

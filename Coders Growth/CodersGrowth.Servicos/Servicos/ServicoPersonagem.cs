@@ -9,7 +9,7 @@ using CodersGrowth.Dominio.Interfaces;
 
 namespace CodersGrowth.Servicos.Servicos
 {
-    public class ServicoPersonagem: IServicoPersonagem
+    public class ServicoPersonagem : IServicoPersonagem
     {
         public ServicoPersonagem(IRepositorioPersonagem PersonagemRepositorioMock)
         {
@@ -19,6 +19,10 @@ namespace CodersGrowth.Servicos.Servicos
         public List<Personagem> ObterTodos()
         {
             return _personagemrepositorio.ObterTodos();
+        }
+        public Personagem ObterPorId(int Id)
+        {
+            return _personagemrepositorio.ObterPorId(Id) ?? throw new Exception("Personagem não encontrado.");
         }
     }
 }
