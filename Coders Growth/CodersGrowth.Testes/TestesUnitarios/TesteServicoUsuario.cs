@@ -19,21 +19,36 @@ namespace CodersGrowth.Testes.TestesUnitarios
         }
 
         [Fact]
-        public void ObterTodos() 
+        public void deve_retornar_todos_os_usuarios() 
         {
             var listaDeUsuarios = servicoU.ObterTodos();
 
             Assert.NotNull(listaDeUsuarios);
             Assert.Equal(5, listaDeUsuarios.Count);
         }
+
         [Fact]
-        public void ObterPorId()
+        public void deve_retornar_o_usuario_ratosmites_ao_passar_o_id_1()
         {
             int Uid = 1;
             var usuariosPorId = servicoU.ObterPorId(Uid);
 
             Assert.NotNull(usuariosPorId);
-            Assert.(1, usuariosPorId.Count);
+            Assert.Equal(1, usuariosPorId.Uid);
+            Assert.Equal("rato smites", usuariosPorId.NomeDeUsuario);
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(638879)]
+        [InlineData(285128)]
+        public void deve_retornar_um_erro_ao_passar_id_inexistente(int Uid)
+        {
+            var usuariosPorId = servicoU.ObterPorId(Uid);
+            Assert.Equal(Uid, usuariosPorId.Uid);
+            Assert.Throws(usuariosPorId, () => {
+                throw new 
+            });
         }
     }
 }
