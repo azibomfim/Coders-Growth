@@ -30,7 +30,7 @@ namespace CodersGrowth.Testes.RepositoriosMock
                 return personagensPorId;
             }
         }
-    }
+    
         public List<Personagem> ObterTodos()
         {
             List<Personagem> _repository = TabelaPersonagem.Instancia;
