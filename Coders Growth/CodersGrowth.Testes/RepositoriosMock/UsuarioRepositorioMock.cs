@@ -17,7 +17,7 @@ namespace CodersGrowth.Testes.RepositoriosMock
             throw new NotImplementedException();
         }
 
-        public void Cadastrar() 
+        public void Criar() 
         {  
             throw new NotImplementedException();
         }

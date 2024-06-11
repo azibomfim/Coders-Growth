@@ -10,7 +10,7 @@ using CodersGrowth.Servicos.Servicos;
 using CodersGrowth.Testes.Singleton;
 using System.Security.Cryptography;
 
-namespace CodersGrowth.Testes.TestesUnitarios
+namespace CodersGrowth.Testes.TestesUnitariosp
 {
     public class TesteServicoPersonagem : TesteBase
     {

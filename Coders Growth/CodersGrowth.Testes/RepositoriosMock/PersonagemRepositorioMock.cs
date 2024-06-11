@@ -17,9 +17,10 @@ namespace CodersGrowth.Testes.RepositoriosMock
             throw new NotImplementedException();
         }
 
-        public void Cadastrar()
+        public void Criar()
         {
-            throw new NotImplementedException();
+            List<Personagem> Personagens = TabelaPersonagem.Instancia;
+
         }
 
         public Personagem ObterPorId(int Id)

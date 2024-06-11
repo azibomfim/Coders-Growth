@@ -29,12 +29,13 @@ namespace CodersGrowth.Testes.Singleton
                 RecargaDeEnergia = 131.1m,
                 Escudo = 0.0m,
                 BonusElemental = 61.6m,
-                Posse = true,
+                CriadoPorUsuario = true,
                 ImgPersonagem = null,
                 ConstelacaoLv = 1,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Anemo,
                 Arma = ArmaEnum.Lanca,
+                IdUsuario = 5,
             },
             new Personagem()
             {
@@ -50,12 +51,13 @@ namespace CodersGrowth.Testes.Singleton
                 RecargaDeEnergia = 111.7m,
                 Escudo = 0.0m,
                 BonusElemental = 61.6m,
-                Posse = true,
+                CriadoPorUsuario = true,
                 ImgPersonagem = null,
                 ConstelacaoLv = 0,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Pyro,
                 Arma = ArmaEnum.Lanca,
+                IdUsuario = 2,
             },
             new Personagem()
             {
@@ -71,12 +73,13 @@ namespace CodersGrowth.Testes.Singleton
                  RecargaDeEnergia = 191.1m,
                  Escudo = 0.0m,
                  BonusElemental = 66.6m,
-                 Posse = false,
+                 CriadoPorUsuario = false,
                  ImgPersonagem = null,
                  ConstelacaoLv = 0,
                  DataDeAquisicao = null,
                  Elemento = ElementoEnum.Hydro,
                  Arma = ArmaEnum.Espada,
+                 IdUsuario = 3,
             },
             new Personagem()
             {
@@ -92,12 +95,13 @@ namespace CodersGrowth.Testes.Singleton
                  RecargaDeEnergia = 155.5m,
                  Escudo = 0.0m,
                  BonusElemental = 61.6m,
-                 Posse = false,
+                 CriadoPorUsuario = false,
                  ImgPersonagem = null,
                  ConstelacaoLv = 0,
                  DataDeAquisicao = null,
                  Elemento = ElementoEnum.Cryo,
                  Arma = ArmaEnum.Lanca,
+                 IdUsuario = 1,
             },
             new Personagem()
             {
@@ -113,12 +117,13 @@ namespace CodersGrowth.Testes.Singleton
                  RecargaDeEnergia = 100.0m,
                  Escudo = 0.0m,
                  BonusElemental = 83.2m,
-                 Posse = true,
+                 CriadoPorUsuario = true,
                  ImgPersonagem = null,
                  ConstelacaoLv = 6,
                  DataDeAquisicao = DateTime.Now,
                  Elemento = ElementoEnum.Geo,
                  Arma = ArmaEnum.Lanca,
+                 IdUsuario = 4,
             }
         };
 

@@ -11,7 +11,7 @@ namespace CodersGrowth.Dominio.Interfaces
     {
         public List<Personagem> ObterTodos();
         public Personagem ObterPorId(int Id);
-        public void Cadastrar();
+        public void Criar();
         public void Atualizar();
         public void Remover();
     }
