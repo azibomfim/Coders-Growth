@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CodersGrowth.Infra;
-using CodersGrowth.Dominio.Interfaces;
+﻿using CodersGrowth.Dominio.Interfaces;
 using CodersGrowth.Dominio.Models;
 using CodersGrowth.Testes.Singleton;
-using CodersGrowth.Servicos.Validacoes;
-using FluentValidation;
-using FluentValidation.Results;
 
 namespace CodersGrowth.Testes.RepositoriosMock
 {
