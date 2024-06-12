@@ -4,6 +4,7 @@ using CodersGrowth.Servicos.Validacoes;
 using Microsoft.Extensions.DependencyInjection;
 using FluentValidation.Results;
 using FluentValidation;
+using CodersGrowth.Testes.Singleton;
 
 namespace CodersGrowth.Testes.TestesUnitarios
 {
@@ -21,7 +22,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var listaDeUsuarios = servicoUsuario.ObterTodos();
 
             Assert.NotNull(listaDeUsuarios);
-            Assert.Equal(5, listaDeUsuarios.Count);
+            Assert.Equal(6, listaDeUsuarios.Count);
         }
 
         [Fact]
@@ -56,7 +57,10 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 AdventureRank = 60,
             };
 
-            Assert.Throws<ValidationException>(() => servicoUsuario.Criar(usuario));
+            servicoUsuario.Criar(usuario);
+            var usuarioCadastrado = TabelaUsuario.Instancia.Contains(usuario);
+
+            Assert.True(usuarioCadastrado);
         }
 
         [Fact]

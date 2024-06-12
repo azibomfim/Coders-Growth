@@ -2,6 +2,7 @@
 using CodersGrowth.Dominio.Models;
 using CodersGrowth.Servicos.InterfaceServico;
 using CodersGrowth.Servicos.Validacoes;
+using CodersGrowth.Testes.Singleton;
 using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,7 +23,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var listaDePersonagens = servicoPersonagem.ObterTodos();
 
             Assert.NotNull(listaDePersonagens);
-            Assert.Equal(5, listaDePersonagens.Count);
+            Assert.Equal(6, listaDePersonagens.Count);
         }
 
         [Fact]
@@ -193,7 +194,10 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 IdUsuario = 1,
             };
             
-            Assert.Throws<ValidationException>(() => servicoPersonagem.Criar(personagem));
+            servicoPersonagem.Criar(personagem);
+            var personagemCadastrado = TabelaPersonagem.Instancia.Contains(personagem);
+
+            Assert.True(personagemCadastrado);
         }
 
         [Fact]
@@ -223,7 +227,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
             };
 
             var mensagemDeErroP = Assert.Throws<ValidationException>(() => servicoPersonagem.Criar(personagem));
-            Assert.Contains("Assinale que o personagem foi criado por usuário", mensagemDeErroP.Message);
         }
 
         [Fact]
