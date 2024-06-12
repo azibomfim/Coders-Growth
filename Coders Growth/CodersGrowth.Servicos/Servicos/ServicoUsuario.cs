@@ -6,16 +6,21 @@ using System.Threading.Tasks;
 using CodersGrowth.Dominio.Interfaces;
 using CodersGrowth.Dominio.Models;
 using CodersGrowth.Servicos.InterfaceServico;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace CodersGrowth.Servicos.Servicos
 {
     public class ServicoUsuario: IServicoUsuario
     {
-        public ServicoUsuario(IRepositorioUsuario UsuarioRepositorioMock)
+        private IRepositorioUsuario _usuariorepositorio;
+        private IValidator<Usuario> _validacao;
+
+        public ServicoUsuario(IRepositorioUsuario UsuarioRepositorioMock, IValidator<Usuario> validacao)
         {
             _usuariorepositorio = UsuarioRepositorioMock;
+            _validacao = validacao;
         }
-        private IRepositorioUsuario _usuariorepositorio;
         public List<Usuario> ObterTodos()
         {
             return _usuariorepositorio.ObterTodos();
@@ -23,6 +28,11 @@ namespace CodersGrowth.Servicos.Servicos
         public Usuario ObterPorId(int Uid)
         {
             return _usuariorepositorio.ObterPorId(Uid) ?? throw new Exception("Usuário não encontrado.");
+        }
+        public Usuario Criar(Usuario usuario)
+        {
+            _validacao.ValidateAndThrow(usuario);
+            return _usuariorepositorio.Criar(usuario);
         }
     }
 }

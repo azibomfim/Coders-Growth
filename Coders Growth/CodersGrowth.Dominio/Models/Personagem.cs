@@ -25,8 +25,8 @@ namespace CodersGrowth.Dominio.Models
         public byte[]? ImgPersonagem { get; set; }
         public int ConstelacaoLv { get; set; }
         public DateTime? DataDeAquisicao { get; set; }
-        public ElementoEnum Elemento { get; set; }
-        public ArmaEnum Arma { get; set; }
+        public ElementoEnum? Elemento { get; set; }
+        public ArmaEnum? Arma { get; set; }
         public int IdUsuario { get; set; }
     }
 }

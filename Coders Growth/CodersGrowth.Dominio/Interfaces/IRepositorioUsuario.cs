@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CodersGrowth.Dominio;
 using CodersGrowth.Dominio.Models;
+using FluentValidation.Results;
 
 namespace CodersGrowth.Dominio.Interfaces
 {
@@ -12,7 +13,7 @@ namespace CodersGrowth.Dominio.Interfaces
     {
         public List<Usuario> ObterTodos();
         public Usuario ObterPorId(int Uid);
-        public void Criar();
+        public Usuario Criar(Usuario usuario);
         public void Atualizar();
         public void Remover();
     }

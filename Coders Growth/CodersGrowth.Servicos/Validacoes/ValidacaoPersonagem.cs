@@ -13,14 +13,20 @@ namespace CodersGrowth.Servicos.Validacoes
     {
         public ValidacaoPersonagem()
         {
-            RuleFor(personagem => personagem.NomePersonagem).NotEmpty();
-            RuleFor(personagem => personagem.Arma).NotEmpty();
-            RuleFor(personagem => personagem.Elemento).NotEmpty();
-
-            Personagem personagem = new Personagem();
-            ValidacaoPersonagem validacao = new ValidacaoPersonagem();
-
-            ValidationResult result = validacao.Validate(personagem);
+            RuleFor(personagem => personagem.NomePersonagem)
+                .NotEmpty()
+                .NotNull()
+                .WithMessage("Insira um nome válido");
+            RuleFor(personagem => personagem.Arma)
+                .IsInEnum()
+                .NotNull()
+                .NotEmpty()
+                .WithMessage("Insira uma arma válida");
+            RuleFor(personagem => personagem.Elemento)
+                .IsInEnum()
+                .NotNull()
+                .NotEmpty()
+                .WithMessage("Insira um elemento válido");
         }
     }
 }

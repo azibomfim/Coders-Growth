@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FluentValidation.Results;
 
 namespace CodersGrowth.Dominio.Interfaces
 {
@@ -11,7 +12,7 @@ namespace CodersGrowth.Dominio.Interfaces
     {
         public List<Personagem> ObterTodos();
         public Personagem ObterPorId(int Id);
-        public void Criar();
+        public Personagem Criar(Personagem personagem);
         public void Atualizar();
         public void Remover();
     }

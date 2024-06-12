@@ -1,12 +1,9 @@
-﻿using CodersGrowth.Servicos.InterfaceServico;
-using CodersGrowth.Servicos.Servicos;
+﻿using CodersGrowth.Dominio.Models;
+using CodersGrowth.Servicos.InterfaceServico;
+using CodersGrowth.Servicos.Validacoes;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CodersGrowth.Dominio.Models;
+using FluentValidation.Results;
+using FluentValidation;
 
 namespace CodersGrowth.Testes.TestesUnitarios
 {
@@ -47,7 +44,107 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var mensagemDeErroU = Assert.Throws<Exception>(() => servicoU.ObterPorId(Uid));
 
             Assert.Contains("Usuário não encontrado.", mensagemDeErroU.Message);
+        }
 
+        [Fact]
+        public void deve_aceitar_um_usuario_valido()
+        {
+            var usuario = new Usuario()
+            {
+                NomeDeUsuario = "aziazi",
+                Senha = 12547896,
+                Uid = 10,
+                AdventureRank = 60,
+            };
+
+            ValidacaoUsuario validacao = new ValidacaoUsuario();
+            ValidationResult result = validacao.Validate(usuario);
+
+            Assert.True(result.IsValid);
+        }
+
+        [Fact]
+        public void deve_rejeitar_um_usuario_com_nome_vazio()
+        {
+            var usuario = new Usuario()
+            {
+                NomeDeUsuario = "",
+                Senha = 12547896,
+                Uid = 10,
+                AdventureRank = 60,
+            };
+
+            Assert.Throws<ValidationException>(() => servicoU.Criar(usuario));
+        }
+
+        [Fact]
+        public void deve_rejeitar_um_usuario_com_senha_menor_que_4_digitos()
+        {
+            var usuario = new Usuario()
+            {
+                NomeDeUsuario = "aziazi",
+                Senha = 16,
+                Uid = 10,
+                AdventureRank = 60,
+            };
+
+            Assert.Throws<ValidationException>(() => servicoU.Criar(usuario));
+        }
+
+        [Fact]
+        public void deve_rejeitar_um_usuario_com_senha_maior_que_9_digitos()
+        {
+            var usuario = new Usuario()
+            {
+                NomeDeUsuario = "aziazi",
+                Senha = 1234567890,
+                Uid = 10,
+                AdventureRank = 60,
+            };
+
+            Assert.Throws<ValidationException>(() => servicoU.Criar(usuario));
+        }
+
+        [Fact]
+        public void deve_rejeitar_um_usuario_com_senha_nula()
+        {
+            var usuario = new Usuario()
+            {
+                NomeDeUsuario = "aziazi",
+                Senha = null,
+                Uid = 10,
+                AdventureRank = 60,
+            };
+
+            Assert.Throws<ValidationException>(() => servicoU.Criar(usuario));
+        }
+
+        [Fact]
+        public void deve_rejeitar_um_usuario_com_adventurerank_maior_que_60()
+        {
+            var usuario = new Usuario()
+            {
+                NomeDeUsuario = "aziazi",
+                Senha = 12345,
+                Uid = 10,
+                AdventureRank = 61,
+            };
+
+            Assert.Throws<ValidationException>(() => servicoU.Criar(usuario));
+        }
+
+        [Fact]
+        public void deve_rejeitar_um_usuario_com_adventurerank_menor_que_0()
+        {
+            var usuario = new Usuario()
+            {
+                NomeDeUsuario = "aziazi",
+                Senha = 12345,
+                Uid = 10,
+                AdventureRank = -1,
+            };
+
+            Assert.Throws<ValidationException>(() => servicoU.Criar(usuario));
         }
     }
 }

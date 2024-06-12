@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CodersGrowth.Dominio.Models;
+﻿using CodersGrowth.Dominio.Models;
+using FluentValidation.Results;
 
 namespace CodersGrowth.Servicos.InterfaceServico
 {
@@ -11,5 +7,6 @@ namespace CodersGrowth.Servicos.InterfaceServico
     {
         public List<Usuario> ObterTodos();
         public Usuario ObterPorId(int Uid);
+        public Usuario Criar(Usuario usuario);
     }
 }

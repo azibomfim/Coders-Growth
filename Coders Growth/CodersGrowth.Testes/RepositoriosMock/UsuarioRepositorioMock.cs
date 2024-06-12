@@ -7,6 +7,9 @@ using CodersGrowth.Infra;
 using CodersGrowth.Dominio.Interfaces;
 using CodersGrowth.Dominio.Models;
 using CodersGrowth.Testes.Singleton;
+using CodersGrowth.Servicos.Validacoes;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace CodersGrowth.Testes.RepositoriosMock
 {
@@ -17,9 +20,10 @@ namespace CodersGrowth.Testes.RepositoriosMock
             throw new NotImplementedException();
         }
 
-        public void Criar() 
-        {  
-            throw new NotImplementedException();
+        public Usuario Criar(Usuario usuario) 
+        {
+            TabelaUsuario.Usuarios.Add(usuario);
+            return usuario;
         }
 
         public Usuario ObterPorId(int Uid)

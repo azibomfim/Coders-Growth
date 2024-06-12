@@ -10,7 +10,7 @@ namespace CodersGrowth.Testes.Singleton
     public sealed class TabelaUsuario
     {
         private static List<Usuario> InstanciaUsuario = new();
-        private static readonly List<Usuario> Usuarios = new List<Usuario>()
+        public static readonly List<Usuario> Usuarios = new List<Usuario>()
         {
             new Usuario()
             {

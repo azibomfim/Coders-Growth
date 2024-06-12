@@ -6,7 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using CodersGrowth.Dominio.Interfaces;
 using CodersGrowth.Dominio.Models;
+using CodersGrowth.Servicos.Validacoes;
 using CodersGrowth.Testes.Singleton;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace CodersGrowth.Testes.RepositoriosMock
 {
@@ -17,10 +20,10 @@ namespace CodersGrowth.Testes.RepositoriosMock
             throw new NotImplementedException();
         }
 
-        public void Criar()
+        public Personagem Criar(Personagem personagem)
         {
-            List<Personagem> Personagens = TabelaPersonagem.Instancia;
-
+            TabelaPersonagem.Personagens.Add(personagem);
+            return personagem;
         }
 
         public Personagem ObterPorId(int Id)
