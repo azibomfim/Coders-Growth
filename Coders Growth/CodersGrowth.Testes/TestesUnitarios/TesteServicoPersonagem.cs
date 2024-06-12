@@ -48,7 +48,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
         }
 
         [Fact]
-        public void deve_rejeitar_um_personagem_com_nome_invalido()
+        public void deve_rejeitar_um_personagem_com_nome_vazio()
         {
             var personagem = new Personagem()
             {
@@ -64,7 +64,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 RecargaDeEnergia = 155.5m,
                 Escudo = 0.0m,
                 BonusElemental = 61.6m,
-                CriadoPorUsuario = false,
+                CriadoPorUsuario = true,
                 ImgPersonagem = null,
                 ConstelacaoLv = 0,
                 DataDeAquisicao = null,
@@ -73,7 +73,38 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 IdUsuario = 1,
             };
 
-            Assert.Throws<ValidationException>(() => servicoPersonagem.Criar(personagem));
+            var mensagemDeErroP =  Assert.Throws<ValidationException>(() => servicoPersonagem.Criar(personagem));
+            Assert.Contains("Insira um nome válido", mensagemDeErroP.Message);
+        }
+
+        [Fact]
+        public void deve_rejeitar_um_personagem_com_nome_nulo()
+        {
+            var personagem = new Personagem()
+            {
+                Id = 6,
+                NomePersonagem = null,
+                Vida = 17355,
+                Ataque = 1585,
+                Defesa = 767,
+                ProficienciaElemental = 68,
+                TaxaCrit = 48.9m,
+                DanoCrit = 151.1m,
+                BonusCura = 0.0m,
+                RecargaDeEnergia = 155.5m,
+                Escudo = 0.0m,
+                BonusElemental = 61.6m,
+                CriadoPorUsuario = true,
+                ImgPersonagem = null,
+                ConstelacaoLv = 0,
+                DataDeAquisicao = null,
+                Elemento = ElementoEnum.Cryo,
+                Arma = ArmaEnum.Espadao,
+                IdUsuario = 1,
+            };
+
+            var mensagemDeErroP = Assert.Throws<ValidationException>(() => servicoPersonagem.Criar(personagem));
+            Assert.Contains("Insira um nome válido", mensagemDeErroP.Message);
         }
 
         [Fact]
@@ -93,7 +124,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 RecargaDeEnergia = 155.5m,
                 Escudo = 0.0m,
                 BonusElemental = 61.6m,
-                CriadoPorUsuario = false,
+                CriadoPorUsuario = true,
                 ImgPersonagem = null,
                 ConstelacaoLv = 0,
                 DataDeAquisicao = null,
@@ -102,7 +133,8 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 IdUsuario = 1,
             };
 
-            Assert.Throws<ValidationException>(() => servicoPersonagem.Criar(personagem));
+            var mensagemDeErroP = Assert.Throws<ValidationException>(() => servicoPersonagem.Criar(personagem));
+            Assert.Contains("Insira uma arma válida", mensagemDeErroP.Message);
         }
 
         [Fact]
@@ -131,7 +163,8 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 IdUsuario = 1,
             };
 
-            Assert.Throws<ValidationException>(() => servicoPersonagem.Criar(personagem));
+            var mensagemDeErroP = Assert.Throws<ValidationException>(() => servicoPersonagem.Criar(personagem));
+            Assert.Contains("Insira um elemento válido", mensagemDeErroP.Message);
         }
 
         [Fact]
@@ -159,11 +192,8 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Arma = ArmaEnum.Espadao,
                 IdUsuario = 1,
             };
-
-            ValidacaoPersonagem validacao = new ValidacaoPersonagem();
-            var result = validacao.Validate(personagem);
-
-            Assert.True(result.IsValid);
+            
+            Assert.Throws<ValidationException>(() => servicoPersonagem.Criar(personagem));
         }
 
         [Fact]
@@ -192,10 +222,8 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 IdUsuario = null,
             };
 
-            ValidacaoPersonagem validacao = new ValidacaoPersonagem();
-            var result = validacao.Validate(personagem);
-
-            Assert.False(result.IsValid);
+            var mensagemDeErroP = Assert.Throws<ValidationException>(() => servicoPersonagem.Criar(personagem));
+            Assert.Contains("Assinale que o personagem foi criado por usuário", mensagemDeErroP.Message);
         }
 
         [Fact]
@@ -224,10 +252,8 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 IdUsuario = 1,
             };
 
-            ValidacaoPersonagem validacao = new ValidacaoPersonagem();
-            var result = validacao.Validate(personagem);
-
-            Assert.False(result.IsValid);
+            var mensagemDeErroP = Assert.Throws<ValidationException>(() => servicoPersonagem.Criar(personagem));
+            Assert.Contains("Assinale que o personagem foi criado por usuário", mensagemDeErroP.Message);
         }
     }
 }

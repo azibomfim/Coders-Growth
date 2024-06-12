@@ -13,7 +13,7 @@ namespace CodersGrowth.Dominio.Interfaces
         public List<Personagem> ObterTodos();
         public Personagem ObterPorId(int Id);
         public Personagem Criar(Personagem personagem);
-        public void Atualizar();
+        public void Atualizar(Personagem personagem);
         public void Remover();
     }
 }

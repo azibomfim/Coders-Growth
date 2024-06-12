@@ -10,7 +10,7 @@ namespace CodersGrowth.Dominio.Models
     public class Personagem
     {
         public int Id { get; set; }
-        public string NomePersonagem { get; set; }
+        public string? NomePersonagem { get; set; }
         public int? Vida { get; set; }
         public int? Ataque { get; set; }
         public int? Defesa { get; set; }

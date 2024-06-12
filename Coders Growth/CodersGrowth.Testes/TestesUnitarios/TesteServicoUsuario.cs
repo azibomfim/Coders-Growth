@@ -42,7 +42,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
         public void deve_retornar_um_erro_ao_passar_id_inexistente(int Uid)
         {
             var mensagemDeErroU = Assert.Throws<Exception>(() => servicoUsuario.ObterPorId(Uid));
-
             Assert.Contains("Usuário não encontrado.", mensagemDeErroU.Message);
         }
 
@@ -57,10 +56,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 AdventureRank = 60,
             };
 
-            ValidacaoUsuario validacao = new ValidacaoUsuario();
-            var result = validacao.Validate(usuario);
-
-            Assert.True(result.IsValid);
+            Assert.Throws<ValidationException>(() => servicoUsuario.Criar(usuario));
         }
 
         [Fact]
@@ -74,7 +70,23 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 AdventureRank = 60,
             };
 
-            Assert.Throws<ValidationException>(() => servicoUsuario.Criar(usuario));
+            var mensagemDeErroU = Assert.Throws<ValidationException>(() => servicoUsuario.Criar(usuario));
+            Assert.Contains("Insira um nome válido", mensagemDeErroU.Message);
+        }
+
+        [Fact]
+        public void deve_rejeitar_um_usuario_com_nome_nulo()
+        {
+            var usuario = new Usuario()
+            {
+                NomeDeUsuario = null,
+                Senha = 12547896,
+                Uid = 10,
+                AdventureRank = 60,
+            };
+
+            var mensagemDeErroU = Assert.Throws<ValidationException>(() => servicoUsuario.Criar(usuario));
+            Assert.Contains("Insira um nome válido", mensagemDeErroU.Message);
         }
 
         [Fact]
@@ -88,7 +100,8 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 AdventureRank = 60,
             };
 
-            Assert.Throws<ValidationException>(() => servicoUsuario.Criar(usuario));
+            var mensagemDeErroU = Assert.Throws<ValidationException>(() => servicoUsuario.Criar(usuario));
+            Assert.Contains("Sua senha precisa ter de 4 a 9 caracteres", mensagemDeErroU.Message);
         }
 
         [Fact]
@@ -102,7 +115,8 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 AdventureRank = 60,
             };
 
-            Assert.Throws<ValidationException>(() => servicoUsuario.Criar(usuario));
+            var mensagemDeErroU = Assert.Throws<ValidationException>(() => servicoUsuario.Criar(usuario));
+            Assert.Contains("Sua senha precisa ter de 4 a 9 caracteres", mensagemDeErroU.Message);
         }
 
         [Fact]
@@ -116,7 +130,8 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 AdventureRank = 60,
             };
 
-            Assert.Throws<ValidationException>(() => servicoUsuario.Criar(usuario));
+            var mensagemDeErroU = Assert.Throws<ValidationException>(() => servicoUsuario.Criar(usuario));
+            Assert.Contains("Sua senha precisa ter de 4 a 9 caracteres", mensagemDeErroU.Message);
         }
 
         [Fact]
@@ -130,7 +145,8 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 AdventureRank = 61,
             };
 
-            Assert.Throws<ValidationException>(() => servicoUsuario.Criar(usuario));
+            var mensagemDeErroU = Assert.Throws<ValidationException>(() => servicoUsuario.Criar(usuario));
+            Assert.Contains("Insira um Adventure Rank entre 1 e 60", mensagemDeErroU.Message);
         }
 
         [Fact]
@@ -144,7 +160,23 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 AdventureRank = -1,
             };
 
-            Assert.Throws<ValidationException>(() => servicoUsuario.Criar(usuario));
+            var mensagemDeErroU = Assert.Throws<ValidationException>(() => servicoUsuario.Criar(usuario));
+            Assert.Contains("Insira um Adventure Rank entre 1 e 60", mensagemDeErroU.Message);
+        }
+
+        [Fact]
+        public void deve_rejeitar_um_usuario_com_adventurerank_nulo()
+        {
+            var usuario = new Usuario()
+            {
+                NomeDeUsuario = "aziazi",
+                Senha = 12345,
+                Uid = 10,
+                AdventureRank = null,
+            };
+
+            var mensagemDeErroU = Assert.Throws<ValidationException>(() => servicoUsuario.Criar(usuario));
+            Assert.Contains("Insira um Adventure Rank entre 1 e 60", mensagemDeErroU.Message);
         }
     }
 }

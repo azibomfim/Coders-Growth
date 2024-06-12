@@ -15,7 +15,7 @@ namespace CodersGrowth.Testes.RepositoriosMock
 {
     public class PersonagemRepositorioMock : IRepositorioPersonagem
     {
-        public void Atualizar()
+        public void Atualizar(Personagem personagem)
         {
             throw new NotImplementedException();
         }

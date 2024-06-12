@@ -15,16 +15,21 @@ namespace CodersGrowth.Servicos.Validacoes
         {
             RuleFor(personagem => personagem.NomePersonagem)
                 .NotEmpty()
+                .WithMessage("Insira um nome válido")
                 .NotNull()
                 .WithMessage("Insira um nome válido");
             RuleFor(personagem => personagem.Arma)
                 .IsInEnum()
+                .WithMessage("Insira uma arma válida")
                 .NotNull()
+                .WithMessage("Insira uma arma válida")
                 .NotEmpty()
                 .WithMessage("Insira uma arma válida");
             RuleFor(personagem => personagem.Elemento)
                 .IsInEnum()
+                .WithMessage("Insira um elemento válido")
                 .NotNull()
+                .WithMessage("Insira um elemento válido")
                 .NotEmpty()
                 .WithMessage("Insira um elemento válido");
             RuleFor(personagem => personagem.IdUsuario)
@@ -33,7 +38,7 @@ namespace CodersGrowth.Servicos.Validacoes
             RuleFor(personagem => personagem.IdUsuario)
                 .Empty()
                 .When(personagem => !personagem.CriadoPorUsuario)
-                .WithMessage("Personagem criado por usuário");
+                .WithMessage("Assinale que o personagem foi criado por usuário");
         }
     }
 }
