@@ -1,39 +1,36 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CodersGrowth.Dominio.Enums;
 using CodersGrowth.Dominio.Models;
 using CodersGrowth.Servicos.InterfaceServico;
-using CodersGrowth.Servicos.Servicos;
+using CodersGrowth.Servicos.Validacoes;
 using CodersGrowth.Testes.Singleton;
-using System.Security.Cryptography;
+using FluentValidation;
+using FluentValidation.Results;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CodersGrowth.Testes.TestesUnitarios
 {
     public class TesteServicoPersonagem : TesteBase
     {
-        protected IServicoPersonagem servicoP;
+        private IServicoPersonagem servicoPersonagem;
         public TesteServicoPersonagem()
         {
-            servicoP = ServiceProvider.GetService<IServicoPersonagem>();
+            servicoPersonagem = ServiceProvider.GetService<IServicoPersonagem>();
         }   
 
         [Fact]
         public void deve_retornar_todos_os_personagens() 
         {
-            var listaDePersonagens = servicoP.ObterTodos();
+            var listaDePersonagens = servicoPersonagem.ObterTodos();
 
             Assert.NotNull(listaDePersonagens);
-            Assert.Equal(5, listaDePersonagens.Count);
+            Assert.Equal(6, listaDePersonagens.Count);
         }
 
         [Fact]
         public void deve_retornar_o_personagem_xiao_ao_passar_o_id_1()
         {
             int Id = 1;
-            var personagensPorId = servicoP.ObterPorId(Id);
+            var personagensPorId = servicoPersonagem.ObterPorId(Id);
 
             Assert.NotNull(personagensPorId);
             Assert.Equal(1, personagensPorId.Id);
@@ -46,9 +43,191 @@ namespace CodersGrowth.Testes.TestesUnitarios
         [InlineData(28518)]
         public void deve_retornar_um_erro_ao_passar_id_inexistente(int Id)
         {
-            var mensagemDeErroP = Assert.Throws<Exception>(() => servicoP.ObterPorId(Id));
+            var mensagemDeErroP = Assert.Throws<Exception>(() => servicoPersonagem.ObterPorId(Id));
 
             Assert.Contains("Personagem não encontrado.", mensagemDeErroP.Message);
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        public void deve_rejeitar_um_personagem_com_nome_nulo_ou_vazio(string NomePersonagem)
+        {
+            var personagem = new Personagem()
+            {
+                Id = 6,
+                NomePersonagem = NomePersonagem,
+                Vida = 17355,
+                Ataque = 1585,
+                Defesa = 767,
+                ProficienciaElemental = 68,
+                TaxaCrit = 48.9m,
+                DanoCrit = 151.1m,
+                BonusCura = 0.0m,
+                RecargaDeEnergia = 155.5m,
+                Escudo = 0.0m,
+                BonusElemental = 61.6m,
+                CriadoPorUsuario = true,
+                ImgPersonagem = null,
+                ConstelacaoLv = 0,
+                DataDeAquisicao = null,
+                Elemento = ElementoEnum.Cryo,
+                Arma = ArmaEnum.Espadao,
+                IdUsuario = 1,
+            };
+
+            var mensagemDeErroP = Assert.Throws<ValidationException>(() => servicoPersonagem.Criar(personagem));
+            Assert.Contains("Insira um nome válido", mensagemDeErroP.Message);
+        }
+
+        [Fact]
+        public void deve_rejeitar_um_personagem_com_arma_invalida()
+        {
+            var personagem = new Personagem()
+            {
+                Id = 6,
+                NomePersonagem = "Eula",
+                Vida = 17355,
+                Ataque = 1585,
+                Defesa = 767,
+                ProficienciaElemental = 68,
+                TaxaCrit = 48.9m,
+                DanoCrit = 151.1m,
+                BonusCura = 0.0m,
+                RecargaDeEnergia = 155.5m,
+                Escudo = 0.0m,
+                BonusElemental = 61.6m,
+                CriadoPorUsuario = true,
+                ImgPersonagem = null,
+                ConstelacaoLv = 0,
+                DataDeAquisicao = null,
+                Elemento = ElementoEnum.Cryo,
+                Arma = null,
+                IdUsuario = 1,
+            };
+
+            var mensagemDeErroP = Assert.Throws<ValidationException>(() => servicoPersonagem.Criar(personagem));
+            Assert.Contains("Insira uma arma válida", mensagemDeErroP.Message);
+        }
+
+        [Fact]
+        public void deve_rejeitar_um_personagem_com_elemento_invalido()
+        {
+            var personagem = new Personagem()
+            {
+                Id = 6,
+                NomePersonagem = "Eula",
+                Vida = 17355,
+                Ataque = 1585,
+                Defesa = 767,
+                ProficienciaElemental = 68,
+                TaxaCrit = 48.9m,
+                DanoCrit = 151.1m,
+                BonusCura = 0.0m,
+                RecargaDeEnergia = 155.5m,
+                Escudo = 0.0m,
+                BonusElemental = 61.6m,
+                CriadoPorUsuario = true,
+                ImgPersonagem = null,
+                ConstelacaoLv = 0,
+                DataDeAquisicao = null,
+                Elemento = null,
+                Arma = ArmaEnum.Espadao,
+                IdUsuario = 1,
+            };
+
+            var mensagemDeErroP = Assert.Throws<ValidationException>(() => servicoPersonagem.Criar(personagem));
+            Assert.Contains("Insira um elemento válido", mensagemDeErroP.Message);
+        }
+
+        [Fact]
+        public void deve_aceitar_um_personagem_valido()
+        {
+            var personagem = new Personagem()
+            {
+                Id = 6,
+                NomePersonagem = "Eula",
+                Vida = 17355,
+                Ataque = 1585,
+                Defesa = 767,
+                ProficienciaElemental = 68,
+                TaxaCrit = 48.9m,
+                DanoCrit = 151.1m,
+                BonusCura = 0.0m,
+                RecargaDeEnergia = 155.5m,
+                Escudo = 0.0m,
+                BonusElemental = 61.6m,
+                CriadoPorUsuario = true,
+                ImgPersonagem = null,
+                ConstelacaoLv = 0,
+                DataDeAquisicao = null,
+                Elemento = ElementoEnum.Cryo,
+                Arma = ArmaEnum.Espadao,
+                IdUsuario = 1,
+            };
+            
+            var personagemCadastrado = servicoPersonagem.Criar(personagem);
+            Assert.Equal(personagemCadastrado, personagem);
+        }
+
+        [Fact]
+        public void deve_rejeitar_personagem_criado_por_usuario_caso_id_nulo()
+        {
+            var personagem = new Personagem()
+            {
+                Id = 6,
+                NomePersonagem = "Eula",
+                Vida = 17355,
+                Ataque = 1585,
+                Defesa = 767,
+                ProficienciaElemental = 68,
+                TaxaCrit = 48.9m,
+                DanoCrit = 151.1m,
+                BonusCura = 0.0m,
+                RecargaDeEnergia = 155.5m,
+                Escudo = 0.0m,
+                BonusElemental = 61.6m,
+                CriadoPorUsuario = true,
+                ImgPersonagem = null,
+                ConstelacaoLv = 0,
+                DataDeAquisicao = null,
+                Elemento = ElementoEnum.Cryo,
+                Arma = ArmaEnum.Espadao,
+                IdUsuario = null,
+            };
+
+            var mensagemDeErroP = Assert.Throws<ValidationException>(() => servicoPersonagem.Criar(personagem));
+            Assert.Contains("Personagem não foi criado por usuário", mensagemDeErroP.Message);
+        }
+
+        [Fact]
+        public void deve_retornar_erro_caso_personagem_nao_criado_por_usuario_apesar_de_ter_id()
+        {
+            var personagem = new Personagem()
+            {
+                Id = 6,
+                NomePersonagem = "Eula",
+                Vida = 17355,
+                Ataque = 1585,
+                Defesa = 767,
+                ProficienciaElemental = 68,
+                TaxaCrit = 48.9m,
+                DanoCrit = 151.1m,
+                BonusCura = 0.0m,
+                RecargaDeEnergia = 155.5m,
+                Escudo = 0.0m,
+                BonusElemental = 61.6m,
+                CriadoPorUsuario = false,
+                ImgPersonagem = null,
+                ConstelacaoLv = 0,
+                DataDeAquisicao = null,
+                Elemento = ElementoEnum.Cryo,
+                Arma = ArmaEnum.Espadao,
+                IdUsuario = 1,
+            };
+
+            var mensagemDeErroP = Assert.Throws<ValidationException>(() => servicoPersonagem.Criar(personagem));
+            Assert.Contains("Assinale que o personagem foi criado por usuário", mensagemDeErroP.Message);
         }
     }
 }

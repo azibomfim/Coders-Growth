@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CodersGrowth.Infra;
-using CodersGrowth.Dominio.Interfaces;
+﻿using CodersGrowth.Dominio.Interfaces;
 using CodersGrowth.Dominio.Models;
 using CodersGrowth.Testes.Singleton;
 
@@ -12,14 +6,15 @@ namespace CodersGrowth.Testes.RepositoriosMock
 {
     public class UsuarioRepositorioMock : IRepositorioUsuario
     {
-        public void Atualizar()
+        public Usuario Atualizar(Usuario usuario)
         {
             throw new NotImplementedException();
         }
 
-        public void Cadastrar() 
-        {  
-            throw new NotImplementedException();
+        public Usuario Criar(Usuario usuario) 
+        {
+            TabelaUsuario.Usuarios.Add(usuario);
+            return usuario;
         }
 
         public Usuario ObterPorId(int Uid)
@@ -37,7 +32,7 @@ namespace CodersGrowth.Testes.RepositoriosMock
             return _repository;
         }
 
-        public void Remover()
+        public void Remover(int Uid)
         {
             throw new NotImplementedException();
         }

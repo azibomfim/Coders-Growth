@@ -6,20 +6,24 @@ using System.Text;
 using System.Threading.Tasks;
 using CodersGrowth.Dominio.Interfaces;
 using CodersGrowth.Dominio.Models;
+using CodersGrowth.Servicos.Validacoes;
 using CodersGrowth.Testes.Singleton;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace CodersGrowth.Testes.RepositoriosMock
 {
     public class PersonagemRepositorioMock : IRepositorioPersonagem
     {
-        public void Atualizar()
+        public Personagem Atualizar(Personagem personagem)
         {
             throw new NotImplementedException();
         }
 
-        public void Cadastrar()
+        public Personagem Criar(Personagem personagem)
         {
-            throw new NotImplementedException();
+            TabelaPersonagem.Personagens.Add(personagem);
+            return personagem;
         }
 
         public Personagem ObterPorId(int Id)
@@ -37,7 +41,7 @@ namespace CodersGrowth.Testes.RepositoriosMock
             return _repository;
         }
 
-        public void Remover()
+        public void Remover(int Id)
         {
             throw new NotImplementedException();
         }
