@@ -6,7 +6,7 @@ namespace CodersGrowth.Testes.RepositoriosMock
 {
     public class UsuarioRepositorioMock : IRepositorioUsuario
     {
-        public void Atualizar(Usuario usuario)
+        public Usuario Atualizar(Usuario usuario)
         {
             throw new NotImplementedException();
         }
@@ -32,7 +32,7 @@ namespace CodersGrowth.Testes.RepositoriosMock
             return _repository;
         }
 
-        public void Remover()
+        public void Remover(int Uid)
         {
             throw new NotImplementedException();
         }

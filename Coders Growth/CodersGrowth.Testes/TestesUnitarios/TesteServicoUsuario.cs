@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using FluentValidation.Results;
 using FluentValidation;
 using CodersGrowth.Testes.Singleton;
+using CodersGrowth.Servicos.Servicos;
 
 namespace CodersGrowth.Testes.TestesUnitarios
 {
@@ -57,33 +58,18 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 AdventureRank = 60,
             };
 
-            servicoUsuario.Criar(usuario);
-            var usuarioCadastrado = TabelaUsuario.Instancia.Contains(usuario);
-
-            Assert.True(usuarioCadastrado);
+            var usuarioCadastrado = servicoUsuario.Criar(usuario);
+            Assert.Equal(usuarioCadastrado, usuario);
         }
 
-        [Fact]
-        public void deve_rejeitar_um_usuario_com_nome_vazio()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        public void deve_rejeitar_um_usuario_com_nome_nulo_ou_vazio(string NomeDeUsuario)
         {
             var usuario = new Usuario()
             {
-                NomeDeUsuario = "",
-                Senha = 12547896,
-                Uid = 10,
-                AdventureRank = 60,
-            };
-
-            var mensagemDeErroU = Assert.Throws<ValidationException>(() => servicoUsuario.Criar(usuario));
-            Assert.Contains("Insira um nome válido", mensagemDeErroU.Message);
-        }
-
-        [Fact]
-        public void deve_rejeitar_um_usuario_com_nome_nulo()
-        {
-            var usuario = new Usuario()
-            {
-                NomeDeUsuario = null,
+                NomeDeUsuario = NomeDeUsuario,
                 Senha = 12547896,
                 Uid = 10,
                 AdventureRank = 60,

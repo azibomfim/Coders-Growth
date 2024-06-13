@@ -48,43 +48,15 @@ namespace CodersGrowth.Testes.TestesUnitarios
             Assert.Contains("Personagem não encontrado.", mensagemDeErroP.Message);
         }
 
-        [Fact]
-        public void deve_rejeitar_um_personagem_com_nome_vazio()
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        public void deve_rejeitar_um_personagem_com_nome_nulo_ou_vazio(string NomePersonagem)
         {
             var personagem = new Personagem()
             {
                 Id = 6,
-                NomePersonagem = "",
-                Vida = 17355,
-                Ataque = 1585,
-                Defesa = 767,
-                ProficienciaElemental = 68,
-                TaxaCrit = 48.9m,
-                DanoCrit = 151.1m,
-                BonusCura = 0.0m,
-                RecargaDeEnergia = 155.5m,
-                Escudo = 0.0m,
-                BonusElemental = 61.6m,
-                CriadoPorUsuario = true,
-                ImgPersonagem = null,
-                ConstelacaoLv = 0,
-                DataDeAquisicao = null,
-                Elemento = ElementoEnum.Cryo,
-                Arma = ArmaEnum.Espadao,
-                IdUsuario = 1,
-            };
-
-            var mensagemDeErroP =  Assert.Throws<ValidationException>(() => servicoPersonagem.Criar(personagem));
-            Assert.Contains("Insira um nome válido", mensagemDeErroP.Message);
-        }
-
-        [Fact]
-        public void deve_rejeitar_um_personagem_com_nome_nulo()
-        {
-            var personagem = new Personagem()
-            {
-                Id = 6,
-                NomePersonagem = null,
+                NomePersonagem = NomePersonagem,
                 Vida = 17355,
                 Ataque = 1585,
                 Defesa = 767,
@@ -194,14 +166,12 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 IdUsuario = 1,
             };
             
-            servicoPersonagem.Criar(personagem);
-            var personagemCadastrado = TabelaPersonagem.Instancia.Contains(personagem);
-
-            Assert.True(personagemCadastrado);
+            var personagemCadastrado = servicoPersonagem.Criar(personagem);
+            Assert.Equal(personagemCadastrado, personagem);
         }
 
         [Fact]
-        public void deve_rejeitar_idusuario_nulo_em_personagem_criado_por_usuario()
+        public void deve_rejeitar_personagem_criado_por_usuario_caso_id_nulo()
         {
             var personagem = new Personagem()
             {
@@ -227,10 +197,11 @@ namespace CodersGrowth.Testes.TestesUnitarios
             };
 
             var mensagemDeErroP = Assert.Throws<ValidationException>(() => servicoPersonagem.Criar(personagem));
+            Assert.Contains("Personagem não foi criado por usuário", mensagemDeErroP.Message);
         }
 
         [Fact]
-        public void deve_rejeitar_idusuario_em_personagem_nao_criado_por_usuario()
+        public void deve_retornar_erro_caso_personagem_nao_criado_por_usuario_apesar_de_ter_id()
         {
             var personagem = new Personagem()
             {

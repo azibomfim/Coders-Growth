@@ -34,7 +34,8 @@ namespace CodersGrowth.Servicos.Validacoes
                 .WithMessage("Insira um elemento válido");
             RuleFor(personagem => personagem.IdUsuario)
                 .NotNull()
-                .When(personagem => personagem.CriadoPorUsuario);
+                .When(personagem => personagem.CriadoPorUsuario)
+                .WithMessage("Personagem não foi criado por usuário");
             RuleFor(personagem => personagem.IdUsuario)
                 .Empty()
                 .When(personagem => !personagem.CriadoPorUsuario)
