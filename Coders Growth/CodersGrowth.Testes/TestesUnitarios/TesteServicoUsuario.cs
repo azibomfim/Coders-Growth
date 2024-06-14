@@ -23,7 +23,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var listaDeUsuarios = servicoUsuario.ObterTodos();
 
             Assert.NotNull(listaDeUsuarios);
-            Assert.Equal(6, listaDeUsuarios.Count);
+            Assert.Equal(5, listaDeUsuarios.Count);
         }
 
         [Fact]
@@ -47,8 +47,10 @@ namespace CodersGrowth.Testes.TestesUnitarios
             Assert.Contains("Usuário não encontrado.", mensagemDeErroUsuario.Message);
         }
 
+        //testes de criação
+
         [Fact]
-        public void deve_aceitar_um_usuario_valido()
+        public void deve_aceitar_criacao_de_um_usuario_valido()
         {
             var usuario = new Usuario()
             {
@@ -65,7 +67,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
         [Theory]
         [InlineData(null)]
         [InlineData("")]
-        public void deve_rejeitar_um_usuario_com_nome_nulo_ou_vazio(string NomeDeUsuario)
+        public void deve_rejeitar_criacao_de_um_usuario_com_nome_nulo_ou_vazio(string NomeDeUsuario)
         {
             var usuario = new Usuario()
             {
@@ -83,7 +85,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
         [InlineData(null)]
         [InlineData(16)]
         [InlineData(1234567890)]
-        public void deve_rejeitar_um_usuario_com_senha_ivalida(int Senha)
+        public void deve_rejeitar_criacao_de_um_usuario_com_senha_ivalida(int Senha)
         {
             var usuario = new Usuario()
             {
@@ -97,11 +99,25 @@ namespace CodersGrowth.Testes.TestesUnitarios
             Assert.Contains("Sua senha precisa ter de 4 a 9 caracteres", mensagemDeErroUsuario.Message);
         }
 
+        [Fact]
+        public void deve_rejeitar_criacao_de_um_usuario_com_senha_nula()
+        {
+            var usuario = new Usuario()
+            {
+                NomeDeUsuario = "aziazi",
+                Senha = null,
+                Uid = 10,
+                AdventureRank = 60,
+            };
+
+            var mensagemDeErroUsuario = Assert.Throws<ValidationException>(() => servicoUsuario.Criar(usuario));
+            Assert.Contains("Sua senha precisa ter de 4 a 9 caracteres", mensagemDeErroUsuario.Message);
+        }
+
         [Theory]
-        [InlineData(null)]
         [InlineData(-1)]
         [InlineData(61)]
-        public void deve_rejeitar_um_usuario_com_adventurerank_invalido(int AdventureRank)
+        public void deve_rejeitar_criacao_de_um_usuario_com_adventurerank_invalido(int AdventureRank)
         {
             var usuario = new Usuario()
             {
@@ -114,6 +130,23 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var mensagemDeErroUsuario = Assert.Throws<ValidationException>(() => servicoUsuario.Criar(usuario));
             Assert.Contains("Insira um Adventure Rank entre 1 e 60", mensagemDeErroUsuario.Message);
         }
+
+        [Fact]
+        public void deve_rejeitar_criacao_de_um_usuario_com_adventurerank_nulo()
+        {
+            var usuario = new Usuario()
+            {
+                NomeDeUsuario = "aziazi",
+                Senha = 12345,
+                Uid = 10,
+                AdventureRank = null,
+            };
+
+            var mensagemDeErroUsuario = Assert.Throws<ValidationException>(() => servicoUsuario.Criar(usuario));
+            Assert.Contains("Insira um Adventure Rank entre 1 e 60", mensagemDeErroUsuario.Message);
+        }
+
+        //testes de edição
 
         [Fact]
         public void deve_aceitar_edicao_de_um_usuario_valido()

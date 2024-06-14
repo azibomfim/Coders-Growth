@@ -19,6 +19,7 @@ namespace CodersGrowth.Testes.Singleton
                 Uid = 1,
                 AdventureRank = 55,
             },
+
             new Usuario()
             {
                 NomeDeUsuario = "furao insecs",
@@ -26,6 +27,7 @@ namespace CodersGrowth.Testes.Singleton
                 Uid = 2,
                 AdventureRank = 56,
             },
+
             new Usuario()
             {
                 NomeDeUsuario = "foca fofocas",
@@ -33,6 +35,7 @@ namespace CodersGrowth.Testes.Singleton
                 Uid = 3,
                 AdventureRank = 48,
             },
+
             new Usuario()
             {
                 NomeDeUsuario = "toninha bipede",
@@ -40,6 +43,7 @@ namespace CodersGrowth.Testes.Singleton
                 Uid = 4,
                 AdventureRank = 50,
             },
+
             new Usuario()
             {
                 NomeDeUsuario = "abelhinha triste",

@@ -19,6 +19,7 @@ namespace CodersGrowth.Servicos.Validacoes
                 .WithMessage("Insira um nome válido")
                 .NotNull()
                 .WithMessage("Insira um nome válido");
+
             RuleFor(usuario => usuario.AdventureRank)
                 .LessThanOrEqualTo(60)
                 .WithMessage("Insira um Adventure Rank entre 1 e 60")
@@ -28,6 +29,7 @@ namespace CodersGrowth.Servicos.Validacoes
                 .WithMessage("Insira um Adventure Rank entre 1 e 60")
                 .NotEmpty()
                 .WithMessage("Insira um Adventure Rank entre 1 e 60");
+
             RuleFor(usuario => usuario.Senha)
                 .NotEmpty()
                 .WithMessage("Sua senha precisa ter de 4 a 9 caracteres")

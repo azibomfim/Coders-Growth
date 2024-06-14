@@ -37,6 +37,7 @@ namespace CodersGrowth.Testes.Singleton
                 Arma = ArmaEnum.Lanca,
                 IdUsuario = 5,
             },
+
             new Personagem()
             {
                 Id = 2,
@@ -59,6 +60,7 @@ namespace CodersGrowth.Testes.Singleton
                 Arma = ArmaEnum.Lanca,
                 IdUsuario = 2,
             },
+
             new Personagem()
             {
                  Id = 3,
@@ -81,6 +83,7 @@ namespace CodersGrowth.Testes.Singleton
                  Arma = ArmaEnum.Espada,
                  IdUsuario = 3,
             },
+
             new Personagem()
             {
                  Id = 4,
@@ -103,6 +106,7 @@ namespace CodersGrowth.Testes.Singleton
                  Arma = ArmaEnum.Lanca,
                  IdUsuario = 1,
             },
+
             new Personagem()
             {
                  Id = 5,
