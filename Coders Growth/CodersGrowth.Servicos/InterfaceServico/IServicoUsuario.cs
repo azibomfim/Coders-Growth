@@ -8,5 +8,6 @@ namespace CodersGrowth.Servicos.InterfaceServico
         public List<Usuario> ObterTodos();
         public Usuario ObterPorId(int Uid);
         public Usuario Criar(Usuario usuario);
+        public Usuario Editar(Usuario usuario);
     }
 }

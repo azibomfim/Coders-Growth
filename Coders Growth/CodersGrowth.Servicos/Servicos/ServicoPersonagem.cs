@@ -36,7 +36,11 @@ namespace CodersGrowth.Servicos.Servicos
             _validacao.ValidateAndThrow(personagem);
             return _personagemrepositorio.Criar(personagem);
         }
-
+        public Personagem Editar(Personagem personagem)
+        {
+            _validacao.ValidateAndThrow(personagem);
+            return _personagemrepositorio.Editar(personagem);
+        }
     }
 }
 

@@ -15,9 +15,24 @@ namespace CodersGrowth.Testes.RepositoriosMock
 {
     public class PersonagemRepositorioMock : IRepositorioPersonagem
     {
-        public Personagem Atualizar(Personagem personagem)
+        public Personagem Editar(Personagem personagem)
         {
-            throw new NotImplementedException();
+            Personagem personagemAlterado = ObterPorId(personagem.Id);
+
+            personagemAlterado.TaxaCrit = personagem.TaxaCrit;
+            personagemAlterado.DanoCrit = personagem.DanoCrit;
+            personagemAlterado.BonusCura = personagem.BonusCura;
+            personagemAlterado.Ataque = personagem.Ataque;
+            personagemAlterado.Escudo = personagem.Escudo;
+            personagemAlterado.DataDeAquisicao = personagem.DataDeAquisicao;
+            personagemAlterado.BonusElemental = personagem.BonusElemental;
+            personagemAlterado.ConstelacaoLv = personagem.ConstelacaoLv;
+            personagemAlterado.Defesa = personagem.Defesa;
+            personagemAlterado.ProficienciaElemental = personagem.ProficienciaElemental;
+            personagemAlterado.RecargaDeEnergia = personagem.RecargaDeEnergia;
+            personagemAlterado.Vida = personagem.Vida;
+
+            return ObterPorId(personagemAlterado.Id);
         }
 
         public Personagem Criar(Personagem personagem)

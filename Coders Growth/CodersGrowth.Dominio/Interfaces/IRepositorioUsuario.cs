@@ -14,7 +14,7 @@ namespace CodersGrowth.Dominio.Interfaces
         public List<Usuario> ObterTodos();
         public Usuario ObterPorId(int Uid);
         public Usuario Criar(Usuario usuario);
-        public Usuario Atualizar(Usuario usuario);
+        public Usuario Editar(Usuario usuario);
         public void Remover(int Uid);
     }
 }

@@ -6,9 +6,14 @@ namespace CodersGrowth.Testes.RepositoriosMock
 {
     public class UsuarioRepositorioMock : IRepositorioUsuario
     {
-        public Usuario Atualizar(Usuario usuario)
+        public Usuario Editar(Usuario usuario)
         {
-            throw new NotImplementedException();
+            Usuario usuarioAlterado = ObterPorId(usuario.Uid);
+            usuarioAlterado.NomeDeUsuario = usuario.NomeDeUsuario;
+            usuarioAlterado.AdventureRank = usuario.AdventureRank;
+            usuarioAlterado.Senha = usuario.Senha;
+
+            return ObterPorId(usuarioAlterado.Uid);
         }
 
         public Usuario Criar(Usuario usuario) 
