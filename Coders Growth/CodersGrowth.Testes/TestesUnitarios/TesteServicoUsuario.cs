@@ -82,7 +82,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
         }
 
         [Theory]
-        [InlineData(null)]
         [InlineData(16)]
         [InlineData(1234567890)]
         public void deve_rejeitar_criacao_de_um_usuario_com_senha_ivalida(int Senha)
