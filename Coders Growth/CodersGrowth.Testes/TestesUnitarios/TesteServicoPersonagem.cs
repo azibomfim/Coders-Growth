@@ -50,7 +50,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
             Assert.Contains("Personagem não encontrado.", mensagemDeErroPersonagem.Message);
         }
 
-
         //testes de criação
 
         [Fact]
@@ -536,7 +535,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => servicoPersonagem.Criar(personagem));
             Assert.Contains("Ataque deve ser maior que 0", mensagemDeErroPersonagem.Message);
         }
-
 
         //testes de edição
 
