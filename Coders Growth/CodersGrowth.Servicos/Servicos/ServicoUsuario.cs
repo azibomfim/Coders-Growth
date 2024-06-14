@@ -34,5 +34,10 @@ namespace CodersGrowth.Servicos.Servicos
             _validacao.ValidateAndThrow(usuario);
             return _usuariorepositorio.Criar(usuario);
         }
+        public Usuario Editar(Usuario usuario)
+        {
+            _validacao.ValidateAndThrow(usuario);
+            return _usuariorepositorio.Editar(usuario);
+        }
     }
 }
