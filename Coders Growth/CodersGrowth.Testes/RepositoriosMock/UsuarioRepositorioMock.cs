@@ -39,7 +39,8 @@ namespace CodersGrowth.Testes.RepositoriosMock
 
         public void Remover(int Uid)
         {
-            throw new NotImplementedException();
+            Usuario usuario = ObterPorId(Uid);
+            TabelaUsuario.Usuarios.Remove(usuario);
         }
     }
 }

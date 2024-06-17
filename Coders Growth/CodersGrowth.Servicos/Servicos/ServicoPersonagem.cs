@@ -38,8 +38,17 @@ namespace CodersGrowth.Servicos.Servicos
         }
         public Personagem Editar(Personagem personagem)
         {
+            if (personagem == null)
+            {
+                throw new Exception("Ocorreu um erro na aplicação: Personagem não retornado");
+            }
+
             _validacao.ValidateAndThrow(personagem);
             return _personagemrepositorio.Editar(personagem);
+        }
+        public void Remover(int Id)
+        {
+            _personagemrepositorio.Remover(Id);
         }
     }
 }

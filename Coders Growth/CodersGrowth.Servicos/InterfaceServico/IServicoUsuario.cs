@@ -9,5 +9,6 @@ namespace CodersGrowth.Servicos.InterfaceServico
         public Usuario ObterPorId(int Uid);
         public Usuario Criar(Usuario usuario);
         public Usuario Editar(Usuario usuario);
+        public void Remover(int Uid);
     }
 }

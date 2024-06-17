@@ -46,7 +46,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
         public void deve_retornar_um_erro_ao_passar_id_inexistente(int Id)
         {
             var mensagemDeErroPersonagem = Assert.Throws<Exception>(() => servicoPersonagem.ObterPorId(Id));
-
             Assert.Contains("Personagem não encontrado.", mensagemDeErroPersonagem.Message);
         }
 
@@ -615,7 +614,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
         [Fact]
         public void deve_rejeitar_edicao_de_personagem_com_proficiencia_negativa()
         {
-            var idDoPersonagem = 3;
+            var idDoPersonagem = 4;
             Personagem personagem = servicoPersonagem.ObterPorId(idDoPersonagem);
 
             personagem.TaxaCrit = 81.7m;
@@ -639,7 +638,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
         [Fact]
         public void deve_rejeitar_edicao_de_personagem_com_proficiencia_nula()
         {
-            var idDoPersonagem = 3;
+            var idDoPersonagem = 4;
             Personagem personagem = servicoPersonagem.ObterPorId(idDoPersonagem);
 
             personagem.TaxaCrit = 81.7m;
@@ -750,7 +749,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
             personagem.ProficienciaElemental = 79;
             personagem.RecargaDeEnergia = 136.7m;
             personagem.Vida = 29810;
-            personagem.CriadoPorUsuario = true;
 
             var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => servicoPersonagem.Editar(personagem));
             Assert.Contains("Defesa deve ser maior que 0", mensagemDeErroPersonagem.Message);
@@ -882,6 +880,14 @@ namespace CodersGrowth.Testes.TestesUnitarios
         }
 
         [Fact]
+        public void deve_rejeitar_edicao_de_personagem_nulo()
+        {
+            Personagem personagem = null;
+            var mensagemDeErroPersonagem = Assert.Throws<Exception>(() => servicoPersonagem.Editar(personagem));
+            Assert.Contains("Ocorreu um erro na aplicação: Personagem não retornado", mensagemDeErroPersonagem.Message);
+        }
+
+        [Fact]
         public void deve_rejeitar_edicao_de_personagem_sem_idusuario_criado_por_usuario()
         {
             var idDoPersonagem = 4;
@@ -930,6 +936,15 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => servicoPersonagem.Editar(personagem));
             Assert.Contains("Assinale que o personagem foi criado por usuário", mensagemDeErroPersonagem.Message);
         }
-        
+
+        [Fact]
+        public void deve_remover_personagem_com_sucesso()
+        {
+            var idDoPersonagem = 3;
+            servicoPersonagem.Remover(idDoPersonagem);
+
+            var personagem = TabelaPersonagem.Instancia.Find(personagem => personagem.Id == idDoPersonagem);
+            Assert.Null(personagem);
+        }
     }
 }

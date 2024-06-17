@@ -36,8 +36,17 @@ namespace CodersGrowth.Servicos.Servicos
         }
         public Usuario Editar(Usuario usuario)
         {
+            if (usuario == null)
+            {
+                throw new Exception("UOcorreu um erro na aplicação: Usuario não retornado");
+            }
+
             _validacao.ValidateAndThrow(usuario);
             return _usuariorepositorio.Editar(usuario);
+        }
+        public void Remover(int Uid)
+        {
+            _usuariorepositorio.Remover(Uid);
         }
     }
 }

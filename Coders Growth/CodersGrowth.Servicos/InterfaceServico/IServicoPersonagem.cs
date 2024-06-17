@@ -8,5 +8,6 @@ namespace CodersGrowth.Servicos.InterfaceServico
         public Personagem ObterPorId(int Id);
         public Personagem Criar(Personagem personagem);
         public Personagem Editar(Personagem personagem);
+        public void Remover(int Id);
     }
 }
