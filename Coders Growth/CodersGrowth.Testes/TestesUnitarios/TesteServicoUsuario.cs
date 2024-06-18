@@ -216,12 +216,12 @@ namespace CodersGrowth.Testes.TestesUnitarios
         [InlineData(1234567890)]
         public void deve_rejeitar_edicao_de_usuario_com_senha_invalida(int Senha)
         {
-            int idUsuario = 3;
+            int idUsuario = 4;
             Usuario usuario = servicoUsuario.ObterPorId(idUsuario);
 
             usuario.NomeDeUsuario = "foca fofocas";
             usuario.Senha = Senha;
-            usuario.Uid = 3;
+            usuario.Uid = 4;
             usuario.AdventureRank = 10;
 
             var mensagemDeErroUsuario = Assert.Throws<ValidationException>(() => servicoUsuario.Editar(usuario));
@@ -231,16 +231,26 @@ namespace CodersGrowth.Testes.TestesUnitarios
         [Fact]
         public void deve_rejeitar_edicao_de_usuario_com_senha_nula()
         {
-            int idUsuario = 3;
+            int idUsuario = 4;
             Usuario usuario = servicoUsuario.ObterPorId(idUsuario);
 
             usuario.NomeDeUsuario = "foca fofocas";
             usuario.Senha = null;
-            usuario.Uid = 3;
+            usuario.Uid = 4;
             usuario.AdventureRank = 10;
 
             var mensagemDeErroUsuario = Assert.Throws<ValidationException>(() => servicoUsuario.Editar(usuario));
             Assert.Contains("Sua senha precisa ter de 4 a 9 caracteres", mensagemDeErroUsuario.Message);
+        }
+
+        [Fact]
+        public void deve_remover_usuario_com_sucesso()
+        {
+            var idDoUsuario = 3;
+            servicoUsuario.Remover(idDoUsuario);
+
+            var usuario = TabelaUsuario.Instancia.Find(usuario => usuario.Uid == idDoUsuario);
+            Assert.Null(usuario);
         }
     }
 }

@@ -58,7 +58,8 @@ namespace CodersGrowth.Testes.RepositoriosMock
 
         public void Remover(int Id)
         {
-            throw new NotImplementedException();
+            Personagem personagem = ObterPorId(Id);
+            TabelaPersonagem.Personagens.Remove(personagem);
         }
     }
 }

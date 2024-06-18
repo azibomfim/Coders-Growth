@@ -39,6 +39,12 @@ namespace CodersGrowth.Servicos.Validacoes
                 .WithMessage("Sua senha precisa ter de 4 a 9 caracteres")
                 .Must(usuario => usuario.ToString().Length > 3)
                 .WithMessage("Sua senha precisa ter de 4 a 9 caracteres");
+
+            RuleFor(usuario => usuario.Uid)
+                .NotEmpty()
+                .WithMessage("Usuário não encontrado")
+                .NotNull()
+                .WithMessage("Usuário não encontrado");
         }
     }
 }
