@@ -16,7 +16,11 @@ namespace CodersGrowth.Testes.RepositoriosMock
             return ObterPorId(usuarioAlterado.Uid);
         }
 
+<<<<<<< HEAD
         public Usuario Criar(Usuario usuario)
+=======
+        public Usuario Criar(Usuario usuario) 
+>>>>>>> 8c6a9040d8b90c3deb152a27cbdf5640e20182b6
         {
             TabelaUsuario.Usuarios.Add(usuario);
             return usuario;
@@ -31,7 +35,11 @@ namespace CodersGrowth.Testes.RepositoriosMock
             }
         }
 
+<<<<<<< HEAD
         public List<Usuario> ObterTodos()
+=======
+        public List<Usuario> ObterTodos() 
+>>>>>>> 8c6a9040d8b90c3deb152a27cbdf5640e20182b6
         {
             List<Usuario> _repository = TabelaUsuario.Instancia;
             return _repository;
