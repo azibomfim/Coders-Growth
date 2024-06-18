@@ -5,15 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using CodersGrowth.Dominio;
 using CodersGrowth.Dominio.Models;
+using FluentValidation.Results;
 
-namespace CodersGrowth.Infra
+namespace CodersGrowth.Dominio.Interfaces
 {
     public interface IRepositorioUsuario
     {
         public List<Usuario> ObterTodos();
         public Usuario ObterPorId(int Uid);
-        public void Cadastrar();
-        public void Atualizar();
-        public void Remover();
+        public Usuario Criar(Usuario usuario);
+        public Usuario Editar(Usuario usuario);
+        public void Remover(int Uid);
     }
 }

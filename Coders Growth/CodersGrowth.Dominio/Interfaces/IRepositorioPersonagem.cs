@@ -4,15 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FluentValidation.Results;
 
-namespace CodersGrowth.Infra
+namespace CodersGrowth.Dominio.Interfaces
 {
     public interface IRepositorioPersonagem
     {
         public List<Personagem> ObterTodos();
         public Personagem ObterPorId(int Id);
-        public void Cadastrar();
-        public void Atualizar();
-        public void Remover();
+        public Personagem Criar(Personagem personagem);
+        public Personagem Editar(Personagem personagem);
+        public void Remover(int Id);
     }
 }

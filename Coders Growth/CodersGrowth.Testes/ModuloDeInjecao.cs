@@ -5,11 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using CodersGrowth.Dominio.Models;
 using CodersGrowth.Dominio;
-using CodersGrowth.Servicos;
-using CodersGrowth.Infra;
+using CodersGrowth.Dominio.Interfaces;
 using System.Security.Authentication.ExtendedProtection;
 using Xunit.Microsoft.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
+using CodersGrowth.Servicos.InterfaceServico;
+using CodersGrowth.Servicos.Servicos;
+using CodersGrowth.Testes.RepositoriosMock;
+using FluentValidation;
+using CodersGrowth.Servicos.Validacoes;
 
 namespace CodersGrowth.Testes
 {
@@ -21,6 +25,8 @@ namespace CodersGrowth.Testes
             Servicos.AddScoped<IServicoUsuario, ServicoUsuario>();
             Servicos.AddScoped<IRepositorioPersonagem, PersonagemRepositorioMock>();
             Servicos.AddScoped<IRepositorioUsuario, UsuarioRepositorioMock>();
+            Servicos.AddScoped<IValidator<Personagem>, ValidacaoPersonagem>();
+            Servicos.AddScoped<IValidator<Usuario>, ValidacaoUsuario>();
         }
     }
 }
