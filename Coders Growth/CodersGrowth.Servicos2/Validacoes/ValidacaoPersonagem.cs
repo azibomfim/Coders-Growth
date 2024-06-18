@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CodersGrowth.Dominio.Models;
+﻿using CodersGrowth.Dominio.Models;
 using FluentValidation;
-using FluentValidation.Results;
 
 namespace CodersGrowth.Servicos.Validacoes
 {
@@ -65,7 +59,7 @@ namespace CodersGrowth.Servicos.Validacoes
                 .GreaterThanOrEqualTo(0)
                 .WithMessage("Vida deve ser maior que 0");
 
-            RuleFor(personagem => personagem.Ataque) 
+            RuleFor(personagem => personagem.Ataque)
                 .NotNull()
                 .WithMessage("Ataque deve ser maior que 0")
                 .GreaterThanOrEqualTo(0)

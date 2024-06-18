@@ -16,7 +16,7 @@ namespace CodersGrowth.Testes.RepositoriosMock
             return ObterPorId(usuarioAlterado.Uid);
         }
 
-        public Usuario Criar(Usuario usuario) 
+        public Usuario Criar(Usuario usuario)
         {
             TabelaUsuario.Usuarios.Add(usuario);
             return usuario;
@@ -31,7 +31,7 @@ namespace CodersGrowth.Testes.RepositoriosMock
             }
         }
 
-        public List<Usuario> ObterTodos() 
+        public List<Usuario> ObterTodos()
         {
             List<Usuario> _repository = TabelaUsuario.Instancia;
             return _repository;

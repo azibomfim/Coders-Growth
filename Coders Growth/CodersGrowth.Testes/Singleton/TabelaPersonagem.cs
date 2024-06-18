@@ -1,18 +1,11 @@
-﻿using CodersGrowth.Dominio.Enums;
+using CodersGrowth.Dominio.Enums;
 using CodersGrowth.Dominio.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Intrinsics.X86;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace CodersGrowth.Testes.Singleton
 {
     public sealed class TabelaPersonagem
     {
-        private static List<Personagem> InstanciaPersonagem = new();
+        public static List<Personagem> InstanciaPersonagem = new();
         public static readonly List<Personagem> Personagens = new List<Personagem>()
         {
             new Personagem()
@@ -78,7 +71,7 @@ namespace CodersGrowth.Testes.Singleton
                  CriadoPorUsuario = false,
                  ImgPersonagem = null,
                  ConstelacaoLv = 0,
-                 DataDeAquisicao = null,
+                 DataDeAquisicao = DateTime.Now,
                  Elemento = ElementoEnum.Hydro,
                  Arma = ArmaEnum.Espada,
                  IdUsuario = 3,
@@ -101,7 +94,7 @@ namespace CodersGrowth.Testes.Singleton
                  CriadoPorUsuario = false,
                  ImgPersonagem = null,
                  ConstelacaoLv = 0,
-                 DataDeAquisicao = null,
+                 DataDeAquisicao = DateTime.Now,
                  Elemento = ElementoEnum.Cryo,
                  Arma = ArmaEnum.Lanca,
                  IdUsuario = 1,

@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CodersGrowth.Dominio3\CodersGrowth.Dominio.csproj" />
+    <ProjectReference Include="..\CodersGrowth.Infra2\CodersGrowth.Infra.csproj" />
+  </ItemGroup>
+
+</Project>

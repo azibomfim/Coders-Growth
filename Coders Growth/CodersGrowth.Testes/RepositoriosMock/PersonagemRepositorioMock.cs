@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using CodersGrowth.Dominio.Interfaces;
 using CodersGrowth.Dominio.Models;
-using CodersGrowth.Servicos.Validacoes;
 using CodersGrowth.Testes.Singleton;
-using FluentValidation;
-using FluentValidation.Results;
 
 namespace CodersGrowth.Testes.RepositoriosMock
 {
@@ -32,7 +23,7 @@ namespace CodersGrowth.Testes.RepositoriosMock
             personagemAlterado.RecargaDeEnergia = personagem.RecargaDeEnergia;
             personagemAlterado.Vida = personagem.Vida;
 
-            return ObterPorId(personagemAlterado.Id);
+            return personagem;
         }
 
         public Personagem Criar(Personagem personagem)
@@ -49,7 +40,7 @@ namespace CodersGrowth.Testes.RepositoriosMock
                 return personagensPorId;
             }
         }
-    
+
         public List<Personagem> ObterTodos()
         {
             List<Personagem> _repository = TabelaPersonagem.Instancia;
