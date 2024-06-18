@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CodersGrowth.Dominio.Models;
+﻿using CodersGrowth.Dominio.Models;
 
 namespace CodersGrowth.Testes.Singleton
 {
     public sealed class TabelaUsuario
     {
-        private static List<Usuario> InstanciaUsuario = new();
+        public static List<Usuario> InstanciaUsuario = new();
         public static readonly List<Usuario> Usuarios = new List<Usuario>()
         {
             new Usuario()
