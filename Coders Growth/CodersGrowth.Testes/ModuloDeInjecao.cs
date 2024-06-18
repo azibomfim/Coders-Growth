@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CodersGrowth.Dominio.Models;
-using CodersGrowth.Dominio;
-using CodersGrowth.Servicos;
-using CodersGrowth.Infra;
-using System.Security.Authentication.ExtendedProtection;
-using Xunit.Microsoft.DependencyInjection;
+﻿using CodersGrowth.Dominio.Interfaces;
+using CodersGrowth.Servicos.Servicos;
+using CodersGrowth.Testes.RepositoriosMock;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CodersGrowth.Testes
@@ -17,8 +9,8 @@ namespace CodersGrowth.Testes
     {
         public static void BindServices(IServiceCollection Servicos)
         {
-            Servicos.AddScoped<IServicoPersonagem, ServicoPersonagem>();
-            Servicos.AddScoped<IServicoUsuario, ServicoUsuario>();
+            Servicos.AddScoped<ServicoPersonagem>();
+            Servicos.AddScoped<ServicoUsuario>();
             Servicos.AddScoped<IRepositorioPersonagem, PersonagemRepositorioMock>();
             Servicos.AddScoped<IRepositorioUsuario, UsuarioRepositorioMock>();
         }

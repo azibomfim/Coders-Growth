@@ -9,7 +9,11 @@ namespace CodersGrowth.Dominio.Models
     public class Usuario
     {
         public string NomeDeUsuario {  get; set; }
+<<<<<<< Updated upstream
         public int Senha { get; set; }
+=======
+        public int? Senha { get; set; }
+>>>>>>> Stashed changes
         public int Uid { get; set; }
         public int AdventureRank { get; set; }
     }
