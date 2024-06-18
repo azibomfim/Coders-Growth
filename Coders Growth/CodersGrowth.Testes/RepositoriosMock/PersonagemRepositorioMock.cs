@@ -1,21 +1,6 @@
-<<<<<<< HEAD
-﻿using CodersGrowth.Dominio.Interfaces;
-using CodersGrowth.Dominio.Models;
-using CodersGrowth.Testes.Singleton;
-=======
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using CodersGrowth.Dominio.Interfaces;
 using CodersGrowth.Dominio.Models;
-using CodersGrowth.Servicos.Validacoes;
 using CodersGrowth.Testes.Singleton;
-using FluentValidation;
-using FluentValidation.Results;
->>>>>>> 8c6a9040d8b90c3deb152a27cbdf5640e20182b6
 
 namespace CodersGrowth.Testes.RepositoriosMock
 {
@@ -38,11 +23,7 @@ namespace CodersGrowth.Testes.RepositoriosMock
             personagemAlterado.RecargaDeEnergia = personagem.RecargaDeEnergia;
             personagemAlterado.Vida = personagem.Vida;
 
-<<<<<<< HEAD
             return personagem;
-=======
-            return ObterPorId(personagemAlterado.Id);
->>>>>>> 8c6a9040d8b90c3deb152a27cbdf5640e20182b6
         }
 
         public Personagem Criar(Personagem personagem)
@@ -59,11 +40,7 @@ namespace CodersGrowth.Testes.RepositoriosMock
                 return personagensPorId;
             }
         }
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> 8c6a9040d8b90c3deb152a27cbdf5640e20182b6
         public List<Personagem> ObterTodos()
         {
             List<Personagem> _repository = TabelaPersonagem.Instancia;

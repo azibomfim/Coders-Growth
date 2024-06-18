@@ -1,27 +1,11 @@
-<<<<<<< HEAD
 using CodersGrowth.Dominio.Enums;
 using CodersGrowth.Dominio.Models;
-=======
-﻿using CodersGrowth.Dominio.Enums;
-using CodersGrowth.Dominio.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Intrinsics.X86;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
->>>>>>> 8c6a9040d8b90c3deb152a27cbdf5640e20182b6
 
 namespace CodersGrowth.Testes.Singleton
 {
     public sealed class TabelaPersonagem
     {
-<<<<<<< HEAD
         public static List<Personagem> InstanciaPersonagem = new();
-=======
-        private static List<Personagem> InstanciaPersonagem = new();
->>>>>>> 8c6a9040d8b90c3deb152a27cbdf5640e20182b6
         public static readonly List<Personagem> Personagens = new List<Personagem>()
         {
             new Personagem()
@@ -87,11 +71,7 @@ namespace CodersGrowth.Testes.Singleton
                  CriadoPorUsuario = false,
                  ImgPersonagem = null,
                  ConstelacaoLv = 0,
-<<<<<<< HEAD
                  DataDeAquisicao = DateTime.Now,
-=======
-                 DataDeAquisicao = null,
->>>>>>> 8c6a9040d8b90c3deb152a27cbdf5640e20182b6
                  Elemento = ElementoEnum.Hydro,
                  Arma = ArmaEnum.Espada,
                  IdUsuario = 3,
@@ -114,11 +94,7 @@ namespace CodersGrowth.Testes.Singleton
                  CriadoPorUsuario = false,
                  ImgPersonagem = null,
                  ConstelacaoLv = 0,
-<<<<<<< HEAD
                  DataDeAquisicao = DateTime.Now,
-=======
-                 DataDeAquisicao = null,
->>>>>>> 8c6a9040d8b90c3deb152a27cbdf5640e20182b6
                  Elemento = ElementoEnum.Cryo,
                  Arma = ArmaEnum.Lanca,
                  IdUsuario = 1,

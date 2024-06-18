@@ -4,11 +4,7 @@ namespace CodersGrowth.Testes.Singleton
 {
     public sealed class TabelaUsuario
     {
-<<<<<<< HEAD
         public static List<Usuario> InstanciaUsuario = new();
-=======
-        private static List<Usuario> InstanciaUsuario = new();
->>>>>>> 8c6a9040d8b90c3deb152a27cbdf5640e20182b6
         public static readonly List<Usuario> Usuarios = new List<Usuario>()
         {
             new Usuario()
