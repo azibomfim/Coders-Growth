@@ -28,13 +28,13 @@ namespace CodersGrowth.Testes.RepositoriosMock
 
         public Personagem Criar(Personagem personagem)
         {
-            TabelaPersonagem.Personagens.Add(personagem);
+            TabelaSingletonPersonagem.Personagens.Add(personagem);
             return personagem;
         }
 
         public Personagem ObterPorId(int Id)
         {
-            List<Personagem> Personagens = TabelaPersonagem.Instancia;
+            List<Personagem> Personagens = TabelaSingletonPersonagem.Instancia;
             var personagensPorId = Personagens.FirstOrDefault(Personagem => Personagem.Id == Id);
             {
                 return personagensPorId;
@@ -43,14 +43,14 @@ namespace CodersGrowth.Testes.RepositoriosMock
 
         public List<Personagem> ObterTodos()
         {
-            List<Personagem> _repository = TabelaPersonagem.Instancia;
+            List<Personagem> _repository = TabelaSingletonPersonagem.Instancia;
             return _repository;
         }
 
         public void Remover(int Id)
         {
             Personagem personagem = ObterPorId(Id);
-            TabelaPersonagem.Personagens.Remove(personagem);
+            TabelaSingletonPersonagem.Personagens.Remove(personagem);
         }
     }
 }

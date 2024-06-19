@@ -18,13 +18,13 @@ namespace CodersGrowth.Testes.RepositoriosMock
 
         public Usuario Criar(Usuario usuario)
         {
-            TabelaUsuario.Usuarios.Add(usuario);
+            TabelaSingletonUsuario.Usuarios.Add(usuario);
             return usuario;
         }
 
         public Usuario ObterPorId(int Uid)
         {
-            List<Usuario> Usuarios = TabelaUsuario.Instancia;
+            List<Usuario> Usuarios = TabelaSingletonUsuario.Instancia;
             var usuariosPorId = Usuarios.FirstOrDefault(Usuario => Usuario.Uid == Uid);
             {
                 return usuariosPorId;
@@ -33,14 +33,14 @@ namespace CodersGrowth.Testes.RepositoriosMock
 
         public List<Usuario> ObterTodos()
         {
-            List<Usuario> _repository = TabelaUsuario.Instancia;
+            List<Usuario> _repository = TabelaSingletonUsuario.Instancia;
             return _repository;
         }
 
         public void Remover(int Uid)
         {
             Usuario usuario = ObterPorId(Uid);
-            TabelaUsuario.Usuarios.Remove(usuario);
+            TabelaSingletonUsuario.Usuarios.Remove(usuario);
         }
     }
 }

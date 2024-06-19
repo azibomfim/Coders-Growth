@@ -182,7 +182,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var idDoUsuario = 3;
             _servicoUsuario.Remover(idDoUsuario);
 
-            var usuario = TabelaUsuario.Instancia.Find(usuario => usuario.Uid == idDoUsuario);
+            var usuario = TabelaSingletonUsuario.Instancia.Find(usuario => usuario.Uid == idDoUsuario);
             Assert.Null(usuario);
         }
     }

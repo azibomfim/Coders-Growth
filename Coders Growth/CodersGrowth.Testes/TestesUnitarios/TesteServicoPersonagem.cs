@@ -502,7 +502,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var idDoPersonagem = 3;
             _servicoPersonagem.Remover(idDoPersonagem);
 
-            var personagem = TabelaPersonagem.Instancia.Find(personagem => personagem.Id == idDoPersonagem);
+            var personagem = TabelaSingletonPersonagem.Instancia.Find(personagem => personagem.Id == idDoPersonagem);
             Assert.Null(personagem);
         }
     }

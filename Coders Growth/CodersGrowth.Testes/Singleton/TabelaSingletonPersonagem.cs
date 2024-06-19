@@ -3,7 +3,7 @@ using CodersGrowth.Dominio.Models;
 
 namespace CodersGrowth.Testes.Singleton
 {
-    public sealed class TabelaPersonagem
+    public sealed class TabelaSingletonPersonagem
     {
         public static List<Personagem> InstanciaPersonagem = new();
         public static readonly List<Personagem> Personagens = new List<Personagem>()
@@ -124,7 +124,7 @@ namespace CodersGrowth.Testes.Singleton
             }
         };
 
-        private TabelaPersonagem() { }
+        private TabelaSingletonPersonagem() { }
         public static List<Personagem> Instancia
         {
             get
