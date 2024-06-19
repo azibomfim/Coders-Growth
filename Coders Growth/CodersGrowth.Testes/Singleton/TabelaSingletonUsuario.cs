@@ -2,7 +2,7 @@
 
 namespace CodersGrowth.Testes.Singleton
 {
-    public sealed class TabelaUsuario
+    public sealed class TabelaSingletonUsuario
     {
         public static List<Usuario> InstanciaUsuario = new();
         public static readonly List<Usuario> Usuarios = new List<Usuario>()
@@ -48,7 +48,7 @@ namespace CodersGrowth.Testes.Singleton
             }
         };
 
-        private TabelaUsuario() { }
+        private TabelaSingletonUsuario() { }
         public static List<Usuario> Instancia
         {
             get
