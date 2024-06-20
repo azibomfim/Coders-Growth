@@ -13,9 +13,9 @@ namespace CodersGrowth.Infra.Repositorios
     public class RepositorioPersonagem : IRepositorioPersonagem
     {
         private ConexaoDados conexaoDados = new ConexaoDados();
-        public Personagem Criar(Personagem personagem)
+        public void Criar(Personagem personagem)
         {
-            throw new NotImplementedException();
+            conexaoDados.Insert(personagem);
         }
 
         public Personagem Editar(Personagem personagem)
