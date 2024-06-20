@@ -34,7 +34,7 @@ namespace CodersGrowth.Servicos.Servicos
             _usuariorepositorio.Criar(usuario);
         }
 
-        public Usuario Editar(Usuario usuario)
+        public void Editar(Usuario usuario)
         {
             if (usuario == null)
             {
@@ -42,7 +42,7 @@ namespace CodersGrowth.Servicos.Servicos
             }
 
             _validacao.ValidateAndThrow(usuario);
-            return _usuariorepositorio.Editar(usuario);
+            _usuariorepositorio.Editar(usuario);
         }
 
         public void Remover(int Uid)

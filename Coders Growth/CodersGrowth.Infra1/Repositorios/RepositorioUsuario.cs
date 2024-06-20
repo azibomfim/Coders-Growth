@@ -18,9 +18,9 @@ namespace CodersGrowth.Infra.Repositorios
             conexaoDados.Insert(usuario);
         }
 
-        public Usuario Editar(Usuario usuario)
+        public void Editar(Usuario usuario)
         {
-            throw new NotImplementedException();
+            conexaoDados.Update(usuario);
         }
 
         public Usuario ObterPorId(int Uid)

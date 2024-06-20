@@ -34,7 +34,7 @@ namespace CodersGrowth.Servicos.Servicos
             _personagemrepositorio.Criar(personagem);
         }
 
-        public Personagem Editar(Personagem personagem)
+        public void Editar(Personagem personagem)
         {
             if (personagem == null)
             {
@@ -42,7 +42,7 @@ namespace CodersGrowth.Servicos.Servicos
             }
 
             _validacao.ValidateAndThrow(personagem);
-            return _personagemrepositorio.Editar(personagem);
+            _personagemrepositorio.Editar(personagem);
         }
 
         public void Remover(int Id)

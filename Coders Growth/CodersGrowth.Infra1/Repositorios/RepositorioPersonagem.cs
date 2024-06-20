@@ -18,9 +18,9 @@ namespace CodersGrowth.Infra.Repositorios
             conexaoDados.Insert(personagem);
         }
 
-        public Personagem Editar(Personagem personagem)
+        public void Editar(Personagem personagem)
         {
-            throw new NotImplementedException();
+            conexaoDados.Update(personagem);
         }
 
         public Personagem ObterPorId(int Id)
