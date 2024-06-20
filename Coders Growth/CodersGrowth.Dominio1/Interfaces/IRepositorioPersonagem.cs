@@ -8,7 +8,7 @@ namespace CodersGrowth.Dominio.Interfaces
     {
         List<Personagem> ObterTodos(FiltroPersonagem? filtroPersonagem);
         Personagem ObterPorId(int Id);
-        Personagem Criar(Personagem personagem);
+        void Criar(Personagem personagem);
         Personagem Editar(Personagem personagem);
         void Remover(int Id);
     }

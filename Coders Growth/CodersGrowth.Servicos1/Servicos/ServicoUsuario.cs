@@ -28,10 +28,10 @@ namespace CodersGrowth.Servicos.Servicos
             return _usuariorepositorio.ObterPorId(Uid) ?? throw new Exception("Usuário não encontrado.");
         }
 
-        public Usuario Criar(Usuario usuario)
+        public void Criar(Usuario usuario)
         {
             _validacao.ValidateAndThrow(usuario);
-            return _usuariorepositorio.Criar(usuario);
+            _usuariorepositorio.Criar(usuario);
         }
 
         public Usuario Editar(Usuario usuario)

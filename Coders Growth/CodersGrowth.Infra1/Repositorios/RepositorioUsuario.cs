@@ -13,9 +13,9 @@ namespace CodersGrowth.Infra.Repositorios
     public class RepositorioUsuario : IRepositorioUsuario
     {
         private ConexaoDados conexaoDados = new ConexaoDados();
-        public Usuario Criar(Usuario usuario)
+        public void Criar(Usuario usuario)
         {
-            throw new NotImplementedException();
+            conexaoDados.Insert(usuario);
         }
 
         public Usuario Editar(Usuario usuario)

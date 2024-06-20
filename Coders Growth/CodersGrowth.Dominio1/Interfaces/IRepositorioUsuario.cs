@@ -8,7 +8,7 @@ namespace CodersGrowth.Dominio.Interfaces
     {
         List<Usuario> ObterTodos(FiltroUsuario? filtroUsuario);
         Usuario ObterPorId(int Uid);
-        Usuario Criar(Usuario usuario);
+        void Criar(Usuario usuario);
         Usuario Editar(Usuario usuario);
         void Remover(int Uid);
     }
