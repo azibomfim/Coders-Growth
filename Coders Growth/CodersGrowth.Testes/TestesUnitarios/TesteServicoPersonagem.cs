@@ -31,7 +31,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
 
             Assert.NotNull(personagensPorId);
             Assert.Equal(1, personagensPorId.Id);
-            Assert.Equal("Xiao", personagensPorId.NomePersonagem);
+            Assert.Equal(NomeEnum.Xiao, personagensPorId.NomePersonagem);
         }
 
         [Theory]
@@ -51,7 +51,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var personagem = new Personagem()
             {
                 Id = 6,
-                NomePersonagem = "Eula",
+                NomePersonagem = NomeEnum.Eula,
                 Vida = 17355,
                 Ataque = 1585,
                 Defesa = 767,
@@ -75,46 +75,13 @@ namespace CodersGrowth.Testes.TestesUnitarios
             Assert.Equal(personagemCadastrado, personagem);
         }
 
-        [Theory]
-        [InlineData(null)]
-        [InlineData("")]
-        public void deve_rejeitar_criacao_de_um_personagem_com_nome_nulo_ou_vazio(string NomePersonagem)
-        {
-            var personagem = new Personagem()
-            {
-                Id = 6,
-                NomePersonagem = NomePersonagem,
-                Vida = 17355,
-                Ataque = 1585,
-                Defesa = 767,
-                ProficienciaElemental = 68,
-                TaxaCrit = 48.9m,
-                DanoCrit = 151.1m,
-                BonusCura = 0.0m,
-                RecargaDeEnergia = 155.5m,
-                Escudo = 0.0m,
-                BonusElemental = 61.6m,
-                CriadoPorUsuario = true,
-                ImgPersonagem = null,
-                ConstelacaoLv = 0,
-                DataDeAquisicao = DateTime.Now,
-                Elemento = ElementoEnum.Cryo,
-                Arma = ArmaEnum.Espadao,
-                IdUsuario = 1,
-            };
-
-            var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => _servicoPersonagem.Criar(personagem));
-            Assert.Contains("Insira um nome válido", mensagemDeErroPersonagem.Message);
-        }
-
-
         [Fact]
         public void deve_retornar_erro_caso_personagem_nao_criado_por_usuario_apesar_de_ter_id()
         {
             var personagem = new Personagem()
             {
                 Id = 6,
-                NomePersonagem = "Eula",
+                NomePersonagem = NomeEnum.Eula,
                 Vida = 17355,
                 Ataque = 1585,
                 Defesa = 767,
@@ -146,7 +113,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var personagem = new Personagem()
             {
                 Id = 6,
-                NomePersonagem = "Eula",
+                NomePersonagem = NomeEnum.Eula,
                 Vida = 17355,
                 Ataque = 1585,
                 Defesa = 767,
@@ -176,7 +143,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var personagem = new Personagem()
             {
                 Id = 6,
-                NomePersonagem = "Eula",
+                NomePersonagem = NomeEnum.Eula,
                 Vida = 17355,
                 Ataque = 1585,
                 Defesa = 767,
@@ -206,7 +173,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var personagem = new Personagem()
             {
                 Id = 6,
-                NomePersonagem = "Eula",
+                NomePersonagem = NomeEnum.Eula,
                 Vida = -17355,
                 Ataque = 1585,
                 Defesa = 767,
@@ -236,7 +203,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var personagem = new Personagem()
             {
                 Id = 6,
-                NomePersonagem = "Eula",
+                NomePersonagem = NomeEnum.Eula,
                 Vida = 17355,
                 Ataque = 1585,
                 Defesa = -767,
@@ -266,7 +233,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var personagem = new Personagem()
             {
                 Id = 6,
-                NomePersonagem = "Eula",
+                NomePersonagem = NomeEnum.Eula,
                 Vida = 17355,
                 Ataque = -1585,
                 Defesa = 767,
@@ -434,33 +401,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
 
             var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => _servicoPersonagem.Editar(personagem));
             Assert.Contains("Ataque deve ser maior que 0", mensagemDeErroPersonagem.Message);
-        }
-
-        [Theory]
-        [InlineData(null)]
-        [InlineData("")]
-        public void deve_rejeitar_edicao_de_personagem_com_nome_invalido(string NomePersonagem)
-        {
-            var idDoPersonagem = 4;
-            Personagem personagem = _servicoPersonagem.ObterPorId(idDoPersonagem);
-
-            personagem.NomePersonagem = NomePersonagem;
-            personagem.TaxaCrit = 81.7m;
-            personagem.DanoCrit = 207.5m;
-            personagem.BonusCura = 0.00m;
-            personagem.Ataque = 1645;
-            personagem.Escudo = 0.0m;
-            personagem.DataDeAquisicao = DateTime.Now;
-            personagem.BonusElemental = 67.3m;
-            personagem.ConstelacaoLv = 2;
-            personagem.Defesa = 350;
-            personagem.ProficienciaElemental = 79;
-            personagem.RecargaDeEnergia = 136.7m;
-            personagem.Vida = 32984;
-            personagem.CriadoPorUsuario = true;
-
-            var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => _servicoPersonagem.Editar(personagem));
-            Assert.Contains("Insira um nome válido", mensagemDeErroPersonagem.Message);
         }
 
         [Fact]

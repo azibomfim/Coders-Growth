@@ -29,9 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CodersGrowth.Dominio3\CodersGrowth.Dominio.csproj" />
-    <ProjectReference Include="..\CodersGrowth.Infra2\CodersGrowth.Infra.csproj" />
-    <ProjectReference Include="..\CodersGrowth.Servicos2\CodersGrowth.Servicos.csproj" />
+    <ProjectReference Include="..\CodersGrowth.Dominio1\CodersGrowth.Dominio.csproj" />
+    <ProjectReference Include="..\CodersGrowth.Infra1\CodersGrowth.Infra.csproj" />
+    <ProjectReference Include="..\CodersGrowth.Servicos1\CodersGrowth.Servicos.csproj" />
   </ItemGroup>
 
 </Project>

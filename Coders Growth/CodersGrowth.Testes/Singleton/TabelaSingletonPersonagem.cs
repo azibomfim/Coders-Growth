@@ -11,7 +11,7 @@ namespace CodersGrowth.Testes.Singleton
             new Personagem()
             {
                 Id = 1,
-                NomePersonagem = "Xiao",
+                NomePersonagem = NomeEnum.Xiao,
                 Vida = 18778,
                 Ataque = 2011,
                 Defesa = 873,
@@ -34,7 +34,7 @@ namespace CodersGrowth.Testes.Singleton
             new Personagem()
             {
                 Id = 2,
-                NomePersonagem = "Hutao",
+                NomePersonagem = NomeEnum.HuTao,
                 Vida = 32752,
                 Ataque = 1458,
                 Defesa = 1119,
@@ -57,7 +57,7 @@ namespace CodersGrowth.Testes.Singleton
             new Personagem()
             {
                  Id = 3,
-                 NomePersonagem = "Xingqiu",
+                 NomePersonagem = NomeEnum.Xingqiu,
                  Vida = 14790,
                  Ataque = 1622,
                  Defesa = 815,
@@ -80,7 +80,7 @@ namespace CodersGrowth.Testes.Singleton
             new Personagem()
             {
                  Id = 4,
-                 NomePersonagem = "Rosaria",
+                 NomePersonagem = NomeEnum.Rosaria,
                  Vida = 17355,
                  Ataque = 1585,
                  Defesa = 767,
@@ -103,7 +103,7 @@ namespace CodersGrowth.Testes.Singleton
             new Personagem()
             {
                  Id = 5,
-                 NomePersonagem = "Zhongli",
+                 NomePersonagem = NomeEnum.Zhongli,
                  Vida = 21858,
                  Ataque = 1320,
                  Defesa = 791,
