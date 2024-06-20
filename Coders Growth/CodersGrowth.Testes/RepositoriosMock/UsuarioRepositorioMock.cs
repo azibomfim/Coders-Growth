@@ -1,4 +1,5 @@
-﻿using CodersGrowth.Dominio.Interfaces;
+﻿using CodersGrowth.Dominio.Filtros;
+using CodersGrowth.Dominio.Interfaces;
 using CodersGrowth.Dominio.Models;
 using CodersGrowth.Testes.Singleton;
 
@@ -31,7 +32,7 @@ namespace CodersGrowth.Testes.RepositoriosMock
             }
         }
 
-        public List<Usuario> ObterTodos()
+        public List<Usuario> ObterTodos(FiltroUsuario? filtroUsuario)
         {
             List<Usuario> _repository = TabelaSingletonUsuario.Instancia;
             return _repository;
