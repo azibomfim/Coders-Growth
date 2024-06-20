@@ -30,18 +30,16 @@ namespace CodersGrowth.Infra.Repositorios
 
         public List<Usuario> ObterTodos(FiltroUsuario? filtroUsuario)
         {
-            if (filtroUsuario == null) return conexaoDados.TabelaUsuario.ToList();
-
             IQueryable<Usuario> query = conexaoDados.TabelaUsuario.AsQueryable();
 
-            if (filtroUsuario.NomeDeUsuario != null)
+            if (filtroUsuario?.NomeDeUsuario != null)
             {
                 query = from c in query
                         where c.NomeDeUsuario == filtroUsuario.NomeDeUsuario
                         select c;
             }
 
-            if (filtroUsuario.AdventureRank != null)
+            if (filtroUsuario?.AdventureRank != null)
             {
                 query = from c in query
                         where c.AdventureRank == filtroUsuario.AdventureRank

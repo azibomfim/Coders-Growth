@@ -31,12 +31,12 @@ namespace CodersGrowth.Servicos.Validacoes
 
             RuleFor(personagem => personagem.IdUsuario)
                 .NotNull()
-                .When(personagem => personagem.CriadoPorUsuario)
+                .When(personagem => (bool)personagem.CriadoPorUsuario)
                 .WithMessage("Personagem não foi criado por usuário");
 
             RuleFor(personagem => personagem.IdUsuario)
                 .Empty()
-                .When(personagem => !personagem.CriadoPorUsuario)
+                .When(personagem => (bool)!personagem.CriadoPorUsuario)
                 .WithMessage("Assinale que o personagem foi criado por usuário");
 
             RuleFor(personagem => personagem.ConstelacaoLv)

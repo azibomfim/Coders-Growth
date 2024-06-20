@@ -30,32 +30,30 @@ namespace CodersGrowth.Infra.Repositorios
 
         public List<Personagem> ObterTodos(FiltroPersonagem? filtroPersonagem)
         {
-            if (filtroPersonagem == null) return conexaoDados.TabelaPersonagem.ToList();
-
             IQueryable<Personagem> query = conexaoDados.TabelaPersonagem.AsQueryable();
 
-            if (filtroPersonagem.NomePersonagem != null) 
+            if (filtroPersonagem?.NomePersonagem != null) 
             {
                 query = from c in query
                         where c.NomePersonagem == filtroPersonagem.NomePersonagem
                         select c;
             }
 
-            if (filtroPersonagem.CriadoPorUsuario != null)
+            if (filtroPersonagem?.CriadoPorUsuario != null)
             {
                 query = from c in query
                         where c.CriadoPorUsuario == filtroPersonagem.CriadoPorUsuario
                         select c;
             }
 
-            if (filtroPersonagem.Elemento != null)
+            if (filtroPersonagem?.Elemento != null)
             {
                 query = from c in query
                         where c.Elemento == filtroPersonagem.Elemento
                         select c;
             }
 
-            if (filtroPersonagem.Arma != null)
+            if (filtroPersonagem?.Arma != null)
             {
                 query = from c in query
                         where c.Arma == filtroPersonagem.Arma
