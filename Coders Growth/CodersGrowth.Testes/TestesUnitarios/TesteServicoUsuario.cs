@@ -26,11 +26,11 @@ namespace CodersGrowth.Testes.TestesUnitarios
         [Fact]
         public void deve_retornar_o_usuario_ratosmites_ao_passar_o_id_1()
         {
-            int Uid = 1;
-            var usuariosPorId = _servicoUsuario.ObterPorId(Uid);
+            int Id = 1;
+            var usuariosPorId = _servicoUsuario.ObterPorId(Id);
 
             Assert.NotNull(usuariosPorId);
-            Assert.Equal(1, usuariosPorId.Uid);
+            Assert.Equal(1, usuariosPorId.Id);
             Assert.Equal("rato smites", usuariosPorId.NomeDeUsuario);
         }
 
@@ -38,9 +38,9 @@ namespace CodersGrowth.Testes.TestesUnitarios
         [InlineData(0)]
         [InlineData(638879)]
         [InlineData(285128)]
-        public void deve_retornar_um_erro_ao_passar_id_inexistente(int Uid)
+        public void deve_retornar_um_erro_ao_passar_id_inexistente(int Id)
         {
-            var mensagemDeErroUsuario = Assert.Throws<Exception>(() => _servicoUsuario.ObterPorId(Uid));
+            var mensagemDeErroUsuario = Assert.Throws<Exception>(() => _servicoUsuario.ObterPorId(Id));
             Assert.Contains("Usuário não encontrado.", mensagemDeErroUsuario.Message);
         }
 
@@ -51,7 +51,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             {
                 NomeDeUsuario = "aziazi",
                 Senha = 12547896,
-                Uid = 10,
+                Id = 10,
                 AdventureRank = 60,
             };
 
@@ -68,7 +68,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             {
                 NomeDeUsuario = NomeDeUsuario,
                 Senha = 12547896,
-                Uid = 10,
+                Id = 10,
                 AdventureRank = 60,
             };
 
@@ -85,7 +85,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             {
                 NomeDeUsuario = "aziazi",
                 Senha = Senha,
-                Uid = 10,
+                Id = 10,
                 AdventureRank = 60,
             };
 
@@ -102,7 +102,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             {
                 NomeDeUsuario = "aziazi",
                 Senha = 12345,
-                Uid = 10,
+                Id = 10,
                 AdventureRank = AdventureRank,
             };
 
@@ -118,7 +118,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
 
             usuario.NomeDeUsuario = "aziazi";
             usuario.Senha = 12547896;
-            usuario.Uid = 2;
+            usuario.Id = 2;
             usuario.AdventureRank = 60;
 
             var usuarioAlterado = _servicoUsuario.Editar(usuario);
@@ -135,7 +135,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
 
             usuario.NomeDeUsuario = NomeDeUsuario;
             usuario.Senha = 12547896;
-            usuario.Uid = 4;
+            usuario.Id = 4;
             usuario.AdventureRank = 60;
 
             var mensagemDeErroUsuario = Assert.Throws<ValidationException>(() => _servicoUsuario.Editar(usuario));
@@ -152,7 +152,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
 
             usuario.NomeDeUsuario = "abelhinha triste";
             usuario.Senha = 12547896;
-            usuario.Uid = 5;
+            usuario.Id = 5;
             usuario.AdventureRank = AdventureRank;
 
             var mensagemDeErroUsuario = Assert.Throws<ValidationException>(() => _servicoUsuario.Editar(usuario));
@@ -169,7 +169,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
 
             usuario.NomeDeUsuario = "foca fofocas";
             usuario.Senha = Senha;
-            usuario.Uid = 4;
+            usuario.Id = 4;
             usuario.AdventureRank = 10;
 
             var mensagemDeErroUsuario = Assert.Throws<ValidationException>(() => _servicoUsuario.Editar(usuario));
@@ -182,7 +182,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var idDoUsuario = 3;
             _servicoUsuario.Remover(idDoUsuario);
 
-            var usuario = TabelaUsuario.Instancia.Find(usuario => usuario.Uid == idDoUsuario);
+            var usuario = TabelaSingletonUsuario.Instancia.Find(usuario => usuario.Id == idDoUsuario);
             Assert.Null(usuario);
         }
     }
