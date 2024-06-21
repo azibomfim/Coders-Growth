@@ -25,7 +25,8 @@ namespace CodersGrowth.Infra.Repositorios
 
         public Usuario ObterPorId(int Uid)
         {
-            throw new NotImplementedException();
+            return conexaoDados.GetTable<Usuario>().FirstOrDefault(usuario => usuario.Uid == Uid) ?? throw new Exception($"Usuario {Uid} Nao Encontrado");
+
         }
 
         public List<Usuario> ObterTodos(FiltroUsuario? filtroUsuario)
