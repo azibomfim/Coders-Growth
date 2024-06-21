@@ -23,9 +23,9 @@ namespace CodersGrowth.Servicos.Servicos
             return _usuariorepositorio.ObterTodos(filtroUsuario);
         }
 
-        public Usuario ObterPorId(int Uid)
+        public Usuario ObterPorId(int Id)
         {
-            return _usuariorepositorio.ObterPorId(Uid) ?? throw new Exception("Usuário não encontrado.");
+            return _usuariorepositorio.ObterPorId(Id) ?? throw new Exception("Usuário não encontrado.");
         }
 
         public void Criar(Usuario usuario)
@@ -45,9 +45,9 @@ namespace CodersGrowth.Servicos.Servicos
             _usuariorepositorio.Editar(usuario);
         }
 
-        public void Remover(int Uid)
+        public void Remover(int Id)
         {
-            _usuariorepositorio.Remover(Uid);
+            _usuariorepositorio.Remover(Id);
         }
     }
 }

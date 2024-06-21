@@ -23,9 +23,9 @@ namespace CodersGrowth.Infra.Repositorios
             conexaoDados.Update(usuario);
         }
 
-        public Usuario ObterPorId(int Uid)
+        public Usuario ObterPorId(int Id)
         {
-            throw new NotImplementedException();
+            return conexaoDados.GetTable<Usuario>().FirstOrDefault(usuario => usuario.Id == Id) ?? throw new Exception($"Usuario {Id} Nao Encontrado");
         }
 
         public List<Usuario> ObterTodos(FiltroUsuario? filtroUsuario)
@@ -49,9 +49,9 @@ namespace CodersGrowth.Infra.Repositorios
             return query.ToList();
         }
 
-        public void Remover(int Uid)
+        public void Remover(int Id)
         {
-            var usuarioExcluir = ObterPorId(Uid);
+            var usuarioExcluir = ObterPorId(Id);
             conexaoDados.Delete(usuarioExcluir);
         }
     }

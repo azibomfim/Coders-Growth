@@ -25,7 +25,7 @@ namespace CodersGrowth.Infra.Repositorios
 
         public Personagem ObterPorId(int Id)
         {
-            throw new NotImplementedException();
+            return conexaoDados.GetTable<Personagem>().FirstOrDefault(personagem => personagem.Id == Id) ?? throw new Exception($"Personagem {Id} Nao Encontrado");
         }
 
         public List<Personagem> ObterTodos(FiltroPersonagem? filtroPersonagem)
