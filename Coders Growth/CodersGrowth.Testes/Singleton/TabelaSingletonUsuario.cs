@@ -11,7 +11,7 @@ namespace CodersGrowth.Testes.Singleton
             {
                 NomeDeUsuario = "rato smites",
                 Senha = 160623,
-                Uid = 1,
+                Id = 1,
                 AdventureRank = 55,
                 PersonagensDoUsuario = new List<Personagem>(),
             },
@@ -20,7 +20,7 @@ namespace CodersGrowth.Testes.Singleton
             {
                 NomeDeUsuario = "furao insecs",
                 Senha = 080623,
-                Uid = 2,
+                Id = 2,
                 AdventureRank = 56,
                 PersonagensDoUsuario = new List<Personagem>(),
             },
@@ -29,7 +29,7 @@ namespace CodersGrowth.Testes.Singleton
             {
                 NomeDeUsuario = "foca fofocas",
                 Senha = 240702,
-                Uid = 3,
+                Id = 3,
                 AdventureRank = 48,
                 PersonagensDoUsuario = new List<Personagem>(),
             },
@@ -38,7 +38,7 @@ namespace CodersGrowth.Testes.Singleton
             {
                 NomeDeUsuario = "toninha bipede",
                 Senha = 123456,
-                Uid = 4,
+                Id = 4,
                 AdventureRank = 50,
                 PersonagensDoUsuario = new List<Personagem>(),
             },
@@ -47,7 +47,7 @@ namespace CodersGrowth.Testes.Singleton
             {
                 NomeDeUsuario = "abelhinha triste",
                 Senha = 847659,
-                Uid = 5,
+                Id = 5,
                 AdventureRank = 42,
                 PersonagensDoUsuario = new List<Personagem>(),
             }

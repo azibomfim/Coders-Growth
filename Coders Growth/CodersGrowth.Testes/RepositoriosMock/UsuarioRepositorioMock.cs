@@ -9,12 +9,12 @@ namespace CodersGrowth.Testes.RepositoriosMock
     {
         public Usuario Editar(Usuario usuario)
         {
-            Usuario usuarioAlterado = ObterPorId(usuario.Uid);
+            Usuario usuarioAlterado = ObterPorId(usuario.Id);
             usuarioAlterado.NomeDeUsuario = usuario.NomeDeUsuario;
             usuarioAlterado.AdventureRank = usuario.AdventureRank;
             usuarioAlterado.Senha = usuario.Senha;
 
-            return ObterPorId(usuarioAlterado.Uid);
+            return ObterPorId(usuarioAlterado.Id);
         }
 
         public Usuario Criar(Usuario usuario)
@@ -23,10 +23,10 @@ namespace CodersGrowth.Testes.RepositoriosMock
             return usuario;
         }
 
-        public Usuario ObterPorId(int Uid)
+        public Usuario ObterPorId(int Id)
         {
             List<Usuario> Usuarios = TabelaSingletonUsuario.Instancia;
-            var usuariosPorId = Usuarios.FirstOrDefault(Usuario => Usuario.Uid == Uid);
+            var usuariosPorId = Usuarios.FirstOrDefault(Usuario => Usuario.Id == Id);
             {
                 return usuariosPorId;
             }
@@ -38,9 +38,9 @@ namespace CodersGrowth.Testes.RepositoriosMock
             return _repository;
         }
 
-        public void Remover(int Uid)
+        public void Remover(int Id)
         {
-            Usuario usuario = ObterPorId(Uid);
+            Usuario usuario = ObterPorId(Id);
             TabelaSingletonUsuario.Usuarios.Remove(usuario);
         }
     }

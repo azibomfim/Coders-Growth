@@ -7,9 +7,9 @@ namespace CodersGrowth.Dominio.Interfaces
     public interface IRepositorioUsuario
     {
         List<Usuario> ObterTodos(FiltroUsuario? filtroUsuario);
-        Usuario ObterPorId(int Uid);
+        Usuario ObterPorId(int Id);
         void Criar(Usuario usuario);
         void Editar(Usuario usuario);
-        void Remover(int Uid);
+        void Remover(int Id);
     }
 }
