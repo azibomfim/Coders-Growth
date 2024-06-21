@@ -51,7 +51,8 @@ namespace CodersGrowth.Infra.Repositorios
 
         public void Remover(int Uid)
         {
-            throw new NotImplementedException();
+            var usuarioExcluir = ObterPorId(Uid);
+            conexaoDados.Delete(usuarioExcluir);
         }
     }
 }
