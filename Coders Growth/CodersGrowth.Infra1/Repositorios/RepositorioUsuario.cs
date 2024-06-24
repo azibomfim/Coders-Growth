@@ -1,18 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CodersGrowth.Dominio;
-using CodersGrowth.Dominio.Filtros;
+﻿using CodersGrowth.Dominio.Filtros;
 using CodersGrowth.Dominio.Interfaces;
 using CodersGrowth.Dominio.Models;
 using LinqToDB;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CodersGrowth.Infra.Repositorios
 {
     public class RepositorioUsuario : IRepositorioUsuario
     {
-        private ConexaoDados conexaoDados = new ConexaoDados();
+        private readonly ConexaoDados conexaoDados;
+        public RepositorioUsuario(ConexaoDados _conexaoDados)
+        {
+            conexaoDados = _conexaoDados;
+        }
         public void Criar(Usuario usuario)
         {
             conexaoDados.Insert(usuario);

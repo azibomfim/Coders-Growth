@@ -1,18 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CodersGrowth.Dominio;
-using CodersGrowth.Dominio.Filtros;
+﻿using CodersGrowth.Dominio.Filtros;
 using CodersGrowth.Dominio.Interfaces;
 using CodersGrowth.Dominio.Models;
 using LinqToDB;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CodersGrowth.Infra.Repositorios
 {
     public class RepositorioPersonagem : IRepositorioPersonagem
     {
-        private ConexaoDados conexaoDados = new ConexaoDados();
+        private readonly ConexaoDados conexaoDados;
+        public RepositorioPersonagem(ConexaoDados _conexaoDados)
+        {
+            conexaoDados = _conexaoDados;
+        }
         public void Criar(Personagem personagem)
         {
             conexaoDados.Insert(personagem);
@@ -32,7 +34,7 @@ namespace CodersGrowth.Infra.Repositorios
         {
             IQueryable<Personagem> query = conexaoDados.TabelaPersonagem.AsQueryable();
 
-            if (filtroPersonagem?.NomePersonagem != null) 
+            if (filtroPersonagem?.NomePersonagem != null)
             {
                 query = from c in query
                         where c.NomePersonagem == filtroPersonagem.NomePersonagem
@@ -57,6 +59,12 @@ namespace CodersGrowth.Infra.Repositorios
             {
                 query = from c in query
                         where c.Arma == filtroPersonagem.Arma
+                        select c;
+            }
+            if (filtroPersonagem?.DataDeAquisicao != null)
+            {
+                query = from c in query
+                        where c.DataDeAquisicao == filtroPersonagem.DataDeAquisicao
                         select c;
             }
 

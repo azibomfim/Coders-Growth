@@ -13,7 +13,6 @@ namespace CodersGrowth.Testes.Singleton
                 Senha = 160623,
                 Id = 1,
                 AdventureRank = 55,
-                PersonagensDoUsuario = new List<Personagem>(),
             },
 
             new Usuario()
@@ -22,7 +21,6 @@ namespace CodersGrowth.Testes.Singleton
                 Senha = 080623,
                 Id = 2,
                 AdventureRank = 56,
-                PersonagensDoUsuario = new List<Personagem>(),
             },
 
             new Usuario()
@@ -31,7 +29,6 @@ namespace CodersGrowth.Testes.Singleton
                 Senha = 240702,
                 Id = 3,
                 AdventureRank = 48,
-                PersonagensDoUsuario = new List<Personagem>(),
             },
 
             new Usuario()
@@ -40,7 +37,6 @@ namespace CodersGrowth.Testes.Singleton
                 Senha = 123456,
                 Id = 4,
                 AdventureRank = 50,
-                PersonagensDoUsuario = new List<Personagem>(),
             },
 
             new Usuario()
@@ -49,7 +45,6 @@ namespace CodersGrowth.Testes.Singleton
                 Senha = 847659,
                 Id = 5,
                 AdventureRank = 42,
-                PersonagensDoUsuario = new List<Personagem>(),
             }
         };
 

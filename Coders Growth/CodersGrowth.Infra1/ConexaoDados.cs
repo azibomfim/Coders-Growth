@@ -6,8 +6,7 @@ namespace CodersGrowth.Infra
 {
     public class ConexaoDados : DataConnection
     {
-        const string stringDeConexao = "GenshinLibraryDB";
-        public ConexaoDados() : base(stringDeConexao) { }
+        public ConexaoDados(DataOptions <ConexaoDados> options) : base(options.Options) { }
         public ITable<Personagem> TabelaPersonagem => this.GetTable<Personagem>();
         public ITable<Usuario> TabelaUsuario => this.GetTable<Usuario>();
     }
