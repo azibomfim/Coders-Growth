@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CodersGrowth.Dominio;
-using CodersGrowth.Dominio.Filtros;
+﻿using CodersGrowth.Dominio.Filtros;
 using CodersGrowth.Dominio.Interfaces;
 using CodersGrowth.Dominio.Models;
 using LinqToDB;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CodersGrowth.Infra.Repositorios
 {

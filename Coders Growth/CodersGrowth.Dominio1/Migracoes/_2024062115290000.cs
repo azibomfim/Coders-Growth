@@ -10,7 +10,7 @@ namespace CodersGrowth.Dominio.Migracoes
         {
             Create.Table("Usuario")
                  .WithColumn("Id").AsInt64().PrimaryKey().Identity()
-                 .WithColumn("NomeDeUusario").AsString().NotNullable()
+                 .WithColumn("NomeDeUsuario").AsString().NotNullable()
                  .WithColumn("Senha").AsInt64().NotNullable()
                  .WithColumn("AdventureRank").AsInt64().Nullable();
         }
