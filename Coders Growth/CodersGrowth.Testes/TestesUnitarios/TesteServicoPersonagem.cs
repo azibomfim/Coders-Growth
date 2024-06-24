@@ -1,4 +1,5 @@
 ﻿using CodersGrowth.Dominio.Enums;
+using CodersGrowth.Dominio.Filtros;
 using CodersGrowth.Dominio.Models;
 using CodersGrowth.Servicos.Servicos;
 using CodersGrowth.Testes.Singleton;
@@ -18,7 +19,8 @@ namespace CodersGrowth.Testes.TestesUnitarios
         [Fact]
         public void deve_retornar_todos_os_personagens()
         {
-            var listaDePersonagens = _servicoPersonagem.ObterTodos();
+            FiltroPersonagem filtroPersonagem = new FiltroPersonagem();
+            var listaDePersonagens = _servicoPersonagem.ObterTodos(filtroPersonagem);
             Assert.NotNull(listaDePersonagens);
             Assert.Equal(5, listaDePersonagens.Count);
         }
@@ -63,7 +65,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Escudo = 0.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = true,
-                ImgPersonagem = null,
                 ConstelacaoLv = 0,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Cryo,
@@ -93,7 +94,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Escudo = 0.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = false,
-                ImgPersonagem = null,
                 ConstelacaoLv = 0,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Cryo,
@@ -125,7 +125,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Escudo = 0.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = true,
-                ImgPersonagem = null,
                 ConstelacaoLv = ConstelacaoLv,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Cryo,
@@ -155,7 +154,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Escudo = 0.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = true,
-                ImgPersonagem = null,
                 ConstelacaoLv = 0,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Cryo,
@@ -185,7 +183,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Escudo = 0.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = true,
-                ImgPersonagem = null,
                 ConstelacaoLv = 0,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Cryo,
@@ -215,7 +212,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Escudo = 0.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = false,
-                ImgPersonagem = null,
                 ConstelacaoLv = 0,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Cryo,
@@ -245,7 +241,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Escudo = 0.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = false,
-                ImgPersonagem = null,
                 ConstelacaoLv = 0,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Cryo,

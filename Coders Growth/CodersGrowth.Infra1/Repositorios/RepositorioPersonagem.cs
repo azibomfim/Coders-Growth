@@ -12,7 +12,11 @@ namespace CodersGrowth.Infra.Repositorios
 {
     public class RepositorioPersonagem : IRepositorioPersonagem
     {
-        private ConexaoDados conexaoDados = new ConexaoDados();
+        private readonly ConexaoDados conexaoDados;
+        public RepositorioPersonagem(ConexaoDados _conexaoDados)
+        {
+            conexaoDados = _conexaoDados;
+        }
         public void Criar(Personagem personagem)
         {
             conexaoDados.Insert(personagem);
@@ -57,6 +61,12 @@ namespace CodersGrowth.Infra.Repositorios
             {
                 query = from c in query
                         where c.Arma == filtroPersonagem.Arma
+                        select c;
+            }
+            if (filtroPersonagem?.IdUsuario != null)
+            {
+                query = from c in query
+                        where c.IdUsuario == filtroPersonagem.IdUsuario
                         select c;
             }
 

@@ -12,7 +12,11 @@ namespace CodersGrowth.Infra.Repositorios
 {
     public class RepositorioUsuario : IRepositorioUsuario
     {
-        private ConexaoDados conexaoDados = new ConexaoDados();
+        private readonly ConexaoDados conexaoDados;
+        public RepositorioUsuario(ConexaoDados _conexaoDados)
+        {
+            conexaoDados = _conexaoDados;
+        }
         public void Criar(Usuario usuario)
         {
             conexaoDados.Insert(usuario);
