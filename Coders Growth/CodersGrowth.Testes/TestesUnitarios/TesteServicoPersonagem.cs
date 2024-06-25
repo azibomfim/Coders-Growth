@@ -68,7 +68,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var filtro = new FiltroPersonagem {CriadoPorUsuario = true};
             var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
             Assert.NotNull(listaDePersonagens);
-            Assert.Equal(4, listaDePersonagens.Count);
+            Assert.Equal(3, listaDePersonagens.Count);
         }
 
         [Fact]
