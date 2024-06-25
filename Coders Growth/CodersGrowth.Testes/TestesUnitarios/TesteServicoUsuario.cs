@@ -22,13 +22,13 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var listaDeUsuarios = _servicoUsuario.ObterTodos(filtro);
 
             Assert.NotNull(listaDeUsuarios);
-            Assert.Equal(5, listaDeUsuarios.Count);
+            Assert.Equal(6, listaDeUsuarios.Count);
         }
 
         [Fact]
         public void deve_retornar_usuarios_filtrando_por_AdventureRank()
         {
-            FiltroUsuario? filtro = new FiltroUsuario {AdventureRank = 56};
+            FiltroUsuario? filtro = new FiltroUsuario {AdventureRank = 55};
             var listaDeUsuarios = _servicoUsuario.ObterTodos(filtro);
 
             Assert.NotNull(listaDeUsuarios);

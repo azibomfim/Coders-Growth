@@ -31,7 +31,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var filtro = new FiltroPersonagem{NomePersonagem = NomeEnum.HuTao};
             var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
             Assert.NotNull(listaDePersonagens);
-            Assert.Single(listaDePersonagens);
+            Assert.Equal(1, listaDePersonagens.Count);
         }
 
         [Fact]
@@ -49,7 +49,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var filtro = new FiltroPersonagem {Elemento = ElementoEnum.Geo};
             var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
             Assert.NotNull(listaDePersonagens);
-            Assert.Single(listaDePersonagens);
+            Assert.Equal(1, listaDePersonagens.Count);
         }
 
         [Fact]
@@ -58,7 +58,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var filtro = new FiltroPersonagem {DataDeAquisicao = new DateTime(2021, 02, 17)};
             var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
             Assert.NotNull(listaDePersonagens);
-            Assert.Single(listaDePersonagens);
+            Assert.Equal(1, listaDePersonagens.Count);
         }
 
         [Fact]
