@@ -37,7 +37,7 @@ namespace CodersGrowth.Infra.Repositorios
             if (filtroUsuario?.NomeDeUsuario != null)
             {
                 query = from c in query
-                        where c.NomeDeUsuario == filtroUsuario.NomeDeUsuario
+                        where c.NomeDeUsuario.Contains(filtroUsuario.NomeDeUsuario)
                         select c;
             }
 

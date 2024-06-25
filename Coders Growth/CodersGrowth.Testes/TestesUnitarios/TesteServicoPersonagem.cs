@@ -4,7 +4,6 @@ using CodersGrowth.Dominio.Models;
 using CodersGrowth.Servicos.Servicos;
 using CodersGrowth.Testes.Singleton;
 using FluentValidation;
-using LinqToDB;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CodersGrowth.Testes.TestesUnitarios
@@ -20,8 +19,8 @@ namespace CodersGrowth.Testes.TestesUnitarios
         [Fact]
         public void deve_retornar_todos_os_personagens()
         {
-            FiltroPersonagem? filtroPersonagem = null;
-            var listaDePersonagens = _servicoPersonagem.ObterTodos(filtroPersonagem);
+            FiltroPersonagem? filtro= null;
+            var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
             Assert.NotNull(listaDePersonagens);
             Assert.Equal(5, listaDePersonagens.Count);
         }

@@ -1,6 +1,7 @@
 ﻿using CodersGrowth.Dominio.Filtros;
 using CodersGrowth.Dominio.Interfaces;
 using CodersGrowth.Dominio.Models;
+using CodersGrowth.Infra;
 using CodersGrowth.Testes.Singleton;
 
 namespace CodersGrowth.Testes.RepositoriosMock
@@ -31,9 +32,25 @@ namespace CodersGrowth.Testes.RepositoriosMock
 
         public List<Usuario> ObterTodos(FiltroUsuario? filtroUsuario)
         {
-            List<Usuario> _repository = TabelaSingletonUsuario.Instancia;
-            return _repository;
+            IQueryable<Usuario> query = TabelaSingletonUsuario.Instancia.AsQueryable();
+
+            if (filtroUsuario?.NomeDeUsuario != null)
+            {
+                query = from c in query
+                        where c.NomeDeUsuario.Contains(filtroUsuario.NomeDeUsuario)
+                        select c;
+            }
+
+            if (filtroUsuario?.AdventureRank != null)
+            {
+                query = from c in query
+                        where c.AdventureRank == filtroUsuario.AdventureRank
+                        select c;
+            }
+
+            return query.ToList();
         }
+
 
         public void Remover(int Id)
         {

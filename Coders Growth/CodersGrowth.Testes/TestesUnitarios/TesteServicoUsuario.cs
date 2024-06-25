@@ -1,4 +1,5 @@
-﻿using CodersGrowth.Dominio.Models;
+﻿using CodersGrowth.Dominio.Filtros;
+using CodersGrowth.Dominio.Models;
 using CodersGrowth.Servicos.Servicos;
 using CodersGrowth.Testes.Singleton;
 using FluentValidation;
@@ -14,14 +15,35 @@ namespace CodersGrowth.Testes.TestesUnitarios
             _servicoUsuario = ServiceProvider.GetService<ServicoUsuario>();
         }
 
-        //[Fact]
-        //public void deve_retornar_todos_os_usuarios()
-        //{
-        //    var listaDeUsuarios = _servicoUsuario.ObterTodos();
+        [Fact]
+        public void deve_retornar_todos_os_usuarios()
+        {
+            FiltroUsuario? filtro = null;
+            var listaDeUsuarios = _servicoUsuario.ObterTodos(filtro);
 
-        //    Assert.NotNull(listaDeUsuarios);
-        //    Assert.Equal(6, listaDeUsuarios.Count);
-        //}
+            Assert.NotNull(listaDeUsuarios);
+            Assert.Equal(5, listaDeUsuarios.Count);
+        }
+
+        [Fact]
+        public void deve_retornar_usuarios_filtrando_por_AdventureRank()
+        {
+            FiltroUsuario? filtro = new FiltroUsuario {AdventureRank = 56};
+            var listaDeUsuarios = _servicoUsuario.ObterTodos(filtro);
+
+            Assert.NotNull(listaDeUsuarios);
+            Assert.Equal(1, listaDeUsuarios.Count);
+        }
+
+        [Fact]
+        public void deve_retornar_usuarios_filtrando_por_NomeDeUsuario()
+        {
+            FiltroUsuario? filtro = new FiltroUsuario {NomeDeUsuario = "abe"};
+            var listaDeUsuarios = _servicoUsuario.ObterTodos(filtro);
+
+            Assert.NotNull(listaDeUsuarios);
+            Assert.Single(listaDeUsuarios);
+        }
 
         [Fact]
         public void deve_retornar_o_usuario_ratosmites_ao_passar_o_id_1()
