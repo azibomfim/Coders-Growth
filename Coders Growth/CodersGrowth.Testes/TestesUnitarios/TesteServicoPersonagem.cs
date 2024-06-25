@@ -19,55 +19,61 @@ namespace CodersGrowth.Testes.TestesUnitarios
         [Fact]
         public void deve_retornar_todos_os_personagens()
         {
-            FiltroPersonagem? filtro= null;
+            var quantidadeRetornada = 5;
+            FiltroPersonagem? filtro = null;
             var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
             Assert.NotNull(listaDePersonagens);
-            Assert.Equal(5, listaDePersonagens.Count);
+            Assert.Equal(quantidadeRetornada, listaDePersonagens.Count);
         }
 
         [Fact]
         public void deve_retornar_personagens_filtrando_por_NomePersonagem()
         {
-            var filtro = new FiltroPersonagem{NomePersonagem = NomeEnum.HuTao};
+            var quantidadeRetornada = 1;
+            var filtro = new FiltroPersonagem { NomePersonagem = NomeEnum.HuTao };
             var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
             Assert.NotNull(listaDePersonagens);
-            Assert.Equal(1, listaDePersonagens.Count);
+            Assert.Equal(quantidadeRetornada, listaDePersonagens.Count);
         }
 
         [Fact]
         public void deve_retornar_personagens_filtrando_por_Arma()
         {
-            var filtro = new FiltroPersonagem {Arma = ArmaEnum.Lanca};
+            var quantidadeRetornada = 4;
+            var filtro = new FiltroPersonagem { Arma = ArmaEnum.Lanca };
             var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
             Assert.NotNull(listaDePersonagens);
-            Assert.Equal(4, listaDePersonagens.Count);
+            Assert.Equal(quantidadeRetornada, listaDePersonagens.Count);
         }
 
         [Fact]
         public void deve_retornar_personagens_filtrando_por_Elemento()
         {
-            var filtro = new FiltroPersonagem {Elemento = ElementoEnum.Geo};
+            var quantidadeRetornada = 1;
+            var filtro = new FiltroPersonagem { Elemento = ElementoEnum.Geo };
             var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
             Assert.NotNull(listaDePersonagens);
-            Assert.Equal(1, listaDePersonagens.Count);
+            Assert.Equal(quantidadeRetornada, listaDePersonagens.Count);
         }
 
         [Fact]
         public void deve_retornar_personagens_filtrando_por_DataDeAquisicao()
         {
-            var filtro = new FiltroPersonagem {DataDeAquisicao = new DateTime(2021, 02, 17)};
+            var quantidadeRetornada = 1;
+            var filtro = new FiltroPersonagem { DataDeAquisicao = new DateTime(2021, 02, 17) };
             var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
             Assert.NotNull(listaDePersonagens);
-            Assert.Equal(1, listaDePersonagens.Count);
+            Assert.Equal(quantidadeRetornada, listaDePersonagens.Count);
         }
 
         [Fact]
         public void deve_retornar_personagens_filtrando_por_CriadoPorUsuario()
         {
-            var filtro = new FiltroPersonagem {CriadoPorUsuario = true};
+            var quantidadeRetornada = 3;
+            var filtro = new FiltroPersonagem { CriadoPorUsuario = true };
             var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
             Assert.NotNull(listaDePersonagens);
-            Assert.Equal(3, listaDePersonagens.Count);
+            Assert.Equal(quantidadeRetornada, listaDePersonagens.Count);
         }
 
         [Fact]

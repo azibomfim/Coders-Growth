@@ -18,31 +18,35 @@ namespace CodersGrowth.Testes.TestesUnitarios
         [Fact]
         public void deve_retornar_todos_os_usuarios()
         {
+            var quantidadeRetornada = 6;
             FiltroUsuario? filtro = null;
             var listaDeUsuarios = _servicoUsuario.ObterTodos(filtro);
 
             Assert.NotNull(listaDeUsuarios);
-            Assert.Equal(6, listaDeUsuarios.Count);
+            Assert.Equal(quantidadeRetornada, listaDeUsuarios.Count);
         }
 
         [Fact]
         public void deve_retornar_usuarios_filtrando_por_AdventureRank()
         {
-            FiltroUsuario? filtro = new FiltroUsuario {AdventureRank = 55};
+            var quantidadeRetornada = 1;
+            var AdventureRankDesejado = 55;
+            FiltroUsuario? filtro = new FiltroUsuario { AdventureRank = AdventureRankDesejado };
             var listaDeUsuarios = _servicoUsuario.ObterTodos(filtro);
 
             Assert.NotNull(listaDeUsuarios);
-            Assert.Equal(1, listaDeUsuarios.Count);
+            Assert.Equal(quantidadeRetornada, listaDeUsuarios.Count);
         }
 
         [Fact]
         public void deve_retornar_usuarios_filtrando_por_NomeDeUsuario()
         {
-            FiltroUsuario? filtro = new FiltroUsuario {NomeDeUsuario = "abe"};
+            var quantidadeRetornada = 1;
+            FiltroUsuario? filtro = new FiltroUsuario { NomeDeUsuario = "abe" };
             var listaDeUsuarios = _servicoUsuario.ObterTodos(filtro);
 
             Assert.NotNull(listaDeUsuarios);
-            Assert.Single(listaDeUsuarios);
+            Assert.Equal(quantidadeRetornada, listaDeUsuarios.Count);
         }
 
         [Fact]
