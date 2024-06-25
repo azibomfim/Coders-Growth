@@ -1,26 +1,24 @@
 ﻿using CodersGrowth.Dominio.Filtros;
 using CodersGrowth.Dominio.Interfaces;
 using CodersGrowth.Dominio.Models;
+using CodersGrowth.Infra;
 using CodersGrowth.Testes.Singleton;
 
 namespace CodersGrowth.Testes.RepositoriosMock
 {
     public class UsuarioRepositorioMock : IRepositorioUsuario
     {
-        public Usuario Editar(Usuario usuario)
+        public void Editar(Usuario usuario)
         {
             Usuario usuarioAlterado = ObterPorId(usuario.Id);
             usuarioAlterado.NomeDeUsuario = usuario.NomeDeUsuario;
             usuarioAlterado.AdventureRank = usuario.AdventureRank;
             usuarioAlterado.Senha = usuario.Senha;
-
-            return ObterPorId(usuarioAlterado.Id);
         }
 
-        public Usuario Criar(Usuario usuario)
+        public void Criar(Usuario usuario)
         {
             TabelaSingletonUsuario.Usuarios.Add(usuario);
-            return usuario;
         }
 
         public Usuario ObterPorId(int Id)
@@ -34,9 +32,25 @@ namespace CodersGrowth.Testes.RepositoriosMock
 
         public List<Usuario> ObterTodos(FiltroUsuario? filtroUsuario)
         {
-            List<Usuario> _repository = TabelaSingletonUsuario.Instancia;
-            return _repository;
+            IQueryable<Usuario> query = TabelaSingletonUsuario.Instancia.AsQueryable();
+
+            if (filtroUsuario?.NomeDeUsuario != null)
+            {
+                query = from c in query
+                        where c.NomeDeUsuario.Contains(filtroUsuario.NomeDeUsuario)
+                        select c;
+            }
+
+            if (filtroUsuario?.AdventureRank != null)
+            {
+                query = from c in query
+                        where c.AdventureRank == filtroUsuario.AdventureRank
+                        select c;
+            }
+
+            return query.ToList();
         }
+
 
         public void Remover(int Id)
         {

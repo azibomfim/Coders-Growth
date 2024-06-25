@@ -24,7 +24,7 @@ namespace CodersGrowth.Testes.Singleton
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = true,
                 ConstelacaoLv = 1,
-                DataDeAquisicao = DateTime.Now,
+                DataDeAquisicao = new DateTime(2021, 02, 17),
                 Elemento = ElementoEnum.Anemo,
                 Arma = ArmaEnum.Lanca,
                 IdUsuario = 5,
@@ -68,10 +68,10 @@ namespace CodersGrowth.Testes.Singleton
                  BonusElemental = 66.6m,
                  CriadoPorUsuario = false,
                  ConstelacaoLv = 0,
-                 DataDeAquisicao = DateTime.Now,
+                 DataDeAquisicao = new DateTime(2020, 12, 20),
                  Elemento = ElementoEnum.Hydro,
                  Arma = ArmaEnum.Espada,
-                 IdUsuario = 3,
+                 IdUsuario = null,
             },
 
             new Personagem()
@@ -93,7 +93,7 @@ namespace CodersGrowth.Testes.Singleton
                  DataDeAquisicao = DateTime.Now,
                  Elemento = ElementoEnum.Cryo,
                  Arma = ArmaEnum.Lanca,
-                 IdUsuario = 1,
+                 IdUsuario = null,
             },
 
             new Personagem()
