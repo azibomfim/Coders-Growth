@@ -36,12 +36,12 @@ namespace CodersGrowth.Dominio.Models
         [Column("ConstelacaoLv")]
         public int ConstelacaoLv { get; set; }
         [Column("DataDeAquisicao")]
-        public DateTime DataDeAquisicao { get; set; }
+        public DateTime? DataDeAquisicao { get; set; }
         [Column("Elemento")]
         public ElementoEnum? Elemento { get; set; }
         [Column("Arma")]
         public ArmaEnum? Arma { get; set; }
         [Column("IdUsuario")]
-        public int IdUsuario { get; set; }
+        public int? IdUsuario { get; set; }
     }
 }

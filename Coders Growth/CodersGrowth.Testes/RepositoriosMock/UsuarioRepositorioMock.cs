@@ -7,20 +7,17 @@ namespace CodersGrowth.Testes.RepositoriosMock
 {
     public class UsuarioRepositorioMock : IRepositorioUsuario
     {
-        public Usuario Editar(Usuario usuario)
+        public void Editar(Usuario usuario)
         {
             Usuario usuarioAlterado = ObterPorId(usuario.Id);
             usuarioAlterado.NomeDeUsuario = usuario.NomeDeUsuario;
             usuarioAlterado.AdventureRank = usuario.AdventureRank;
             usuarioAlterado.Senha = usuario.Senha;
-
-            return ObterPorId(usuarioAlterado.Id);
         }
 
-        public Usuario Criar(Usuario usuario)
+        public void Criar(Usuario usuario)
         {
             TabelaSingletonUsuario.Usuarios.Add(usuario);
-            return usuario;
         }
 
         public Usuario ObterPorId(int Id)

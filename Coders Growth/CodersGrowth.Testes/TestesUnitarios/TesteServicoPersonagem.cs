@@ -4,6 +4,7 @@ using CodersGrowth.Dominio.Models;
 using CodersGrowth.Servicos.Servicos;
 using CodersGrowth.Testes.Singleton;
 using FluentValidation;
+using LinqToDB;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CodersGrowth.Testes.TestesUnitarios
@@ -19,10 +20,55 @@ namespace CodersGrowth.Testes.TestesUnitarios
         [Fact]
         public void deve_retornar_todos_os_personagens()
         {
-            FiltroPersonagem filtroPersonagem = new FiltroPersonagem();
+            FiltroPersonagem? filtroPersonagem = null;
             var listaDePersonagens = _servicoPersonagem.ObterTodos(filtroPersonagem);
             Assert.NotNull(listaDePersonagens);
             Assert.Equal(5, listaDePersonagens.Count);
+        }
+
+        [Fact]
+        public void deve_retornar_personagens_filtrando_por_NomePersonagem()
+        {
+            var filtro = new FiltroPersonagem{NomePersonagem = NomeEnum.HuTao};
+            var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
+            Assert.NotNull(listaDePersonagens);
+            Assert.Single(listaDePersonagens);
+        }
+
+        [Fact]
+        public void deve_retornar_personagens_filtrando_por_Arma()
+        {
+            var filtro = new FiltroPersonagem {Arma = ArmaEnum.Lanca};
+            var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
+            Assert.NotNull(listaDePersonagens);
+            Assert.Equal(4, listaDePersonagens.Count);
+        }
+
+        [Fact]
+        public void deve_retornar_personagens_filtrando_por_Elemento()
+        {
+            var filtro = new FiltroPersonagem {Elemento = ElementoEnum.Geo};
+            var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
+            Assert.NotNull(listaDePersonagens);
+            Assert.Single(listaDePersonagens);
+        }
+
+        [Fact]
+        public void deve_retornar_personagens_filtrando_por_DataDeAquisicao()
+        {
+            var filtro = new FiltroPersonagem {DataDeAquisicao = new DateTime(2021, 02, 17)};
+            var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
+            Assert.NotNull(listaDePersonagens);
+            Assert.Single(listaDePersonagens);
+        }
+
+        [Fact]
+        public void deve_retornar_personagens_filtrando_por_CriadoPorUsuario()
+        {
+            var filtro = new FiltroPersonagem {CriadoPorUsuario = true};
+            var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
+            Assert.NotNull(listaDePersonagens);
+            Assert.Equal(4, listaDePersonagens.Count);
         }
 
         [Fact]
@@ -72,8 +118,9 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 IdUsuario = 1,
             };
 
-            var personagemCadastrado = _servicoPersonagem.Criar(personagem);
-            Assert.Equal(personagemCadastrado, personagem);
+            var personagemCriado = personagem;
+            _servicoPersonagem.Criar(personagemCriado);
+            Assert.Equal(personagemCriado, _servicoPersonagem.ObterPorId(personagem.Id));
         }
 
         [Fact]
@@ -251,7 +298,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => _servicoPersonagem.Criar(personagem));
             Assert.Contains("Ataque deve ser maior que 0", mensagemDeErroPersonagem.Message);
         }
-        
+
         [Fact]
         public void deve_aceitar_edicao_de_personagem_valido()
         {
@@ -272,8 +319,10 @@ namespace CodersGrowth.Testes.TestesUnitarios
             personagem.Vida = 32752;
             personagem.CriadoPorUsuario = true;
 
-            var personagemAlterado = _servicoPersonagem.Editar(personagem);
-            Assert.Equal(personagemAlterado, personagem);
+            var personagemEditado = personagem;
+            _servicoPersonagem.Editar(personagemEditado);
+            Assert.Equal(personagemEditado, _servicoPersonagem.ObterPorId(personagem.Id));
+
         }
 
         [Theory]

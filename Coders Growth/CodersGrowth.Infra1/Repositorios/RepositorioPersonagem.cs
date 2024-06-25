@@ -10,29 +10,29 @@ namespace CodersGrowth.Infra.Repositorios
 {
     public class RepositorioPersonagem : IRepositorioPersonagem
     {
-        private readonly ConexaoDados conexaoDados;
-        public RepositorioPersonagem(ConexaoDados _conexaoDados)
+        private readonly ConexaoDados _conexaoDados;
+        public RepositorioPersonagem(ConexaoDados conexaoDados)
         {
-            conexaoDados = _conexaoDados;
+            _conexaoDados = conexaoDados;
         }
         public void Criar(Personagem personagem)
         {
-            conexaoDados.Insert(personagem);
+            _conexaoDados.Insert(personagem);
         }
 
         public void Editar(Personagem personagem)
         {
-            conexaoDados.Update(personagem);
+            _conexaoDados.Update(personagem);
         }
 
         public Personagem ObterPorId(int Id)
         {
-            return conexaoDados.GetTable<Personagem>().FirstOrDefault(personagem => personagem.Id == Id) ?? throw new Exception($"Personagem {Id} Nao Encontrado");
+            return _conexaoDados.GetTable<Personagem>().FirstOrDefault(personagem => personagem.Id == Id) ?? throw new Exception($"Personagem {Id} Nao Encontrado");
         }
 
         public List<Personagem> ObterTodos(FiltroPersonagem? filtroPersonagem)
         {
-            IQueryable<Personagem> query = conexaoDados.TabelaPersonagem.AsQueryable();
+            IQueryable<Personagem> query = _conexaoDados.TabelaPersonagem.AsQueryable();
 
             if (filtroPersonagem?.NomePersonagem != null)
             {
@@ -74,7 +74,7 @@ namespace CodersGrowth.Infra.Repositorios
         public void Remover(int Id)
         {
             var personagemExcluir = ObterPorId(Id);
-            conexaoDados.Delete(personagemExcluir);
+            _conexaoDados.Delete(personagemExcluir);
         }
     }
 }
