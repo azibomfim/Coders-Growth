@@ -1,4 +1,5 @@
 ﻿using CodersGrowth.Dominio.Enums;
+using CodersGrowth.Dominio.Filtros;
 using CodersGrowth.Dominio.Models;
 using CodersGrowth.Servicos.Servicos;
 using CodersGrowth.Testes.Singleton;
@@ -18,9 +19,61 @@ namespace CodersGrowth.Testes.TestesUnitarios
         [Fact]
         public void deve_retornar_todos_os_personagens()
         {
-            var listaDePersonagens = _servicoPersonagem.ObterTodos();
+            var quantidadeRetornada = 5;
+            FiltroPersonagem? filtro = null;
+            var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
             Assert.NotNull(listaDePersonagens);
-            Assert.Equal(5, listaDePersonagens.Count);
+            Assert.Equal(quantidadeRetornada, listaDePersonagens.Count);
+        }
+
+        [Fact]
+        public void deve_retornar_personagens_filtrando_por_NomePersonagem()
+        {
+            var quantidadeRetornada = 1;
+            var filtro = new FiltroPersonagem { NomePersonagem = NomeEnum.HuTao };
+            var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
+            Assert.NotNull(listaDePersonagens);
+            Assert.Equal(quantidadeRetornada, listaDePersonagens.Count);
+        }
+
+        [Fact]
+        public void deve_retornar_personagens_filtrando_por_Arma()
+        {
+            var quantidadeRetornada = 4;
+            var filtro = new FiltroPersonagem { Arma = ArmaEnum.Lanca };
+            var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
+            Assert.NotNull(listaDePersonagens);
+            Assert.Equal(quantidadeRetornada, listaDePersonagens.Count);
+        }
+
+        [Fact]
+        public void deve_retornar_personagens_filtrando_por_Elemento()
+        {
+            var quantidadeRetornada = 1;
+            var filtro = new FiltroPersonagem { Elemento = ElementoEnum.Geo };
+            var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
+            Assert.NotNull(listaDePersonagens);
+            Assert.Equal(quantidadeRetornada, listaDePersonagens.Count);
+        }
+
+        [Fact]
+        public void deve_retornar_personagens_filtrando_por_DataDeAquisicao()
+        {
+            var quantidadeRetornada = 1;
+            var filtro = new FiltroPersonagem { DataDeAquisicao = new DateTime(2021, 02, 17) };
+            var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
+            Assert.NotNull(listaDePersonagens);
+            Assert.Equal(quantidadeRetornada, listaDePersonagens.Count);
+        }
+
+        [Fact]
+        public void deve_retornar_personagens_filtrando_por_CriadoPorUsuario()
+        {
+            var quantidadeRetornada = 3;
+            var filtro = new FiltroPersonagem { CriadoPorUsuario = true };
+            var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
+            Assert.NotNull(listaDePersonagens);
+            Assert.Equal(quantidadeRetornada, listaDePersonagens.Count);
         }
 
         [Fact]
@@ -63,7 +116,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Escudo = 0.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = true,
-                ImgPersonagem = null,
                 ConstelacaoLv = 0,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Cryo,
@@ -71,8 +123,9 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 IdUsuario = 1,
             };
 
-            var personagemCadastrado = _servicoPersonagem.Criar(personagem);
-            Assert.Equal(personagemCadastrado, personagem);
+            var personagemCriado = personagem;
+            _servicoPersonagem.Criar(personagemCriado);
+            Assert.Equal(personagemCriado, _servicoPersonagem.ObterPorId(personagem.Id));
         }
 
         [Fact]
@@ -93,7 +146,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Escudo = 0.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = false,
-                ImgPersonagem = null,
                 ConstelacaoLv = 0,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Cryo,
@@ -125,7 +177,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Escudo = 0.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = true,
-                ImgPersonagem = null,
                 ConstelacaoLv = ConstelacaoLv,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Cryo,
@@ -155,7 +206,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Escudo = 0.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = true,
-                ImgPersonagem = null,
                 ConstelacaoLv = 0,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Cryo,
@@ -185,7 +235,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Escudo = 0.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = true,
-                ImgPersonagem = null,
                 ConstelacaoLv = 0,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Cryo,
@@ -215,7 +264,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Escudo = 0.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = false,
-                ImgPersonagem = null,
                 ConstelacaoLv = 0,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Cryo,
@@ -245,7 +293,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Escudo = 0.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = false,
-                ImgPersonagem = null,
                 ConstelacaoLv = 0,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Cryo,
@@ -256,7 +303,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => _servicoPersonagem.Criar(personagem));
             Assert.Contains("Ataque deve ser maior que 0", mensagemDeErroPersonagem.Message);
         }
-        
+
         [Fact]
         public void deve_aceitar_edicao_de_personagem_valido()
         {
@@ -277,8 +324,10 @@ namespace CodersGrowth.Testes.TestesUnitarios
             personagem.Vida = 32752;
             personagem.CriadoPorUsuario = true;
 
-            var personagemAlterado = _servicoPersonagem.Editar(personagem);
-            Assert.Equal(personagemAlterado, personagem);
+            var personagemEditado = personagem;
+            _servicoPersonagem.Editar(personagemEditado);
+            Assert.Equal(personagemEditado, _servicoPersonagem.ObterPorId(personagem.Id));
+
         }
 
         [Theory]

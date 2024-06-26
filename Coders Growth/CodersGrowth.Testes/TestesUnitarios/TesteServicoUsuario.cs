@@ -1,4 +1,5 @@
-﻿using CodersGrowth.Dominio.Models;
+﻿using CodersGrowth.Dominio.Filtros;
+using CodersGrowth.Dominio.Models;
 using CodersGrowth.Servicos.Servicos;
 using CodersGrowth.Testes.Singleton;
 using FluentValidation;
@@ -17,10 +18,35 @@ namespace CodersGrowth.Testes.TestesUnitarios
         [Fact]
         public void deve_retornar_todos_os_usuarios()
         {
-            var listaDeUsuarios = _servicoUsuario.ObterTodos();
+            var quantidadeRetornada = 6;
+            FiltroUsuario? filtro = null;
+            var listaDeUsuarios = _servicoUsuario.ObterTodos(filtro);
 
             Assert.NotNull(listaDeUsuarios);
-            Assert.Equal(6, listaDeUsuarios.Count);
+            Assert.Equal(quantidadeRetornada, listaDeUsuarios.Count);
+        }
+
+        [Fact]
+        public void deve_retornar_usuarios_filtrando_por_AdventureRank()
+        {
+            var quantidadeRetornada = 1;
+            var AdventureRankDesejado = 55;
+            FiltroUsuario? filtro = new FiltroUsuario { AdventureRank = AdventureRankDesejado };
+            var listaDeUsuarios = _servicoUsuario.ObterTodos(filtro);
+
+            Assert.NotNull(listaDeUsuarios);
+            Assert.Equal(quantidadeRetornada, listaDeUsuarios.Count);
+        }
+
+        [Fact]
+        public void deve_retornar_usuarios_filtrando_por_NomeDeUsuario()
+        {
+            var quantidadeRetornada = 1;
+            FiltroUsuario? filtro = new FiltroUsuario { NomeDeUsuario = "abe" };
+            var listaDeUsuarios = _servicoUsuario.ObterTodos(filtro);
+
+            Assert.NotNull(listaDeUsuarios);
+            Assert.Equal(quantidadeRetornada, listaDeUsuarios.Count);
         }
 
         [Fact]
@@ -55,8 +81,9 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 AdventureRank = 60,
             };
 
-            var usuarioCadastrado = _servicoUsuario.Criar(usuario);
-            Assert.Equal(usuarioCadastrado, usuario);
+            var usuarioCriado = usuario;
+            _servicoUsuario.Criar(usuarioCriado);
+            Assert.Equal(usuarioCriado, _servicoUsuario.ObterPorId(usuario.Id));
         }
 
         [Theory]
@@ -121,8 +148,10 @@ namespace CodersGrowth.Testes.TestesUnitarios
             usuario.Id = 2;
             usuario.AdventureRank = 60;
 
-            var usuarioAlterado = _servicoUsuario.Editar(usuario);
-            Assert.Equal(usuarioAlterado, usuario);
+
+            var usuarioEditado = usuario;
+            _servicoUsuario.Editar(usuarioEditado);
+            Assert.Equal(usuarioEditado, _servicoUsuario.ObterPorId(usuario.Id));
         }
 
         [Theory]
