@@ -1,4 +1,5 @@
 ﻿using CodersGrowth.Dominio.Enums;
+using CodersGrowth.Dominio.Filtros;
 using CodersGrowth.Dominio.Models;
 using CodersGrowth.Servicos.Servicos;
 using CodersGrowth.Testes.Singleton;
@@ -18,9 +19,61 @@ namespace CodersGrowth.Testes.TestesUnitarios
         [Fact]
         public void deve_retornar_todos_os_personagens()
         {
-            var listaDePersonagens = _servicoPersonagem.ObterTodos();
+            var quantidadeRetornada = 5;
+            FiltroPersonagem? filtro = null;
+            var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
             Assert.NotNull(listaDePersonagens);
-            Assert.Equal(5, listaDePersonagens.Count);
+            Assert.Equal(quantidadeRetornada, listaDePersonagens.Count);
+        }
+
+        [Fact]
+        public void deve_retornar_personagens_filtrando_por_NomePersonagem()
+        {
+            var quantidadeRetornada = 1;
+            var filtro = new FiltroPersonagem { NomePersonagem = NomeEnum.HuTao };
+            var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
+            Assert.NotNull(listaDePersonagens);
+            Assert.Equal(quantidadeRetornada, listaDePersonagens.Count);
+        }
+
+        [Fact]
+        public void deve_retornar_personagens_filtrando_por_Arma()
+        {
+            var quantidadeRetornada = 4;
+            var filtro = new FiltroPersonagem { Arma = ArmaEnum.Lanca };
+            var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
+            Assert.NotNull(listaDePersonagens);
+            Assert.Equal(quantidadeRetornada, listaDePersonagens.Count);
+        }
+
+        [Fact]
+        public void deve_retornar_personagens_filtrando_por_Elemento()
+        {
+            var quantidadeRetornada = 1;
+            var filtro = new FiltroPersonagem { Elemento = ElementoEnum.Geo };
+            var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
+            Assert.NotNull(listaDePersonagens);
+            Assert.Equal(quantidadeRetornada, listaDePersonagens.Count);
+        }
+
+        [Fact]
+        public void deve_retornar_personagens_filtrando_por_DataDeAquisicao()
+        {
+            var quantidadeRetornada = 1;
+            var filtro = new FiltroPersonagem { DataDeAquisicao = new DateTime(2021, 02, 17) };
+            var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
+            Assert.NotNull(listaDePersonagens);
+            Assert.Equal(quantidadeRetornada, listaDePersonagens.Count);
+        }
+
+        [Fact]
+        public void deve_retornar_personagens_filtrando_por_CriadoPorUsuario()
+        {
+            var quantidadeRetornada = 3;
+            var filtro = new FiltroPersonagem { CriadoPorUsuario = true };
+            var listaDePersonagens = _servicoPersonagem.ObterTodos(filtro);
+            Assert.NotNull(listaDePersonagens);
+            Assert.Equal(quantidadeRetornada, listaDePersonagens.Count);
         }
 
         [Fact]
@@ -31,7 +84,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
 
             Assert.NotNull(personagensPorId);
             Assert.Equal(1, personagensPorId.Id);
-            Assert.Equal("Xiao", personagensPorId.NomePersonagem);
+            Assert.Equal(NomeEnum.Xiao, personagensPorId.NomePersonagem);
         }
 
         [Theory]
@@ -51,7 +104,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var personagem = new Personagem()
             {
                 Id = 6,
-                NomePersonagem = "Eula",
+                NomePersonagem = NomeEnum.Eula,
                 Vida = 17355,
                 Ataque = 1585,
                 Defesa = 767,
@@ -63,7 +116,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Escudo = 0.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = true,
-                ImgPersonagem = null,
                 ConstelacaoLv = 0,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Cryo,
@@ -71,42 +123,10 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 IdUsuario = 1,
             };
 
-            var personagemCadastrado = _servicoPersonagem.Criar(personagem);
-            Assert.Equal(personagemCadastrado, personagem);
+            var personagemCriado = personagem;
+            _servicoPersonagem.Criar(personagemCriado);
+            Assert.Equal(personagemCriado, _servicoPersonagem.ObterPorId(personagem.Id));
         }
-
-        [Theory]
-        [InlineData(null)]
-        [InlineData("")]
-        public void deve_rejeitar_criacao_de_um_personagem_com_nome_nulo_ou_vazio(string NomePersonagem)
-        {
-            var personagem = new Personagem()
-            {
-                Id = 6,
-                NomePersonagem = NomePersonagem,
-                Vida = 17355,
-                Ataque = 1585,
-                Defesa = 767,
-                ProficienciaElemental = 68,
-                TaxaCrit = 48.9m,
-                DanoCrit = 151.1m,
-                BonusCura = 0.0m,
-                RecargaDeEnergia = 155.5m,
-                Escudo = 0.0m,
-                BonusElemental = 61.6m,
-                CriadoPorUsuario = true,
-                ImgPersonagem = null,
-                ConstelacaoLv = 0,
-                DataDeAquisicao = DateTime.Now,
-                Elemento = ElementoEnum.Cryo,
-                Arma = ArmaEnum.Espadao,
-                IdUsuario = 1,
-            };
-
-            var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => _servicoPersonagem.Criar(personagem));
-            Assert.Contains("Insira um nome válido", mensagemDeErroPersonagem.Message);
-        }
-
 
         [Fact]
         public void deve_retornar_erro_caso_personagem_nao_criado_por_usuario_apesar_de_ter_id()
@@ -114,7 +134,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var personagem = new Personagem()
             {
                 Id = 6,
-                NomePersonagem = "Eula",
+                NomePersonagem = NomeEnum.Eula,
                 Vida = 17355,
                 Ataque = 1585,
                 Defesa = 767,
@@ -126,7 +146,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Escudo = 0.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = false,
-                ImgPersonagem = null,
                 ConstelacaoLv = 0,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Cryo,
@@ -146,7 +165,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var personagem = new Personagem()
             {
                 Id = 6,
-                NomePersonagem = "Eula",
+                NomePersonagem = NomeEnum.Eula,
                 Vida = 17355,
                 Ataque = 1585,
                 Defesa = 767,
@@ -158,7 +177,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Escudo = 0.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = true,
-                ImgPersonagem = null,
                 ConstelacaoLv = ConstelacaoLv,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Cryo,
@@ -176,7 +194,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var personagem = new Personagem()
             {
                 Id = 6,
-                NomePersonagem = "Eula",
+                NomePersonagem = NomeEnum.Eula,
                 Vida = 17355,
                 Ataque = 1585,
                 Defesa = 767,
@@ -188,7 +206,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Escudo = 0.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = true,
-                ImgPersonagem = null,
                 ConstelacaoLv = 0,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Cryo,
@@ -206,7 +223,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var personagem = new Personagem()
             {
                 Id = 6,
-                NomePersonagem = "Eula",
+                NomePersonagem = NomeEnum.Eula,
                 Vida = -17355,
                 Ataque = 1585,
                 Defesa = 767,
@@ -218,7 +235,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Escudo = 0.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = true,
-                ImgPersonagem = null,
                 ConstelacaoLv = 0,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Cryo,
@@ -236,7 +252,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var personagem = new Personagem()
             {
                 Id = 6,
-                NomePersonagem = "Eula",
+                NomePersonagem = NomeEnum.Eula,
                 Vida = 17355,
                 Ataque = 1585,
                 Defesa = -767,
@@ -248,7 +264,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Escudo = 0.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = false,
-                ImgPersonagem = null,
                 ConstelacaoLv = 0,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Cryo,
@@ -266,7 +281,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var personagem = new Personagem()
             {
                 Id = 6,
-                NomePersonagem = "Eula",
+                NomePersonagem = NomeEnum.Eula,
                 Vida = 17355,
                 Ataque = -1585,
                 Defesa = 767,
@@ -278,7 +293,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Escudo = 0.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = false,
-                ImgPersonagem = null,
                 ConstelacaoLv = 0,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Cryo,
@@ -289,7 +303,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => _servicoPersonagem.Criar(personagem));
             Assert.Contains("Ataque deve ser maior que 0", mensagemDeErroPersonagem.Message);
         }
-        
+
         [Fact]
         public void deve_aceitar_edicao_de_personagem_valido()
         {
@@ -310,8 +324,10 @@ namespace CodersGrowth.Testes.TestesUnitarios
             personagem.Vida = 32752;
             personagem.CriadoPorUsuario = true;
 
-            var personagemAlterado = _servicoPersonagem.Editar(personagem);
-            Assert.Equal(personagemAlterado, personagem);
+            var personagemEditado = personagem;
+            _servicoPersonagem.Editar(personagemEditado);
+            Assert.Equal(personagemEditado, _servicoPersonagem.ObterPorId(personagem.Id));
+
         }
 
         [Theory]
@@ -436,33 +452,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
             Assert.Contains("Ataque deve ser maior que 0", mensagemDeErroPersonagem.Message);
         }
 
-        [Theory]
-        [InlineData(null)]
-        [InlineData("")]
-        public void deve_rejeitar_edicao_de_personagem_com_nome_invalido(string NomePersonagem)
-        {
-            var idDoPersonagem = 4;
-            Personagem personagem = _servicoPersonagem.ObterPorId(idDoPersonagem);
-
-            personagem.NomePersonagem = NomePersonagem;
-            personagem.TaxaCrit = 81.7m;
-            personagem.DanoCrit = 207.5m;
-            personagem.BonusCura = 0.00m;
-            personagem.Ataque = 1645;
-            personagem.Escudo = 0.0m;
-            personagem.DataDeAquisicao = DateTime.Now;
-            personagem.BonusElemental = 67.3m;
-            personagem.ConstelacaoLv = 2;
-            personagem.Defesa = 350;
-            personagem.ProficienciaElemental = 79;
-            personagem.RecargaDeEnergia = 136.7m;
-            personagem.Vida = 32984;
-            personagem.CriadoPorUsuario = true;
-
-            var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => _servicoPersonagem.Editar(personagem));
-            Assert.Contains("Insira um nome válido", mensagemDeErroPersonagem.Message);
-        }
-
         [Fact]
         public void deve_rejeitar_edicao_de_personagem_nulo()
         {
@@ -502,7 +491,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var idDoPersonagem = 3;
             _servicoPersonagem.Remover(idDoPersonagem);
 
-            var personagem = TabelaPersonagem.Instancia.Find(personagem => personagem.Id == idDoPersonagem);
+            var personagem = TabelaSingletonPersonagem.Instancia.Find(personagem => personagem.Id == idDoPersonagem);
             Assert.Null(personagem);
         }
     }

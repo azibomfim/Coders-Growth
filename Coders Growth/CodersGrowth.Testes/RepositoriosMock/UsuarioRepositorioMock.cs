@@ -1,46 +1,61 @@
-﻿using CodersGrowth.Dominio.Interfaces;
+﻿using CodersGrowth.Dominio.Filtros;
+using CodersGrowth.Dominio.Interfaces;
 using CodersGrowth.Dominio.Models;
+using CodersGrowth.Infra;
 using CodersGrowth.Testes.Singleton;
 
 namespace CodersGrowth.Testes.RepositoriosMock
 {
     public class UsuarioRepositorioMock : IRepositorioUsuario
     {
-        public Usuario Editar(Usuario usuario)
+        public void Editar(Usuario usuario)
         {
-            Usuario usuarioAlterado = ObterPorId(usuario.Uid);
+            Usuario usuarioAlterado = ObterPorId(usuario.Id);
             usuarioAlterado.NomeDeUsuario = usuario.NomeDeUsuario;
             usuarioAlterado.AdventureRank = usuario.AdventureRank;
             usuarioAlterado.Senha = usuario.Senha;
-
-            return ObterPorId(usuarioAlterado.Uid);
         }
 
-        public Usuario Criar(Usuario usuario)
+        public void Criar(Usuario usuario)
         {
-            TabelaUsuario.Usuarios.Add(usuario);
-            return usuario;
+            TabelaSingletonUsuario.Usuarios.Add(usuario);
         }
 
-        public Usuario ObterPorId(int Uid)
+        public Usuario ObterPorId(int Id)
         {
-            List<Usuario> Usuarios = TabelaUsuario.Instancia;
-            var usuariosPorId = Usuarios.FirstOrDefault(Usuario => Usuario.Uid == Uid);
+            List<Usuario> Usuarios = TabelaSingletonUsuario.Instancia;
+            var usuariosPorId = Usuarios.FirstOrDefault(Usuario => Usuario.Id == Id);
             {
                 return usuariosPorId;
             }
         }
 
-        public List<Usuario> ObterTodos()
+        public List<Usuario> ObterTodos(FiltroUsuario? filtroUsuario)
         {
-            List<Usuario> _repository = TabelaUsuario.Instancia;
-            return _repository;
+            IQueryable<Usuario> query = TabelaSingletonUsuario.Instancia.AsQueryable();
+
+            if (filtroUsuario?.NomeDeUsuario != null)
+            {
+                query = from c in query
+                        where c.NomeDeUsuario.Contains(filtroUsuario.NomeDeUsuario)
+                        select c;
+            }
+
+            if (filtroUsuario?.AdventureRank != null)
+            {
+                query = from c in query
+                        where c.AdventureRank == filtroUsuario.AdventureRank
+                        select c;
+            }
+
+            return query.ToList();
         }
 
-        public void Remover(int Uid)
+
+        public void Remover(int Id)
         {
-            Usuario usuario = ObterPorId(Uid);
-            TabelaUsuario.Usuarios.Remove(usuario);
+            Usuario usuario = ObterPorId(Id);
+            TabelaSingletonUsuario.Usuarios.Remove(usuario);
         }
     }
 }

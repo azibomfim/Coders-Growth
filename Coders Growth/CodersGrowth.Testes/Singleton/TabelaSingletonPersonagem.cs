@@ -3,7 +3,7 @@ using CodersGrowth.Dominio.Models;
 
 namespace CodersGrowth.Testes.Singleton
 {
-    public sealed class TabelaPersonagem
+    public sealed class TabelaSingletonPersonagem
     {
         public static List<Personagem> InstanciaPersonagem = new();
         public static readonly List<Personagem> Personagens = new List<Personagem>()
@@ -11,7 +11,7 @@ namespace CodersGrowth.Testes.Singleton
             new Personagem()
             {
                 Id = 1,
-                NomePersonagem = "Xiao",
+                NomePersonagem = NomeEnum.Xiao,
                 Vida = 18778,
                 Ataque = 2011,
                 Defesa = 873,
@@ -23,9 +23,8 @@ namespace CodersGrowth.Testes.Singleton
                 Escudo = 0.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = true,
-                ImgPersonagem = null,
                 ConstelacaoLv = 1,
-                DataDeAquisicao = DateTime.Now,
+                DataDeAquisicao = new DateTime(2021, 02, 17),
                 Elemento = ElementoEnum.Anemo,
                 Arma = ArmaEnum.Lanca,
                 IdUsuario = 5,
@@ -34,7 +33,7 @@ namespace CodersGrowth.Testes.Singleton
             new Personagem()
             {
                 Id = 2,
-                NomePersonagem = "Hutao",
+                NomePersonagem = NomeEnum.HuTao,
                 Vida = 32752,
                 Ataque = 1458,
                 Defesa = 1119,
@@ -46,7 +45,6 @@ namespace CodersGrowth.Testes.Singleton
                 Escudo = 0.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = true,
-                ImgPersonagem = null,
                 ConstelacaoLv = 0,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Pyro,
@@ -57,7 +55,7 @@ namespace CodersGrowth.Testes.Singleton
             new Personagem()
             {
                  Id = 3,
-                 NomePersonagem = "Xingqiu",
+                 NomePersonagem = NomeEnum.Xingqiu,
                  Vida = 14790,
                  Ataque = 1622,
                  Defesa = 815,
@@ -69,18 +67,17 @@ namespace CodersGrowth.Testes.Singleton
                  Escudo = 0.0m,
                  BonusElemental = 66.6m,
                  CriadoPorUsuario = false,
-                 ImgPersonagem = null,
                  ConstelacaoLv = 0,
-                 DataDeAquisicao = DateTime.Now,
+                 DataDeAquisicao = new DateTime(2020, 12, 20),
                  Elemento = ElementoEnum.Hydro,
                  Arma = ArmaEnum.Espada,
-                 IdUsuario = 3,
+                 IdUsuario = null,
             },
 
             new Personagem()
             {
                  Id = 4,
-                 NomePersonagem = "Rosaria",
+                 NomePersonagem = NomeEnum.Rosaria,
                  Vida = 17355,
                  Ataque = 1585,
                  Defesa = 767,
@@ -92,18 +89,17 @@ namespace CodersGrowth.Testes.Singleton
                  Escudo = 0.0m,
                  BonusElemental = 61.6m,
                  CriadoPorUsuario = false,
-                 ImgPersonagem = null,
                  ConstelacaoLv = 0,
                  DataDeAquisicao = DateTime.Now,
                  Elemento = ElementoEnum.Cryo,
                  Arma = ArmaEnum.Lanca,
-                 IdUsuario = 1,
+                 IdUsuario = null,
             },
 
             new Personagem()
             {
                  Id = 5,
-                 NomePersonagem = "Zhongli",
+                 NomePersonagem = NomeEnum.Zhongli,
                  Vida = 21858,
                  Ataque = 1320,
                  Defesa = 791,
@@ -115,7 +111,6 @@ namespace CodersGrowth.Testes.Singleton
                  Escudo = 0.0m,
                  BonusElemental = 83.2m,
                  CriadoPorUsuario = true,
-                 ImgPersonagem = null,
                  ConstelacaoLv = 6,
                  DataDeAquisicao = DateTime.Now,
                  Elemento = ElementoEnum.Geo,
@@ -124,7 +119,7 @@ namespace CodersGrowth.Testes.Singleton
             }
         };
 
-        private TabelaPersonagem() { }
+        private TabelaSingletonPersonagem() { }
         public static List<Personagem> Instancia
         {
             get
