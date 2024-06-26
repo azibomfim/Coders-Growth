@@ -15,16 +15,20 @@ using System.Configuration;
 
 namespace CodersGrowth.Forms;
 
-internal static class Program
+class Program
 {
     private static string _stringDeConexao = "GenshinLibraryDB";
     [STAThread]
-    static void Main()
+    static void Main(string[] args)
     {
+        using (var serviceProvider = CriarServicos())
+        using (var scope = serviceProvider.CreateScope())
+        {
+            AtualizarBancoDeDados(scope.ServiceProvider);
+        }
         ApplicationConfiguration.Initialize();
         var host = CriarHostBuilder().Build();
         var ServiceProvider = host.Services;
-
         Application.Run(ServiceProvider.GetRequiredService<Form1>());
     }
 
@@ -50,8 +54,8 @@ internal static class Program
         .ConfigureRunner(rb => rb
             .AddSqlServer()
             .WithGlobalConnectionString("Data Source=DESKTOP-F7MOBD8\\SQLEXPRESS;Initial Catalog=CodersGrowth;User ID=sa;Password=sap@123;Trust Server Certificate=True")
-            .ScanIn(typeof(_2024062115290000).Assembly).For.Migrations()
-            .ScanIn(typeof(_2024062409440000).Assembly).For.Migrations())
+            .ScanIn(typeof(_2024062612290000).Assembly).For.Migrations()
+            .ScanIn(typeof(_2024062612300000).Assembly).For.Migrations())
          .AddLinqToDBContext<ConexaoDados>((provider, options)
                 => options
                 .UseSqlServer(ConfigurationManager
@@ -64,7 +68,6 @@ internal static class Program
     private static void AtualizarBancoDeDados(IServiceProvider serviceProvider)
     {
         var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
-
         runner.MigrateUp();
     }
 

@@ -2,9 +2,9 @@
 
 namespace CodersGrowth.Dominio.Migracoes
 {
-    [Migration(2024062409440000)]
+    [Migration(2024062612300000)]
 
-    public class _2024062409440000 : Migration
+    public class _2024062612300000 : Migration
     {
         public override void Up()
         {
