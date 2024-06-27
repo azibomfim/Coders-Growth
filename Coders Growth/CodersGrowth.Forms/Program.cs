@@ -49,13 +49,13 @@ class Program
 
     private static ServiceProvider CriarServicos()
     {
+        var stringDeConexao = ConfigurationManager.ConnectionStrings[_stringDeConexao].ConnectionString;
         return new ServiceCollection()
         .AddFluentMigratorCore()
         .ConfigureRunner(rb => rb
             .AddSqlServer()
-            .WithGlobalConnectionString("Data Source=DESKTOP-F7MOBD8\\SQLEXPRESS;Initial Catalog=CodersGrowth;User ID=sa;Password=sap@123;Trust Server Certificate=True")
-            .ScanIn(typeof(_2024062612290000).Assembly).For.Migrations()
-            .ScanIn(typeof(_2024062612300000).Assembly).For.Migrations())
+            .WithGlobalConnectionString(stringDeConexao)
+            .ScanIn(typeof(_2024062612290000).Assembly).For.Migrations())
          .AddLinqToDBContext<ConexaoDados>((provider, options)
                 => options
                 .UseSqlServer(ConfigurationManager
