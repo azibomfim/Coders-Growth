@@ -67,6 +67,12 @@ namespace CodersGrowth.Infra.Repositorios
                         where c.DataDeAquisicao == filtroPersonagem.DataDeAquisicao
                         select c;
             }
+            //if (filtroPersonagem?.IdUsuario != decimal.Zero)
+            //{
+            //    query = from c in query
+            //            where c.IdUsuario == filtroPersonagem.IdUsuario
+            //            select c;
+            //}
 
             return query.ToList();
         }

@@ -7,7 +7,6 @@ namespace CodersGrowth.Dominio.Enums
 {
     public enum NomeEnum
     {
-        Aether,
         Albedo,
         Alhaitham,
         Aloy,
@@ -58,7 +57,6 @@ namespace CodersGrowth.Dominio.Enums
         Kokomi,
         Layla,
         Lisa,
-        Lumine,
         Lynette,
         Lyney,
         Mika,
@@ -81,6 +79,7 @@ namespace CodersGrowth.Dominio.Enums
         Shenhe,
         [Description("Kuki Shinobu")]
         Shinobu,
+        Sigewinne,
         Sucrose,
         Tartaglia,
         Thoma,

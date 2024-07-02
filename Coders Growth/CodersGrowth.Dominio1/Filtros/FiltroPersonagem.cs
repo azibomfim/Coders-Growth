@@ -13,5 +13,6 @@ namespace CodersGrowth.Dominio.Filtros
         public ElementoEnum? Elemento { get; set; }
         public ArmaEnum? Arma { get; set; }
         public DateTime? DataDeAquisicao { get; set; }
+        public int IdUsuario { get; set; }
     }
 }

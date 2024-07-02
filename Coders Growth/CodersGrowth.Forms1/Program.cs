@@ -12,8 +12,9 @@ using LinqToDB;
 using CodersGrowth.Infra;
 using LinqToDB.AspNet;
 using System.Configuration;
+using CodersGrowth.Dominio.Models;
 
-namespace CodersGrowth.Forms;
+namespace CodersGrowth.Forms1;
 
 class Program
 {
@@ -26,12 +27,13 @@ class Program
         {
             AtualizarBancoDeDados(scope.ServiceProvider);
         }
-        ApplicationConfiguration.Initialize();
+
         var host = CriarHostBuilder().Build();
         var ServiceProvider = host.Services;
-        Application.Run(ServiceProvider.GetRequiredService<Form1>());
-    }
+        ApplicationConfiguration.Initialize();
 
+        Application.Run(ServiceProvider.GetRequiredService<FormsTelaLogin>());
+    }
     static IHostBuilder CriarHostBuilder()
     {
         return Host.CreateDefaultBuilder()
@@ -41,28 +43,38 @@ class Program
                .AddScoped<ServicoUsuario>()
                .AddScoped<IRepositorioPersonagem, RepositorioPersonagem>()
                .AddScoped<IRepositorioUsuario, RepositorioUsuario>()
-               .AddScoped<IValidator, ValidacaoPersonagem>()
-               .AddScoped<IValidator, ValidacaoUsuario>()
-               .AddScoped<Form1>();
+               .AddScoped<IValidator<Personagem>, ValidacaoPersonagem>()
+               .AddScoped<IValidator<Usuario>, ValidacaoUsuario>()
+               .AddScoped<FormsTelaLogin>()
+               .AddLinqToDBContext<ConexaoDados>((provider, options)
+                        => options
+                        .UseSqlServer(ConfigurationManager
+                        .ConnectionStrings[_stringDeConexao].ConnectionString)
+                        .UseDefaultLogging(provider));
             });
     }
 
     private static ServiceProvider CriarServicos()
     {
         var stringDeConexao = ConfigurationManager.ConnectionStrings[_stringDeConexao].ConnectionString;
-        return new ServiceCollection()
-        .AddFluentMigratorCore()
-        .ConfigureRunner(rb => rb
-            .AddSqlServer()
-            .WithGlobalConnectionString(stringDeConexao)
-            .ScanIn(typeof(_2024062612290000).Assembly).For.Migrations())
-         .AddLinqToDBContext<ConexaoDados>((provider, options)
-                => options
-                .UseSqlServer(ConfigurationManager
-                .ConnectionStrings[_stringDeConexao].ConnectionString)
-                .UseDefaultLogging(provider))
-                .AddLogging(lb => lb.AddFluentMigratorConsole())
-         .BuildServiceProvider(false); } 
+        var colecao = new ServiceCollection();
+
+        colecao.AddLinqToDBContext<ConexaoDados>((provider, options)
+                        => options
+                        .UseSqlServer(ConfigurationManager
+                        .ConnectionStrings[_stringDeConexao].ConnectionString)
+                        .UseDefaultLogging(provider));
+        colecao.AddScoped<ServicoPersonagem>()
+               .AddScoped<ServicoUsuario>();
+        colecao.AddFluentMigratorCore()
+            .ConfigureRunner(rb => rb
+                .AddSqlServer()
+                .WithGlobalConnectionString(stringDeConexao)
+                .ScanIn(typeof(_2024062612290000).Assembly).For.Migrations())
+            .AddLogging(lb => lb.AddFluentMigratorConsole());
+         
+        return colecao.BuildServiceProvider(false); 
+    } 
     
 
     private static void AtualizarBancoDeDados(IServiceProvider serviceProvider)
