@@ -35,7 +35,6 @@
     <ProjectReference Include="..\CodersGrowth.Dominio1\CodersGrowth.Dominio.csproj" />
     <ProjectReference Include="..\CodersGrowth.Infra1\CodersGrowth.Infra.csproj" />
     <ProjectReference Include="..\CodersGrowth.Servicos1\CodersGrowth.Servicos.csproj" />
-    <ProjectReference Include="..\CodersGrowth.Web\CodersGrowth.Web.csproj" />
   </ItemGroup>
 
 </Project>
