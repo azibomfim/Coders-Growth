@@ -1,5 +1,4 @@
 ﻿using LinqToDB.Mapping;
-using System.Collections.Generic;
 
 namespace CodersGrowth.Dominio.Models
 {

@@ -4,6 +4,7 @@ namespace CodersGrowth.Dominio.Enums
 {
     public enum ArmaEnum
     {
+        Arma,
         [Description("Espada")]
         Espada,
         [Description("Espadão")]

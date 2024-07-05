@@ -32,7 +32,7 @@ class Program
         var ServiceProvider = host.Services;
         ApplicationConfiguration.Initialize();
 
-        Application.Run(ServiceProvider.GetRequiredService<FormsTelaLogin>());
+        Application.Run(ServiceProvider.GetRequiredService<FormListaPersonagem>());
     }
     static IHostBuilder CriarHostBuilder()
     {
@@ -45,7 +45,7 @@ class Program
                .AddScoped<IRepositorioUsuario, RepositorioUsuario>()
                .AddScoped<IValidator<Personagem>, ValidacaoPersonagem>()
                .AddScoped<IValidator<Usuario>, ValidacaoUsuario>()
-               .AddScoped<FormsTelaLogin>()
+               .AddScoped<FormListaPersonagem>()
                .AddLinqToDBContext<ConexaoDados>((provider, options)
                         => options
                         .UseSqlServer(ConfigurationManager
@@ -72,10 +72,10 @@ class Program
                 .WithGlobalConnectionString(stringDeConexao)
                 .ScanIn(typeof(_2024062612290000).Assembly).For.Migrations())
             .AddLogging(lb => lb.AddFluentMigratorConsole());
-         
-        return colecao.BuildServiceProvider(false); 
-    } 
-    
+
+        return colecao.BuildServiceProvider(false);
+    }
+
 
     private static void AtualizarBancoDeDados(IServiceProvider serviceProvider)
     {

@@ -38,7 +38,7 @@ namespace CodersGrowth.Servicos.Servicos
         {
             if (usuario == null)
             {
-                throw new Exception("UOcorreu um erro na aplicação: Usuario não retornado");
+                throw new Exception("Ocorreu um erro na aplicação: Usuario não retornado");
             }
 
             _validacao.ValidateAndThrow(usuario);
@@ -49,5 +49,7 @@ namespace CodersGrowth.Servicos.Servicos
         {
             _usuariorepositorio.Remover(Id);
         }
+
     }
 }
+

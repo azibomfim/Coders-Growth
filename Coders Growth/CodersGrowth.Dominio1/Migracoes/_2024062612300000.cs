@@ -15,7 +15,7 @@ namespace CodersGrowth.Dominio.Migracoes
 			.WithColumn("NomePersonagem").AsInt64().NotNullable()
 			.WithColumn("Elemento").AsInt64().NotNullable()
 			.WithColumn("Arma").AsInt64().NotNullable()
-			.WithColumn("ConstelacaoLv").AsInt64().NotNullable()
+			.WithColumn("ConstelacaoLv").AsInt64().Nullable()
 			.WithColumn("Vida").AsInt64().Nullable()
 			.WithColumn("Ataque").AsInt64().Nullable()
 			.WithColumn("Defesa").AsInt64().Nullable()

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
+﻿using System.ComponentModel;
 
 namespace CodersGrowth.Dominio.Enums
 {
     public enum NomeEnum
     {
+        Nome,
         Albedo,
         Alhaitham,
         Aloy,

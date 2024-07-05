@@ -13,27 +13,17 @@ namespace CodersGrowth.Forms1
 
         public FormListaPersonagem(ServicoPersonagem servicoPersonagem)
         {
+            FiltroPersonagem filtroInicial = null;
             _servicoPersonagem = servicoPersonagem;
-
             InitializeComponent();
-            dataGridViewPersonagem.DataSource = _servicoPersonagem.ObterTodos(null);
+            dataGridViewPersonagem.DataSource = _servicoPersonagem.ObterTodos(filtroInicial);
         }
 
         private void FormListaPersonagem_Load(object sender, EventArgs e)
         {
-            comboBoxArma.Items.Add(ArmaEnum.Arco);
-            comboBoxArma.Items.Add(ArmaEnum.Catalisador);
-            comboBoxArma.Items.Add(ArmaEnum.Espada);
-            comboBoxArma.Items.Add(ArmaEnum.Espadao);
-            comboBoxArma.Items.Add(ArmaEnum.Lanca);
+            comboBoxArma.DataSource = Enum.GetValues(typeof(ArmaEnum));
 
-            comboBoxElemento.Items.Add(ElementoEnum.Anemo);
-            comboBoxElemento.Items.Add(ElementoEnum.Cryo);
-            comboBoxElemento.Items.Add(ElementoEnum.Dendro);
-            comboBoxElemento.Items.Add(ElementoEnum.Electro);
-            comboBoxElemento.Items.Add(ElementoEnum.Geo);
-            comboBoxElemento.Items.Add(ElementoEnum.Hydro);
-            comboBoxElemento.Items.Add(ElementoEnum.Pyro);
+            comboBoxElemento.DataSource = Enum.GetValues(typeof(ElementoEnum));
 
             comboBoxNome.DataSource = Enum.GetValues(typeof(NomeEnum));
         }
@@ -41,14 +31,16 @@ namespace CodersGrowth.Forms1
         private FiltroPersonagem? obterFiltroPersonagem()
         {
             var filtroPersonagem = new FiltroPersonagem();
+            const int zero = 0;
 
-            if (comboBoxArma.SelectedItem != null)
+
+            if (comboBoxArma.SelectedItem != null && comboBoxArma.SelectedIndex != zero)
                 filtroPersonagem.Arma = (ArmaEnum)comboBoxArma.SelectedItem;
 
-            if (comboBoxElemento.SelectedItem != null)
+            if (comboBoxElemento.SelectedItem != null && comboBoxElemento.SelectedIndex != zero)
                 filtroPersonagem.Elemento = (ElementoEnum)comboBoxElemento.SelectedItem;
 
-            if (comboBoxNome.SelectedItem != null)
+            if (comboBoxNome.SelectedItem != null && comboBoxNome.SelectedIndex != zero)
                 filtroPersonagem.NomePersonagem = (NomeEnum?)comboBoxNome.SelectedValue;
 
             if (checkBoxBool.Checked)

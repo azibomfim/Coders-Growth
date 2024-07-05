@@ -79,10 +79,10 @@ namespace CodersGrowth.Forms1
             dataGridViewPersonagem.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewPersonagem.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, nomePersonagemDataGridViewTextBoxColumn, vidaDataGridViewTextBoxColumn, ataqueDataGridViewTextBoxColumn, defesaDataGridViewTextBoxColumn, proficienciaElementalDataGridViewTextBoxColumn, taxaCritDataGridViewTextBoxColumn, danoCritDataGridViewTextBoxColumn, bonusCuraDataGridViewTextBoxColumn, recargaDeEnergiaDataGridViewTextBoxColumn, escudoDataGridViewTextBoxColumn, bonusElementalDataGridViewTextBoxColumn, criadoPorUsuarioDataGridViewTextBoxColumn, constelacaoLvDataGridViewTextBoxColumn, dataDeAquisicaoDataGridViewTextBoxColumn, elementoDataGridViewTextBoxColumn, armaDataGridViewTextBoxColumn, idUsuarioDataGridViewTextBoxColumn });
             dataGridViewPersonagem.DataSource = personagemBindingSource;
-            dataGridViewPersonagem.Location = new Point(12, 160);
+            dataGridViewPersonagem.Location = new Point(15, 179);
             dataGridViewPersonagem.Name = "dataGridViewPersonagem";
             dataGridViewPersonagem.RowTemplate.Height = 25;
-            dataGridViewPersonagem.Size = new Size(850, 230);
+            dataGridViewPersonagem.Size = new Size(850, 211);
             dataGridViewPersonagem.TabIndex = 0;
             // 
             // idDataGridViewTextBoxColumn
@@ -262,7 +262,7 @@ namespace CodersGrowth.Forms1
             botaoFiltro.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             botaoFiltro.BackColor = SystemColors.ControlLightLight;
             botaoFiltro.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            botaoFiltro.Location = new Point(801, 68);
+            botaoFiltro.Location = new Point(699, 150);
             botaoFiltro.Name = "botaoFiltro";
             botaoFiltro.Size = new Size(65, 23);
             botaoFiltro.TabIndex = 13;
