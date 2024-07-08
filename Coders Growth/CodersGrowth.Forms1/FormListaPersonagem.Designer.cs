@@ -292,7 +292,6 @@ namespace CodersGrowth.Forms1
             textboxTitulo.TabIndex = 1;
             textboxTitulo.Text = "Biblioteca Genshin Impact\r\n";
             textboxTitulo.TextAlign = HorizontalAlignment.Center;
-            textboxTitulo.TextChanged += textboxTitulo_TextChanged;
             // 
             // comboBoxNome
             // 
@@ -335,7 +334,7 @@ namespace CodersGrowth.Forms1
             Name = "FormListaPersonagem";
             Text = "Lista de Personagens";
             WindowState = FormWindowState.Maximized;
-            Load += FormListaPersonagem_Load;
+            Load += aoCarregarTela;
             ((System.ComponentModel.ISupportInitialize)dataGridViewPersonagem).EndInit();
             ((System.ComponentModel.ISupportInitialize)personagemBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

@@ -19,28 +19,30 @@ namespace CodersGrowth.Forms1
             dataGridViewPersonagem.DataSource = _servicoPersonagem.ObterTodos(filtroInicial);
         }
 
-        private void FormListaPersonagem_Load(object sender, EventArgs e)
+        private void aoCarregarTela(object sender, EventArgs e)
+        {
+            carregarEnumsNaComboBox();
+        }
+
+        private void carregarEnumsNaComboBox()
         {
             comboBoxArma.DataSource = Enum.GetValues(typeof(ArmaEnum));
-
             comboBoxElemento.DataSource = Enum.GetValues(typeof(ElementoEnum));
-
             comboBoxNome.DataSource = Enum.GetValues(typeof(NomeEnum));
         }
 
         private FiltroPersonagem? obterFiltroPersonagem()
         {
             var filtroPersonagem = new FiltroPersonagem();
-            const int zero = 0;
+            const int idUsuario = 0;
 
-
-            if (comboBoxArma.SelectedItem != null && comboBoxArma.SelectedIndex != zero)
+            if (comboBoxArma.SelectedItem != null && comboBoxArma.SelectedIndex != idUsuario)
                 filtroPersonagem.Arma = (ArmaEnum)comboBoxArma.SelectedItem;
 
-            if (comboBoxElemento.SelectedItem != null && comboBoxElemento.SelectedIndex != zero)
+            if (comboBoxElemento.SelectedItem != null && comboBoxElemento.SelectedIndex != idUsuario)
                 filtroPersonagem.Elemento = (ElementoEnum)comboBoxElemento.SelectedItem;
 
-            if (comboBoxNome.SelectedItem != null && comboBoxNome.SelectedIndex != zero)
+            if (comboBoxNome.SelectedItem != null && comboBoxNome.SelectedIndex != idUsuario)
                 filtroPersonagem.NomePersonagem = (NomeEnum?)comboBoxNome.SelectedValue;
 
             if (checkBoxBool.Checked)
@@ -55,11 +57,6 @@ namespace CodersGrowth.Forms1
         {
             var filtrosAtivados = obterFiltroPersonagem();
             dataGridViewPersonagem.DataSource = _servicoPersonagem.ObterTodos(filtrosAtivados);
-        }
-
-        private void textboxTitulo_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

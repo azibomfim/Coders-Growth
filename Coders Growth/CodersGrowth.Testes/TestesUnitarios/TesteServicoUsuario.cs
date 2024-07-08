@@ -154,6 +154,14 @@ namespace CodersGrowth.Testes.TestesUnitarios
             Assert.Equal(usuarioEditado, _servicoUsuario.ObterPorId(usuario.Id));
         }
 
+        [Fact]
+        public void deve_rejeitar_edicao_de_usuario_nulo()
+        {
+            Usuario usuario = null;
+            var mensagemDeErroUsuario = Assert.Throws<NullReferenceException>(() => _servicoUsuario.Editar(usuario));
+            Assert.Contains("Ocorreu um erro na aplicação: Usuario não retornado", mensagemDeErroUsuario.Message);
+        }
+
         [Theory]
         [InlineData("")]
         [InlineData(null)]
