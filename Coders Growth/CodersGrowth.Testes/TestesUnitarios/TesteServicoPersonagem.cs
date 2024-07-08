@@ -456,7 +456,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
         public void deve_rejeitar_edicao_de_personagem_nulo()
         {
             Personagem personagem = null;
-            var mensagemDeErroPersonagem = Assert.Throws<Exception>(() => _servicoPersonagem.Editar(personagem));
+            var mensagemDeErroPersonagem = Assert.Throws<NullReferenceException>(() => _servicoPersonagem.Editar(personagem));
             Assert.Contains("Ocorreu um erro na aplicação: Personagem não retornado", mensagemDeErroPersonagem.Message);
         }
 

@@ -36,10 +36,7 @@ namespace CodersGrowth.Servicos.Servicos
 
         public void Editar(Usuario usuario)
         {
-            if (usuario == null)
-            {
-                throw new Exception("UOcorreu um erro na aplicação: Usuario não retornado");
-            }
+            usuario = usuario ?? throw new NullReferenceException("Ocorreu um erro na aplicação: Usuario não retornado");
 
             _validacao.ValidateAndThrow(usuario);
             _usuariorepositorio.Editar(usuario);
@@ -51,3 +48,4 @@ namespace CodersGrowth.Servicos.Servicos
         }
     }
 }
+

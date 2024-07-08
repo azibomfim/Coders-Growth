@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
+﻿using System.ComponentModel;
 
 namespace CodersGrowth.Dominio.Enums
 {
     public enum NomeEnum
     {
-        Aether,
+        Nome,
         Albedo,
         Alhaitham,
         Aloy,
@@ -58,7 +55,6 @@ namespace CodersGrowth.Dominio.Enums
         Kokomi,
         Layla,
         Lisa,
-        Lumine,
         Lynette,
         Lyney,
         Mika,
@@ -81,6 +77,7 @@ namespace CodersGrowth.Dominio.Enums
         Shenhe,
         [Description("Kuki Shinobu")]
         Shinobu,
+        Sigewinne,
         Sucrose,
         Tartaglia,
         Thoma,

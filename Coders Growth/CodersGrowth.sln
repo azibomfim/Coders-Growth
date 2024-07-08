@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodersGrowth.Forms", "CodersGrowth.Forms\CodersGrowth.Forms.csproj", "{103E298F-8A1A-471C-8165-B17E87F13F18}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodersGrowth.Web", "CodersGrowth.Web\CodersGrowth.Web.csproj", "{E6FDD883-A38B-4F76-8CE6-C6FB319D1F48}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodersGrowth.Testes", "CodersGrowth.Testes\CodersGrowth.Testes.csproj", "{1C63F742-96D0-48A5-B7F5-524773605489}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodersGrowth.Dominio", "CodersGrowth.Dominio1\CodersGrowth.Dominio.csproj", "{9F1EB382-12E7-493B-883C-93759DCCF4EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodersGrowth.Dominio", "CodersGrowth.Dominio1\CodersGrowth.Dominio.csproj", "{9F1EB382-12E7-493B-883C-93759DCCF4EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodersGrowth.Infra", "CodersGrowth.Infra1\CodersGrowth.Infra.csproj", "{2FBA5D06-1F3C-4039-97F3-DA47F60B15ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodersGrowth.Infra", "CodersGrowth.Infra1\CodersGrowth.Infra.csproj", "{2FBA5D06-1F3C-4039-97F3-DA47F60B15ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodersGrowth.Servicos", "CodersGrowth.Servicos1\CodersGrowth.Servicos.csproj", "{0008811D-0337-455A-AF95-C148C2A3C930}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodersGrowth.Servicos", "CodersGrowth.Servicos1\CodersGrowth.Servicos.csproj", "{0008811D-0337-455A-AF95-C148C2A3C930}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodersGrowth.Forms1", "CodersGrowth.Forms1\CodersGrowth.Forms1.csproj", "{C99717AD-D6E3-4A64-B344-CAE22E93874C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{103E298F-8A1A-471C-8165-B17E87F13F18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{103E298F-8A1A-471C-8165-B17E87F13F18}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{103E298F-8A1A-471C-8165-B17E87F13F18}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{103E298F-8A1A-471C-8165-B17E87F13F18}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E6FDD883-A38B-4F76-8CE6-C6FB319D1F48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E6FDD883-A38B-4F76-8CE6-C6FB319D1F48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6FDD883-A38B-4F76-8CE6-C6FB319D1F48}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +41,10 @@ Global
 		{0008811D-0337-455A-AF95-C148C2A3C930}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0008811D-0337-455A-AF95-C148C2A3C930}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0008811D-0337-455A-AF95-C148C2A3C930}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C99717AD-D6E3-4A64-B344-CAE22E93874C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C99717AD-D6E3-4A64-B344-CAE22E93874C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C99717AD-D6E3-4A64-B344-CAE22E93874C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C99717AD-D6E3-4A64-B344-CAE22E93874C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

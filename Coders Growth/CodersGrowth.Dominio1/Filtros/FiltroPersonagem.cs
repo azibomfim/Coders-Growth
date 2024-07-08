@@ -1,8 +1,5 @@
 ﻿using CodersGrowth.Dominio.Enums;
 using System;
-using CodersGrowth.Dominio.Models;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CodersGrowth.Dominio.Filtros
 {
