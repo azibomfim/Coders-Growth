@@ -41,13 +41,6 @@ namespace CodersGrowth.Infra.Repositorios
                         select c;
             }
 
-            if (filtroUsuario?.AdventureRank != null)
-            {
-                query = from c in query
-                        where c.AdventureRank == filtroUsuario.AdventureRank
-                        select c;
-            }
-
             return query.ToList();
         }
 

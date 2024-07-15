@@ -10,7 +10,6 @@ namespace CodersGrowth.Testes.Singleton
             new Usuario()
             {
                 NomeDeUsuario = "rato smites",
-                Senha = 160623,
                 Id = 1,
                 AdventureRank = 55,
             },
@@ -18,7 +17,6 @@ namespace CodersGrowth.Testes.Singleton
             new Usuario()
             {
                 NomeDeUsuario = "furao insecs",
-                Senha = 080623,
                 Id = 2,
                 AdventureRank = 56,
             },
@@ -26,7 +24,6 @@ namespace CodersGrowth.Testes.Singleton
             new Usuario()
             {
                 NomeDeUsuario = "foca fofocas",
-                Senha = 240702,
                 Id = 3,
                 AdventureRank = 48,
             },
@@ -34,7 +31,6 @@ namespace CodersGrowth.Testes.Singleton
             new Usuario()
             {
                 NomeDeUsuario = "toninha bipede",
-                Senha = 123456,
                 Id = 4,
                 AdventureRank = 50,
             },
@@ -42,7 +38,6 @@ namespace CodersGrowth.Testes.Singleton
             new Usuario()
             {
                 NomeDeUsuario = "abelhinha triste",
-                Senha = 847659,
                 Id = 5,
                 AdventureRank = 42,
             }

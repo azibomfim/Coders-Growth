@@ -10,11 +10,13 @@ namespace CodersGrowth.Forms1
         private readonly ServicoPersonagem _servicoPersonagem;
         private FiltroPersonagem? filtroPersonagem = new FiltroPersonagem();
         private Personagem personagem;
+        private ServicoUsuario _servicoUsuario;
 
-        public FormListaPersonagem(ServicoPersonagem servicoPersonagem)
+        public FormListaPersonagem(ServicoPersonagem servicoPersonagem, ServicoUsuario servicoUsuario)
         {
             FiltroPersonagem filtroInicial = null;
             _servicoPersonagem = servicoPersonagem;
+            _servicoUsuario = servicoUsuario;
             InitializeComponent();
             dataGridViewPersonagem.DataSource = _servicoPersonagem.ObterTodos(filtroInicial);
         }
@@ -48,8 +50,12 @@ namespace CodersGrowth.Forms1
             if (checkBoxBool.Checked)
                 filtroPersonagem.CriadoPorUsuario = true;
 
-            if (dateTimePickerFiltro.Checked) 
+            if (dateTimePickerFiltro.Checked)
                 filtroPersonagem.DataDeAquisicao = (DateTime)dateTimePickerFiltro.Value;
+
+            if (textBoxFiltroUsuario.Text != "Nome de usuário" && textBoxFiltroUsuario.Text != null)
+                filtroPersonagem.NomeUsuario = textBoxFiltroUsuario.Text;
+
             return filtroPersonagem;
         }
 
@@ -57,6 +63,19 @@ namespace CodersGrowth.Forms1
         {
             var filtrosAtivados = obterFiltroPersonagem();
             dataGridViewPersonagem.DataSource = _servicoPersonagem.ObterTodos(filtrosAtivados);
+        }
+
+        private void aoClicarEmCriar(object sender, EventArgs e)
+        {
+            var formCadastroPersonagem = new FormCadastroPersonagem(_servicoPersonagem, _servicoUsuario);
+            formCadastroPersonagem.Show();
+            this.Hide();
+        }
+
+        private void aoClicarEmLimpar(object sender, EventArgs e)
+        {
+            FiltroPersonagem filtroInicial = null;
+            dataGridViewPersonagem.DataSource = _servicoPersonagem.ObterTodos(filtroInicial);
         }
     }
 }

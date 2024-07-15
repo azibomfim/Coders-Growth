@@ -121,6 +121,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Elemento = ElementoEnum.Cryo,
                 Arma = ArmaEnum.Espadao,
                 IdUsuario = 1,
+                NomeUsuario = "rato smites"
             };
 
             var personagemCriado = personagem;
@@ -151,6 +152,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Elemento = ElementoEnum.Cryo,
                 Arma = ArmaEnum.Espadao,
                 IdUsuario = 1,
+                NomeUsuario = "rato smites"
             };
 
             var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => _servicoPersonagem.Criar(personagem));
@@ -182,6 +184,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Elemento = ElementoEnum.Cryo,
                 Arma = ArmaEnum.Espadao,
                 IdUsuario = 1,
+                NomeUsuario = "rato smites"
             };
 
             var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => _servicoPersonagem.Criar(personagem));
@@ -211,6 +214,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Elemento = ElementoEnum.Cryo,
                 Arma = ArmaEnum.Espadao,
                 IdUsuario = 1,
+                NomeUsuario = "rato smites"
             };
 
             var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => _servicoPersonagem.Criar(personagem));
@@ -240,6 +244,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Elemento = ElementoEnum.Cryo,
                 Arma = ArmaEnum.Espadao,
                 IdUsuario = 1,
+                NomeUsuario = "rato smites"
             };
 
             var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => _servicoPersonagem.Criar(personagem));
@@ -269,6 +274,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Elemento = ElementoEnum.Cryo,
                 Arma = ArmaEnum.Espadao,
                 IdUsuario = 1,
+                NomeUsuario = "rato smites"
             };
 
             var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => _servicoPersonagem.Criar(personagem));
@@ -298,6 +304,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Elemento = ElementoEnum.Cryo,
                 Arma = ArmaEnum.Espadao,
                 IdUsuario = 1,
+                NomeUsuario = "rato smites"
             };
 
             var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => _servicoPersonagem.Criar(personagem));
