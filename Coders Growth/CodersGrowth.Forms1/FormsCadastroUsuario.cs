@@ -64,7 +64,7 @@ namespace CodersGrowth.Forms1
             }
         }
 
-        private void textBoxNome_KeyPress(object sender, KeyPressEventArgs e)
+        private void aoDigitarValorInvalidoEmNome(object sender, KeyPressEventArgs e)
         {
             if (!(char.IsLetter(e.KeyChar)) && !(char.IsControl(e.KeyChar)))
             {
@@ -72,7 +72,7 @@ namespace CodersGrowth.Forms1
             }
         }
 
-        private void textBoxAR_KeyPress(object sender, KeyPressEventArgs e)
+        private void aoDigitarValorInvalidoEmAR(object sender, KeyPressEventArgs e)
         {
             if (!(char.IsNumber(e.KeyChar)) && !(char.IsControl(e.KeyChar)))
             {
