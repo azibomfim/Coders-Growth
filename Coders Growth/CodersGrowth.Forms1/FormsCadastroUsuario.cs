@@ -15,9 +15,6 @@ namespace CodersGrowth.Forms1
             InitializeComponent();
         }
 
-        private void FormsCadastroUsuario_Load(object sender, EventArgs e)
-        {
-        }
         private void cadastrarNovoUsuario()
         {
             try

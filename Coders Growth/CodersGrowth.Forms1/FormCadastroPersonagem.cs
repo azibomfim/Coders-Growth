@@ -121,102 +121,85 @@ namespace CodersGrowth.Forms1
             }
         }
 
-        private void Constelacao_KeyPress(object sender, KeyPressEventArgs e)
+        private void aoDigitarValorInvalidoEmConstelacao(object sender, KeyPressEventArgs e)
+        {
+            validarEntradaDeValoresNaoNumericos(sender, e);
+        }
+
+        private void aoDigitarValorInvalidoEmVida(object sender, KeyPressEventArgs e)
+        {
+            validarEntradaDeValoresNaoNumericos(sender, e);
+        }
+
+        private void aoDigitarValorInvalidoEmAtaque(object sender, KeyPressEventArgs e)
+        {
+            validarEntradaDeValoresNaoNumericos(sender, e);
+        }
+
+        private void aoDigitarValorInvalidoEmDefesa(object sender, KeyPressEventArgs e)
+        {
+            validarEntradaDeValoresNaoNumericos(sender, e);
+        }
+
+        private void aoDigitarValorInvalidoEmProficiencia(object sender, KeyPressEventArgs e)
+        {
+            validarEntradaDeValoresNaoNumericos(sender, e);
+        }
+
+        private void aoDigitarValorInvalidoEmRecarga(object sender, KeyPressEventArgs e)
+        {
+            validarEntradaDeValoresNaoNumericos(sender, e);
+        }
+
+        private void aoDigitarValorInvalidoEmDanoCritico(object sender, KeyPressEventArgs e)
+        {
+            validarEntradaDeValoresNaoNumericos(sender, e);
+        }
+
+        private void aoDigitarValorInvalidoEmTaxaCritica(object sender, KeyPressEventArgs e)
+        {
+            validarEntradaDeValoresNaoNumericos(sender, e);
+        }
+
+        private void aoDigitarValorInvalidoEmBonusCura(object sender, KeyPressEventArgs e)
+        {
+            validarEntradaDeValoresNaoNumericos(sender, e);
+        }
+
+        private void aoDigitarValorInvalidoEmEscudo(object sender, KeyPressEventArgs e)
+        {
+            validarEntradaDeValoresNaoNumericos(sender, e);
+        }
+
+        private void aoDigitarValorInvalidoEmBonusElemental(object sender, KeyPressEventArgs e)
+        {
+            validarEntradaDeValoresNaoNumericos(sender, e);
+        }
+
+        private void aoDigitarValorInvalidoEmNomeUsuario(object sender, KeyPressEventArgs e)
+        {
+            validarEntradaDeValoresQueNaoSaoLetras(sender, e);
+        }
+
+        private int ConverterParaInt(string text) => string.IsNullOrEmpty(text) ? (int)default : Convert.ToInt32(text);
+        
+        private decimal ConverterParaDecimal(string text) => string.IsNullOrEmpty(text) ? (decimal)default : Convert.ToDecimal(text);
+        
+        private void validarEntradaDeValoresNaoNumericos(object sender, KeyPressEventArgs e)
         {
             if (!(char.IsNumber(e.KeyChar)) && !(char.IsControl(e.KeyChar)))
             {
                 e.Handled = true;
             }
         }
-
-        private void Vida_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!(char.IsNumber(e.KeyChar)) && !(char.IsControl(e.KeyChar)))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void Ataque_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!(char.IsNumber(e.KeyChar)) && !(char.IsControl(e.KeyChar)))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void Defesa_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!(char.IsNumber(e.KeyChar)) && !(char.IsControl(e.KeyChar)))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void Proficiencia_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!(char.IsNumber(e.KeyChar)) && !(char.IsControl(e.KeyChar)))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void Recarga_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!(char.IsNumber(e.KeyChar)) && !(char.IsControl(e.KeyChar)))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void DanoCritico_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!(char.IsNumber(e.KeyChar)) && !(char.IsControl(e.KeyChar)))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void TaxaCritica_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!(char.IsNumber(e.KeyChar)) && !(char.IsControl(e.KeyChar)))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void BonusCura_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!(char.IsNumber(e.KeyChar)) && !(char.IsControl(e.KeyChar)))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void Escudo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!(char.IsNumber(e.KeyChar)) && !(char.IsControl(e.KeyChar)))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void BonusElemental_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!(char.IsNumber(e.KeyChar)) && !(char.IsControl(e.KeyChar)))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void NomeUsuario_KeyPress(object sender, KeyPressEventArgs e)
+       
+        private void validarEntradaDeValoresQueNaoSaoLetras(object sender, KeyPressEventArgs e)
         {
             if (!(char.IsLetter(e.KeyChar)) && !(char.IsControl(e.KeyChar)))
             {
                 e.Handled = true;
             }
         }
-        private int ConverterParaInt(string text) => string.IsNullOrEmpty(text) ? (int)default : Convert.ToInt32(text);
-        private decimal ConverterParaDecimal(string text) => string.IsNullOrEmpty(text) ? (decimal)default : Convert.ToDecimal(text);
+
     }
 }
