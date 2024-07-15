@@ -27,18 +27,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
         }
 
         [Fact]
-        public void deve_retornar_usuarios_filtrando_por_AdventureRank()
-        {
-            var quantidadeRetornada = 1;
-            var AdventureRankDesejado = 55;
-            FiltroUsuario? filtro = new FiltroUsuario { AdventureRank = AdventureRankDesejado };
-            var listaDeUsuarios = _servicoUsuario.ObterTodos(filtro);
-
-            Assert.NotNull(listaDeUsuarios);
-            Assert.Equal(quantidadeRetornada, listaDeUsuarios.Count);
-        }
-
-        [Fact]
         public void deve_retornar_usuarios_filtrando_por_NomeDeUsuario()
         {
             var quantidadeRetornada = 1;
@@ -76,7 +64,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var usuario = new Usuario()
             {
                 NomeDeUsuario = "aziazi",
-                Senha = 12547896,
                 Id = 10,
                 AdventureRank = 60,
             };
@@ -94,30 +81,12 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var usuario = new Usuario()
             {
                 NomeDeUsuario = NomeDeUsuario,
-                Senha = 12547896,
                 Id = 10,
                 AdventureRank = 60,
             };
 
             var mensagemDeErroUsuario = Assert.Throws<ValidationException>(() => _servicoUsuario.Criar(usuario));
             Assert.Contains("Insira um nome válido", mensagemDeErroUsuario.Message);
-        }
-
-        [Theory]
-        [InlineData(16)]
-        [InlineData(1234567890)]
-        public void deve_rejeitar_criacao_de_um_usuario_com_senha_ivalida(int Senha)
-        {
-            var usuario = new Usuario()
-            {
-                NomeDeUsuario = "aziazi",
-                Senha = Senha,
-                Id = 10,
-                AdventureRank = 60,
-            };
-
-            var mensagemDeErroUsuario = Assert.Throws<ValidationException>(() => _servicoUsuario.Criar(usuario));
-            Assert.Contains("Sua senha precisa ter de 4 a 9 caracteres", mensagemDeErroUsuario.Message);
         }
 
         [Theory]
@@ -128,7 +97,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
             var usuario = new Usuario()
             {
                 NomeDeUsuario = "aziazi",
-                Senha = 12345,
                 Id = 10,
                 AdventureRank = AdventureRank,
             };
@@ -144,7 +112,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
             Usuario usuario = _servicoUsuario.ObterPorId(idUsuario);
 
             usuario.NomeDeUsuario = "aziazi";
-            usuario.Senha = 12547896;
             usuario.Id = 2;
             usuario.AdventureRank = 60;
 
@@ -171,7 +138,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
             Usuario usuario = _servicoUsuario.ObterPorId(idUsuario);
 
             usuario.NomeDeUsuario = NomeDeUsuario;
-            usuario.Senha = 12547896;
             usuario.Id = 4;
             usuario.AdventureRank = 60;
 
@@ -188,29 +154,11 @@ namespace CodersGrowth.Testes.TestesUnitarios
             Usuario usuario = _servicoUsuario.ObterPorId(idUsuario);
 
             usuario.NomeDeUsuario = "abelhinha triste";
-            usuario.Senha = 12547896;
             usuario.Id = 5;
             usuario.AdventureRank = AdventureRank;
 
             var mensagemDeErroUsuario = Assert.Throws<ValidationException>(() => _servicoUsuario.Editar(usuario));
             Assert.Contains("Insira um Adventure Rank entre 1 e 60", mensagemDeErroUsuario.Message);
-        }
-
-        [Theory]
-        [InlineData(12)]
-        [InlineData(1234567890)]
-        public void deve_rejeitar_edicao_de_usuario_com_senha_invalida(int Senha)
-        {
-            int idUsuario = 4;
-            Usuario usuario = _servicoUsuario.ObterPorId(idUsuario);
-
-            usuario.NomeDeUsuario = "foca fofocas";
-            usuario.Senha = Senha;
-            usuario.Id = 4;
-            usuario.AdventureRank = 10;
-
-            var mensagemDeErroUsuario = Assert.Throws<ValidationException>(() => _servicoUsuario.Editar(usuario));
-            Assert.Contains("Sua senha precisa ter de 4 a 9 caracteres", mensagemDeErroUsuario.Message);
         }
 
         [Fact]

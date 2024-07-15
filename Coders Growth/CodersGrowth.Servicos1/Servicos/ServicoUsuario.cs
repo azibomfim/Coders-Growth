@@ -1,6 +1,7 @@
 ﻿using CodersGrowth.Dominio.Filtros;
 using CodersGrowth.Dominio.Interfaces;
 using CodersGrowth.Dominio.Models;
+using CodersGrowth.Infra;
 using FluentValidation;
 using System;
 using System.Collections.Generic;

@@ -13,7 +13,6 @@ namespace CodersGrowth.Testes.RepositoriosMock
             Usuario usuarioAlterado = ObterPorId(usuario.Id);
             usuarioAlterado.NomeDeUsuario = usuario.NomeDeUsuario;
             usuarioAlterado.AdventureRank = usuario.AdventureRank;
-            usuarioAlterado.Senha = usuario.Senha;
         }
 
         public void Criar(Usuario usuario)
@@ -40,14 +39,6 @@ namespace CodersGrowth.Testes.RepositoriosMock
                         where c.NomeDeUsuario.Contains(filtroUsuario.NomeDeUsuario)
                         select c;
             }
-
-            if (filtroUsuario?.AdventureRank != null)
-            {
-                query = from c in query
-                        where c.AdventureRank == filtroUsuario.AdventureRank
-                        select c;
-            }
-
             return query.ToList();
         }
 

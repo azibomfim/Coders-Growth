@@ -9,10 +9,9 @@ namespace CodersGrowth.Dominio.Migracoes
         public override void Up()
         {
             Create.Table("Usuario")
-                 .WithColumn("Id").AsInt64().PrimaryKey().Identity()
+                 .WithColumn("Id").AsInt32().PrimaryKey().Identity()
                  .WithColumn("NomeDeUsuario").AsString().NotNullable()
-                 .WithColumn("Senha").AsInt64().NotNullable()
-                 .WithColumn("AdventureRank").AsInt64().Nullable();
+                 .WithColumn("AdventureRank").AsInt32().Nullable();
         }
 
         public override void Down()
