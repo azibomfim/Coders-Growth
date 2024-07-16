@@ -3,6 +3,8 @@ using CodersGrowth.Dominio.Interfaces;
 using CodersGrowth.Dominio.Models;
 using CodersGrowth.Infra;
 using FluentValidation;
+using LinqToDB.Common;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 
@@ -31,7 +33,12 @@ namespace CodersGrowth.Servicos.Servicos
 
         public void Criar(Usuario usuario)
         {
-            _validacao.ValidateAndThrow(usuario);
+            _validacao.Validate(usuario, options =>
+            {
+                options.ThrowOnFailures();
+                options.IncludeRuleSets("Criar");
+                });
+            
             _usuariorepositorio.Criar(usuario);
         }
 
@@ -39,7 +46,12 @@ namespace CodersGrowth.Servicos.Servicos
         {
             usuario = usuario ?? throw new NullReferenceException("Ocorreu um erro na aplicação: Usuario não retornado");
 
-            _validacao.ValidateAndThrow(usuario);
+            _validacao.Validate(usuario, options =>
+            {
+                options.ThrowOnFailures();
+                options.IncludeRuleSets("Editar");
+            });
+
             _usuariorepositorio.Editar(usuario);
         }
 

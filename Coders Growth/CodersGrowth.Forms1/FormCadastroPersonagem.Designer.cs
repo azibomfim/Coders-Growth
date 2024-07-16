@@ -87,7 +87,7 @@ namespace CodersGrowth.Forms1
             textBoxNomeU.Name = "textBoxNomeU";
             textBoxNomeU.Size = new Size(156, 23);
             textBoxNomeU.TabIndex = 1;
-            textBoxNomeU.KeyPress += NomeUsuario_KeyPress;
+            textBoxNomeU.KeyPress += aoDigitarValorInvalidoEmNomeUsuario;
             // 
             // linkLabel1
             // 
@@ -260,7 +260,7 @@ namespace CodersGrowth.Forms1
             textBoxAtq.Name = "textBoxAtq";
             textBoxAtq.Size = new Size(156, 23);
             textBoxAtq.TabIndex = 17;
-            textBoxAtq.KeyPress += Ataque_KeyPress;
+            textBoxAtq.KeyPress += aoDigitarValorInvalidoEmAtaque;
             // 
             // textBoxRE
             // 
@@ -269,7 +269,7 @@ namespace CodersGrowth.Forms1
             textBoxRE.Name = "textBoxRE";
             textBoxRE.Size = new Size(156, 23);
             textBoxRE.TabIndex = 18;
-            textBoxRE.KeyPress += Recarga_KeyPress;
+            textBoxRE.KeyPress += aoDigitarValorInvalidoEmRecarga;
             // 
             // textBoxHP
             // 
@@ -278,7 +278,7 @@ namespace CodersGrowth.Forms1
             textBoxHP.Name = "textBoxHP";
             textBoxHP.Size = new Size(156, 23);
             textBoxHP.TabIndex = 19;
-            textBoxHP.KeyPress += Vida_KeyPress;
+            textBoxHP.KeyPress += aoDigitarValorInvalidoEmVida;
             // 
             // textBoxPE
             // 
@@ -287,7 +287,7 @@ namespace CodersGrowth.Forms1
             textBoxPE.Name = "textBoxPE";
             textBoxPE.Size = new Size(156, 23);
             textBoxPE.TabIndex = 20;
-            textBoxPE.KeyPress += Proficiencia_KeyPress;
+            textBoxPE.KeyPress += aoDigitarValorInvalidoEmProficiencia;
             // 
             // textBoxDef
             // 
@@ -296,7 +296,7 @@ namespace CodersGrowth.Forms1
             textBoxDef.Name = "textBoxDef";
             textBoxDef.Size = new Size(156, 23);
             textBoxDef.TabIndex = 21;
-            textBoxDef.KeyPress += Defesa_KeyPress;
+            textBoxDef.KeyPress += aoDigitarValorInvalidoEmDefesa;
             // 
             // textBoxConst
             // 
@@ -305,7 +305,7 @@ namespace CodersGrowth.Forms1
             textBoxConst.Name = "textBoxConst";
             textBoxConst.Size = new Size(156, 23);
             textBoxConst.TabIndex = 22;
-            textBoxConst.KeyPress += Constelacao_KeyPress;
+            textBoxConst.KeyPress += aoDigitarValorInvalidoEmConstelacao;
             // 
             // textBoxDC
             // 
@@ -314,7 +314,7 @@ namespace CodersGrowth.Forms1
             textBoxDC.Name = "textBoxDC";
             textBoxDC.Size = new Size(156, 23);
             textBoxDC.TabIndex = 23;
-            textBoxDC.KeyPress += DanoCritico_KeyPress;
+            textBoxDC.KeyPress += aoDigitarValorInvalidoEmDanoCritico;
             // 
             // comboBoxArma
             // 
@@ -406,7 +406,7 @@ namespace CodersGrowth.Forms1
             textBoxBE.Name = "textBoxBE";
             textBoxBE.Size = new Size(156, 23);
             textBoxBE.TabIndex = 32;
-            textBoxBE.KeyPress += BonusElemental_KeyPress;
+            textBoxBE.KeyPress += aoDigitarValorInvalidoEmBonusElemental;
             // 
             // textBoxTC
             // 
@@ -415,7 +415,7 @@ namespace CodersGrowth.Forms1
             textBoxTC.Name = "textBoxTC";
             textBoxTC.Size = new Size(156, 23);
             textBoxTC.TabIndex = 33;
-            textBoxTC.KeyPress += TaxaCritica_KeyPress;
+            textBoxTC.KeyPress += aoDigitarValorInvalidoEmTaxaCritica;
             // 
             // textBoxCura
             // 
@@ -424,7 +424,7 @@ namespace CodersGrowth.Forms1
             textBoxCura.Name = "textBoxCura";
             textBoxCura.Size = new Size(156, 23);
             textBoxCura.TabIndex = 34;
-            textBoxCura.KeyPress += BonusCura_KeyPress;
+            textBoxCura.KeyPress += aoDigitarValorInvalidoEmBonusCura;
             // 
             // textBoxShield
             // 
@@ -433,7 +433,7 @@ namespace CodersGrowth.Forms1
             textBoxShield.Name = "textBoxShield";
             textBoxShield.Size = new Size(156, 23);
             textBoxShield.TabIndex = 35;
-            textBoxShield.KeyPress += Escudo_KeyPress;
+            textBoxShield.KeyPress += aoDigitarValorInvalidoEmEscudo;
             // 
             // button1
             // 

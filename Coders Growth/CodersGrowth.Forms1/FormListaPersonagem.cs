@@ -2,6 +2,9 @@ using CodersGrowth.Servicos.Servicos;
 using CodersGrowth.Dominio.Models;
 using CodersGrowth.Dominio.Enums;
 using CodersGrowth.Dominio.Filtros;
+using LinqToDB.Common;
+using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace CodersGrowth.Forms1
 {
@@ -11,7 +14,7 @@ namespace CodersGrowth.Forms1
         private FiltroPersonagem? filtroPersonagem = new FiltroPersonagem();
         private Personagem personagem;
         private ServicoUsuario _servicoUsuario;
-
+        
         public FormListaPersonagem(ServicoPersonagem servicoPersonagem, ServicoUsuario servicoUsuario)
         {
             FiltroPersonagem filtroInicial = null;
@@ -76,6 +79,52 @@ namespace CodersGrowth.Forms1
         {
             FiltroPersonagem filtroInicial = null;
             dataGridViewPersonagem.DataSource = _servicoPersonagem.ObterTodos(filtroInicial);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dataGridViewPersonagem.SelectedRows.IsNullOrEmpty())
+                {
+                    MessageBox.Show(
+                        $"Nenhum Personagem selecionado!",
+                        "ERRO",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                        );
+                }
+                else
+                {
+                    var resultado = MessageBox.Show(
+                        $"Deseja mesmo deletar o Personagem selecionado?",
+                        "Confirmação",
+                        MessageBoxButtons.YesNo
+                        );
+                    if( resultado == DialogResult.Yes)
+                    {
+                        _servicoPersonagem.Remover(personagem.Id);
+                        dataGridViewPersonagem.DataSource = _servicoPersonagem.ObterTodos(null);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao deletar o Personagem!!");
+            }
+        }
+
+        private void AoClicarEmUmItemNoDataGrid(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                if (e.RowIndex >= 0)
+                {
+                    DataGridViewRow linha = dataGridViewPersonagem.Rows[e.RowIndex];
+                    int idPersonagem = (int)linha.Cells[idDataGridViewTextBoxColumn.Index].Value;
+                    personagem = _servicoPersonagem.ObterPorId(idPersonagem);
+                }
+            }
         }
     }
 }
