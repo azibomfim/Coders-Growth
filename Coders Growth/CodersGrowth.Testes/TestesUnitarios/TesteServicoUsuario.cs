@@ -63,7 +63,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
         {
             var usuario = new Usuario()
             {
-                NomeDeUsuario = "aziazi",
+                NomeDeUsuario = "monakai",
                 Id = 10,
                 AdventureRank = 60,
             };
@@ -111,7 +111,6 @@ namespace CodersGrowth.Testes.TestesUnitarios
             int idUsuario = 2;
             Usuario usuario = _servicoUsuario.ObterPorId(idUsuario);
 
-            usuario.NomeDeUsuario = "aziazi";
             usuario.Id = 2;
             usuario.AdventureRank = 60;
 

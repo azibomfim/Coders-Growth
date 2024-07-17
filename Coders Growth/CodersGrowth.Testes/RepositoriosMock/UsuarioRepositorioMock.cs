@@ -11,7 +11,6 @@ namespace CodersGrowth.Testes.RepositoriosMock
         public void Editar(Usuario usuario)
         {
             Usuario usuarioAlterado = ObterPorId(usuario.Id);
-            usuarioAlterado.NomeDeUsuario = usuario.NomeDeUsuario;
             usuarioAlterado.AdventureRank = usuario.AdventureRank;
         }
 

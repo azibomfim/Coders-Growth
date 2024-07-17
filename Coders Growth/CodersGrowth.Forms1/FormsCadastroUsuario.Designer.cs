@@ -73,7 +73,7 @@
             textBoxNome.Name = "textBoxNome";
             textBoxNome.Size = new Size(194, 23);
             textBoxNome.TabIndex = 2;
-            textBoxNome.KeyPress += textBoxNome_KeyPress;
+            textBoxNome.KeyPress += aoDigitarValorInvalidoEmNome;
             // 
             // textBox8
             // 
@@ -93,7 +93,7 @@
             textBoxAR.Name = "textBoxAR";
             textBoxAR.Size = new Size(194, 23);
             textBoxAR.TabIndex = 6;
-            textBoxAR.KeyPress += textBoxAR_KeyPress;
+            textBoxAR.KeyPress += aoDigitarValorInvalidoEmAR;
             // 
             // button1
             // 

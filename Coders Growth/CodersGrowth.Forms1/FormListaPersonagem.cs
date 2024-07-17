@@ -2,6 +2,9 @@ using CodersGrowth.Servicos.Servicos;
 using CodersGrowth.Dominio.Models;
 using CodersGrowth.Dominio.Enums;
 using CodersGrowth.Dominio.Filtros;
+using LinqToDB.Common;
+using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace CodersGrowth.Forms1
 {
@@ -9,7 +12,6 @@ namespace CodersGrowth.Forms1
     {
         private readonly ServicoPersonagem _servicoPersonagem;
         private FiltroPersonagem? filtroPersonagem = new FiltroPersonagem();
-        private Personagem personagem;
         private ServicoUsuario _servicoUsuario;
 
         public FormListaPersonagem(ServicoPersonagem servicoPersonagem, ServicoUsuario servicoUsuario)
@@ -76,6 +78,44 @@ namespace CodersGrowth.Forms1
         {
             FiltroPersonagem filtroInicial = null;
             dataGridViewPersonagem.DataSource = _servicoPersonagem.ObterTodos(filtroInicial);
+        }
+
+        private void aoClicarEmRemoverPersonagem(object sender, EventArgs e)
+        {
+            try
+            {
+                var resultado = dataGridViewPersonagem.SelectedRows.IsNullOrEmpty()
+                    ? MessageBox.Show(
+                        $"Nenhum Personagem selecionado!",
+                        "ERRO",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error)
+                    : MessageBox.Show(
+                        $"Deseja mesmo deletar o Personagem selecionado?",
+                        "Confirmação",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning);
+
+                if (resultado is DialogResult.Yes)
+                {
+                    var personagem = obterPersonagemSelecionado();
+                    _servicoPersonagem.Remover(personagem.Id);
+                    dataGridViewPersonagem.DataSource = _servicoPersonagem.ObterTodos(null);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao deletar o Personagem!!");
+            }
+        }
+
+        private Personagem obterPersonagemSelecionado()
+        {
+            var index = dataGridViewPersonagem.CurrentRow.Index;
+
+            DataGridViewRow linha = dataGridViewPersonagem.Rows[index];
+            int idPersonagem = (int)linha.Cells[idDataGridViewTextBoxColumn.Index].Value;
+            return _servicoPersonagem.ObterPorId(idPersonagem);
         }
     }
 }

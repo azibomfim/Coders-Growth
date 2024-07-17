@@ -48,8 +48,6 @@ namespace CodersGrowth.Forms1
             checkBoxBool = new CheckBox();
             personagemBindingSource2 = new BindingSource(components);
             dataGridViewPersonagem = new DataGridView();
-            textBoxFiltroUsuario = new TextBox();
-            button2 = new Button();
             idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             nomePersonagemDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             elementoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -68,6 +66,9 @@ namespace CodersGrowth.Forms1
             criadoPorUsuarioDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             dataDeAquisicaoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             nomeUsuarioDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            textBoxFiltroUsuario = new TextBox();
+            button2 = new Button();
+            button4 = new Button();
             ((System.ComponentModel.ISupportInitialize)personagemBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)personagemBindingSource1).BeginInit();
@@ -81,14 +82,14 @@ namespace CodersGrowth.Forms1
             // 
             // button3
             // 
-            button3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            button3.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             button3.BackColor = Color.MediumPurple;
             button3.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button3.Location = new Point(12, 396);
+            button3.Location = new Point(662, 396);
             button3.Name = "button3";
-            button3.Size = new Size(172, 32);
+            button3.Size = new Size(97, 32);
             button3.TabIndex = 4;
-            button3.Text = "Editar personagem";
+            button3.Text = "Editar";
             button3.UseVisualStyleBackColor = false;
             // 
             // pictureBox1
@@ -107,11 +108,11 @@ namespace CodersGrowth.Forms1
             button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             button1.BackColor = Color.MediumPurple;
             button1.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.Location = new Point(690, 396);
+            button1.Location = new Point(559, 396);
             button1.Name = "button1";
-            button1.Size = new Size(172, 32);
+            button1.Size = new Size(97, 32);
             button1.TabIndex = 6;
-            button1.Text = "Criar novo personagem";
+            button1.Text = "Adicionar";
             button1.UseVisualStyleBackColor = false;
             button1.Click += aoClicarEmCriar;
             // 
@@ -210,32 +211,11 @@ namespace CodersGrowth.Forms1
             dataGridViewPersonagem.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, nomePersonagemDataGridViewTextBoxColumn, elementoDataGridViewTextBoxColumn, armaDataGridViewTextBoxColumn, constelacaoLvDataGridViewTextBoxColumn, vidaDataGridViewTextBoxColumn, ataqueDataGridViewTextBoxColumn, defesaDataGridViewTextBoxColumn, taxaCritDataGridViewTextBoxColumn, danoCritDataGridViewTextBoxColumn, proficienciaElementalDataGridViewTextBoxColumn, recargaDeEnergiaDataGridViewTextBoxColumn, bonusElementalDataGridViewTextBoxColumn, bonusCuraDataGridViewTextBoxColumn, escudoDataGridViewTextBoxColumn, criadoPorUsuarioDataGridViewTextBoxColumn, dataDeAquisicaoDataGridViewTextBoxColumn, nomeUsuarioDataGridViewTextBoxColumn });
             dataGridViewPersonagem.DataSource = personagemBindingSource;
             dataGridViewPersonagem.Location = new Point(12, 179);
+            dataGridViewPersonagem.MultiSelect = false;
             dataGridViewPersonagem.Name = "dataGridViewPersonagem";
             dataGridViewPersonagem.RowTemplate.Height = 25;
             dataGridViewPersonagem.Size = new Size(850, 211);
             dataGridViewPersonagem.TabIndex = 0;
-            // 
-            // textBoxFiltroUsuario
-            // 
-            textBoxFiltroUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            textBoxFiltroUsuario.Location = new Point(669, 119);
-            textBoxFiltroUsuario.Name = "textBoxFiltroUsuario";
-            textBoxFiltroUsuario.Size = new Size(125, 23);
-            textBoxFiltroUsuario.TabIndex = 17;
-            textBoxFiltroUsuario.Text = "Nome de usuário";
-            // 
-            // button2
-            // 
-            button2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button2.BackColor = Color.MediumPurple;
-            button2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            button2.Location = new Point(800, 91);
-            button2.Name = "button2";
-            button2.Size = new Size(65, 23);
-            button2.TabIndex = 18;
-            button2.Text = "Limpar";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += aoClicarEmLimpar;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -345,12 +325,48 @@ namespace CodersGrowth.Forms1
             nomeUsuarioDataGridViewTextBoxColumn.HeaderText = "Usuário Criador";
             nomeUsuarioDataGridViewTextBoxColumn.Name = "nomeUsuarioDataGridViewTextBoxColumn";
             // 
+            // textBoxFiltroUsuario
+            // 
+            textBoxFiltroUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            textBoxFiltroUsuario.Location = new Point(669, 119);
+            textBoxFiltroUsuario.Name = "textBoxFiltroUsuario";
+            textBoxFiltroUsuario.Size = new Size(125, 23);
+            textBoxFiltroUsuario.TabIndex = 17;
+            textBoxFiltroUsuario.Text = "Nome de usuário";
+            // 
+            // button2
+            // 
+            button2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button2.BackColor = Color.MediumPurple;
+            button2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            button2.Location = new Point(800, 91);
+            button2.Name = "button2";
+            button2.Size = new Size(65, 23);
+            button2.TabIndex = 18;
+            button2.Text = "Limpar";
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += aoClicarEmLimpar;
+            // 
+            // button4
+            // 
+            button4.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button4.BackColor = Color.MediumPurple;
+            button4.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            button4.Location = new Point(765, 396);
+            button4.Name = "button4";
+            button4.Size = new Size(97, 32);
+            button4.TabIndex = 19;
+            button4.Text = "Remover";
+            button4.UseVisualStyleBackColor = false;
+            button4.Click += aoClicarEmRemoverPersonagem;
+            // 
             // FormListaPersonagem
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
             ClientSize = new Size(874, 440);
+            Controls.Add(button4);
             Controls.Add(button2);
             Controls.Add(textBoxFiltroUsuario);
             Controls.Add(dataGridViewPersonagem);
@@ -412,5 +428,6 @@ namespace CodersGrowth.Forms1
         private DataGridViewTextBoxColumn criadoPorUsuarioDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn dataDeAquisicaoDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn nomeUsuarioDataGridViewTextBoxColumn;
+        private Button button4;
     }
 }
