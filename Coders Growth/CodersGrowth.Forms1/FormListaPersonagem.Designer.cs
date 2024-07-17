@@ -215,7 +215,6 @@ namespace CodersGrowth.Forms1
             dataGridViewPersonagem.RowTemplate.Height = 25;
             dataGridViewPersonagem.Size = new Size(850, 211);
             dataGridViewPersonagem.TabIndex = 0;
-            dataGridViewPersonagem.CellMouseClick += AoClicarEmUmItemNoDataGrid;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -358,7 +357,7 @@ namespace CodersGrowth.Forms1
             button4.TabIndex = 19;
             button4.Text = "Remover";
             button4.UseVisualStyleBackColor = false;
-            button4.Click += button4_Click;
+            button4.Click += aoClicarEmRemoverPersonagem;
             // 
             // FormListaPersonagem
             // 

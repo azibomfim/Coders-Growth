@@ -12,9 +12,8 @@ namespace CodersGrowth.Forms1
     {
         private readonly ServicoPersonagem _servicoPersonagem;
         private FiltroPersonagem? filtroPersonagem = new FiltroPersonagem();
-        private Personagem personagem;
         private ServicoUsuario _servicoUsuario;
-        
+
         public FormListaPersonagem(ServicoPersonagem servicoPersonagem, ServicoUsuario servicoUsuario)
         {
             FiltroPersonagem filtroInicial = null;
@@ -81,7 +80,7 @@ namespace CodersGrowth.Forms1
             dataGridViewPersonagem.DataSource = _servicoPersonagem.ObterTodos(filtroInicial);
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void aoClicarEmRemoverPersonagem(object sender, EventArgs e)
         {
             try
             {
@@ -94,15 +93,26 @@ namespace CodersGrowth.Forms1
                         MessageBoxIcon.Error
                         );
                 }
+                else if(dataGridViewPersonagem.SelectedRows.Count > 1)
+                {
+                    MessageBox.Show(
+                        $"Selecione apenas 1 Personagem!!",
+                        "ERRO",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                        );
+                }
                 else
                 {
                     var resultado = MessageBox.Show(
                         $"Deseja mesmo deletar o Personagem selecionado?",
                         "Confirmação",
-                        MessageBoxButtons.YesNo
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
                         );
-                    if( resultado == DialogResult.Yes)
+                    if (resultado == DialogResult.Yes)
                     {
+                        var personagem = obterPersonagemSelecionado();
                         _servicoPersonagem.Remover(personagem.Id);
                         dataGridViewPersonagem.DataSource = _servicoPersonagem.ObterTodos(null);
                     }
@@ -114,17 +124,13 @@ namespace CodersGrowth.Forms1
             }
         }
 
-        private void AoClicarEmUmItemNoDataGrid(object sender, DataGridViewCellMouseEventArgs e)
+        private Personagem obterPersonagemSelecionado()
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                if (e.RowIndex >= 0)
-                {
-                    DataGridViewRow linha = dataGridViewPersonagem.Rows[e.RowIndex];
-                    int idPersonagem = (int)linha.Cells[idDataGridViewTextBoxColumn.Index].Value;
-                    personagem = _servicoPersonagem.ObterPorId(idPersonagem);
-                }
-            }
+                var index = dataGridViewPersonagem.CurrentRow.Index;
+
+                DataGridViewRow linha = dataGridViewPersonagem.Rows[index];
+                int idPersonagem = (int)linha.Cells[idDataGridViewTextBoxColumn.Index].Value;
+                return _servicoPersonagem.ObterPorId(idPersonagem);
         }
     }
 }
