@@ -211,6 +211,7 @@ namespace CodersGrowth.Forms1
             dataGridViewPersonagem.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, nomePersonagemDataGridViewTextBoxColumn, elementoDataGridViewTextBoxColumn, armaDataGridViewTextBoxColumn, constelacaoLvDataGridViewTextBoxColumn, vidaDataGridViewTextBoxColumn, ataqueDataGridViewTextBoxColumn, defesaDataGridViewTextBoxColumn, taxaCritDataGridViewTextBoxColumn, danoCritDataGridViewTextBoxColumn, proficienciaElementalDataGridViewTextBoxColumn, recargaDeEnergiaDataGridViewTextBoxColumn, bonusElementalDataGridViewTextBoxColumn, bonusCuraDataGridViewTextBoxColumn, escudoDataGridViewTextBoxColumn, criadoPorUsuarioDataGridViewTextBoxColumn, dataDeAquisicaoDataGridViewTextBoxColumn, nomeUsuarioDataGridViewTextBoxColumn });
             dataGridViewPersonagem.DataSource = personagemBindingSource;
             dataGridViewPersonagem.Location = new Point(12, 179);
+            dataGridViewPersonagem.MultiSelect = false;
             dataGridViewPersonagem.Name = "dataGridViewPersonagem";
             dataGridViewPersonagem.RowTemplate.Height = 25;
             dataGridViewPersonagem.Size = new Size(850, 211);

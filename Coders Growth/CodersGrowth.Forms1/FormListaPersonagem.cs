@@ -84,38 +84,23 @@ namespace CodersGrowth.Forms1
         {
             try
             {
-                if (dataGridViewPersonagem.SelectedRows.IsNullOrEmpty())
-                {
-                    MessageBox.Show(
+                var resultado = dataGridViewPersonagem.SelectedRows.IsNullOrEmpty()
+                    ? MessageBox.Show(
                         $"Nenhum Personagem selecionado!",
                         "ERRO",
                         MessageBoxButtons.OK,
-                        MessageBoxIcon.Error
-                        );
-                }
-                else if(dataGridViewPersonagem.SelectedRows.Count > 1)
-                {
-                    MessageBox.Show(
-                        $"Selecione apenas 1 Personagem!!",
-                        "ERRO",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error
-                        );
-                }
-                else
-                {
-                    var resultado = MessageBox.Show(
+                        MessageBoxIcon.Error)
+                    : MessageBox.Show(
                         $"Deseja mesmo deletar o Personagem selecionado?",
                         "Confirmação",
                         MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Warning
-                        );
-                    if (resultado == DialogResult.Yes)
-                    {
-                        var personagem = obterPersonagemSelecionado();
-                        _servicoPersonagem.Remover(personagem.Id);
-                        dataGridViewPersonagem.DataSource = _servicoPersonagem.ObterTodos(null);
-                    }
+                        MessageBoxIcon.Warning);
+
+                if (resultado is DialogResult.Yes)
+                {
+                    var personagem = obterPersonagemSelecionado();
+                    _servicoPersonagem.Remover(personagem.Id);
+                    dataGridViewPersonagem.DataSource = _servicoPersonagem.ObterTodos(null);
                 }
             }
             catch (Exception ex)
@@ -126,11 +111,11 @@ namespace CodersGrowth.Forms1
 
         private Personagem obterPersonagemSelecionado()
         {
-                var index = dataGridViewPersonagem.CurrentRow.Index;
+            var index = dataGridViewPersonagem.CurrentRow.Index;
 
-                DataGridViewRow linha = dataGridViewPersonagem.Rows[index];
-                int idPersonagem = (int)linha.Cells[idDataGridViewTextBoxColumn.Index].Value;
-                return _servicoPersonagem.ObterPorId(idPersonagem);
+            DataGridViewRow linha = dataGridViewPersonagem.Rows[index];
+            int idPersonagem = (int)linha.Cells[idDataGridViewTextBoxColumn.Index].Value;
+            return _servicoPersonagem.ObterPorId(idPersonagem);
         }
     }
 }
