@@ -48,27 +48,27 @@ namespace CodersGrowth.Forms1
             checkBoxBool = new CheckBox();
             personagemBindingSource2 = new BindingSource(components);
             dataGridViewPersonagem = new DataGridView();
-            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            nomePersonagemDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            elementoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            armaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            constelacaoLvDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            vidaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            ataqueDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            defesaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            taxaCritDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            danoCritDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            proficienciaElementalDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            recargaDeEnergiaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            bonusElementalDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            bonusCuraDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            escudoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            criadoPorUsuarioDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            dataDeAquisicaoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            nomeUsuarioDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             textBoxFiltroUsuario = new TextBox();
             button2 = new Button();
             button4 = new Button();
+            idColumn = new DataGridViewTextBoxColumn();
+            nomePersonagemColumn = new DataGridViewTextBoxColumn();
+            elementoColumn = new DataGridViewTextBoxColumn();
+            armaColumn = new DataGridViewTextBoxColumn();
+            constelacaoColumn = new DataGridViewTextBoxColumn();
+            vidaColumn = new DataGridViewTextBoxColumn();
+            ataqueColumn = new DataGridViewTextBoxColumn();
+            defesaColumn = new DataGridViewTextBoxColumn();
+            taxaCritColumn = new DataGridViewTextBoxColumn();
+            danoCritColumn = new DataGridViewTextBoxColumn();
+            proficienciaColumn = new DataGridViewTextBoxColumn();
+            recargaColumn = new DataGridViewTextBoxColumn();
+            bonusElementalColumn = new DataGridViewTextBoxColumn();
+            curaColumn = new DataGridViewTextBoxColumn();
+            escudoColumn = new DataGridViewTextBoxColumn();
+            criadoPorUsuarioColumn = new DataGridViewTextBoxColumn();
+            dataColumn = new DataGridViewTextBoxColumn();
+            nomeUsuarioColumn = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)personagemBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)personagemBindingSource1).BeginInit();
@@ -91,6 +91,7 @@ namespace CodersGrowth.Forms1
             button3.TabIndex = 4;
             button3.Text = "Editar";
             button3.UseVisualStyleBackColor = false;
+            button3.Click += aoClicarEmEditar;
             // 
             // pictureBox1
             // 
@@ -208,7 +209,7 @@ namespace CodersGrowth.Forms1
             dataGridViewPersonagem.AutoGenerateColumns = false;
             dataGridViewPersonagem.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewPersonagem.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewPersonagem.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, nomePersonagemDataGridViewTextBoxColumn, elementoDataGridViewTextBoxColumn, armaDataGridViewTextBoxColumn, constelacaoLvDataGridViewTextBoxColumn, vidaDataGridViewTextBoxColumn, ataqueDataGridViewTextBoxColumn, defesaDataGridViewTextBoxColumn, taxaCritDataGridViewTextBoxColumn, danoCritDataGridViewTextBoxColumn, proficienciaElementalDataGridViewTextBoxColumn, recargaDeEnergiaDataGridViewTextBoxColumn, bonusElementalDataGridViewTextBoxColumn, bonusCuraDataGridViewTextBoxColumn, escudoDataGridViewTextBoxColumn, criadoPorUsuarioDataGridViewTextBoxColumn, dataDeAquisicaoDataGridViewTextBoxColumn, nomeUsuarioDataGridViewTextBoxColumn });
+            dataGridViewPersonagem.Columns.AddRange(new DataGridViewColumn[] { idColumn, nomePersonagemColumn, elementoColumn, armaColumn, constelacaoColumn, vidaColumn, ataqueColumn, defesaColumn, taxaCritColumn, danoCritColumn, proficienciaColumn, recargaColumn, bonusElementalColumn, curaColumn, escudoColumn, criadoPorUsuarioColumn, dataColumn, nomeUsuarioColumn });
             dataGridViewPersonagem.DataSource = personagemBindingSource;
             dataGridViewPersonagem.Location = new Point(12, 179);
             dataGridViewPersonagem.MultiSelect = false;
@@ -216,114 +217,6 @@ namespace CodersGrowth.Forms1
             dataGridViewPersonagem.RowTemplate.Height = 25;
             dataGridViewPersonagem.Size = new Size(850, 211);
             dataGridViewPersonagem.TabIndex = 0;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            idDataGridViewTextBoxColumn.HeaderText = "Id";
-            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            // 
-            // nomePersonagemDataGridViewTextBoxColumn
-            // 
-            nomePersonagemDataGridViewTextBoxColumn.DataPropertyName = "NomePersonagem";
-            nomePersonagemDataGridViewTextBoxColumn.HeaderText = "Nome";
-            nomePersonagemDataGridViewTextBoxColumn.Name = "nomePersonagemDataGridViewTextBoxColumn";
-            // 
-            // elementoDataGridViewTextBoxColumn
-            // 
-            elementoDataGridViewTextBoxColumn.DataPropertyName = "Elemento";
-            elementoDataGridViewTextBoxColumn.HeaderText = "Elemento";
-            elementoDataGridViewTextBoxColumn.Name = "elementoDataGridViewTextBoxColumn";
-            // 
-            // armaDataGridViewTextBoxColumn
-            // 
-            armaDataGridViewTextBoxColumn.DataPropertyName = "Arma";
-            armaDataGridViewTextBoxColumn.HeaderText = "Arma";
-            armaDataGridViewTextBoxColumn.Name = "armaDataGridViewTextBoxColumn";
-            // 
-            // constelacaoLvDataGridViewTextBoxColumn
-            // 
-            constelacaoLvDataGridViewTextBoxColumn.DataPropertyName = "ConstelacaoLv";
-            constelacaoLvDataGridViewTextBoxColumn.HeaderText = "Constelação";
-            constelacaoLvDataGridViewTextBoxColumn.Name = "constelacaoLvDataGridViewTextBoxColumn";
-            // 
-            // vidaDataGridViewTextBoxColumn
-            // 
-            vidaDataGridViewTextBoxColumn.DataPropertyName = "Vida";
-            vidaDataGridViewTextBoxColumn.HeaderText = "Vida";
-            vidaDataGridViewTextBoxColumn.Name = "vidaDataGridViewTextBoxColumn";
-            // 
-            // ataqueDataGridViewTextBoxColumn
-            // 
-            ataqueDataGridViewTextBoxColumn.DataPropertyName = "Ataque";
-            ataqueDataGridViewTextBoxColumn.HeaderText = "Ataque";
-            ataqueDataGridViewTextBoxColumn.Name = "ataqueDataGridViewTextBoxColumn";
-            // 
-            // defesaDataGridViewTextBoxColumn
-            // 
-            defesaDataGridViewTextBoxColumn.DataPropertyName = "Defesa";
-            defesaDataGridViewTextBoxColumn.HeaderText = "Defesa";
-            defesaDataGridViewTextBoxColumn.Name = "defesaDataGridViewTextBoxColumn";
-            // 
-            // taxaCritDataGridViewTextBoxColumn
-            // 
-            taxaCritDataGridViewTextBoxColumn.DataPropertyName = "TaxaCrit";
-            taxaCritDataGridViewTextBoxColumn.HeaderText = "Taxa Crítica";
-            taxaCritDataGridViewTextBoxColumn.Name = "taxaCritDataGridViewTextBoxColumn";
-            // 
-            // danoCritDataGridViewTextBoxColumn
-            // 
-            danoCritDataGridViewTextBoxColumn.DataPropertyName = "DanoCrit";
-            danoCritDataGridViewTextBoxColumn.HeaderText = "Dano Crítico";
-            danoCritDataGridViewTextBoxColumn.Name = "danoCritDataGridViewTextBoxColumn";
-            // 
-            // proficienciaElementalDataGridViewTextBoxColumn
-            // 
-            proficienciaElementalDataGridViewTextBoxColumn.DataPropertyName = "ProficienciaElemental";
-            proficienciaElementalDataGridViewTextBoxColumn.HeaderText = "Proficiência Elemental";
-            proficienciaElementalDataGridViewTextBoxColumn.Name = "proficienciaElementalDataGridViewTextBoxColumn";
-            // 
-            // recargaDeEnergiaDataGridViewTextBoxColumn
-            // 
-            recargaDeEnergiaDataGridViewTextBoxColumn.DataPropertyName = "RecargaDeEnergia";
-            recargaDeEnergiaDataGridViewTextBoxColumn.HeaderText = "Recarga de Energia";
-            recargaDeEnergiaDataGridViewTextBoxColumn.Name = "recargaDeEnergiaDataGridViewTextBoxColumn";
-            // 
-            // bonusElementalDataGridViewTextBoxColumn
-            // 
-            bonusElementalDataGridViewTextBoxColumn.DataPropertyName = "BonusElemental";
-            bonusElementalDataGridViewTextBoxColumn.HeaderText = "Bônus de Dano Elemental";
-            bonusElementalDataGridViewTextBoxColumn.Name = "bonusElementalDataGridViewTextBoxColumn";
-            // 
-            // bonusCuraDataGridViewTextBoxColumn
-            // 
-            bonusCuraDataGridViewTextBoxColumn.DataPropertyName = "BonusCura";
-            bonusCuraDataGridViewTextBoxColumn.HeaderText = "Bônus de Cura";
-            bonusCuraDataGridViewTextBoxColumn.Name = "bonusCuraDataGridViewTextBoxColumn";
-            // 
-            // escudoDataGridViewTextBoxColumn
-            // 
-            escudoDataGridViewTextBoxColumn.DataPropertyName = "Escudo";
-            escudoDataGridViewTextBoxColumn.HeaderText = "Força de Escudo";
-            escudoDataGridViewTextBoxColumn.Name = "escudoDataGridViewTextBoxColumn";
-            // 
-            // criadoPorUsuarioDataGridViewTextBoxColumn
-            // 
-            criadoPorUsuarioDataGridViewTextBoxColumn.DataPropertyName = "CriadoPorUsuario";
-            criadoPorUsuarioDataGridViewTextBoxColumn.HeaderText = "Criado Por Usuário";
-            criadoPorUsuarioDataGridViewTextBoxColumn.Name = "criadoPorUsuarioDataGridViewTextBoxColumn";
-            // 
-            // dataDeAquisicaoDataGridViewTextBoxColumn
-            // 
-            dataDeAquisicaoDataGridViewTextBoxColumn.DataPropertyName = "DataDeAquisicao";
-            dataDeAquisicaoDataGridViewTextBoxColumn.HeaderText = "Data De Aquisição";
-            dataDeAquisicaoDataGridViewTextBoxColumn.Name = "dataDeAquisicaoDataGridViewTextBoxColumn";
-            // 
-            // nomeUsuarioDataGridViewTextBoxColumn
-            // 
-            nomeUsuarioDataGridViewTextBoxColumn.DataPropertyName = "NomeUsuario";
-            nomeUsuarioDataGridViewTextBoxColumn.HeaderText = "Usuário Criador";
-            nomeUsuarioDataGridViewTextBoxColumn.Name = "nomeUsuarioDataGridViewTextBoxColumn";
             // 
             // textBoxFiltroUsuario
             // 
@@ -359,6 +252,114 @@ namespace CodersGrowth.Forms1
             button4.Text = "Remover";
             button4.UseVisualStyleBackColor = false;
             button4.Click += aoClicarEmRemoverPersonagem;
+            // 
+            // idColumn
+            // 
+            idColumn.DataPropertyName = "Id";
+            idColumn.HeaderText = "Id";
+            idColumn.Name = "idColumn";
+            // 
+            // nomePersonagemColumn
+            // 
+            nomePersonagemColumn.DataPropertyName = "NomePersonagem";
+            nomePersonagemColumn.HeaderText = "Nome";
+            nomePersonagemColumn.Name = "nomePersonagemColumn";
+            // 
+            // elementoColumn
+            // 
+            elementoColumn.DataPropertyName = "Elemento";
+            elementoColumn.HeaderText = "Elemento";
+            elementoColumn.Name = "elementoColumn";
+            // 
+            // armaColumn
+            // 
+            armaColumn.DataPropertyName = "Arma";
+            armaColumn.HeaderText = "Arma";
+            armaColumn.Name = "armaColumn";
+            // 
+            // constelacaoColumn
+            // 
+            constelacaoColumn.DataPropertyName = "ConstelacaoLv";
+            constelacaoColumn.HeaderText = "Constelação";
+            constelacaoColumn.Name = "constelacaoColumn";
+            // 
+            // vidaColumn
+            // 
+            vidaColumn.DataPropertyName = "Vida";
+            vidaColumn.HeaderText = "Vida";
+            vidaColumn.Name = "vidaColumn";
+            // 
+            // ataqueColumn
+            // 
+            ataqueColumn.DataPropertyName = "Ataque";
+            ataqueColumn.HeaderText = "Ataque";
+            ataqueColumn.Name = "ataqueColumn";
+            // 
+            // defesaColumn
+            // 
+            defesaColumn.DataPropertyName = "Defesa";
+            defesaColumn.HeaderText = "Defesa";
+            defesaColumn.Name = "defesaColumn";
+            // 
+            // taxaCritColumn
+            // 
+            taxaCritColumn.DataPropertyName = "TaxaCrit";
+            taxaCritColumn.HeaderText = "Taxa Crítica";
+            taxaCritColumn.Name = "taxaCritColumn";
+            // 
+            // danoCritColumn
+            // 
+            danoCritColumn.DataPropertyName = "DanoCrit";
+            danoCritColumn.HeaderText = "Dano Crítico";
+            danoCritColumn.Name = "danoCritColumn";
+            // 
+            // proficienciaColumn
+            // 
+            proficienciaColumn.DataPropertyName = "ProficienciaElemental";
+            proficienciaColumn.HeaderText = "Proficiência Elemental";
+            proficienciaColumn.Name = "proficienciaColumn";
+            // 
+            // recargaColumn
+            // 
+            recargaColumn.DataPropertyName = "RecargaDeEnergia";
+            recargaColumn.HeaderText = "Recarga de Energia";
+            recargaColumn.Name = "recargaColumn";
+            // 
+            // bonusElementalColumn
+            // 
+            bonusElementalColumn.DataPropertyName = "BonusElemental";
+            bonusElementalColumn.HeaderText = "Bônus de Dano Elemental";
+            bonusElementalColumn.Name = "bonusElementalColumn";
+            // 
+            // curaColumn
+            // 
+            curaColumn.DataPropertyName = "BonusCura";
+            curaColumn.HeaderText = "Bônus de Cura";
+            curaColumn.Name = "curaColumn";
+            // 
+            // escudoColumn
+            // 
+            escudoColumn.DataPropertyName = "Escudo";
+            escudoColumn.HeaderText = "Força de Escudo";
+            escudoColumn.Name = "escudoColumn";
+            // 
+            // criadoPorUsuarioColumn
+            // 
+            criadoPorUsuarioColumn.DataPropertyName = "CriadoPorUsuario";
+            criadoPorUsuarioColumn.HeaderText = "Criado Por Usuário";
+            criadoPorUsuarioColumn.Name = "criadoPorUsuarioColumn";
+            // 
+            // dataColumn
+            // 
+            dataColumn.DataPropertyName = "DataDeAquisicao";
+            dataColumn.HeaderText = "Data De Aquisição";
+            dataColumn.Name = "dataColumn";
+            // 
+            // nomeUsuarioColumn
+            // 
+            nomeUsuarioColumn.DataPropertyName = "NomeUsuario";
+            nomeUsuarioColumn.HeaderText = "Usuário Criador";
+            nomeUsuarioColumn.Name = "nomeUsuarioColumn";
             // 
             // FormListaPersonagem
             // 
@@ -410,24 +411,24 @@ namespace CodersGrowth.Forms1
         private DataGridView dataGridViewPersonagem;
         private TextBox textBoxFiltroUsuario;
         private Button button2;
-        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn nomePersonagemDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn elementoDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn armaDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn constelacaoLvDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn vidaDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn ataqueDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn defesaDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn taxaCritDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn danoCritDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn proficienciaElementalDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn recargaDeEnergiaDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn bonusElementalDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn bonusCuraDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn escudoDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn criadoPorUsuarioDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn dataDeAquisicaoDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn nomeUsuarioDataGridViewTextBoxColumn;
         private Button button4;
+        private DataGridViewTextBoxColumn idColumn;
+        private DataGridViewTextBoxColumn nomePersonagemColumn;
+        private DataGridViewTextBoxColumn elementoColumn;
+        private DataGridViewTextBoxColumn armaColumn;
+        private DataGridViewTextBoxColumn constelacaoColumn;
+        private DataGridViewTextBoxColumn vidaColumn;
+        private DataGridViewTextBoxColumn ataqueColumn;
+        private DataGridViewTextBoxColumn defesaColumn;
+        private DataGridViewTextBoxColumn taxaCritColumn;
+        private DataGridViewTextBoxColumn danoCritColumn;
+        private DataGridViewTextBoxColumn proficienciaColumn;
+        private DataGridViewTextBoxColumn recargaColumn;
+        private DataGridViewTextBoxColumn bonusElementalColumn;
+        private DataGridViewTextBoxColumn curaColumn;
+        private DataGridViewTextBoxColumn escudoColumn;
+        private DataGridViewTextBoxColumn criadoPorUsuarioColumn;
+        private DataGridViewTextBoxColumn dataColumn;
+        private DataGridViewTextBoxColumn nomeUsuarioColumn;
     }
 }
