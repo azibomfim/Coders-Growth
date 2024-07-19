@@ -13,6 +13,7 @@ namespace CodersGrowth.Forms1
         private readonly ServicoPersonagem _servicoPersonagem;
         private FiltroPersonagem? filtroPersonagem = new FiltroPersonagem();
         private ServicoUsuario _servicoUsuario;
+        public Personagem _personagemEditavel;
 
         public FormListaPersonagem(ServicoPersonagem servicoPersonagem, ServicoUsuario servicoUsuario)
         {
@@ -114,8 +115,46 @@ namespace CodersGrowth.Forms1
             var index = dataGridViewPersonagem.CurrentRow.Index;
 
             DataGridViewRow linha = dataGridViewPersonagem.Rows[index];
-            int idPersonagem = (int)linha.Cells[idDataGridViewTextBoxColumn.Index].Value;
+            int idPersonagem = (int)linha.Cells[idColumn.Index].Value;
             return _servicoPersonagem.ObterPorId(idPersonagem);
+        }
+
+        private void aoClicarEmEditar(object sender, EventArgs e)
+        {
+            try {
+                if (dataGridViewPersonagem.SelectedRows.IsNullOrEmpty())
+                {
+                    MessageBox.Show(
+                           $"Nenhum Personagem selecionado!",
+                           "ERRO",
+                           MessageBoxButtons.OK,
+                           MessageBoxIcon.Error);
+                }
+                else
+                {
+                    var personagem = obterPersonagemSelecionado();
+                    var idPersonagem = personagem.Id;
+
+                    if ((bool)!personagem.CriadoPorUsuario)
+                    {
+                        MessageBox.Show(
+                           $"Apenas Personagens criados por usuário podem ser editados!",
+                           "ERRO",
+                           MessageBoxButtons.OK,
+                           MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        var formEdicaoPersonagem = new FormEdicaoPersonagem(_servicoPersonagem, _servicoUsuario, idPersonagem);
+                        formEdicaoPersonagem.Show();
+                        this.Hide();
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Erro ao deletar o Personagem!!");
+            }
         }
     }
 }
