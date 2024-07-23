@@ -15,6 +15,7 @@
     <PackageReference Include="FluentValidation" Version="11.9.2" />
     <PackageReference Include="linq2db" Version="5.4.1" />
     <PackageReference Include="linq2db.AspNet" Version="5.4.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.1.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.1" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
@@ -31,9 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CodersGrowth.Dominio1\CodersGrowth.Dominio.csproj" />
     <ProjectReference Include="..\CodersGrowth.Infra1\CodersGrowth.Infra.csproj" />
-    <ProjectReference Include="..\CodersGrowth.Servicos1\CodersGrowth.Servicos.csproj" />
   </ItemGroup>
 
 </Project>

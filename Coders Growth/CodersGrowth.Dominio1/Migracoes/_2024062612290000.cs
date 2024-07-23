@@ -2,17 +2,16 @@
 
 namespace CodersGrowth.Dominio.Migracoes
 {
-    [Migration(2024062115290000)]
+    [Migration(2024062612290000)]
 
-    public class _2024062115290000 : Migration
+    public class _2024062612290000 : Migration
     {
         public override void Up()
         {
             Create.Table("Usuario")
-                 .WithColumn("Id").AsInt64().PrimaryKey().Identity()
+                 .WithColumn("Id").AsInt32().PrimaryKey().Identity()
                  .WithColumn("NomeDeUsuario").AsString().NotNullable()
-                 .WithColumn("Senha").AsInt64().NotNullable()
-                 .WithColumn("AdventureRank").AsInt64().Nullable();
+                 .WithColumn("AdventureRank").AsInt32().Nullable();
         }
 
         public override void Down()

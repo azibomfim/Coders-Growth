@@ -43,5 +43,7 @@ namespace CodersGrowth.Dominio.Models
         public ArmaEnum? Arma { get; set; }
         [Column("IdUsuario")]
         public int? IdUsuario { get; set; }
+        [Column("NomeUsuario")]
+        public string? NomeUsuario { get; set; }
     }
 }

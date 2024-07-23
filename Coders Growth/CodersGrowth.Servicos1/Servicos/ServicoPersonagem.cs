@@ -36,10 +36,7 @@ namespace CodersGrowth.Servicos.Servicos
 
         public void Editar(Personagem personagem)
         {
-            if (personagem == null)
-            {
-                throw new Exception("Ocorreu um erro na aplicação: Personagem não retornado");
-            }
+            personagem = personagem ?? throw new NullReferenceException("Ocorreu um erro na aplicação: Personagem não retornado");
 
             _validacao.ValidateAndThrow(personagem);
             _personagemrepositorio.Editar(personagem);
