@@ -48,9 +48,6 @@ namespace CodersGrowth.Forms1
             checkBoxBool = new CheckBox();
             personagemBindingSource2 = new BindingSource(components);
             dataGridViewPersonagem = new DataGridView();
-            textBoxFiltroUsuario = new TextBox();
-            button2 = new Button();
-            button4 = new Button();
             idColumn = new DataGridViewTextBoxColumn();
             nomePersonagemColumn = new DataGridViewTextBoxColumn();
             elementoColumn = new DataGridViewTextBoxColumn();
@@ -69,6 +66,9 @@ namespace CodersGrowth.Forms1
             criadoPorUsuarioColumn = new DataGridViewTextBoxColumn();
             dataColumn = new DataGridViewTextBoxColumn();
             nomeUsuarioColumn = new DataGridViewTextBoxColumn();
+            textBoxFiltroUsuario = new TextBox();
+            button2 = new Button();
+            button4 = new Button();
             ((System.ComponentModel.ISupportInitialize)personagemBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)personagemBindingSource1).BeginInit();
@@ -217,41 +217,7 @@ namespace CodersGrowth.Forms1
             dataGridViewPersonagem.RowTemplate.Height = 25;
             dataGridViewPersonagem.Size = new Size(850, 211);
             dataGridViewPersonagem.TabIndex = 0;
-            // 
-            // textBoxFiltroUsuario
-            // 
-            textBoxFiltroUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            textBoxFiltroUsuario.Location = new Point(669, 119);
-            textBoxFiltroUsuario.Name = "textBoxFiltroUsuario";
-            textBoxFiltroUsuario.Size = new Size(125, 23);
-            textBoxFiltroUsuario.TabIndex = 17;
-            textBoxFiltroUsuario.Text = "Nome de usuário";
-            // 
-            // button2
-            // 
-            button2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button2.BackColor = Color.MediumPurple;
-            button2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            button2.Location = new Point(800, 91);
-            button2.Name = "button2";
-            button2.Size = new Size(65, 23);
-            button2.TabIndex = 18;
-            button2.Text = "Limpar";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += aoClicarEmLimpar;
-            // 
-            // button4
-            // 
-            button4.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button4.BackColor = Color.MediumPurple;
-            button4.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button4.Location = new Point(765, 396);
-            button4.Name = "button4";
-            button4.Size = new Size(97, 32);
-            button4.TabIndex = 19;
-            button4.Text = "Remover";
-            button4.UseVisualStyleBackColor = false;
-            button4.Click += aoClicarEmRemoverPersonagem;
+            dataGridViewPersonagem.CellFormatting += formatacaoDeValores;
             // 
             // idColumn
             // 
@@ -360,6 +326,41 @@ namespace CodersGrowth.Forms1
             nomeUsuarioColumn.DataPropertyName = "NomeUsuario";
             nomeUsuarioColumn.HeaderText = "Usuário Criador";
             nomeUsuarioColumn.Name = "nomeUsuarioColumn";
+            // 
+            // textBoxFiltroUsuario
+            // 
+            textBoxFiltroUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            textBoxFiltroUsuario.Location = new Point(669, 119);
+            textBoxFiltroUsuario.Name = "textBoxFiltroUsuario";
+            textBoxFiltroUsuario.Size = new Size(125, 23);
+            textBoxFiltroUsuario.TabIndex = 17;
+            textBoxFiltroUsuario.Text = "Nome de usuário";
+            // 
+            // button2
+            // 
+            button2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button2.BackColor = Color.MediumPurple;
+            button2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            button2.Location = new Point(800, 91);
+            button2.Name = "button2";
+            button2.Size = new Size(65, 23);
+            button2.TabIndex = 18;
+            button2.Text = "Limpar";
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += aoClicarEmLimpar;
+            // 
+            // button4
+            // 
+            button4.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button4.BackColor = Color.MediumPurple;
+            button4.Font = new Font("Arial Black", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            button4.Location = new Point(765, 396);
+            button4.Name = "button4";
+            button4.Size = new Size(97, 32);
+            button4.TabIndex = 19;
+            button4.Text = "Remover";
+            button4.UseVisualStyleBackColor = false;
+            button4.Click += aoClicarEmRemoverPersonagem;
             // 
             // FormListaPersonagem
             // 

@@ -77,7 +77,6 @@ namespace CodersGrowth.Forms1
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
             textBox1.Size = new Size(396, 82);
-            textBox1.TabIndex = 0;
             textBox1.Text = "Cadastro de Personagem";
             // 
             // textBoxNomeU

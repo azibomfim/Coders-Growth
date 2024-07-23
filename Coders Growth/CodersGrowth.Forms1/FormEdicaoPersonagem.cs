@@ -83,7 +83,7 @@ namespace CodersGrowth.Forms1
                 personagemEditavel.ConstelacaoLv = constelacao;
                 personagemEditavel.RecargaDeEnergia = recarga;
                 personagemEditavel.Escudo = escudo;
-                personagemEditavel.DataDeAquisicao = dateTimePicker.Value;
+                personagemEditavel.DataDeAquisicao = dateTimePicker.Value.Date;
 
                 _servicoPersonagem.Editar(personagemEditavel);
 
@@ -187,7 +187,7 @@ namespace CodersGrowth.Forms1
         
         private void validarEntradaDeValoresNaoNumericos(object sender, KeyPressEventArgs e)
         {
-            if (!(char.IsNumber(e.KeyChar)) && !(char.IsControl(e.KeyChar)))
+            if (!(char.IsNumber(e.KeyChar)) && !(char.IsControl(e.KeyChar)) && e.KeyChar != ',')
             {
                 e.Handled = true;
             }

@@ -1,4 +1,4 @@
-﻿using CodersGrowth.Dominio.Enums;
+﻿  using CodersGrowth.Dominio.Enums;
 using CodersGrowth.Dominio.Filtros;
 using CodersGrowth.Dominio.Models;
 using CodersGrowth.Servicos.Servicos;
@@ -71,7 +71,7 @@ namespace CodersGrowth.Forms1
                 personagemNovo.RecargaDeEnergia = recarga;
                 personagemNovo.Escudo = escudo;
                 personagemNovo.CriadoPorUsuario = true;
-                personagemNovo.DataDeAquisicao = dateTimePicker.Value;
+                personagemNovo.DataDeAquisicao = dateTimePicker.Value.Date;
                 personagemNovo.NomeUsuario = textBoxNomeU.Text;
 
                 filtroUsuario.NomeDeUsuario = personagemNovo.NomeUsuario;
@@ -186,8 +186,8 @@ namespace CodersGrowth.Forms1
         private decimal ConverterParaDecimal(string text) => string.IsNullOrEmpty(text) ? (decimal)default : Convert.ToDecimal(text);
         
         private void validarEntradaDeValoresNaoNumericos(object sender, KeyPressEventArgs e)
-        {
-            if (!(char.IsNumber(e.KeyChar)) && !(char.IsControl(e.KeyChar)))
+        { 
+            if (!(char.IsNumber(e.KeyChar)) && !(char.IsControl(e.KeyChar)) && e.KeyChar != ',')
             {
                 e.Handled = true;
             }

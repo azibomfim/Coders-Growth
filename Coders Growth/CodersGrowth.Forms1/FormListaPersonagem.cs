@@ -1,10 +1,8 @@
-using CodersGrowth.Servicos.Servicos;
-using CodersGrowth.Dominio.Models;
 using CodersGrowth.Dominio.Enums;
 using CodersGrowth.Dominio.Filtros;
+using CodersGrowth.Dominio.Models;
+using CodersGrowth.Servicos.Servicos;
 using LinqToDB.Common;
-using System.Diagnostics;
-using System.Windows.Forms;
 
 namespace CodersGrowth.Forms1
 {
@@ -14,10 +12,10 @@ namespace CodersGrowth.Forms1
         private FiltroPersonagem? filtroPersonagem = new FiltroPersonagem();
         private ServicoUsuario _servicoUsuario;
         public Personagem _personagemEditavel;
+        private FiltroPersonagem filtroInicial = null;
 
         public FormListaPersonagem(ServicoPersonagem servicoPersonagem, ServicoUsuario servicoUsuario)
         {
-            FiltroPersonagem filtroInicial = null;
             _servicoPersonagem = servicoPersonagem;
             _servicoUsuario = servicoUsuario;
             InitializeComponent();
@@ -39,24 +37,25 @@ namespace CodersGrowth.Forms1
         private FiltroPersonagem? obterFiltroPersonagem()
         {
             var filtroPersonagem = new FiltroPersonagem();
-            const int idUsuario = 0;
+            const int enumNeutro = 0;
+            const string textoInicial = "Nome de usuário";
 
-            if (comboBoxArma.SelectedItem != null && comboBoxArma.SelectedIndex != idUsuario)
+            if (comboBoxArma.SelectedItem != null && comboBoxArma.SelectedIndex != enumNeutro)
                 filtroPersonagem.Arma = (ArmaEnum)comboBoxArma.SelectedItem;
 
-            if (comboBoxElemento.SelectedItem != null && comboBoxElemento.SelectedIndex != idUsuario)
+            if (comboBoxElemento.SelectedItem != null && comboBoxElemento.SelectedIndex != enumNeutro)
                 filtroPersonagem.Elemento = (ElementoEnum)comboBoxElemento.SelectedItem;
 
-            if (comboBoxNome.SelectedItem != null && comboBoxNome.SelectedIndex != idUsuario)
+            if (comboBoxNome.SelectedItem != null && comboBoxNome.SelectedIndex != enumNeutro)
                 filtroPersonagem.NomePersonagem = (NomeEnum?)comboBoxNome.SelectedValue;
 
             if (checkBoxBool.Checked)
                 filtroPersonagem.CriadoPorUsuario = true;
 
             if (dateTimePickerFiltro.Checked)
-                filtroPersonagem.DataDeAquisicao = (DateTime)dateTimePickerFiltro.Value;
+                filtroPersonagem.DataDeAquisicao = (DateTime)dateTimePickerFiltro.Value.Date;
 
-            if (textBoxFiltroUsuario.Text != "Nome de usuário" && textBoxFiltroUsuario.Text != null)
+            if (textBoxFiltroUsuario.Text != textoInicial && textBoxFiltroUsuario.Text != null)
                 filtroPersonagem.NomeUsuario = textBoxFiltroUsuario.Text;
 
             return filtroPersonagem;
@@ -77,7 +76,6 @@ namespace CodersGrowth.Forms1
 
         private void aoClicarEmLimpar(object sender, EventArgs e)
         {
-            FiltroPersonagem filtroInicial = null;
             dataGridViewPersonagem.DataSource = _servicoPersonagem.ObterTodos(filtroInicial);
         }
 
@@ -121,7 +119,8 @@ namespace CodersGrowth.Forms1
 
         private void aoClicarEmEditar(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 if (dataGridViewPersonagem.SelectedRows.IsNullOrEmpty())
                 {
                     MessageBox.Show(
@@ -151,9 +150,28 @@ namespace CodersGrowth.Forms1
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Erro ao deletar o Personagem!!");
+                MessageBox.Show("Erro ao editar o Personagem!!");
+            }
+        }
+
+        private void formatacaoDeValores(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dataGridViewPersonagem.Columns[e.ColumnIndex] == criadoPorUsuarioColumn)
+            {
+                if (e.Value is bool)
+                {
+                    var valor = (bool)e.Value;
+                    e.Value = valor ? "Sim" : "Não";
+                    e.FormattingApplied = true;
+                }
+            }
+            if (e.Value is decimal)
+            {
+                var valor = (decimal)e.Value;
+                e.Value = valor.ToString("F2");
+                e.FormattingApplied = true;
             }
         }
     }

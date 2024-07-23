@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CodersGrowth.Dominio1\CodersGrowth.Dominio.csproj" />
-    <ProjectReference Include="..\CodersGrowth.Infra1\CodersGrowth.Infra.csproj" />
   </ItemGroup>
 
 </Project>
