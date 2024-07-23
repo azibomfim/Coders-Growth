@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
+﻿using System.ComponentModel;
 
 namespace CodersGrowth.Dominio.Enums
 {
     public enum NomeEnum
     {
-        Aether,
+        Nome,
         Albedo,
         Alhaitham,
         Aloy,
         Amber,
         Arlecchino,
-        [Description("Kamisato Ayaka")]
         Ayaka,
-        [Description("Kamisato Ayato")]
         Ayato,
         Baizhu,
         Barbara,
@@ -41,24 +36,19 @@ namespace CodersGrowth.Dominio.Enums
         Gaming,
         Ganyu,
         Gorou,
-        [Description("Shikanoin Heizou")]
         Heizou,
         HuTao,
-        [Description("Arataki Itto")]
         Itto,
         Jean,
-        [Description("Kaedehara Kazuha")]
         Kazuha,
         Kaeya,
         Kaveh,
         Keqing,
         Kirara,
         Klee,
-        [Description("Sangonomiya Kokomi")]
         Kokomi,
         Layla,
         Lisa,
-        Lumine,
         Lynette,
         Lyney,
         Mika,
@@ -70,37 +60,27 @@ namespace CodersGrowth.Dominio.Enums
         Ningguang,
         Noelle,
         Qiqi,
-        [Description("Raiden Shogun")]
         Raiden,
         Razor,
         Rosaria,
-        [Description("Kujou Sara")]
         Sara,
         Sayu,
         Sethos,
         Shenhe,
-        [Description("Kuki Shinobu")]
         Shinobu,
+        Sigewinne,
         Sucrose,
         Tartaglia,
         Thoma,
         Tighnari,
-        [Description("Travaler (sem elemento)")]
         Traveler,
-        [Description("Travaler (Anemo)")]
-        Traveler1,
-        [Description("Travaler (Cryo)")]
-        Traveler2,
-        [Description("Travaler (Dendro)")]
-        Traveler3,
-        [Description("Travaler (Electro)")]
-        Traveler4,
-        [Description("Travaler (Geo)")]
-        Traveler5,
-        [Description("Travaler (Hydro)")]
-        Traveler6,
-        [Description("Travaler (Pyro)")]
-        Traveler7,
+        TravelerAnemo,
+        TravelerCryo,
+        TravelerDendro,
+        TravelerElectro,
+        TravelerGeo,
+        TravelerHydro,
+        TravelerPyro,
         Venti,
         Wanderer,
         Wriothesley,
@@ -108,7 +88,6 @@ namespace CodersGrowth.Dominio.Enums
         Xiao,
         Xingqiu,
         Xinyan,
-        [Description("Yae Miko")]
         Yae,
         Yanfei,
         Yaoyao,

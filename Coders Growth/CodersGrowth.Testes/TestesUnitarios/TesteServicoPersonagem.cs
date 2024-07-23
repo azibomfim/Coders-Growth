@@ -111,16 +111,17 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 ProficienciaElemental = 68,
                 TaxaCrit = 48.9m,
                 DanoCrit = 151.1m,
-                BonusCura = 0.0m,
+                BonusCura = 1.0m,
                 RecargaDeEnergia = 155.5m,
-                Escudo = 0.0m,
+                Escudo = 1.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = true,
-                ConstelacaoLv = 0,
+                ConstelacaoLv = 1,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Cryo,
                 Arma = ArmaEnum.Espadao,
                 IdUsuario = 1,
+                NomeUsuario = "rato smites"
             };
 
             var personagemCriado = personagem;
@@ -141,16 +142,17 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 ProficienciaElemental = 68,
                 TaxaCrit = 48.9m,
                 DanoCrit = 151.1m,
-                BonusCura = 0.0m,
+                BonusCura = 1.0m,
                 RecargaDeEnergia = 155.5m,
-                Escudo = 0.0m,
+                Escudo = 1.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = false,
-                ConstelacaoLv = 0,
+                ConstelacaoLv = 1,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Cryo,
                 Arma = ArmaEnum.Espadao,
                 IdUsuario = 1,
+                NomeUsuario = "rato smites"
             };
 
             var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => _servicoPersonagem.Criar(personagem));
@@ -172,9 +174,9 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 ProficienciaElemental = 68,
                 TaxaCrit = 48.9m,
                 DanoCrit = 151.1m,
-                BonusCura = 0.0m,
+                BonusCura = 1.0m,
                 RecargaDeEnergia = 155.5m,
-                Escudo = 0.0m,
+                Escudo = 1.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = true,
                 ConstelacaoLv = ConstelacaoLv,
@@ -182,6 +184,7 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 Elemento = ElementoEnum.Cryo,
                 Arma = ArmaEnum.Espadao,
                 IdUsuario = 1,
+                NomeUsuario = "rato smites"
             };
 
             var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => _servicoPersonagem.Criar(personagem));
@@ -201,20 +204,21 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 ProficienciaElemental = -68,
                 TaxaCrit = 48.9m,
                 DanoCrit = 151.1m,
-                BonusCura = 0.0m,
+                BonusCura = 10.0m,
                 RecargaDeEnergia = 155.5m,
-                Escudo = 0.0m,
+                Escudo = 1.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = true,
-                ConstelacaoLv = 0,
+                ConstelacaoLv = 1,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Cryo,
                 Arma = ArmaEnum.Espadao,
                 IdUsuario = 1,
+                NomeUsuario = "rato smites"
             };
 
             var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => _servicoPersonagem.Criar(personagem));
-            Assert.Contains("Proficiência deve ser maior que 0", mensagemDeErroPersonagem.Message);
+            Assert.Contains("Proficiência deve ter um valor positivo", mensagemDeErroPersonagem.Message);
         }
 
         [Fact]
@@ -230,20 +234,21 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 ProficienciaElemental = 68,
                 TaxaCrit = 48.9m,
                 DanoCrit = 151.1m,
-                BonusCura = 0.0m,
+                BonusCura = 10.0m,
                 RecargaDeEnergia = 155.5m,
-                Escudo = 0.0m,
+                Escudo = 1.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = true,
-                ConstelacaoLv = 0,
+                ConstelacaoLv = 1,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Cryo,
                 Arma = ArmaEnum.Espadao,
                 IdUsuario = 1,
+                NomeUsuario = "rato smites"
             };
 
             var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => _servicoPersonagem.Criar(personagem));
-            Assert.Contains("Vida deve ser maior que 0", mensagemDeErroPersonagem.Message);
+            Assert.Contains("Vida deve ter um valor positivo", mensagemDeErroPersonagem.Message);
         }
 
         [Fact]
@@ -259,20 +264,21 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 ProficienciaElemental = 68,
                 TaxaCrit = 48.9m,
                 DanoCrit = 151.1m,
-                BonusCura = 0.0m,
+                BonusCura = 10.0m,
                 RecargaDeEnergia = 155.5m,
-                Escudo = 0.0m,
+                Escudo = 10.0m,
                 BonusElemental = 61.6m,
                 CriadoPorUsuario = false,
-                ConstelacaoLv = 0,
+                ConstelacaoLv = 1,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Cryo,
                 Arma = ArmaEnum.Espadao,
                 IdUsuario = 1,
+                NomeUsuario = "rato smites"
             };
 
             var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => _servicoPersonagem.Criar(personagem));
-            Assert.Contains("Defesa deve ser maior que 0", mensagemDeErroPersonagem.Message);
+            Assert.Contains("Defesa deve ter um valor positivo", mensagemDeErroPersonagem.Message);
         }
 
         [Fact]
@@ -288,20 +294,21 @@ namespace CodersGrowth.Testes.TestesUnitarios
                 ProficienciaElemental = 68,
                 TaxaCrit = 48.9m,
                 DanoCrit = 151.1m,
-                BonusCura = 0.0m,
+                BonusCura = 10.0m,
                 RecargaDeEnergia = 155.5m,
-                Escudo = 0.0m,
+                Escudo = 10.0m,
                 BonusElemental = 61.6m,
-                CriadoPorUsuario = false,
-                ConstelacaoLv = 0,
+                CriadoPorUsuario = true,
+                ConstelacaoLv = 1,
                 DataDeAquisicao = DateTime.Now,
                 Elemento = ElementoEnum.Cryo,
                 Arma = ArmaEnum.Espadao,
                 IdUsuario = 1,
+                NomeUsuario = "rato smites"
             };
 
             var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => _servicoPersonagem.Criar(personagem));
-            Assert.Contains("Ataque deve ser maior que 0", mensagemDeErroPersonagem.Message);
+            Assert.Contains("Ataque deve ter um valor positivo", mensagemDeErroPersonagem.Message);
         }
 
         [Fact]
@@ -312,9 +319,9 @@ namespace CodersGrowth.Testes.TestesUnitarios
 
             personagem.TaxaCrit = 81.7m;
             personagem.DanoCrit = 207.5m;
-            personagem.BonusCura = 0.00m;
+            personagem.BonusCura = 10.00m;
             personagem.Ataque = 1879;
-            personagem.Escudo = 0.0m;
+            personagem.Escudo = 10.0m;
             personagem.DataDeAquisicao = DateTime.Now;
             personagem.BonusElemental = 67.3m;
             personagem.ConstelacaoLv = 2;
@@ -323,6 +330,8 @@ namespace CodersGrowth.Testes.TestesUnitarios
             personagem.RecargaDeEnergia = 136.7m;
             personagem.Vida = 32752;
             personagem.CriadoPorUsuario = true;
+            personagem.NomeUsuario = "rato smites";
+            personagem.IdUsuario = 1;
 
             var personagemEditado = personagem;
             _servicoPersonagem.Editar(personagemEditado);
@@ -340,9 +349,9 @@ namespace CodersGrowth.Testes.TestesUnitarios
 
             personagem.TaxaCrit = 81.7m;
             personagem.DanoCrit = 207.5m;
-            personagem.BonusCura = 0.00m;
+            personagem.BonusCura = 10.00m;
             personagem.Ataque = 1879;
-            personagem.Escudo = 0.0m;
+            personagem.Escudo = 1.0m;
             personagem.DataDeAquisicao = DateTime.Now;
             personagem.BonusElemental = 67.3m;
             personagem.ConstelacaoLv = ConstelacaoLv;
@@ -351,6 +360,8 @@ namespace CodersGrowth.Testes.TestesUnitarios
             personagem.RecargaDeEnergia = 136.7m;
             personagem.Vida = 32752;
             personagem.CriadoPorUsuario = true;
+            personagem.NomeUsuario = "rato smites";
+            personagem.IdUsuario = 1;
 
             var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => _servicoPersonagem.Editar(personagem));
             Assert.Contains("Insira um nível de constelação de 0 a 6", mensagemDeErroPersonagem.Message);
@@ -364,9 +375,9 @@ namespace CodersGrowth.Testes.TestesUnitarios
 
             personagem.TaxaCrit = 81.7m;
             personagem.DanoCrit = 207.5m;
-            personagem.BonusCura = 0.00m;
+            personagem.BonusCura = 1.00m;
             personagem.Ataque = 1879;
-            personagem.Escudo = 0.0m;
+            personagem.Escudo = 1.0m;
             personagem.DataDeAquisicao = DateTime.Now;
             personagem.BonusElemental = 67.3m;
             personagem.ConstelacaoLv = 2;
@@ -375,9 +386,11 @@ namespace CodersGrowth.Testes.TestesUnitarios
             personagem.RecargaDeEnergia = 136.7m;
             personagem.Vida = 32752;
             personagem.CriadoPorUsuario = true;
+            personagem.NomeUsuario = "rato smites";
+            personagem.IdUsuario = 1;
 
             var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => _servicoPersonagem.Editar(personagem));
-            Assert.Contains("Proficiência deve ser maior que 0", mensagemDeErroPersonagem.Message);
+            Assert.Contains("Proficiência deve ter um valor positivo", mensagemDeErroPersonagem.Message);
         }
 
         [Fact]
@@ -388,9 +401,9 @@ namespace CodersGrowth.Testes.TestesUnitarios
 
             personagem.TaxaCrit = 81.7m;
             personagem.DanoCrit = 207.5m;
-            personagem.BonusCura = 0.00m;
+            personagem.BonusCura = 1.00m;
             personagem.Ataque = 1879;
-            personagem.Escudo = 0.0m;
+            personagem.Escudo = 1.0m;
             personagem.DataDeAquisicao = DateTime.Now;
             personagem.BonusElemental = 67.3m;
             personagem.ConstelacaoLv = 2;
@@ -399,9 +412,11 @@ namespace CodersGrowth.Testes.TestesUnitarios
             personagem.RecargaDeEnergia = 136.7m;
             personagem.Vida = -1;
             personagem.CriadoPorUsuario = true;
+            personagem.NomeUsuario = "rato smites";
+            personagem.IdUsuario = 1;
 
             var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => _servicoPersonagem.Editar(personagem));
-            Assert.Contains("Vida deve ser maior que 0", mensagemDeErroPersonagem.Message);
+            Assert.Contains("Vida deve ter um valor positivo", mensagemDeErroPersonagem.Message);
         }
 
         [Fact]
@@ -412,9 +427,9 @@ namespace CodersGrowth.Testes.TestesUnitarios
 
             personagem.TaxaCrit = 81.7m;
             personagem.DanoCrit = 207.5m;
-            personagem.BonusCura = 0.00m;
+            personagem.BonusCura = 1.00m;
             personagem.Ataque = 1879;
-            personagem.Escudo = 0.0m;
+            personagem.Escudo = 1.0m;
             personagem.DataDeAquisicao = DateTime.Now;
             personagem.BonusElemental = 67.3m;
             personagem.ConstelacaoLv = 2;
@@ -423,9 +438,11 @@ namespace CodersGrowth.Testes.TestesUnitarios
             personagem.RecargaDeEnergia = 136.7m;
             personagem.Vida = 29810;
             personagem.CriadoPorUsuario = true;
+            personagem.NomeUsuario = "rato smites";
+            personagem.IdUsuario = 1;
 
             var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => _servicoPersonagem.Editar(personagem));
-            Assert.Contains("Defesa deve ser maior que 0", mensagemDeErroPersonagem.Message);
+            Assert.Contains("Defesa deve ter um valor positivo", mensagemDeErroPersonagem.Message);
         }
 
         [Fact]
@@ -436,9 +453,9 @@ namespace CodersGrowth.Testes.TestesUnitarios
 
             personagem.TaxaCrit = 81.7m;
             personagem.DanoCrit = 207.5m;
-            personagem.BonusCura = 0.00m;
+            personagem.BonusCura = 10.00m;
             personagem.Ataque = -1;
-            personagem.Escudo = 0.0m;
+            personagem.Escudo = 10.0m;
             personagem.DataDeAquisicao = DateTime.Now;
             personagem.BonusElemental = 67.3m;
             personagem.ConstelacaoLv = 2;
@@ -447,16 +464,18 @@ namespace CodersGrowth.Testes.TestesUnitarios
             personagem.RecargaDeEnergia = 136.7m;
             personagem.Vida = 32984;
             personagem.CriadoPorUsuario = true;
+            personagem.NomeUsuario = "rato smites";
+            personagem.IdUsuario = 1;
 
             var mensagemDeErroPersonagem = Assert.Throws<ValidationException>(() => _servicoPersonagem.Editar(personagem));
-            Assert.Contains("Ataque deve ser maior que 0", mensagemDeErroPersonagem.Message);
+            Assert.Contains("Ataque deve ter um valor positivo", mensagemDeErroPersonagem.Message);
         }
 
         [Fact]
         public void deve_rejeitar_edicao_de_personagem_nulo()
         {
             Personagem personagem = null;
-            var mensagemDeErroPersonagem = Assert.Throws<Exception>(() => _servicoPersonagem.Editar(personagem));
+            var mensagemDeErroPersonagem = Assert.Throws<NullReferenceException>(() => _servicoPersonagem.Editar(personagem));
             Assert.Contains("Ocorreu um erro na aplicação: Personagem não retornado", mensagemDeErroPersonagem.Message);
         }
 
@@ -470,9 +489,9 @@ namespace CodersGrowth.Testes.TestesUnitarios
             personagem.CriadoPorUsuario = false;
             personagem.TaxaCrit = 81.7m;
             personagem.DanoCrit = 207.5m;
-            personagem.BonusCura = 0.00m;
+            personagem.BonusCura = 10.00m;
             personagem.Ataque = 1234;
-            personagem.Escudo = 0.0m;
+            personagem.Escudo = 10.0m;
             personagem.DataDeAquisicao = DateTime.Now;
             personagem.BonusElemental = 67.3m;
             personagem.ConstelacaoLv = 2;

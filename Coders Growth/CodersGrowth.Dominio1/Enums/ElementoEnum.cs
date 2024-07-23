@@ -2,12 +2,14 @@
 {
     public enum ElementoEnum
     {
+        Elemento,
         Anemo,
         Cryo,
         Dendro,
         Electro,
         Geo,
         Hydro,
-        Pyro
+        Pyro,
+        Nenhum
     }
 }

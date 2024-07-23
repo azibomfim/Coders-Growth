@@ -28,6 +28,7 @@ namespace CodersGrowth.Testes.Singleton
                 Elemento = ElementoEnum.Anemo,
                 Arma = ArmaEnum.Lanca,
                 IdUsuario = 5,
+                NomeUsuario = "abelhinha triste"
             },
 
             new Personagem()
@@ -50,6 +51,7 @@ namespace CodersGrowth.Testes.Singleton
                 Elemento = ElementoEnum.Pyro,
                 Arma = ArmaEnum.Lanca,
                 IdUsuario = 2,
+                NomeUsuario = "furao insecs"
             },
 
             new Personagem()
@@ -72,6 +74,7 @@ namespace CodersGrowth.Testes.Singleton
                  Elemento = ElementoEnum.Hydro,
                  Arma = ArmaEnum.Espada,
                  IdUsuario = null,
+                 NomeUsuario = null
             },
 
             new Personagem()
@@ -94,6 +97,7 @@ namespace CodersGrowth.Testes.Singleton
                  Elemento = ElementoEnum.Cryo,
                  Arma = ArmaEnum.Lanca,
                  IdUsuario = null,
+                 NomeUsuario = null
             },
 
             new Personagem()
@@ -116,6 +120,7 @@ namespace CodersGrowth.Testes.Singleton
                  Elemento = ElementoEnum.Geo,
                  Arma = ArmaEnum.Lanca,
                  IdUsuario = 4,
+                 NomeUsuario = "toninha bipede"
             }
         };
 

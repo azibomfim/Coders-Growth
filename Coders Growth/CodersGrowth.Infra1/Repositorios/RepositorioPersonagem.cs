@@ -33,8 +33,9 @@ namespace CodersGrowth.Infra.Repositorios
         public List<Personagem> ObterTodos(FiltroPersonagem? filtroPersonagem)
         {
             IQueryable<Personagem> query = _conexaoDados.TabelaPersonagem.AsQueryable();
+            const int idUsuarioZero = 0;
 
-            if (filtroPersonagem?.NomePersonagem != null)
+            if (filtroPersonagem?.NomePersonagem != null && filtroPersonagem?.NomePersonagem != idUsuarioZero)
             {
                 query = from c in query
                         where c.NomePersonagem == filtroPersonagem.NomePersonagem
@@ -48,14 +49,14 @@ namespace CodersGrowth.Infra.Repositorios
                         select c;
             }
 
-            if (filtroPersonagem?.Elemento != null)
+            if (filtroPersonagem?.Elemento != null && filtroPersonagem?.Elemento != idUsuarioZero)
             {
                 query = from c in query
                         where c.Elemento == filtroPersonagem.Elemento
                         select c;
             }
 
-            if (filtroPersonagem?.Arma != null)
+            if (filtroPersonagem?.Arma != null && filtroPersonagem?.Arma != idUsuarioZero)
             {
                 query = from c in query
                         where c.Arma == filtroPersonagem.Arma
@@ -67,7 +68,12 @@ namespace CodersGrowth.Infra.Repositorios
                         where c.DataDeAquisicao == filtroPersonagem.DataDeAquisicao
                         select c;
             }
-
+            if (filtroPersonagem?.NomeUsuario != null)
+            {
+                query = from c in query
+                        where c.NomeUsuario.Contains(filtroPersonagem.NomeUsuario)
+                        select c;
+            }
             return query.ToList();
         }
 

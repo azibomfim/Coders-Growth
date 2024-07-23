@@ -1,7 +1,7 @@
-﻿using LinqToDB.AspNet;
-using Microsoft.Extensions.DependencyInjection;
-using LinqToDB;
+﻿using LinqToDB;
+using LinqToDB.AspNet;
 using LinqToDB.AspNet.Logging;
+using Microsoft.Extensions.DependencyInjection;
 using System.Configuration;
 
 
