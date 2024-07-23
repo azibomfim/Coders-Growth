@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CodersGrowth.Dominio1\CodersGrowth.Dominio.csproj" />
+    <ProjectReference Include="..\CodersGrowth.Servicos1\CodersGrowth.Servicos.csproj" />
   </ItemGroup>
 
 </Project>
