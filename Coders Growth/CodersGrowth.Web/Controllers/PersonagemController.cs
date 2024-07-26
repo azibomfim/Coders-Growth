@@ -17,35 +17,35 @@ namespace CodersGrowth.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult ObterTodos([FromQuery]FiltroPersonagem? filtroPersonagem)
+        public OkObjectResult ObterTodos([FromQuery]FiltroPersonagem? filtroPersonagem)
         {
             var personagens = _servicoPersonagem.ObterTodos(filtroPersonagem);
             return Ok(personagens);
         }
 
         [HttpGet("{id}")]
-        public IActionResult ObterPorId([FromRoute]int id)
+        public OkObjectResult ObterPorId([FromRoute]int id)
         {
             var personagem = _servicoPersonagem.ObterPorId(id);
             return Ok(personagem);
         }
 
         [HttpPost]
-        public IActionResult Criar([FromBody] Personagem personagemCriar)
+        public CreatedResult Criar([FromBody] Personagem personagemCriar)
         {
             _servicoPersonagem.Criar(personagemCriar);
-            return CreatedAtAction(nameof(ObterPorId), new { id = personagemCriar.Id }, personagemCriar);
+            return Created($"novoPersonagem/{personagemCriar.Id}", personagemCriar);
         }
 
-        [HttpPut]
-        public IActionResult Editar([FromBody] Personagem personagemEditar)
+        [HttpPatch]
+        public NoContentResult Editar([FromBody] Personagem personagemEditar)
         {
             _servicoPersonagem.Editar(personagemEditar);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Remover([FromRoute]int id)
+        public NoContentResult Remover([FromRoute]int id)
         {
             _servicoPersonagem.Remover(id);
             return NoContent();
