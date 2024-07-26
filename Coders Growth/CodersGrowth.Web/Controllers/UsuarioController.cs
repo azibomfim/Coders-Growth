@@ -24,7 +24,7 @@ namespace CodersGrowth.Web.Controllers
         }
 
         [HttpGet("{id}")]
-        public OkObjectResult ObterPorId(int id)
+        public OkObjectResult ObterPorId([FromRoute]int id)
         {
             var usuario = _servicoUsuario.ObterPorId(id);
             return Ok(usuario);
@@ -46,7 +46,7 @@ namespace CodersGrowth.Web.Controllers
         }
 
         [HttpDelete("{id}")]
-        public NoContentResult Remover(int id)
+        public NoContentResult Remover([FromRoute]int id)
         {
             _servicoUsuario.Remover(id);
             return NoContent();
