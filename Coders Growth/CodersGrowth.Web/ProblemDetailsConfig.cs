@@ -1,90 +1,96 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Serialization;
-using Newtonsoft.Json;
-using FluentValidation;
-using System.Diagnostics;
 using Microsoft.Data.SqlClient;
-using CodersGrowth.Web;
+using Newtonsoft.Json;
 
 public static class ProblemDetailsConfig
 {
     public static void UseProblemDetailsExceptionHandler(this IApplicationBuilder app, ILoggerFactory loggerFactory)
     {
-       
         app.UseExceptionHandler(construtor =>
         {
             construtor.Run(async contexto =>
             {
-                var recursoTratadorDeExcecoes = contexto.Features.Get<IExceptionHandlerFeature>();
+                var exceptionHandlerFeature = contexto.Features.Get<IExceptionHandlerFeature>();
 
-                if (recursoTratadorDeExcecoes != null)
+                if (exceptionHandlerFeature != null)
                 {
-                    var excecao = recursoTratadorDeExcecoes.Error;
+                    var exception = exceptionHandlerFeature.Error;
+                    var problemDetails = CreateProblemDetails(contexto, exception);
+                    var logger = loggerFactory.CreateLogger("GlobalExceptionHandler");
 
-                    var detalhesProblema = new ProblemDetails
-                    {
-                        Instance = contexto.Request.HttpContext.Request.Path
-                    };
+                    LogException(logger, exception);
 
-                    var arquivador = loggerFactory.CreateLogger("GlobalExceptionHandler");
-
-                    switch (excecao)
-                    {
-                        case BadHttpRequestException badRequest:
-                            var tituloExcecaoMalHttp = "A requisição é invalida";
-                            var tipoExcecaoMalHttp = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
-                            
-                            detalhesProblema.Title = tituloExcecaoMalHttp;
-                            detalhesProblema.Status = StatusCodes.Status400BadRequest;
-                            detalhesProblema.Type = tipoExcecaoMalHttp;
-                            detalhesProblema.Detail = badRequest.Message;
-                            break;
-                        case ValidationException excecaoValidacao:
-                            arquivador.LogError($"Erro Inesperado: {recursoTratadorDeExcecoes.Error}");
-                            
-                            var tituloExcecaoValidacao = "Erro ao Validar Objeto";
-                            var tipoExcecaoValidacao = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.6.1";
-                            
-                            detalhesProblema.Title = tituloExcecaoValidacao;
-                            detalhesProblema.Status = StatusCodes.Status500InternalServerError;
-                            detalhesProblema.Type = tipoExcecaoValidacao;
-                            
-                            string detalhes = "";
-                            foreach (var erro in excecaoValidacao.Errors)
-                            {
-                                detalhes += erro.ErrorMessage + "\n";
-                            }
-
-                            detalhesProblema.Detail = detalhes;
-                            break;
-                        case SqlException excecaoSql:
-                            arquivador.LogError($"Erro Inesperado: {recursoTratadorDeExcecoes.Error}");
-                            
-                            var tituloExcecaoSql = "Exceção no banco de dados";
-                            var tipoExcecaoSql = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.6.1";
-                        
-                            detalhesProblema.Title = tituloExcecaoSql;
-                            detalhesProblema.Status = StatusCodes.Status500InternalServerError;
-                            detalhesProblema.Type = tipoExcecaoSql;
-                            detalhesProblema.Detail = excecaoSql.Message;
-                            break;
-                        default:
-                        arquivador.LogError($"Erro Inesperado: {recursoTratadorDeExcecoes.Error}");
-                        
-                        var tipoExcecaoPadrao = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.6.1";
-
-                        detalhesProblema.Title = excecao.Message;
-                        detalhesProblema.Status = StatusCodes.Status500InternalServerError;
-                        detalhesProblema.Type =  tipoExcecaoPadrao;
-                        detalhesProblema.Detail = excecao.StackTrace;
-                        break;
-                    }
-
-                    var json = JsonConvert.SerializeObject(detalhesProblema, new JsonSerializerSettings());
+                    var json = JsonConvert.SerializeObject(problemDetails, new JsonSerializerSettings());
                     await contexto.Response.WriteAsync(json);
                 }
             });
         });
-    } 
+    }
+
+    private static ProblemDetails CreateProblemDetails(HttpContext contexto, Exception exception)
+    {
+        var problemDetails = new ProblemDetails
+        {
+            Instance = contexto.Request.HttpContext.Request.Path
+        };
+
+        switch (exception)
+        {
+            case BadHttpRequestException badRequest:
+                ConfigureBadRequestProblemDetails(problemDetails, badRequest);
+                break;
+            case ValidationException validationException:
+                ConfigureValidationProblemDetails(problemDetails, validationException);
+                break;
+            case SqlException sqlException:
+                ConfigureSqlProblemDetails(problemDetails, sqlException);
+                break;
+            default:
+                ConfigureDefaultProblemDetails(problemDetails, exception);
+                break;
+        }
+
+        return problemDetails;
+    }
+
+    private static void ConfigureBadRequestProblemDetails(ProblemDetails problemDetails, BadHttpRequestException exception)
+    {
+        problemDetails.Title = "A requisição é inválida";
+        problemDetails.Status = StatusCodes.Status400BadRequest;
+        problemDetails.Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
+        problemDetails.Detail = exception.Message;
+    }
+
+    private static void ConfigureValidationProblemDetails(ProblemDetails problemDetails, ValidationException exception)
+    {
+        problemDetails.Title = "Erro ao Validar Objeto";
+        problemDetails.Status = StatusCodes.Status500InternalServerError;
+        problemDetails.Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.6.1";
+
+        var details = string.Join("\n", exception.Errors.Select(e => e.ErrorMessage));
+        problemDetails.Detail = details;
+    }
+
+    private static void ConfigureSqlProblemDetails(ProblemDetails problemDetails, SqlException exception)
+    {
+        problemDetails.Title = "Exceção no banco de dados";
+        problemDetails.Status = StatusCodes.Status500InternalServerError;
+        problemDetails.Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.6.1";
+        problemDetails.Detail = exception.Message;
+    }
+
+    private static void ConfigureDefaultProblemDetails(ProblemDetails problemDetails, Exception exception)
+    {
+        problemDetails.Title = exception.Message;
+        problemDetails.Status = StatusCodes.Status500InternalServerError;
+        problemDetails.Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.6.1";
+        problemDetails.Detail = exception.StackTrace;
+    }
+
+    private static void LogException(ILogger logger, Exception exception)
+    {
+        logger.LogError($"Erro Inesperado: {exception}");
+    }
 }
