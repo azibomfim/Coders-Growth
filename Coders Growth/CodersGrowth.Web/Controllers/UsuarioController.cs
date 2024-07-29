@@ -40,7 +40,6 @@ namespace CodersGrowth.Web.Controllers
         [HttpPatch]
         public NoContentResult Editar([FromBody]Usuario usuarioEditar)
         {
-            usuarioEditar.Id = id;
             _servicoUsuario.Editar(usuarioEditar);
             return NoContent();
         }
