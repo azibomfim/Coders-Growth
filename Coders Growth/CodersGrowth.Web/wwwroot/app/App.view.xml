@@ -1,0 +1,13 @@
+<mvc:View
+      controllerName="ui5.genshin.app.App"
+      xmlns="sap.m"
+      xmlns:mvc="sap.ui.core.mvc">
+      <Shell>
+      <App
+            id="app"/>
+      <Button
+            id = "btnBoasVindas"
+            text="{i18n>btnboasVindas}"
+            press=".onBoasVindas"/>
+      </Shell>
+</mvc:View>
