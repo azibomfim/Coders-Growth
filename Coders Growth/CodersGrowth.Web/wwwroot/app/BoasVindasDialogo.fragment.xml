@@ -3,11 +3,11 @@ xmlns="sap.m"
 xmlns:core="sap.ui.core">
 <Dialog
     id="boasVindasDialogo"
-    title ="{i18n>boasVindasMsg}">
+    title="{i18n>boasVindasMsg}">
     <beginButton>
         <Button
         text="{i18n>btnFecharDialogo}"
-        press=".onFecharDialogo"/>
+        press=".aoClicarEmFecharDialogo"/>
     </beginButton>
 </Dialog>
 </core:FragmentDefinition>

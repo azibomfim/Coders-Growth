@@ -1,26 +1,23 @@
 sap.ui.define([
    "sap/ui/core/mvc/Controller",
-   "sap/ui/model/resource/ResourceModel"
+   "sap/ui/model/resource/ResourceModel",
+   "sap/ui/core/library"
    ], (Controller, ResourceModel) => {
    "use strict";
    
-   return Controller.extend("ui5.genshin.app.App", {
-       onInit(){
-           const i18nModel = new ResourceModel({
-               bundleName: "ui5.genshin.i18n.i18n"
-           });
-           this.getView().setModel(i18nModel, "i18n");
+   return Controller.extend("genshin.app.App", {
+       onInit : function(){
        },
    
-       async onBoasVindas() {
+       aoClicarEmBoasVindas : async function() {
            this.oDialogo ??= await this.loadFragment({
-               name: "ui5.genshin.app.BoasVindasDialogo"
+               name: "genshin.app.BoasVindasDialogo"
            });
    
            this.oDialogo.open();
        },
    
-       onFecharDialogo(){
+       aoClicarEmFecharDialogo : function(){
            this.byId("boasVindasDialogo").close();
        }
    });

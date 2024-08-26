@@ -4,18 +4,20 @@
 	<meta charset="utf-8">
 	<title>Biblioteca Genshin Impact</title>
 	<script
-		id="index-bootstrap"
+		id="sap-ui-bootstrap"
 		src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
 		data-sap-ui-theme="sap_horizon"
 		data-sap-ui-libs="sap.m"
 		data-sap-ui-compat-version="edge"
 		data-sap-ui-async="true"
-		data-sap-ui-on-init="module:ui5/genshin/index"
+		data-sap-ui-onInit="module:sap/ui/core/ComponentSupport"
 		data-sap-ui-resource-roots='{
-			"ui5.genshin": "./"
+			"genshin": "./"
 		}'>
 	</script>
 </head>
-<body class="indexBody" id="content">
+<body class="sapUiBody" id="content">
+	  <div data-sap-ui-component data-name="genshin" data-id="container" data-settings='{"id" : "genshin"}'>
+	</div>
 </body>
 </html>

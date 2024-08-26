@@ -1,9 +1,10 @@
 sap.ui.define([
-	"sap/ui/core/UIComponent"
+	"sap/ui/core/UIComponent",
+	"sap/ui/core/library"
 ], (UIComponent) => {
 	"use strict";
 
-	return UIComponent.extend("ui5.genshin.Component", {
+	return UIComponent.extend("genshin.Component", {
 		metadata: {
 			interfaces: ["sap.ui.core.IAsyncContentCreation"],
 			manifest: "json"
