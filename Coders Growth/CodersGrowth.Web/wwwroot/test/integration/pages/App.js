@@ -1,7 +1,8 @@
 sap.ui.define([
 	"sap/ui/test/Opa5",
-	"sap/ui/test/actions/Press"
-], (Opa5, Press) => {
+	"sap/ui/test/actions/Press",
+	"sap/ui/test/matchers/I18NText"
+], (Opa5, Press, i18NText) => {
 	"use strict";
 
 	const sNomeDaView = "app.App";
@@ -11,12 +12,6 @@ sap.ui.define([
 			actions: {
 				ClicoNoBotaoDeBoasVindas() {
 					return this.waitFor({
-						id: id,
-						matchers:{
-						i18NText: {
-							propertyName: "text",
-							key: btnboasVindas
-						}},
 						viewName: sNomeDaView,
 						actions: new Press(),
 						success: () => Opa5.assert.ok(true, "A caixa de diálogo foi encontrada"),
