@@ -5,7 +5,7 @@ sap.ui.define([
 ], (opaTest) => {
     "use strict";
 
-    QUnit.module("Botao");
+    QUnit.module("App");
 
     opaTest("Ao clicar, deve mostrar o dialogo de boas vindas", (Given, When, Then) => {
         Given.iStartMyUIComponent({
@@ -14,8 +14,14 @@ sap.ui.define([
             }
         }); 
 
-        When.onAppPagina.ClicoNoBotaoDeBoasVindas();
+        When.NaPaginaApp.ClicoNoBotaoDeBoasVindas();
 
-        Then.onAppPagina.DeveExibirDialogoDeBoasVindas();
+        Then.NaPaginaApp.DeveExibirDialogoDeBoasVindas();
+    });
+
+    opaTest("Ao clicar, deve fechar o dialogo de boas vindas", (Given, When, Then) => {
+        When.NaPaginaApp.ClicoNoBotaoDeFecharDialogo();
+
+        Then.NaPaginaApp.DeveFecharDialogoDeBoasVindas();
     });
 });

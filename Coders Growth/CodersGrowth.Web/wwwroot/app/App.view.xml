@@ -7,7 +7,7 @@
             id="App">
       <Button
             id="btnBoasVindas"
-            text="{i18n>btnboasVindas}"
+            text="{i18n>btn.Boas.Vindas}"
             press=".aoClicarEmBoasVindas"/>
       </App>
       </Shell>

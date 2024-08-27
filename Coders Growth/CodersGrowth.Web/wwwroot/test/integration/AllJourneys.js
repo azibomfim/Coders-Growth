@@ -1,7 +1,7 @@
 sap.ui.define([
 	"sap/ui/test/Opa5",
 	"genshin/test/integration/arrangements/Startup",
-	"genshin/test/integration/pages/JourneyBotao"
+	"genshin/test/integration/pages/JornadaApp"
 ], function (Opa5, Startup) {
 	"use strict";
 
