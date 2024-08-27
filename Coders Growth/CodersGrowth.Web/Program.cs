@@ -13,6 +13,7 @@ using FluentValidation;
 using ConfigurationManager = System.Configuration.ConfigurationManager;
 using CodersGrowth.Dominio.Migracoes;
 using CodersGrowth.Dominio.Models;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +41,7 @@ builder.Services.AddLinqToDBContext<ConexaoDados>((provider, options) =>
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
+builder.Services.AddDirectoryBrowser();
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -48,6 +50,13 @@ using (var scope = app.Services.CreateScope())
     runner.MigrateUp();
 }
 app.UseHttpsRedirection();
+app.UseStaticFiles(new StaticFileOptions { ServeUnknownFileTypes = true });
+app.UseFileServer(new FileServerOptions
+{
+    FileProvider = new PhysicalFileProvider(
+           Path.Combine(builder.Environment.ContentRootPath, "wwwroot")),
+    EnableDirectoryBrowsing = true
+});
 app.UseRouting();
 app.MapControllers();
 
