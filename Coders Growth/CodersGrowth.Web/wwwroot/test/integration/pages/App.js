@@ -4,14 +4,14 @@ sap.ui.define([
 ], (Opa5, Press) => {
 	"use strict";
 
-	const NomeDaView = "app.App";
+	const nomeDaView = "app.App";
 
 	Opa5.createPageObjects({
-		NaPaginaApp: {
+		naPaginaApp: {
 			actions: {
-				ClicoNoBotaoDeBoasVindas() {
+				clicoNoBotaoDeBoasVindas() {
 					return this.waitFor({
-						viewName: NomeDaView,
+						viewName: nomeDaView,
 						controlType: "sap.m.Button",
 						matchers: {
 							i18NText: {
@@ -24,7 +24,7 @@ sap.ui.define([
 						errorMessage: "O botão 'Diga Bem Vindo com caixa de diálogo' não foi encontrado na visualização App"
 					});
 				},
-				ClicoNoBotaoDeFecharDialogo() {
+				clicoNoBotaoDeFecharDialogo() {
 					return this.waitFor({
 						searchOpenDialogs: true,
 						controlType: "sap.m.Button",
@@ -42,14 +42,14 @@ sap.ui.define([
 			},
 
 			assertions: {
-				DeveExibirDialogoDeBoasVindas() {
+				deveExibirDialogoDeBoasVindas() {
 					return this.waitFor({
 						controlType: "sap.m.Dialog",
 						success: () => Opa5.assert.ok(true, "A caixa de diálogo está aberta"),
 						errorMessage: "O controle de diálogo não foi encontrado"
 					});
 				},
-				DeveFecharDialogoDeBoasVindas() {
+				deveFecharDialogoDeBoasVindas() {
 					return this.waitFor({
 						controlType: "sap.m.Button",
 						matchers: {

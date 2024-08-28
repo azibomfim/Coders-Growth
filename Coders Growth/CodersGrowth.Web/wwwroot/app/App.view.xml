@@ -4,7 +4,7 @@
       xmlns:mvc="sap.ui.core.mvc">
       <Shell>
       <App
-            id="App">
+            id="app">
       <Button
             id="btnBoasVindas"
             text="{i18n>btn.Boas.Vindas}"

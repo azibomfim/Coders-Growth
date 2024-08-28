@@ -14,14 +14,16 @@ sap.ui.define([
             }
         }); 
 
-        When.NaPaginaApp.ClicoNoBotaoDeBoasVindas();
+        When.naPaginaApp.clicoNoBotaoDeBoasVindas();
 
-        Then.NaPaginaApp.DeveExibirDialogoDeBoasVindas();
+        Then.naPaginaApp.deveExibirDialogoDeBoasVindas();
     });
 
     opaTest("Ao clicar, deve fechar o dialogo de boas vindas", (Given, When, Then) => {
-        When.NaPaginaApp.ClicoNoBotaoDeFecharDialogo();
+        When.naPaginaApp.clicoNoBotaoDeFecharDialogo();
 
-        Then.NaPaginaApp.DeveFecharDialogoDeBoasVindas();
+        Then.naPaginaApp.deveFecharDialogoDeBoasVindas();
+
+        Then.iTeardownMyApp();
     });
 });
