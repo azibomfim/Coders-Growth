@@ -6,7 +6,7 @@ sap.ui.define([
 
     QUnit.module("NotFound");
 
-    opaTest("Ao realizar uma requisição em uma rota inexistente, deve mostrar a tela de NotFound", (Given, Then) => {
+    opaTest("Ao realizar uma requisição em uma rota inexistente, deve mostrar a tela de NotFound", (Given, When, Then) => {
         Given.iStartMyUIComponent({
             componentConfig: {
                 name: "genshin"

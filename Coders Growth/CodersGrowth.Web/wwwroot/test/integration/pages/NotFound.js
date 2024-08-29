@@ -12,7 +12,7 @@ sap.ui.define([
 				actions: {},
 
 				assertions: {
-					aTelaNotFoundFoiCarregadaCorretamente: function () {
+					aTelaNotFoundFoiCarregadaCorretamente () {
 						return this.waitFor({
 							viewName: NOTFOUND_VIEW_NAME,
 							matchers: {
