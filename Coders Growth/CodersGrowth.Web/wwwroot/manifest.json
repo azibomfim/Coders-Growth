@@ -46,20 +46,28 @@
         "path": "genshin.app",
         "controlId": "app",
         "controlAggregation": "pages",
+        "bypassed": {
+               "target": "notFound"
+            },
         "async": true
       },
       "routes": [
         {
           "pattern": "",
           "name": "app",
-          "target": "app"
+          "target": "App"
         }
       ],
       "targets": {
         "app": {
-          "id": "app",
-          "name": "App"
-        }
+          "id": "App",
+          "name": "App",
+          "level": 1
+        },
+        "notFound": {
+          "id": "notFound",
+          "name": "NotFound"
+      }
       }
     }
   }

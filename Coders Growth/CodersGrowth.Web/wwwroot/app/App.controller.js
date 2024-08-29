@@ -1,11 +1,12 @@
 sap.ui.define([
    "sap/ui/core/mvc/Controller",
    "sap/ui/model/resource/ResourceModel",
+   "genshin/app/BaseController",
    "sap/ui/core/library"
-   ], (Controller, ResourceModel) => {
+   ], (BaseController) => {
    "use strict";
    
-   return Controller.extend("genshin.app.App", {
+   return BaseController.extend("genshin.app.App", {
        onInit : function(){
        },
    
