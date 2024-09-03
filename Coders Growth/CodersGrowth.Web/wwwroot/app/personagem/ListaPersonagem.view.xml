@@ -13,44 +13,40 @@
 		<m:content>
 			<Table
 				rows="{Personagem>/}"
-				selectionMode="MultiToggle"
-				paste="onPaste"
-				title="{i18n>App.Titulo}"
 				id="table"
-				showColumnVisibilityMenu="{ui>/showVisibilityMenuEntry}"
-				enableColumnFreeze="{ui>/showFreezeMenuEntry}"
-				enableCellFilter="{ui>/enableCellFilter}"
-				columnSelect="onColumnSelect"
-				cellContextmenu="onProductIdCellContextMenu"
-				ariaLabelledBy="title">
+				editable="false"
+				enableSelectAll="false"
+				selectionMode="Single"
+				selectionBehavior="RowOnly">
 				<extension>
 					<m:OverflowToolbar style="Clear">
 						<m:Title id="title" text="Personagens" />
 						<m:ToolbarSpacer />
-						<!-- <m:ComboBox
-                    		id="comboBoxFiltroNome"
+						<m:ComboBox
+                    		id="FiltroNome"
                     		selectedKey="{filtro>/nomePersonagem}"
                     		placeholder="Nome do Personagem"
                     		items="{path: 'nomePersonagem>/'}"
                     		width="22%"
-                    		change=".aoSelecionarNome">
+                    		change=".aoAlterarFiltrar">
                     		<m:items>
-                        	<core:ListItem key="{nomePersonagem>key}" text="{nomePersonagem>descricao}"/>
+                        	<c:ListItem key="{nomePersonagem>key}" text="{nomePersonagem>descricao}"/>
                     		</m:items>
-                		</m:ComboBox> -->
-                <m:DatePicker
-                    id="filtroDataPicker"
-                    placeholder="Data de aquisição"
-                    width="16%"
-                    valueFormat="yyyy-MM-dd"
-                    change=".aoFiltrarPelaData"
-                    value="{
-                        path: 'filtro>/data'
-                    }"/>
+                		</m:ComboBox>
+                		<m:DatePicker
+                   			id="filtroData"
+                    		placeholder="Data de aquisição"
+                    		width="16%"
+                    		valueFormat="yyyy-MM-dd"
+                    		change=".aoAlterarFiltrar"
+                    		value="{
+                        		path: '{filtro>/data}'
+                    		}"/>
 						<m:SearchField
+							id="filtroUsuario"
 							placeholder="Usuario Criador"
-							value="{ui>/globalFilter}"
-							search="filterGlobally"
+							value="{ui>/filterValue}"
+							change="aoAlterarFiltrar"
 							width="auto" />
 						<m:Button
 							icon="sap-icon://decline"

@@ -7,10 +7,6 @@ sap.ui.define([
 
     return Controller.extend("genshin.app.common.BaseController", {
 
-        getRouter : function () {
-            return UIComponent.getRouterFor(this);
-        },
-
         aoPressionarRetornarNavegacao: function () {
             var oHistory, sPreviousHash;
 
@@ -22,7 +18,25 @@ sap.ui.define([
             } else {
                 this.getOwnerComponent().getRouter().navTo("app");
             }
-        }
+        },
+
+        processarAcao: function(action) {
+			try {
+				const result = action();
+				return result;
+			} 
+            catch (error) {
+				console.log("erro");
+			}
+		},
+
+        getRouter() {
+			return UIComponent.getRouterFor(this);
+		},
+		
+		getModel : function (name) {
+			return this.getView().getModel(name);
+		}
 
     });
 
