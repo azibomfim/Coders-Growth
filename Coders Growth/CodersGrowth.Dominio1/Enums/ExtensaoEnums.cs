@@ -21,7 +21,8 @@ namespace CodersGrowth.Dominio.Enums
 
         public static string ObterDescricao(this Enum valorEnum)
         {
-            return valorEnum.ObterAtributoDoTipo<DescriptionAttribute>().Description;
+            var descricao = valorEnum.ObterAtributoDoTipo<DescriptionAttribute>().Description;
+            return descricao;
         }
 
         public static NomeEnum ConverterParaNomeEnum(BaseParaEnum<NomeEnum> baseEnum)

@@ -23,21 +23,21 @@ namespace CodersGrowth.Web.Controllers
         [HttpGet("nomes")]
         public OkObjectResult ObterNomes()
         {
-            var nomes = servicoEnum.ObterTodos<NomeEnum>().ToList<object>();
+            var nomes = servicoEnum.ObterTodos<NomeEnum>().ToList();
             return Ok(nomes);
         }
 
-        [HttpGet]
+        [HttpGet("armas")]
         public OkObjectResult ObterArmas()
         {
             var armas = servicoEnum.ObterTodos<ArmaEnum>();
             return Ok(armas);
         }
 
-        [HttpGet("hghsi")]
+        [HttpGet("elementos")]
         public OkObjectResult ObterElementos()
         {
-            var elementos = servicoEnum.ObterTodos<ElementoEnum>().ToList<object>();
+            var elementos = servicoEnum.ObterTodos<ElementoEnum>().ToList();
             return Ok(elementos);
         }
     }

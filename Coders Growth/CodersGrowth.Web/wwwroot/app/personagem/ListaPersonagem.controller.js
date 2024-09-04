@@ -6,62 +6,84 @@ sap.ui.define([
     "sap/ui/core/format/DateFormat",
     "sap/ui/thirdparty/jquery",
     "sap/ui/core/date/UI5Date",
-    "genshin/app/model/formatter"
-], function (Log, BaseController, JSONModel, MessageToast, DateFormat, jQuery, UI5Date, formatter) {
+    "genshin/app/model/formatter",
+    "genshin/app/model/Repository"
+], function (Log, BaseController, JSONModel, MessageToast, DateFormat, jQuery, UI5Date, formatter, Repository) {
     "use strict";
 
     const  URL_API = "https://localhost:7085/api/Personagem";
     const FILTRO_NOME = "filtroNome";
     const FILTRO_DATA = "filtroData";
     const FILTRO_USUARIO = "filtroUsuario";
-    const NOME_DO_MODELO = "personagem";
+    const NOME_DO_MODELO = "Personagem";
 
     return BaseController.extend("genshin.app.personagem.ListaPersonagem", {
         formatter: formatter,
 
         onInit: function () {
-            this.aoCoincidirRota();
+            return this.aoCoincidirRota();
         },
 
-        carregarDadosPersonagem: function(){
-            fetch ("https://localhost:7085/api/Personagem")
+        carregarDadosPersonagem: async function(){
+            await fetch ("https://localhost:7085/api/Personagem")
                 .then((res) => res.json())
                 .then((data) => this.getView().setModel(new JSONModel(data), "Personagem"))
         },
 
+        obterEnumNome: async function(){
+            await fetch ("https://localhost:7085/api/Enum/nomes")
+                .then((res) => res.json())
+                .then((res) => this.getView().setModel(new JSONModel(res), "enumNome"))
+        },
+
+        obterEnumArma(){
+            fetch ("https://localhost:7085/api/Enum/armas")
+                .then((res) => res.json())
+                .then((res) => this.getView().setModel(new JSONModel(res), "enumArma")
+        )},
+
+        obterEnumElemento (){
+            fetch ("https://localhost:7085/api/Enum/elementos")
+                .then((res) => res.json())
+                .then((res) => this.getView().setModel(new JSONModel(res), "enumElemento")
+        )},
+
         aoCoincidirRota() {
             this.processarAcao(() => {
                 this.getRouter().getRoute("listaPersonagem").attachPatternMatched(async () => {
-                    await this.carregarDadosPersonagem()
-                    // await this.obterNomes()
+                    debugger
+                    await Promise.all([
+                    this.carregarDadosPersonagem(),
+                    this.obterEnumNome(),
+                    this.obterEnumArma(),
+                    this.obterEnumElemento()
+                    ])
+                    
                 }, this);
             })
         },
 
-        aoAlterarFiltrar: function(){
-            
+        aoAlterarFiltrar: async function(){
+            debugger
             this.processarAcao(() => {
-                const queryParts = [];
-                const filtroUsuario = this.getView().byId(FILTRO_USUARIO).getText();
-                const filtroData = this.getView().byId(FILTRO_DATA).getValue(data);
-                const filtroNome = this.getView().byId(FILTRO_NOME).getSelectedItem().getText();
-                
-               
-                if (filtroNome) {
-                    queryParts.push(`Nome=${filtroNome}`);
-                }
+                let nomeUsuario = this.getView().byId(FILTRO_USUARIO).getValue();
 
-                if (filtroData) {
-                    queryParts.push(`DataDeAquisicao=${filtroData}`);
-                }
-
-                if (filtroUsuario) {
-                    queryParts.push(`NomeUsuario=${filtroUsuario}`);
-                }
-
-                const query = URL_API + "?" + queryParts.join("&");
-
+                let dataFormatada = this.getView().byId(FILTRO_DATA).getValue();
+    
+                let nomePersonagem = this.getView().byId(FILTRO_NOME).getSelectedKey();
+    
+                var filtros = "";
+    
+                filtros = nomeUsuario.length == 0 ? filtros + "" : "nomeUsuario=" + nomeUsuario;
+    
+                filtros = dataFormatada.length == 0 ? filtros + "" : (filtros.length == 0 ? filtros + "dataDeAquisicao=" + dataFormatada: filtros + "&dataDeAquisicao=" + dataFormatada);
+    
+                filtros = nomePersonagem.length == 0 ? filtros + "" : (filtros.length == 0 ? filtros + "nomePersonagem=" + nomePersonagem: filtros + "&nomePersonagem=" + nomePersonagem);
+    
+                this.obterTodosFiltros(filtros, NOME_DO_MODELO);
+    
                 this.carregarDadosPersonagem(query, NOME_DO_MODELO, this.getView());
+
             });
         }
 

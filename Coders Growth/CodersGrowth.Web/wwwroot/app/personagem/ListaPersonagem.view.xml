@@ -23,35 +23,34 @@
 						<m:Title id="title" text="Personagens" />
 						<m:ToolbarSpacer />
 						<m:ComboBox
-                    		id="FiltroNome"
+                    		id="filtroNome"
                     		selectedKey="{filtro>/nomePersonagem}"
                     		placeholder="Nome do Personagem"
-                    		items="{path: 'nomePersonagem>/'}"
-                    		width="22%"
+                    		items="{path: 'enumNome>/'}"
+                    		width="20%"
                     		change=".aoAlterarFiltrar">
                     		<m:items>
-                        	<c:ListItem key="{nomePersonagem>key}" text="{nomePersonagem>descricao}"/>
+                        		<c:ListItem key="{enumNome>key}" text="{enumNome>descricao}"/>
                     		</m:items>
                 		</m:ComboBox>
                 		<m:DatePicker
                    			id="filtroData"
                     		placeholder="Data de aquisição"
-                    		width="16%"
-                    		valueFormat="yyyy-MM-dd"
+                    		width="20%"
                     		change=".aoAlterarFiltrar"
                     		value="{
-                        		path: '{filtro>/data}'
-                    		}"/>
+								'path':'/dateTime',
+								'type':'sap.ui.model.type.DateTime',
+								'formatOptions': {
+									'pattern': 'dd/MM/yyyy'
+								}
+							}"/>
 						<m:SearchField
 							id="filtroUsuario"
 							placeholder="Usuario Criador"
 							value="{ui>/filterValue}"
 							change="aoAlterarFiltrar"
-							width="auto" />
-						<m:Button
-							icon="sap-icon://decline"
-							tooltip="Clear all filters"
-							press="clearAllFilters" />
+							width="20%" />
 						<m:ToolbarSeparator />
 					</m:OverflowToolbar>
 				</extension>
