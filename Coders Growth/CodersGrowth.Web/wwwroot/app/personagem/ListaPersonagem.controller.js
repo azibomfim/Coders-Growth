@@ -7,8 +7,8 @@ sap.ui.define([
     "sap/ui/thirdparty/jquery",
     "sap/ui/core/date/UI5Date",
     "genshin/app/model/formatter",
-    "genshin/app/model/Repository"
-], function (Log, BaseController, JSONModel, MessageToast, DateFormat, jQuery, UI5Date, formatter, Repository) {
+    "genshin/app/model/Repositorio"
+], function (Log, BaseController, JSONModel, MessageToast, DateFormat, jQuery, UI5Date, formatter, Repositorio) {
     "use strict";
 
     const  URL_API = "https://localhost:7085/api/Personagem";
@@ -21,51 +21,26 @@ sap.ui.define([
         formatter: formatter,
 
         onInit: function () {
-            return this.aoCoincidirRota();
+            this.getRouter().getRoute("listaPersonagem").attachPatternMatched(async () => {
+                return this.aoCoincidirRota();
+            }, this);
         },
 
-        carregarDadosPersonagem: async function(){
-            await fetch ("https://localhost:7085/api/Personagem")
-                .then((res) => res.json())
-                .then((data) => this.getView().setModel(new JSONModel(data), "Personagem"))
-        },
-
-        obterEnumNome: async function(){
-            await fetch ("https://localhost:7085/api/Enum/nomes")
-                .then((res) => res.json())
-                .then((res) => this.getView().setModel(new JSONModel(res), "enumNome"))
-        },
-
-        obterEnumArma(){
-            fetch ("https://localhost:7085/api/Enum/armas")
-                .then((res) => res.json())
-                .then((res) => this.getView().setModel(new JSONModel(res), "enumArma")
-        )},
-
-        obterEnumElemento (){
-            fetch ("https://localhost:7085/api/Enum/elementos")
-                .then((res) => res.json())
-                .then((res) => this.getView().setModel(new JSONModel(res), "enumElemento")
-        )},
-
-        aoCoincidirRota() {
-            this.processarAcao(() => {
-                this.getRouter().getRoute("listaPersonagem").attachPatternMatched(async () => {
-                    debugger
-                    await Promise.all([
-                    this.carregarDadosPersonagem(),
-                    this.obterEnumNome(),
-                    this.obterEnumArma(),
-                    this.obterEnumElemento()
-                    ])
-                    
-                }, this);
+        aoCoincidirRota: function() {
+            let view = this.getView();
+            this.processarAcao(async () => {
+                await Promise.all([
+                    Repositorio.carregarDadosPersonagem("", view),
+                    Repositorio.obterEnumNome(view),
+                    Repositorio.obterEnumArma(view),
+                    Repositorio.obterEnumElemento(view)
+                ])
             })
         },
 
         aoAlterarFiltrar: async function(){
-            debugger
             this.processarAcao(() => {
+                let view = this.getView();
                 let nomeUsuario = this.getView().byId(FILTRO_USUARIO).getValue();
 
                 let dataFormatada = this.getView().byId(FILTRO_DATA).getValue();
@@ -80,13 +55,8 @@ sap.ui.define([
     
                 filtros = nomePersonagem.length == 0 ? filtros + "" : (filtros.length == 0 ? filtros + "nomePersonagem=" + nomePersonagem: filtros + "&nomePersonagem=" + nomePersonagem);
     
-                this.obterTodosFiltros(filtros, NOME_DO_MODELO);
-    
-                this.carregarDadosPersonagem(query, NOME_DO_MODELO, this.getView());
-
+                Repositorio.carregarDadosPersonagem(filtros, view);
             });
         }
-
     });
-
 });

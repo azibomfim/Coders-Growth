@@ -20,12 +20,12 @@
 				selectionBehavior="RowOnly">
 				<extension>
 					<m:OverflowToolbar style="Clear">
-						<m:Title id="title" text="Personagens" />
+						<m:Title id="title" text="{i18n>ListaPersonagem.Titulo}" />
 						<m:ToolbarSpacer />
 						<m:ComboBox
                     		id="filtroNome"
                     		selectedKey="{filtro>/nomePersonagem}"
-                    		placeholder="Nome do Personagem"
+                    		placeholder="{i18n>Filtro.NomePersonagem}"
                     		items="{path: 'enumNome>/'}"
                     		width="20%"
                     		change=".aoAlterarFiltrar">
@@ -35,7 +35,7 @@
                 		</m:ComboBox>
                 		<m:DatePicker
                    			id="filtroData"
-                    		placeholder="Data de aquisição"
+                    		placeholder="{i18n>Filtro.Data}"
                     		width="20%"
                     		change=".aoAlterarFiltrar"
                     		value="{
@@ -47,7 +47,7 @@
 							}"/>
 						<m:SearchField
 							id="filtroUsuario"
-							placeholder="Usuario Criador"
+							placeholder="{i18n>Filtro.NomeUsuario}"
 							value="{ui>/filterValue}"
 							change="aoAlterarFiltrar"
 							width="20%" />
@@ -85,12 +85,24 @@
 									wrapping="false" />
 						</template>
 					</Column>
-               <Column>
+              		<Column>
 						<m:Label text="{i18n>ListaPersonagem.Coluna.Usuario}" />
 						<template>
 							<m:Text text="{Personagem>nomeUsuario}" wrapping="false" />
 						</template>
 					</Column>
+					<Column class="autoResize">
+                        <m:Label
+                            text="{i18n>ListaPersonagem.Coluna.Data}"/>
+                        <template>
+                            <m:Text
+                                text="{
+									path: 'Personagem>dataDeAquisicao',
+									formatter: '.formatter.formatarData'
+								}"
+                                wrapping="false"/>
+                        </template>
+                    </Column>
 				</columns>
 			</Table>
 		</m:content>
@@ -98,8 +110,6 @@
 			<m:Toolbar>
 				<m:ToolbarSpacer />
 				<m:Button text="{i18n>Criar.Botao}" press="aoClicarEmCriar"
-					type="Ghost" />
-				<m:Button text="{i18n>Detalhes.Botao}" press="aoClicarEmDetalhes"
 					type="Ghost" />
 			</m:Toolbar>
 		</m:footer>

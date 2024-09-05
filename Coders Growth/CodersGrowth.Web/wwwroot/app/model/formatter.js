@@ -1,6 +1,7 @@
 sap.ui.define([
-    "sap/ui/model/json/JSONModel"
-], function (JSONModel) {
+    "sap/ui/model/json/JSONModel",
+    "sap/ui/model/type/DateTime"
+], function (JSONModel, DateTime) {
     "use strict";
 
     return {
@@ -52,7 +53,7 @@ sap.ui.define([
                                 .setModel(new JSONModel([]), nomeModelo)
                     },
 
-                    formatarDatas: function (sData) {
+                    formatarData: function (sData) {
                         if (!sData) {
                             return "";
                         }
@@ -60,6 +61,6 @@ sap.ui.define([
                         var oType = new DateTime({ pattern: "dd/MM/yyyy" });
                         var oDate = new Date(sData);
                         return oType.formatValue(oDate, "string");
-                    },
+                    }
         }
 });
