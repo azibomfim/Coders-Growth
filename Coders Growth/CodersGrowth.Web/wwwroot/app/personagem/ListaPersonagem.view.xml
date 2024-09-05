@@ -60,7 +60,7 @@
 						<template>
 							<m:Text text="{ 
 										path: 'Personagem>nomePersonagem',
-										formatter: '.formatter.formatarEnumNome'
+										formatter: '.formatter.formatarEnums'
 									}" 
 								wrapping="false" />
 						</template>
@@ -70,7 +70,7 @@
 						<template>
 							<m:Text text="{ 
 										path: 'Personagem>elemento',
-										formatter: '.formatter.formatarEnumElemento'
+										formatter: '.formatter.formatarEnums'
 									}"  
 									wrapping="false" />
 						</template>
@@ -80,7 +80,7 @@
 						<template>
 							<m:Text text="{ 
 										path: 'Personagem>arma',
-										formatter: '.formatter.formatarEnumArma'
+										formatter: '.formatter.formatarEnums'
 									}"  
 									wrapping="false" />
 						</template>

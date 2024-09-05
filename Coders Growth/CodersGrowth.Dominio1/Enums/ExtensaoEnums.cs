@@ -11,11 +11,12 @@ namespace CodersGrowth.Dominio.Enums
     {
         public static T? ObterAtributoDoTipo<T>(this Enum valorEnum) where T : System.Attribute
         {
+            var tamanhoMinimo = 0;
             var tipo = valorEnum.GetType();
             var informacaoDoMembro = tipo.GetMember(valorEnum.ToString());
             var atributos = informacaoDoMembro[0].GetCustomAttributes(typeof(T), false);
-            return (atributos.Length > 0)
-                ? (T)atributos[0]
+            return (atributos.Length > tamanhoMinimo)
+                ? (T)atributos[tamanhoMinimo]
                 : null;
         }
 

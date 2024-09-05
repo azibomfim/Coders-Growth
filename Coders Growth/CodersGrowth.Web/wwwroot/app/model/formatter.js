@@ -5,53 +5,47 @@ sap.ui.define([
     "use strict";
 
     return {
-        formatarEnumNome(valorInteiroDoEnumNome){
-            const nomeModelo = "enumNome";
+        formatarEnums(valorInteiroDoEnumNome, valorInteiroDoEnumElemento, valorInteiroDoEnumArma){
+            const modeloNome = "enumNome";
+            const modeloElemento = "enumElemento";
+            const modeloArma = "enumArma";
 
             if (!valorInteiroDoEnumNome)
                 return;
 
-                let modelo = this.getView().getModel(nomeModelo);
+                let modeloN = this.getView().getModel(modeloNome);
 
-                if (modelo) 
-                    return modelo.getData()
+                if (modeloN) 
+                    return modeloN.getData()
                             .find(nome => nome.key === valorInteiroDoEnumNome)?.descricao
                 else 
                     this.getView()
-                        .setModel(new JSONModel([]), nomeModelo)
-            },
+                        .setModel(new JSONModel([]), modeloNome)
 
-            formatarEnumElemento(valorInteiroDoEnumElemento){
-                const nomeModelo = "enumElemento";
-    
-                if (!valorInteiroDoEnumElemento)
-                    return;
-    
-                    let modelo = this.getView().getModel(nomeModelo);
-    
-                    if (modelo) 
-                        return modelo.getData()
-                                .find(elemento => elemento.key === valorInteiroDoEnumElemento)?.descricao
+            if (!valorInteiroDoEnumElemento)
+                return;
+            
+                let modeloE = this.getView().getModel(modeloElemento);
+            
+                if (modeloE) 
+                    return modeloE.getData()
+                            .find(elemento => elemento.key === valorInteiroDoEnumElemento)?.descricao
                     else 
                         this.getView()
-                            .setModel(new JSONModel([]), nomeModelo)
-                },
+                            .setModel(new JSONModel([]), modeloElemento)
 
-                formatarEnumArma(valorInteiroDoEnumArma){
-                    const nomeModelo = "enumArma";
-        
-                    if (!valorInteiroDoEnumArma)
-                        return;
-        
-                        let modelo = this.getView().getModel(nomeModelo);
-        
-                        if (modelo) 
-                            return modelo.getData()
-                                    .find(arma => arma.key === valorInteiroDoEnumArma)?.descricao
-                        else 
+            if (!valorInteiroDoEnumArma)
+                return;
+                
+                let modeloA = this.getView().getModel(modeloArma);
+                
+                if (modeloA) 
+                    return modeloA.getData()
+                            .find(arma => arma.key === valorInteiroDoEnumArma)?.descricao
+                    else 
                             this.getView()
-                                .setModel(new JSONModel([]), nomeModelo)
-                    },
+                                .setModel(new JSONModel([]), modeloArma)
+            },
 
                     formatarData: function (sData) {
                         if (!sData) {

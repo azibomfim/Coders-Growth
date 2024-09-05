@@ -85,10 +85,10 @@ sap.ui.define([
 
 				deveExibirPersonagensDoUsuario: function () {
                     return this.waitFor({
-                        id: idTabela,
                         viewName: nomeDaView,
+                        controlType: "sap.ui.table.Table",
                         check: function(tabela){
-                            return tabela.getBinding().getLength() === personagensPorUsuario
+                            return tabela[0].getBinding().getLength() === personagensPorUsuario
                         },
                         success: (oTable) => Opa5.assert.ok( oTable, "Os personagens foram filtrados corretamente"),
                         errorMessage: "O número de personagens filtrados está errado"
@@ -97,10 +97,10 @@ sap.ui.define([
 
                 deveExibirPersonagensPorData: function () {
                     return this.waitFor({
-                        id: idTabela,
+                        controlType: "sap.ui.table.Table",
                         viewName: nomeDaView,
                         check: function(tabela){
-                            return tabela.getBinding().getLength() === personagensPorData;
+                            return tabela[0].getBinding().getLength() === personagensPorData;
                         },
                         success: (oTable) => Opa5.assert.ok( oTable, "Os personagens foram filtrados corretamente"),
                         errorMessage: "O número de personagens filtrados está errado"
@@ -111,10 +111,8 @@ sap.ui.define([
                     return this.waitFor({
                         viewName: nomeDaView,
                         controlType: "sap.ui.table.Table",
-                        id: idTabela,
-                        viewName: nomeDaView,
                         check: function(tabela){
-                            return tabela.getBinding().getLength() === personagensPorNome;
+                            return tabela[0].getBinding().getLength() === personagensPorNome;
                         },
                         success: (oTable) => Opa5.assert.ok( oTable, "Os personagens foram filtrados corretamente"),
                         errorMessage: "O número de personagens filtrados está errado"
