@@ -50,6 +50,7 @@
 							placeholder="{i18n>Filtro.NomeUsuario}"
 							value="{ui>/filterValue}"
 							change="aoAlterarFiltrar"
+							showSearchButton="false"
 							width="20%" />
 						<m:ToolbarSeparator />
 					</m:OverflowToolbar>
@@ -60,7 +61,7 @@
 						<template>
 							<m:Text text="{ 
 										path: 'Personagem>nomePersonagem',
-										formatter: '.formatter.formatarEnums'
+										formatter: '.formatter.formatarEnumNome'
 									}" 
 								wrapping="false" />
 						</template>
@@ -70,7 +71,7 @@
 						<template>
 							<m:Text text="{ 
 										path: 'Personagem>elemento',
-										formatter: '.formatter.formatarEnums'
+										formatter: '.formatter.formatarEnumElemento'
 									}"  
 									wrapping="false" />
 						</template>
@@ -80,7 +81,7 @@
 						<template>
 							<m:Text text="{ 
 										path: 'Personagem>arma',
-										formatter: '.formatter.formatarEnums'
+										formatter: '.formatter.formatarEnumArma'
 									}"  
 									wrapping="false" />
 						</template>
