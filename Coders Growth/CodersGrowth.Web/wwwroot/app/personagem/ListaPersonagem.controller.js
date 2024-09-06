@@ -38,6 +38,11 @@ sap.ui.define([
             })
         },
 
+        aoClicarEmCriar: function(){
+            const rota = "cadastroPersonagem";
+            return this.navegarPara(rota);
+        },
+
         aoAlterarFiltrar: async function(){
             this.processarAcao(() => {
                 let view = this.getView();

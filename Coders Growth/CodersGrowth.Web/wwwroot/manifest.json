@@ -56,6 +56,11 @@
           "pattern": "",
           "name": "listaPersonagem",
           "target": "listaPersonagem"
+        },
+        {
+          "pattern": "cadastroPersonagem",
+          "name": "cadastroPersonagem",
+          "target": "cadastroPersonagem"
         }
       ],
       "targets": {
@@ -64,6 +69,11 @@
           "name": "ListaPersonagem",
           "path": "genshin.app.personagem",
           "level": 1
+        },
+        "cadastroPersonagem": {
+          "id": "cadastroPersonagem",
+          "name": "CadastroPersonagem",
+          "path": "genshin.app.personagem"
         },
         "notFound": {
           "id": "notFound",

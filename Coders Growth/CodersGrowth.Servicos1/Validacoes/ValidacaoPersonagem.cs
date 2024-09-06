@@ -18,25 +18,15 @@ namespace CodersGrowth.Servicos.Validacoes
             personagem.NomeUsuario = nomeUsuario;
 
             RuleFor(personagem => personagem.NomePersonagem)
-                .NotEmpty()
-                .WithMessage("Insira um nome válido")
-                .NotNull()
+                .IsInEnum()
                 .WithMessage("Insira um nome válido");
 
             RuleFor(personagem => personagem.Arma)
                 .IsInEnum()
-                .WithMessage("Insira uma arma válida")
-                .NotNull()
-                .WithMessage("Insira uma arma válida")
-                .NotEmpty()
                 .WithMessage("Insira uma arma válida");
 
             RuleFor(personagem => personagem.Elemento)
                 .IsInEnum()
-                .WithMessage("Insira um elemento válido")
-                .NotNull()
-                .WithMessage("Insira um elemento válido")
-                .NotEmpty()
                 .WithMessage("Insira um elemento válido");
 
             RuleFor(personagem => personagem.IdUsuario)
@@ -48,116 +38,6 @@ namespace CodersGrowth.Servicos.Validacoes
                 .Empty()
                 .When(personagem => (bool)!personagem.CriadoPorUsuario)
                 .WithMessage("Assinale que o personagem foi criado por usuário");
-            RuleFor(personagem => personagem.ConstelacaoLv)
-                .Null()
-                .When(personagem => (bool)!personagem.CriadoPorUsuario)
-                .WithMessage("Personagem não foi criado pelo usuário, informações devem ser nulas")
-                .GreaterThanOrEqualTo(0)
-                .WithMessage("Insira um nível de constelação de 0 a 6")
-                .LessThanOrEqualTo(6)
-                .WithMessage("Insira um nível de constelação de 0 a 6")
-                .NotNull()
-                .WithMessage("Preencha o campo Constelação")
-                .NotEmpty()
-                .WithMessage("Preencha o campo Constelação");
-
-            RuleFor(personagem => personagem.ProficienciaElemental)
-                .Null()
-                .When(personagem => (bool)!personagem.CriadoPorUsuario)
-                .WithMessage("Personagem não foi criado pelo usuário, informações devem ser nulas")
-                .NotNull()
-                .WithMessage("Preencha o campo Proficiência")
-                .NotEmpty()
-                .WithMessage("Preencha o campo Proficiência")
-                .GreaterThanOrEqualTo(0)
-                .WithMessage("Proficiência deve ter um valor positivo");
-
-            RuleFor(personagem => personagem.Vida)
-                .Null()
-                .When(personagem => (bool)!personagem.CriadoPorUsuario)
-                .WithMessage("Personagem não foi criado pelo usuário, informações devem ser nulas")
-                .NotNull()
-                .WithMessage("Preencha o campo Vida")
-                .NotEmpty()
-                .WithMessage("Preencha o campo Vida")
-                .GreaterThanOrEqualTo(0)
-                .WithMessage("Vida deve ter um valor positivo");
-
-            RuleFor(personagem => personagem.Ataque)
-                .Null()
-                .When(personagem => (bool)!personagem.CriadoPorUsuario)
-                .WithMessage("Personagem não foi criado pelo usuário, informações devem ser nulas")
-                .NotNull()
-                .WithMessage("Preencha o campo Ataque")
-                .NotEmpty()
-                .WithMessage("Preencha o campo Ataque")
-                .GreaterThanOrEqualTo(0)
-                .WithMessage("Ataque deve ter um valor positivo");
-
-            RuleFor(personagem => personagem.Defesa)
-                .Null()
-                .When(personagem => (bool)!personagem.CriadoPorUsuario)
-                .WithMessage("Personagem não foi criado pelo usuário, informações devem ser nulas")
-                .NotNull()
-                .WithMessage("Preencha o campo Defesa")
-                .NotEmpty()
-                .WithMessage("Preencha o campo Defesa")
-                .GreaterThanOrEqualTo(0)
-                .WithMessage("Defesa deve ter um valor positivo");
-
-            RuleFor(personagem => personagem.TaxaCrit)
-                .Null()
-                .When(personagem => (bool)!personagem.CriadoPorUsuario)
-                .WithMessage("Personagem não foi criado pelo usuário, informações devem ser nulas")
-                .NotNull()
-                .WithMessage("Preencha o campo Taxa Crítica")
-                .NotEmpty()
-                .WithMessage("Preencha o campo Taxa Crítica");
-
-            RuleFor(personagem => personagem.DanoCrit)
-                .Null()
-                .When(personagem => (bool)!personagem.CriadoPorUsuario)
-                .WithMessage("Personagem não foi criado pelo usuário, informações devem ser nulas")
-                .NotNull()
-                .WithMessage("Preencha o campo Dano Crítico")
-                .NotEmpty()
-                .WithMessage("Preencha o campo Dano Crítico");
-
-            RuleFor(personagem => personagem.BonusCura)
-                .Null()
-                .When(personagem => (bool)!personagem.CriadoPorUsuario)
-                .WithMessage("Personagem não foi criado pelo usuário, informações devem ser nulas")
-                .NotNull()
-                .WithMessage("Preencha o campo Bônus de Cura")
-                .NotEmpty()
-                .WithMessage("Preencha o campo Bônus de Cura");
-
-            RuleFor(personagem => personagem.RecargaDeEnergia)
-                .Null()
-                .When(personagem => (bool)!personagem.CriadoPorUsuario)
-                .WithMessage("Personagem não foi criado pelo usuário, informações devem ser nulas")
-                .NotNull()
-                .WithMessage("Preencha o campo Recarga de Energia")
-                .NotEmpty()
-                .WithMessage("Preencha o campo Recarga de Energia");
-
-            RuleFor(personagem => personagem.Escudo)
-                .Null()
-                .When(personagem => (bool)!personagem.CriadoPorUsuario)
-                .WithMessage("Personagem não foi criado pelo usuário, informações devem ser nulas")
-                .NotNull()
-                .WithMessage("Preencha o campo Força de Escudo")
-                .NotEmpty()
-                .WithMessage("Preencha o campo Força de Escudo");
-
-            RuleFor(personagem => personagem.BonusElemental)
-                .Null()
-                .When(personagem => (bool)!personagem.CriadoPorUsuario)
-                .WithMessage("Personagem não foi criado pelo usuário, informações devem ser nulas")
-                .NotNull()
-                .WithMessage("Preencha o campo Bônus Elemental")
-                .NotEmpty()
-                .WithMessage("Preencha o campo Bônus Elemental");
 
             RuleFor(personagem => personagem.NomeUsuario)
                 .NotNull()
