@@ -42,32 +42,26 @@ namespace CodersGrowth.Infra.Repositorios
                         select c;
             }
 
-            if (filtroPersonagem?.CriadoPorUsuario != null)
+            if (filtroPersonagem?.DataDeAquisicao is not null)
             {
-                query = from c in query
-                        where c.CriadoPorUsuario == filtroPersonagem.CriadoPorUsuario
-                        select c;
+                const double MAXIMO_HORAS = 23;
+                const double MAXIMO_MINUTOS_SEGUNDOS = 59;
+                const double MAXIMO_MILISEGUNDOS = 999;
+
+
+                var dataFiltroMin = Convert.ToDateTime(filtroPersonagem.DataDeAquisicao);
+
+                var dataFiltroMax = dataFiltroMin.AddHours(MAXIMO_HORAS)
+                                 .AddMinutes(MAXIMO_MINUTOS_SEGUNDOS)
+                                 .AddSeconds(MAXIMO_MINUTOS_SEGUNDOS)
+                                 .AddMilliseconds(MAXIMO_MILISEGUNDOS);
+
+                query = from q in query
+                        where q.DataDeAquisicao >= dataFiltroMin
+                        where q.DataDeAquisicao <= dataFiltroMax
+                        select q;
             }
 
-            if (filtroPersonagem?.Elemento != null && filtroPersonagem?.Elemento != idUsuarioZero)
-            {
-                query = from c in query
-                        where c.Elemento == filtroPersonagem.Elemento
-                        select c;
-            }
-
-            if (filtroPersonagem?.Arma != null && filtroPersonagem?.Arma != idUsuarioZero)
-            {
-                query = from c in query
-                        where c.Arma == filtroPersonagem.Arma
-                        select c;
-            }
-            if (filtroPersonagem?.DataDeAquisicao != null)
-            {
-                query = from c in query
-                        where c.DataDeAquisicao == filtroPersonagem.DataDeAquisicao
-                        select c;
-            }
             if (filtroPersonagem?.NomeUsuario != null)
             {
                 query = from c in query

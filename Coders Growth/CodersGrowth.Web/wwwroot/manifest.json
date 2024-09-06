@@ -54,14 +54,15 @@
       "routes": [
         {
           "pattern": "",
-          "name": "app",
-          "target": "App"
+          "name": "listaPersonagem",
+          "target": "listaPersonagem"
         }
       ],
       "targets": {
-        "app": {
-          "id": "App",
-          "name": "App",
+        "listaPersonagem": {
+          "id": "listaPersonagem",
+          "name": "ListaPersonagem",
+          "path": "genshin.app.personagem",
           "level": 1
         },
         "notFound": {
