@@ -1,6 +1,7 @@
 sap.ui.define([
-    "sap/ui/model/json/JSONModel"
-], function (JSONModel) {
+    "sap/ui/model/json/JSONModel",
+    "genshin/app/common/BaseController"
+], function (JSONModel, BaseController) {
     "use strict";
 
     const nomeDoModelo = "Personagem"
@@ -36,5 +37,32 @@ sap.ui.define([
         obterEnumElemento: async function(view){
             await fetch ("https://localhost:7085/api/Enum/elementos")
                 .then((res) => res.json())
-                .then((res) => view.setModel(new JSONModel(res), "enumElemento"))},
-    }});
+                .then((res) => view.setModel(new JSONModel(res), "enumElemento"))
+        },
+
+        requistarApi: function(urlApi, personagemNovo, requisicao){
+            try{
+            fetch(urlApi, {
+                method: requisicao,
+                body: personagemNovo,
+                headers: { "Content-type": "application/json"}
+            })
+            .then(resp => resp.json())
+            .then(data)
+            }
+            catch{
+                this.exibirMensagemDeErro(resp.json)
+            }
+        },
+
+        exibirMensagemDeErro(response){
+            MessageBox.error(`${response.Title} \n \n ${erros}`, {
+                title: titulo,
+                details:              
+                `<p> <strong>${detalhes}` + `${response.Detail}`,
+                styleClass: "sResponsivePaddingClasses",
+                dependentOn: this.getView()
+            })
+        }
+    }
+});

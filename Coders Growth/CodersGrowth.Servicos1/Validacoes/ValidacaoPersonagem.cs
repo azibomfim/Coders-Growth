@@ -29,23 +29,7 @@ namespace CodersGrowth.Servicos.Validacoes
                 .IsInEnum()
                 .WithMessage("Insira um elemento válido");
 
-            RuleFor(personagem => personagem.IdUsuario)
-                .NotNull()
-                .When(personagem => (bool)personagem.CriadoPorUsuario)
-                .WithMessage("Personagem não foi criado por usuário");
-
-            RuleFor(personagem => personagem.IdUsuario)
-                .Empty()
-                .When(personagem => (bool)!personagem.CriadoPorUsuario)
-                .WithMessage("Assinale que o personagem foi criado por usuário");
-
             RuleFor(personagem => personagem.NomeUsuario)
-                .NotNull()
-                .When(personagem => (bool)personagem.CriadoPorUsuario)
-                .WithMessage("Insira nome de usuário")
-                .NotEmpty()
-                .When(personagem => (bool)personagem.CriadoPorUsuario)
-                .WithMessage("Insira nome de usuário")
                 .Must(VerificaSeNomeDeUsuarioExiste)
                 .WithMessage("Nome de usuário não existe, por favor, verifique a escrita ou cadastre-se!");
         }

@@ -7,31 +7,14 @@
 	xmlns:f="sap.ui.layout.form"
     xmlns:c="sap.ui.core"
 	xmlns:semantic="sap.f.semantic" >
-    <MessageStrip
-        text="{i18n>CadastroSucesso}"
-        type="Success"
-        showIcon="true"
-        showCloseButton="true"
-        class="sapUiTinyMargin"
-        id="successMessageStrip"
-        visible="false" />
-
-    <MessageStrip
-        text="{i18n>CadastroErro}"
-        type="Error"
-        showIcon="true"
-        showCloseButton="true"
-        class="sapUiTinyMargin"
-        id="errorMessageStrip"
-        visible="false" />
 
 	<Page showHeader="false">
-		<Panel class="sapUiSmallMarginTop" >
+		<Panel>
 			<Toolbar >
-				<Button icon="sap-icon://navigation-left-arrow" press="aoPressionarRetornarNavegacao"/>
+				<Button icon="sap-icon://navigation-left-arrow" press="retornarNavegacao"/>
 				<Title text="{i18n>Cadastro.Titulo}"/>
 				<ToolbarSpacer />
-				<Button icon='sap-icon://save' press="aoClicarCadastrarPersonagem" text="{i18n>Cadastro.Salvar}" />
+				<Button icon='sap-icon://save' press="aoClicarEmSalvar" text="{i18n>Cadastro.Salvar}" />
 			</Toolbar>
 
 			<VBox class="sapUiMediumMarginTop">

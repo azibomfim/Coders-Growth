@@ -7,11 +7,11 @@ sap.ui.define([
     "sap/ui/thirdparty/jquery",
     "sap/ui/core/date/UI5Date",
     "genshin/app/model/formatter",
-    "genshin/app/model/Repositorio"
+    "genshin/app/model/Repositorio",
 ], function (Log, BaseController, JSONModel, MessageToast, DateFormat, jQuery, UI5Date, formatter, Repositorio) {
     "use strict";
 
-    const  URL_API = "https://localhost:7085/api/Personagem";
+    const  URL_API = "https://localhost:7085/api/Personagem/";
     const NOME_DO_MODELO = "Personagem";
     const INPUT_NOME = "inputNome";
     const INPUT_ELEMENTO = "inputElemento";
@@ -29,6 +29,7 @@ sap.ui.define([
     const INPUT_DEFESA = "inputDefesa";
     const INPUT_PROFICIENCIA = "inputProficiencia";
     const INPUT_RECARGA = "inputRecarga";
+    const REQUISICAO_POST = "POST"
 
     return BaseController.extend("genshin.app.personagem.CadastroPersonagem", {
         formatter: formatter,
@@ -51,16 +52,56 @@ sap.ui.define([
             })
         },
 
-        aoPressionarRetornarNavegacao: function(){
+        retornarNavegacao: function(){
             const rota = "listaPersonagem";
             return this.navegarPara(rota);
         },
 
         aoClicarEmSalvar: function(){
-            const inputNome = this.getView().byId(INPUT_NOME).SelectedKey().getText();
-            const inputArma = this.getView().byId(INPUT_ARMA).SelectedKey().getText();
-            const inputElemento = this.getView().byId(INPUT_ELEMENTO).SelectedKey().getText();
-            const inputUsuario = this.getView().byId(INPUT_USUARIO);
+
+                let nome = this.getView().byId(INPUT_NOME).getSelectedKey();
+                let arma = this.getView().byId(INPUT_ARMA).getSelectedKey();
+                let elemento = this.getView().byId(INPUT_ELEMENTO).getSelectedKey();
+                let inputUsuario = this.getView().byId(INPUT_USUARIO);
+                let data = this.getView().byId(INPUT_DATA).getValue();
+                let constelacao = this.getView().byId(INPUT_CONSTELACAO).getValue();
+                let bonusElemental = this.getView().byId(INPUT_BONUS).getValue();
+                let cura = this.getView().byId(INPUT_CURA).getValue();
+                let escudo = this.getView().byId(INPUT_ESCUDO).getValue();
+                let danoCrit = this.getView().byId(INPUT_DANO).getValue();
+                let taxaCrit = this.getView().byId(INPUT_TAXA).getValue();
+                let vida = this.getView().byId(INPUT_VIDA).getValue();
+                let ataque = this.getView().byId(INPUT_ATAQUE).getValue();
+                let defesa = this.getView().byId(INPUT_DEFESA).getValue();
+                let proficiencia = this.getView().byId(INPUT_PROFICIENCIA).getValue();
+                let recarga = this.getView().byId(INPUT_RECARGA).getValue();
+                let nomeUsuario = inputUsuario.getValue();
+                let idUsuario = 5;
+                
+                    let novoPersonagem = {
+                        nomePersonagem: parseInt(nome),
+                        vida: vida,
+                        ataque: ataque,
+                        defesa: defesa,
+                        proficienciaElemental: proficiencia,
+                        taxaCrit: taxaCrit,
+                        danoCrit: danoCrit,
+                        bonusCura: cura,
+                        recargaDeEnergia: recarga,
+                        escudo: escudo,
+                        bonusElemental: bonusElemental,
+                        criadoPorUsuario: true,
+                        constelacaoLv: constelacao,
+                        dataDeAquisicao: new Date(data),
+                        elemento: parseInt(elemento),
+                        arma: parseInt(arma),
+                        idUsuario: idUsuario,
+                        nomeUsuario: nomeUsuario
+                    }
+                    let personagemString = JSON.stringify(novoPersonagem);
+                    
+                    const requisicao = REQUISICAO_POST;
+                    Repositorio.requistarApi(URL_API, personagemString, requisicao);
         }
-    });
-});
+    }
+)})
