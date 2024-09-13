@@ -1,0 +1,138 @@
+<mvc:View
+    controllerName="genshin.app.personagem.CadastroPersonagem"
+	id="CadastroPersonagem"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+    xmlns:c="sap.ui.core"
+	xmlns:semantic="sap.f.semantic" >
+
+	<Page showHeader="false">
+		<Panel>
+			<Toolbar >
+				<Button icon="sap-icon://navigation-left-arrow" press="retornarNavegacao"/>
+				<Title text="{i18n>Cadastro.Titulo}"/>
+				<ToolbarSpacer />
+				<Button icon='sap-icon://save' press="aoClicarEmSalvar" text="{i18n>Cadastro.Salvar}" />
+			</Toolbar>
+
+			<VBox class="sapUiMediumMarginTop">
+				<FlexBox alignItems="Start" >
+					<VBox width="50%" class="sapUiMediumMarginBegin" >
+						<Label text="{i18n>Cadastro.NomePersonagem}" required="true" />
+						<ComboBox 
+						id="inputNome" 
+						placeholder="{i18n>Cadastro.NomePersonagem}"
+						items="{path: 'enumNome>/'}" 
+						width="100%" 
+						class="sapUiSmallMarginBottom" >
+							<items>
+								<c:ListItem key="{enumNome>key}" text="{enumNome>descricao}"/>
+							</items>
+						</ComboBox>
+						<Label text="{i18n>Cadastro.Arma}" required="true" />
+						<ComboBox 
+						id="inputArma" 
+						placeholder="{i18n>Cadastro.Arma}"
+						items="{path: 'enumArma>/'}" 
+						width="100%" 
+						class="sapUiSmallMarginBottom" >
+							<items>
+								<c:ListItem key="{enumArma>key}" text="{enumArma>descricao}"/>
+							</items>
+						</ComboBox>
+						<Label text="{i18n>Cadastro.Elemento}" required="true" />
+						<ComboBox 
+						id="inputElemento" 
+						placeholder="{i18n>Cadastro.Elemento}"
+						items="{path: 'enumElemento>/'}" 
+						width="100%" 
+						class="sapUiSmallMarginBottom" >
+							<items>
+								<c:ListItem key="{enumElemento>key}" text="{enumElemento>descricao}"/>
+							</items>
+						</ComboBox>
+						<Label text="{i18n>Cadastro.NomeUsuario}" required="true" />
+						<Input 
+						id="inputNomeUsuario"
+						placeholder="{i18n>Cadastro.NomeUsuario}" />
+					</VBox>
+						
+					<VBox width="50%" class="sapUiMediumMarginBegin" >
+						<Label text="{i18n>Cadastro.Constelacao}" required="true" />
+						<Input 
+						id="inputConstelacao"
+						placeholder="{i18n>Cadastro.Constelacao}" 
+						class="sapUiSmallMarginBottom" />
+						<Label text="{i18n>Cadastro.Vida}" required="true" />
+						<Input 
+						id="inputVida" 
+						placeholder="{i18n>Cadastro.Vida}"
+						class="sapUiSmallMarginBottom" />
+						<Label text="{i18n>Cadastro.Ataque}" required="true" />
+						<Input 
+						id="inputAtaque" 
+						placeholder="{i18n>Cadastro.Ataque}"
+						class="sapUiSmallMarginBottom" />
+						<Label text="{i18n>Cadastro.Defesa}" required="true" />
+						<Input 
+						id="inputDefesa"
+						placeholder="{i18n>Cadastro.Defesa}" />
+					</VBox>
+					
+					<VBox width="50%" class="sapUiMediumMarginBegin" >
+						<Label text="{i18n>Cadastro.Proficiencia}" required="true" />
+						<Input 
+						id="inputProficiencia" 
+						placeholder="{i18n>Cadastro.Proficiencia}"
+						class="sapUiSmallMarginBottom" />
+						<Label text="{i18n>Cadastro.Recarga}" required="true" />
+						<Input 
+						id="inputRecarga" 
+						placeholder="{i18n>Cadastro.Recarga}"
+						class="sapUiSmallMarginBottom" />
+						<Label text="{i18n>Cadastro.DanoCrit}" required="true" />
+						<Input 
+						id="inputDanoCrit" 
+						placeholder="{i18n>Cadastro.DanoCrit}"
+						class="sapUiSmallMarginBottom"/>
+						<Label text="{i18n>Cadastro.TaxaCrit}" required="true" />
+						<Input 
+						id="inputTaxaCrit" 
+						placeholder="{i18n>Cadastro.TaxaCrit}" />
+					</VBox>
+
+					<VBox width="50%" class="sapUiMediumMarginBegin" >
+						<Label text="{i18n>Cadastro.Cura}" required="true" />
+						<Input 
+						id="inputCura" 
+						placeholder="{i18n>Cadastro.Cura}"
+						class="sapUiSmallMarginBottom" />
+						<Label text="{i18n>Cadastro.Escudo}" required="true" />
+						<Input 
+						id="inputEscudo" 
+						placeholder="{i18n>Cadastro.Escudo}"
+						class="sapUiSmallMarginBottom" />
+						<Label text="{i18n>Cadastro.BonusElemental}" required="true" />
+						<Input 
+						id="inputBonusElemental" 
+						placeholder="{i18n>Cadastro.BonusElemental}"
+						class="sapUiSmallMarginBottom" />
+						<Label text="{i18n>Cadastro.Data}" required="true" />
+						<DatePicker
+                   			id="inputData"
+							placeholder="{i18n>Cadastro.Data}"
+                    		value="{
+								'path':'/dateTime',
+								'type':'sap.ui.model.type.DateTime',
+								'formatOptions': {
+									'pattern': 'dd/MM/yyyy'
+								}
+							}"/> 
+					</VBox>
+				</FlexBox>
+			</VBox>
+		</Panel>
+	</Page>
+</mvc:View>

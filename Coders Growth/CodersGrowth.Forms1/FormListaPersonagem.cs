@@ -40,20 +40,10 @@ namespace CodersGrowth.Forms1
             const int enumNeutro = 0;
             const string textoInicial = "Nome de usuário";
 
-            if (comboBoxArma.SelectedItem != null && comboBoxArma.SelectedIndex != enumNeutro)
-                filtroPersonagem.Arma = (ArmaEnum)comboBoxArma.SelectedItem;
-
-            if (comboBoxElemento.SelectedItem != null && comboBoxElemento.SelectedIndex != enumNeutro)
-                filtroPersonagem.Elemento = (ElementoEnum)comboBoxElemento.SelectedItem;
-
             if (comboBoxNome.SelectedItem != null && comboBoxNome.SelectedIndex != enumNeutro)
-                filtroPersonagem.NomePersonagem = (NomeEnum?)comboBoxNome.SelectedValue;
 
-            if (checkBoxBool.Checked)
-                filtroPersonagem.CriadoPorUsuario = true;
-
-            if (dateTimePickerFiltro.Checked)
-                filtroPersonagem.DataDeAquisicao = (DateTime)dateTimePickerFiltro.Value.Date;
+            //if (dateTimePickerFiltro.Checked)
+            //        (DateTime)filtroPersonagem.DataDeAquisicao = (DateTime)dateTimePickerFiltro.Value.Date;
 
             if (textBoxFiltroUsuario.Text != textoInicial && textBoxFiltroUsuario.Text != null)
                 filtroPersonagem.NomeUsuario = textBoxFiltroUsuario.Text;

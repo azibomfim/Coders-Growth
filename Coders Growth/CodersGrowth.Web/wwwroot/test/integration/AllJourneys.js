@@ -1,7 +1,8 @@
 sap.ui.define([
 	"sap/ui/test/Opa5",
 	"genshin/test/integration/arrangements/Startup",
-	 "genshin/test/integration/JornadaLista",
+	"genshin/test/integration/JornadaCadastro",
+	"genshin/test/integration/JornadaLista",
 	"genshin/test/integration/JornadaNotFound"
 	
 ], function (Opa5, Startup) {
