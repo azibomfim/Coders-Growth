@@ -24,47 +24,21 @@ sap.ui.define([
     const bonusElemental = "1";
     const bonusCura = "1";
 
-    opaTest("Ao adicionar um personagem válido, deve abrir a mensagem de sucesso", (Given, When, Then) => {
-        Given.iStartMyUIComponent({
-            componentConfig: {
-                name: "genshin"
-            },
-            hash: "cadastroPersonagem"
-        });
-
-        When.naPaginaCadastro.inseridoNomePersonagem(nomePersonagem);
-        When.naPaginaCadastro.inseridoNomeUsuario(nomeUsuario);
-        When.naPaginaCadastro.inseridoArma(arma);
-        When.naPaginaCadastro.inseridoElemento(elemento);
-        When.naPaginaCadastro.inseridoVida(vida);
-        When.naPaginaCadastro.inseridoAtaque(ataque);
-        When.naPaginaCadastro.inseridoDefesa(defesa);
-        When.naPaginaCadastro.inseridoTaxa(taxaCrit);
-        When.naPaginaCadastro.inseridoDano(danoCrit);
-        When.naPaginaCadastro.inseridoCura(bonusCura);
-        When.naPaginaCadastro.inseridoBonus(bonusElemental);
-        When.naPaginaCadastro.inseridoEscudo(escudo);
-        When.naPaginaCadastro.inseridoProficiencia(proficiencia);
-        When.naPaginaCadastro.inseridoRecarga(recarga);
-        When.naPaginaCadastro.inseridoConstelacao(constelacao);
-        When.naPaginaCadastro.inseridoData(dataDeAquisicao);
-        When.naPaginaCadastro.ClicoNoBotaoDeSalvar();
-        
-        Then.naPaginaCadastro.verificaSeAbreUmaCaixaDeDialogoIndicandoSucesso();
-
-        Then.naPaginaCadastro.pressionaOBotaoDeFecharCaixaDeDialogo();
-
-        Then.iTeardownMyApp();
-        }); 
-
-        opaTest("Ao adicionar um personagem com nome de usuário inválido, deve abrir a mensagem de erro", (Given, When, Then) => {
+        opaTest("Ao adicionar um personagem com campos vazios, deve abrir a mensagem de erro", (Given, When, Then) => {
             Given.iStartMyUIComponent({
                 componentConfig: {
                     name: "genshin"
                 },
                 hash: "cadastroPersonagem"
             });
+            
+            When.naPaginaCadastro.ClicoNoBotaoDeSalvar();
+            
+            Then.naPaginaCadastro.verificaSeAbreUmaCaixaDeDialogoIndicandoErro();
+            Then.naPaginaCadastro.pressionaOBotaoDeFecharCaixaDeDialogo();
+            }); 
 
+        opaTest("Ao adicionar um personagem com nome de usuário inválido, deve abrir a mensagem de erro", (Given, When, Then) => {
             When.naPaginaCadastro.inseridoNomePersonagem(nomePersonagem);
             When.naPaginaCadastro.inseridoNomeUsuario(nomeUsuarioErrado);
             When.naPaginaCadastro.inseridoArma(arma);
@@ -85,23 +59,38 @@ sap.ui.define([
             
             Then.naPaginaCadastro.verificaSeAbreUmaCaixaDeDialogoIndicandoErro();
             Then.naPaginaCadastro.pressionaOBotaoDeFecharCaixaDeDialogo();
-
-            Then.iTeardownMyApp();
         }); 
 
         opaTest("Ao adicionar um personagem com campos vazios, deve abrir a mensagem de erro", (Given, When, Then) => {
-            Given.iStartMyUIComponent({
-                componentConfig: {
-                    name: "genshin"
-                },
-                hash: "cadastroPersonagem"
-            });
-
             When.naPaginaCadastro.ClicoNoBotaoDeSalvar();
             
             Then.naPaginaCadastro.verificaSeAbreUmaCaixaDeDialogoIndicandoErro();
             Then.naPaginaCadastro.pressionaOBotaoDeFecharCaixaDeDialogo();
+            }); 
+
+        opaTest("Ao adicionar um personagem válido, deve abrir a mensagem de sucesso", (Given, When, Then) => {
+            When.naPaginaCadastro.inseridoNomePersonagem(nomePersonagem);
+            When.naPaginaCadastro.inseridoNomeUsuario(nomeUsuario);
+            When.naPaginaCadastro.inseridoArma(arma);
+            When.naPaginaCadastro.inseridoElemento(elemento);
+            When.naPaginaCadastro.inseridoVida(vida);
+            When.naPaginaCadastro.inseridoAtaque(ataque);
+            When.naPaginaCadastro.inseridoDefesa(defesa);
+            When.naPaginaCadastro.inseridoTaxa(taxaCrit);
+            When.naPaginaCadastro.inseridoDano(danoCrit);
+            When.naPaginaCadastro.inseridoCura(bonusCura);
+            When.naPaginaCadastro.inseridoBonus(bonusElemental);
+            When.naPaginaCadastro.inseridoEscudo(escudo);
+            When.naPaginaCadastro.inseridoProficiencia(proficiencia);
+            When.naPaginaCadastro.inseridoRecarga(recarga);
+            When.naPaginaCadastro.inseridoConstelacao(constelacao);
+            When.naPaginaCadastro.inseridoData(dataDeAquisicao);
+            When.naPaginaCadastro.ClicoNoBotaoDeSalvar();
+            
+            Then.naPaginaCadastro.verificaSeAbreUmaCaixaDeDialogoIndicandoSucesso();
+
+            Then.naPaginaCadastro.pressionaOBotaoDeFecharCaixaDeDialogo();
 
             Then.iTeardownMyApp();
-            }); 
+        }); 
     });
