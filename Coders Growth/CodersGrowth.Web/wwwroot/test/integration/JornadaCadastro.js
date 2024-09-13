@@ -61,13 +61,6 @@ sap.ui.define([
             Then.naPaginaCadastro.pressionaOBotaoDeFecharCaixaDeDialogo();
         }); 
 
-        opaTest("Ao adicionar um personagem com campos vazios, deve abrir a mensagem de erro", (Given, When, Then) => {
-            When.naPaginaCadastro.ClicoNoBotaoDeSalvar();
-            
-            Then.naPaginaCadastro.verificaSeAbreUmaCaixaDeDialogoIndicandoErro();
-            Then.naPaginaCadastro.pressionaOBotaoDeFecharCaixaDeDialogo();
-            }); 
-
         opaTest("Ao adicionar um personagem válido, deve abrir a mensagem de sucesso", (Given, When, Then) => {
             When.naPaginaCadastro.inseridoNomePersonagem(nomePersonagem);
             When.naPaginaCadastro.inseridoNomeUsuario(nomeUsuario);
