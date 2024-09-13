@@ -14,6 +14,7 @@ using ConfigurationManager = System.Configuration.ConfigurationManager;
 using CodersGrowth.Dominio.Migracoes;
 using CodersGrowth.Dominio.Models;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -65,6 +66,9 @@ app.Use(async (context, next) =>
     }
     await next();
 });
+
+var loggerFactory = app.Services.GetRequiredService<ILoggerFactory>();
+app.UseProblemDetailsExceptionHandler(loggerFactory);
 
 app.UseFileServer(new FileServerOptions
 {

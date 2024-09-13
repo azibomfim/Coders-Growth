@@ -1,7 +1,10 @@
 sap.ui.define([
     "sap/ui/model/json/JSONModel",
-    "genshin/app/common/BaseController"
-], function (JSONModel, BaseController) {
+    "genshin/app/common/BaseController",
+    "sap/m/MessageBox",
+    "sap/ui/core/UIComponent",
+    "sap/ui/core/routing/History"
+], function (JSONModel, BaseController, MessageBox, UIComponent, History) {
     "use strict";
 
     const nomeDoModelo = "Personagem"
@@ -40,29 +43,19 @@ sap.ui.define([
                 .then((res) => view.setModel(new JSONModel(res), "enumElemento"))
         },
 
-        requistarApi: function(urlApi, personagemNovo, requisicao){
-            try{
-            fetch(urlApi, {
-                method: requisicao,
-                body: personagemNovo,
-                headers: { "Content-type": "application/json"}
+        requistarApi: async function(urlApi, personagemNovo){
+            const metodo = "POST"
+            let resposta = await fetch(urlApi, {
+                method: metodo,
+                headers: { "Content-type": "application/json"},
+                body: personagemNovo
             })
-            .then(resp => resp.json())
-            .then(data)
-            }
-            catch{
-                this.exibirMensagemDeErro(resp.json)
-            }
-        },
+            if(resposta.status != 201){
+                
+                return resposta.json();  
+            };
 
-        exibirMensagemDeErro(response){
-            MessageBox.error(`${response.Title} \n \n ${erros}`, {
-                title: titulo,
-                details:              
-                `<p> <strong>${detalhes}` + `${response.Detail}`,
-                styleClass: "sResponsivePaddingClasses",
-                dependentOn: this.getView()
-            })
+            return resposta;
         }
     }
 });

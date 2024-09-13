@@ -10,7 +10,7 @@ sap.ui.define([
     const nomePersonagem = "Xiao";
     const dataDeAquisicao = "24 de jul. de 2024"
     const personagensPorUsuario = 1;
-    const personagensPorNome = 2;
+    const personagensPorNome = 3;
     const personagensPorData = 1;
     const idTabela = "table";
 

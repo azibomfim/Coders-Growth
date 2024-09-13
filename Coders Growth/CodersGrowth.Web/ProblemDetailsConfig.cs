@@ -1,8 +1,10 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
 using Newtonsoft.Json;
+using LinqToDB.SqlQuery;
+using FluentValidation.Results;
+
 
 public static class ProblemDetailsConfig
 {
@@ -59,7 +61,7 @@ public static class ProblemDetailsConfig
     {
         problemDetails.Title = "A requisição é inválida";
         problemDetails.Status = StatusCodes.Status400BadRequest;
-        problemDetails.Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1";
+        problemDetails.Type = "https://tools.ietf.org/html/rfc7807#section-6.5.1";
         problemDetails.Detail = exception.Message;
     }
 
@@ -67,10 +69,8 @@ public static class ProblemDetailsConfig
     {
         problemDetails.Title = "Erro ao Validar Objeto";
         problemDetails.Status = StatusCodes.Status500InternalServerError;
-        problemDetails.Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.6.1";
-
-        var details = string.Join("\n", exception.Errors.Select(e => e.ErrorMessage));
-        problemDetails.Detail = details;
+        problemDetails.Type = "https://tools.ietf.org/html/rfc7807#section-6.6.1";
+        problemDetails.Detail = exception.Message;
     }
 
     private static void ConfigureSqlProblemDetails(ProblemDetails problemDetails, SqlException exception)

@@ -16,7 +16,7 @@ sap.ui.define([
         Then.naPaginaLista.deveExibirTituloCorreto();
         }); 
 
-    opaTest("A tela deve exibir 2 personagens ao filtrar por nome", (Given, When, Then) => {
+    opaTest("A tela deve exibir 3 personagens ao filtrar por nome", (Given, When, Then) => {
         When.naPaginaLista.filtroPorNomeDePersonagem();
             
         Then.naPaginaLista.deveExibirPersonagensPorNome();
@@ -28,7 +28,7 @@ sap.ui.define([
         Then.naPaginaLista.deveExibirPersonagensDoUsuario();
         }); 
 
-    opaTest("A tela deve exibir 21 personagem ao filtrar por data", (Given, When, Then) => {
+    opaTest("A tela deve exibir 1 personagem ao filtrar por data", (Given, When, Then) => {
         When.naPaginaLista.filtroPorData();
                 
         Then.naPaginaLista.deveExibirPersonagensPorData();
