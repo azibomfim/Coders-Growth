@@ -61,6 +61,16 @@
           "pattern": "cadastroPersonagem",
           "name": "cadastroPersonagem",
           "target": "cadastroPersonagem"
+        },
+        {
+          "pattern": "detalhesPersonagem/{id}",
+          "name": "detalhesPersonagem",
+          "target": "detalhesPersonagem"
+        },
+        {
+          "pattern": "edicaoPersonagem/{id}",
+          "name": "edicaoPersonagem",
+          "target": "edicaoPersonagem"
         }
       ],
       "targets": {
@@ -73,6 +83,16 @@
         "cadastroPersonagem": {
           "id": "cadastroPersonagem",
           "name": "CadastroPersonagem",
+          "path": "genshin.app.personagem"
+        },
+        "detalhesPersonagem": {
+          "id": "detalhesPersonagem",
+          "name": "DetalhesPersonagem",
+          "path": "genshin.app.personagem"
+        },
+        "edicaoPersonagem": {
+          "id": "edicaoPersonagem",
+          "name": "EdicaoPersonagem",
           "path": "genshin.app.personagem"
         },
         "notFound": {

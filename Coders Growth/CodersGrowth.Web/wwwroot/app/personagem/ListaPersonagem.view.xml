@@ -13,11 +13,17 @@
 		<m:content>
 			<Table
 				rows="{Personagem>/}"
-				id="table"
+				id="idTabela"
 				editable="false"
 				enableSelectAll="false"
 				selectionMode="Single"
-				selectionBehavior="RowOnly">
+				selectionBehavior="RowOnly"
+                cellClick = "aoPressionarAbreTelaDeDetalhes"
+				width="auto"
+                visibleRowCountMode="Auto"
+                enableColumnReordering="false"
+                alternateRowColors="true"
+                minAutoRowCount="5">
 				<extension>
 					<m:OverflowToolbar style="Clear">
 						<m:Title id="title" text="{i18n>ListaPersonagem.Titulo}" />

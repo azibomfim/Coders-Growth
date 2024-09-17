@@ -1,0 +1,12 @@
+<mvc:View
+    controllerName="genshin.app.personagem.CadastroPersonagem"
+
+    height="100%"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page
+        title="{i18n>App.Titulo}"
+        showNavButton="true"
+        navButtonPress="retornarNavegacao">
+    </Page>
+</mvc:View>

@@ -12,7 +12,6 @@ sap.ui.define([
 	"use strict";
 
 	const nomeDaView = "app.personagem.CadastroPersonagem";
-    const nomeDaViewLista = "app.personagem.ListaPersonagem";
     const INPUT_NOME = "Cadastro.NomePersonagem";
     const INPUT_ELEMENTO = "Cadastro.Elemento";
     const INPUT_ARMA = "Cadastro.Arma";
@@ -34,9 +33,6 @@ sap.ui.define([
     const controltypeMessagebox = "sap.m.Dialog";
     const controltypeDatePicker = "sap.m.DatePicker";
     const controltypeComboBox = "sap.m.ComboBox";
-    const nomeUsuarioFiltro = "monakai";
-    const nomePersonagemFiltro = "Shikanoin Heizou";
-    const personagemNaLista = "1";
 
 	Opa5.createPageObjects({
 		naPaginaCadastro: {
