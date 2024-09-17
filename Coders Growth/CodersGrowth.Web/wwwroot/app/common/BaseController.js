@@ -18,9 +18,11 @@ sap.ui.define([
 			}
 		},
 
-		navegarPara: function (rota) {
-			return this.getRouter().navTo(rota, {}, true);
-		},
+		navegarPara: function (rota, id) {
+            return this.getRouter().navTo(rota, {
+                id: id
+            }, true);
+        },
 
         getRouter() {
 			return UIComponent.getRouterFor(this);

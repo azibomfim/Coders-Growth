@@ -1,0 +1,85 @@
+<mvc:View
+    controllerName="genshin.app.personagem.DetalhesPersonagem"
+    xmlns="sap.ui.table"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+    xmlns:c="sap.ui.core"
+    height="100%">
+    <m:Page
+        title="{i18n>App.Titulo}"
+        id="idPaginaDetalhesPersonagem"
+        enableScrolling="true"
+        class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+        showNavButton="true"
+        navButtonPress="retornarNavegacao">
+        <m:content>
+            <m:ObjectHeader
+                title="{Name}">
+                <m:attributes>
+                    <m:ObjectAttribute title="{i18n>Detalhes.NomePersonagem}"
+                        text="{
+                        path: 'PersonagemSelecionado>/nomePersonagem',
+                        formatter: '.formatter.formatarEnumNome'
+                        }" />
+                    <m:ObjectAttribute title="{i18n>Detalhes.Elemento}"
+                        text="{
+                            path: 'PersonagemSelecionado>/elemento',
+                            formatter: '.formatter.formatarEnumElemento'
+                        }" />
+                    <m:ObjectAttribute title="{i18n>Detalhes.Arma}"
+                        text="{
+                            path: 'PersonagemSelecionado>/arma',
+                            formatter: '.formatter.formatarEnumArma'
+                        }" />
+                    <m:ObjectAttribute title="{i18n>Detalhes.ConstelacaoLv}"
+                        text="{PersonagemSelecionado>/constelacaoLv}" />
+                    <m:ObjectAttribute title="{i18n>Detalhes.Vida}"
+                        text="{PersonagemSelecionado>/vida}" />
+                    <m:ObjectAttribute title="{i18n>Detalhes.Ataque}"
+                        text="{PersonagemSelecionado>/ataque}" />
+                    <m:ObjectAttribute title="{i18n>Detalhes.Defesa}"
+                        text="{PersonagemSelecionado>/defesa}" />
+                    <m:ObjectAttribute title="{i18n>Detalhes.ProficienciaElemental}"
+                        text="{PersonagemSelecionado>/proficienciaElemental}" />
+                    <m:ObjectAttribute title="{i18n>Detalhes.TaxaCrit}"
+                        text="{PersonagemSelecionado>/taxaCrit}" />
+                    <m:ObjectAttribute title="{i18n>Detalhes.DanoCrit}"
+                        text="{PersonagemSelecionado>/danoCrit}" />
+                    <m:ObjectAttribute title="{i18n>Detalhes.RecargaDeEnergia}"
+                        text="{PersonagemSelecionado>/recargaDeEnergia}" />
+                    <m:ObjectAttribute title="{i18n>Detalhes.BonusElemental}"
+                        text="{PersonagemSelecionado>/bonusElemental}" />
+                    <m:ObjectAttribute title="{i18n>Detalhes.Escudo}"
+                        text="{PersonagemSelecionado>/escudo}" />
+                    <m:ObjectAttribute title="{i18n>Detalhes.BonusCura}"
+                        text="{PersonagemSelecionado>/bonusCura}" />
+                    <m:ObjectAttribute title="{i18n>Detalhes.CriadoPorUsuario}"
+                        text="{PersonagemSelecionado>/criadoPorUsuario}" />
+                    <m:ObjectAttribute title="{i18n>Detalhes.DataDeAquisicao}"
+                        text="{
+                            path: 'PersonagemSelecionado>/dataDeAquisicao',
+                            formatter: '.formatter.formatarData'
+                        }" />
+                    <m:ObjectAttribute title="{i18n>Detalhes.NomeUsuario}"
+                        text="{PersonagemSelecionado>/nomeUsuario}" />
+                </m:attributes>
+            </m:ObjectHeader>
+        </m:content>
+        <m:footer>
+            <m:Toolbar>
+                <m:ToolbarSpacer />
+                <m:Button
+                    text="{i18n>Editar.Botao}"
+                    type="Ghost"
+                    tooltip="{i18n>Editar.Botao}"
+                    press="aoPressionarEditar"
+                    visible="true" />
+                <m:Button
+                    text="{i18n>Deletar.Botao}"
+                    type="Ghost"
+                    tooltip="{i18n>Deletar.Botao}"
+                    visible="true" />
+            </m:Toolbar>
+        </m:footer>
+    </m:Page>
+</mvc:View>

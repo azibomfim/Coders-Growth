@@ -56,6 +56,26 @@ sap.ui.define([
             };
 
             return resposta;
+        },
+
+        obterPorId: async function (view, id, requisicao, nomeDoModelo) {
+            const urlPesquisaApi = "/api/";
+            const barra = "/";
+            let urlPagina = window.location.origin + urlPesquisaApi + requisicao + barra + id;
+            let url = new URL(urlPagina);
+
+            let urlRequisicao = new URL(`${url.origin}${url.pathname}`);
+
+            await fetch(urlRequisicao)
+                .then(requisicao => {
+                    return requisicao.json();
+                })
+                .then(dados => {
+                    const dadosRequisicao = new JSONModel(dados);
+                    view.setModel(dadosRequisicao, nomeDoModelo)
+                })
+                .catch(erro => {
+                });
         }
-    }
+    };
 });

@@ -16,6 +16,8 @@ sap.ui.define([
     const FILTRO_DATA = "filtroData";
     const FILTRO_USUARIO = "filtroUsuario";
     const NOME_DO_MODELO = "Personagem";
+    const NOME_DO_MODELO_DE_PERSONAGEM_SELECIONADO = "Personagem";
+    const ID_DETALHES = "detalhesPersonagem";
 
     return BaseController.extend("genshin.app.personagem.ListaPersonagem", {
         formatter: formatter,
@@ -62,6 +64,11 @@ sap.ui.define([
     
                 Repositorio.carregarDadosPersonagem(filtros, view);
             });
-        }
+        },
+
+        aoPressionarAbreTelaDeDetalhes: function (eventoDeClique) {
+                let idPersonagemSelecionado = eventoDeClique.getParameters().rowBindingContext.getObject().id
+                return this.navegarPara(ID_DETALHES, idPersonagemSelecionado);
+        },
     });
 });
