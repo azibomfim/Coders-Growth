@@ -80,7 +80,7 @@ sap.ui.define([
                 });
         },
 
-        deletarPersonagem: async function (requisicao, id) {
+        deletar: async function (requisicao, id) {
             let urlPagina = window.location.origin + urlPesquisaApi + requisicao + barra + id;
             let urlRequisicao = new URL(urlPagina);
 

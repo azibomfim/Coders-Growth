@@ -38,6 +38,7 @@ sap.ui.define([
     const INPUT_PROFICIENCIA = "inputProficiencia";
     const INPUT_RECARGA = "inputRecarga";
     const REQUISICAO_POST = "POST";
+    const REQUISICAO_PATCH = "PATCH"
     const NOME_DO_MODELO_DE_CADASTRO_PERSONAGEM = "PersonagemCadastro"
     const i18n = "i18n";
     const valueStateDeErro = "Error";
@@ -65,19 +66,21 @@ sap.ui.define([
         formatter: formatter,
 
         onInit: function () {
-            this.getRouter().getRoute("cadastroPersonagem").attachPatternMatched(async () => {
-                return this.aoCoincidirRota();
+            this.getRouter().getRoute("cadastroPersonagem").attachPatternMatched(async (evento) => {
+                return this.aoCoincidirRota(evento);
             }, this);
         },
 
-        aoCoincidirRota: function() {
+        aoCoincidirRota: function(evento) {
+            idPersonagem = evento.getParameters().arguments.id;
             let view = this.getView();
             this.processarAcao(async () => {
                 await Promise.all([
                     Repositorio.carregarDadosPersonagem("", view),
                     Repositorio.obterEnumNome(view),
                     Repositorio.obterEnumArma(view),
-                    Repositorio.obterEnumElemento(view)
+                    Repositorio.obterEnumElemento(view),
+                    Repositorio.obterPorId(view, id, REQUISICAO_PATCH, NOME_DO_MODELO)
                 ])
             })
         },
