@@ -7,7 +7,6 @@ sap.ui.define([
     QUnit.module("Detalhes");
 
     const nomeUsuario = "monakai";
-    const nomeUsuarioErrado = "fdjkhskdfksjhdf"
     const nomePersonagem = "Shikanoin Heizou";
     const dataDeAquisicao = "24/07/2024";
     const arma = "Catalisador";
@@ -29,7 +28,7 @@ sap.ui.define([
             componentConfig: {
                 name: "genshin"
             },
-            hash: "detalhesPersonagem/250"
+            hash: "detalhesPersonagem/257"
         });
         
         Then.naPaginaDetalhes.confiroOsValoresDosAtributos(nomePersonagem);
@@ -55,6 +54,25 @@ sap.ui.define([
             
             Then.naPaginaDetalhes.aTelaDeEdicaoFoiCarregada();
     
-                Then.iTeardownMyApp();
-            }); 
+            Then.iTeardownMyApp();
+        }); 
+
+        opaTest("Ao clicar em cancelar, deve fechar diálogo e ficar na tela de detalhes, pressionar deletar novamente, e clicar em confirmar e deletar", (Given, When, Then) => {
+            Given.iStartMyUIComponent({
+                componentConfig: {
+                    name: "genshin"
+                },
+                hash: "detalhesPersonagem/257"
+            });
+            
+            When.naPaginaDetalhes.pressionoBotaoDeDeletar();
+            When.naPaginaDetalhes.pressionoBotaoCancelarDeletar();
+            When.naPaginaDetalhes.pressionoBotaoDeDeletar();
+            When.naPaginaDetalhes.pressionoBotaoConfirmarDeletar();
+
+            Then.naPaginaDetalhes.verificaSeAbreUmaCaixaDeDialogoIndicandoSucesso();
+
+            Then.iTeardownMyApp();
+            
+        });
     });

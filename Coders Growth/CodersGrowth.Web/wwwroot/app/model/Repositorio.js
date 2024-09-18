@@ -8,12 +8,18 @@ sap.ui.define([
     "use strict";
 
     const nomeDoModelo = "Personagem"
+    const urlPesquisaApi = "/api/";
+    const barra = "/";
+    const requisicaoDelete = "DELETE";
+    const requisicaoPost = "POST"
+
+
 
     return {
         carregarDadosPersonagem: async function (filtros, view) {
             const urlPagina = window.location.origin;
-            const url = urlPagina + "/api/" + nomeDoModelo;
-            const urlFiltro = urlPagina + "/api/" + nomeDoModelo + "?" + filtros;
+            const url = urlPagina + urlPesquisaApi + nomeDoModelo;
+            const urlFiltro = urlPagina + urlPesquisaApi + nomeDoModelo + "?" + filtros;
             if (filtros == "") {
                 await fetch(url)
                     .then(requisicao => requisicao.json())
@@ -44,9 +50,8 @@ sap.ui.define([
         },
 
         requistarApi: async function(urlApi, personagemNovo){
-            const metodo = "POST"
             let resposta = await fetch(urlApi, {
-                method: metodo,
+                method: requisicaoPost,
                 headers: { "Content-type": "application/json"},
                 body: personagemNovo
             })
@@ -54,13 +59,10 @@ sap.ui.define([
                 
                 return resposta.json();  
             };
-
             return resposta;
         },
 
         obterPorId: async function (view, id, requisicao, nomeDoModelo) {
-            const urlPesquisaApi = "/api/";
-            const barra = "/";
             let urlPagina = window.location.origin + urlPesquisaApi + requisicao + barra + id;
             let url = new URL(urlPagina);
 
@@ -76,6 +78,23 @@ sap.ui.define([
                 })
                 .catch(erro => {
                 });
+        },
+
+        deletarPersonagem: async function (requisicao, id) {
+            let urlPagina = window.location.origin + urlPesquisaApi + requisicao + barra + id;
+            let urlRequisicao = new URL(urlPagina);
+
+            let resposta = await fetch(urlRequisicao, {
+                method: requisicaoDelete,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!resposta.ok) {
+                return resposta.json();
+            };
+            return resposta;
         }
     };
 });
