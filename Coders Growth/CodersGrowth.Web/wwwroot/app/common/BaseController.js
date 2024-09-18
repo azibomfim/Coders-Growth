@@ -30,18 +30,6 @@ sap.ui.define([
 		
 		getModel : function (name) {
 			return this.getView().getModel(name);
-		},
-
-		converterParaInt(stringErrada){
-			let valorCerto = parseInt(stringErrada)
-
-			return valorCerto;
-		},
-
-		converterParaDecimal(stringErrada){
-			let valorCerto = parseFloat(stringErrada)
-
-			return valorCerto;
 		}
     });
 });

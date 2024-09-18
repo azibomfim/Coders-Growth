@@ -206,6 +206,7 @@ sap.ui.define([
         },
 
         limparCamposEValueState: function(){
+                this.obterDadosPersonagem();
                 this.getView().getModel(NOME_DO_MODELO_DE_CADASTRO_PERSONAGEM).setData({});           
                 this.getView().byId(INPUT_NOME).setValueState(valueStateCerto).setValue();
                 this.getView().byId(INPUT_ARMA).setValueState(valueStateCerto).setValue();

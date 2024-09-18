@@ -78,6 +78,7 @@
                     text="{i18n>Deletar.Botao}"
                     type="Ghost"
                     tooltip="{i18n>Deletar.Botao}"
+                    press="aoPressionarDeletar"
                     visible="true" />
             </m:Toolbar>
         </m:footer>

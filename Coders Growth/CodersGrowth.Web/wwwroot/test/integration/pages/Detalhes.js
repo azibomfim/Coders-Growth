@@ -16,7 +16,10 @@ sap.ui.define([
     const propriedadeText = "text";
     const controltypeBotao = "sap.m.Button";
     const botaoEditar = "Editar.Botao";
-
+    const botaoDeletar = "Deletar.Botao";
+    const botaoCancelar = "Remocao.Confirmacao.BotaoCancelar";
+    const botaoConfirmar = "Remocao.Confirmacao.BotaoConfirmar";
+    const controltypeMessagebox = "sap.m.Dialog";
 
 	Opa5.createPageObjects({
 		naPaginaDetalhes: {
@@ -33,9 +36,52 @@ sap.ui.define([
                         },
                         actions: new Press(),
                         success: () => Opa5.assert.ok(true, "O botao de editar foi pressionado"),
-                        errorMessage: "O botao de editarnão foi pressionado"
+                        errorMessage: "O botao de editar não foi pressionado"
                     });
                 },
+
+                pressionoBotaoDeDeletar: function () {
+                    return this.waitFor({
+                        viewName: nomeDaView,
+                        controlType: controltypeBotao,
+                        matchers: {
+                            i18NText: {
+                                propertyName: propriedadeText,
+                                key: botaoDeletar
+                            }
+                        },
+                        actions: new Press(),
+                        success: () => Opa5.assert.ok(true, "O botão de deletar personagem foi pressionado"),
+                        errorMessage: "O botão de deletar personagem não foi pressionado"
+                    });
+                },
+
+                pressionoBotaoCancelarDeletar: function () {
+                    return this.waitFor({
+                        controlType: controltypeBotao,
+                        matchers: new PropertyStrictEquals({
+                            name: propriedadeText,
+                            value: "Cancelar"
+                        }),
+                        actions: new Press(),
+                        success: () => Opa5.assert.ok(true, "O botão de cancelar foi clicado"),
+                        errorMessage: "O botão de cancelar não foi clicado"
+                    });
+                },
+
+                pressionoBotaoConfirmarDeletar: function () {
+                    return this.waitFor({
+                        controlType: controltypeBotao,
+                        matchers: new PropertyStrictEquals({
+
+                            name: propriedadeText,
+                            value: "Confirmar"
+                        }),
+                        actions: new Press(),
+                        success: () => Opa5.assert.ok(true, "O botão de confirmar foi clicado"),
+                        errorMessage: "O botão de confirmar não foi clicado"
+                    });
+                }
             },
 
 			assertions: {
@@ -65,6 +111,18 @@ sap.ui.define([
                         errorMessage: "A tela de edição não foi carregada corretamente"
                     });
                 },
+
+				verificaSeAbreUmaCaixaDeDialogoIndicandoSucesso: function () {
+                    const mensagemEsperada = "Sucesso";
+                    return this.waitFor({
+                        controlType: controltypeMessagebox,
+                        check: function (MessageBox) {
+                            return MessageBox[0].getTitle() == mensagemEsperada;
+                        },
+                        success: () => Opa5.assert.ok(true, "O personagem foi deletado com sucesso"),
+                        errorMessage: "O personagem não foi deletado"
+                    });
+                }
 			}
 		}
 	})
