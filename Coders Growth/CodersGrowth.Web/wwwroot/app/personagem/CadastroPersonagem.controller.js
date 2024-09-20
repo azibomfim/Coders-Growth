@@ -122,12 +122,9 @@ sap.ui.define([
             let titulo;
             const tituloCadastro = "Cadastro.Titulo";
             const tituloEdicao = "Edicao.Titulo"
-            if(idPersonagem == null){
-                titulo = tituloCadastro
-            }
-            else{
-                titulo = tituloEdicao
-            }
+            idPersonagem
+                ?titulo = tituloEdicao
+                :titulo = tituloCadastro
             let modeloTitulo = new JSONModel({
                 Title: titulo
             })
@@ -180,7 +177,7 @@ sap.ui.define([
         },
 
         aoClicarEmSalvar: function(){
-            if(idPersonagem == null){
+            if(idPersonagem){
                 this.aoClicarEmSalvarCriar();
             }
             else{
