@@ -28,7 +28,7 @@ sap.ui.define([
             componentConfig: {
                 name: "genshin"
             },
-            hash: "detalhesPersonagem/257"
+            hash: "detalhesPersonagem/298"
         });
         
         Then.naPaginaDetalhes.confiroOsValoresDosAtributos(nomePersonagem);
@@ -62,7 +62,7 @@ sap.ui.define([
                 componentConfig: {
                     name: "genshin"
                 },
-                hash: "detalhesPersonagem/257"
+                hash: "detalhesPersonagem/298"
             });
             
             When.naPaginaDetalhes.pressionoBotaoDeDeletar();

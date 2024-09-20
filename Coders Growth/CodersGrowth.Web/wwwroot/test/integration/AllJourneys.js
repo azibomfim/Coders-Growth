@@ -3,6 +3,7 @@ sap.ui.define([
 	"genshin/test/integration/arrangements/Startup",
 	"genshin/test/integration/JornadaCadastro",
 	"genshin/test/integration/JornadaLista",
+	"genshin/test/integration/JornadaEdicao",
 	"genshin/test/integration/JornadaDetalhes",
 	"genshin/test/integration/JornadaNotFound"
 	

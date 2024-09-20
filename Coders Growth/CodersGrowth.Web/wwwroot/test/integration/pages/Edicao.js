@@ -37,6 +37,84 @@ sap.ui.define([
 	Opa5.createPageObjects({
 		naPaginaEdicao: {
 			actions: {
+                inseridoNomePersonagem: function (nomePersonagem) {
+                    return this.waitFor({
+                        viewName: nomeDaView,
+                        controlType: controltypeComboBox,
+                        matchers: {
+                            i18NText: {
+                                propertyName: "placeholder",
+                                key: INPUT_NOME
+                            }
+                        },
+                        actions: new EnterText({ text: nomePersonagem }),
+                        success: () => Opa5.assert.ok(true, "O input de nome do personagem foi preenchido"),
+                        errorMessage: "O input de nome do personagem não foi preenchido"
+                    });
+                },
+
+                inseridoNomeUsuario: function (nomeUsuario) {
+                    return this.waitFor({
+                        viewName: nomeDaView,
+                        controlType: controltypeInput,
+                        matchers: {
+                            i18NText: {
+                                propertyName: "placeholder",
+                                key: INPUT_USUARIO
+                            }
+                        },
+                        actions: new EnterText({ text: nomeUsuario }),
+                        success: () => Opa5.assert.ok(true, "O input de nome do usuário foi preenchido"),
+                        errorMessage: "O input de nome do usuário não foi preenchido"
+                    });
+                },
+
+                inseridoNomeUsuarioErrado: function (nomeUsuarioErrado) {
+                    return this.waitFor({
+                        viewName: nomeDaView,
+                        controlType: controltypeInput,
+                        matchers: {
+                            i18NText: {
+                                propertyName: "placeholder",
+                                key: INPUT_USUARIO
+                            }
+                        },
+                        actions: new EnterText({ text: nomeUsuarioErrado }),
+                        success: () => Opa5.assert.ok(true, "O input de nome do usuário foi preenchido"),
+                        errorMessage: "O input de nome do usuário não foi preenchido"
+                    });
+                },
+
+                inseridoArma: function (arma) {
+                    return this.waitFor({
+                        viewName: nomeDaView,
+                        controlType: controltypeComboBox,
+                        matchers: {
+                            i18NText: {
+                                propertyName: "placeholder",
+                                key: INPUT_ARMA
+                            }
+                        },
+                        actions: new EnterText({ text: arma }),
+                        success: () => Opa5.assert.ok(true, "O input de arma foi preenchido"),
+                        errorMessage: "O input de arma não foi preenchido"
+                    });
+                },
+                inseridoElemento: function (elemento) {
+                    return this.waitFor({
+                        viewName: nomeDaView,
+                        controlType: controltypeComboBox,
+                        matchers: {
+                            i18NText: {
+                                propertyName: "placeholder",
+                                key: INPUT_ELEMENTO
+                            }
+                        },
+                        actions: new EnterText({ text: elemento }),
+                        success: () => Opa5.assert.ok(true, "O input de elemento foi preenchido"),
+                        errorMessage: "O input de elemento não foi preenchido"
+                    });
+                },
                 inseridoVida: function (vida) {
                     return this.waitFor({
                         viewName: nomeDaView,
@@ -210,6 +288,22 @@ sap.ui.define([
                         actions: new EnterText({ text: constelacao }),
                         success: () => Opa5.assert.ok(true, "O input de constelação foi preenchido"),
                         errorMessage: "O input de constelação não foi preenchido"
+                    });
+                },
+
+                inseridoData: function (dataDeAquisicao) {
+                    return this.waitFor({
+                        viewName: nomeDaView,
+                        controlType: controltypeDatePicker,
+                        matchers: {
+                            i18NText: {
+                                propertyName: "placeholder",
+                                key: INPUT_DATA
+                            }
+                        },
+                        actions: new EnterText({ text: dataDeAquisicao }),
+                        success: () => Opa5.assert.ok(true, "O input de data foi preenchido"),
+                        errorMessage: "O input de data não foi preenchido"
                     });
                 },
 

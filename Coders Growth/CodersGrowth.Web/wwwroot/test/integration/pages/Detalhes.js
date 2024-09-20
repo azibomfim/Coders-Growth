@@ -11,7 +11,7 @@ sap.ui.define([
 	"use strict";
 
 	const nomeDaView = "app.personagem.DetalhesPersonagem";
-	const nomeDaViewEdicao = "app.personagem.EdicaoPersonagem";
+	const nomeDaViewEdicao = "app.personagem.CadastroPersonagem";
     const controltypeObj = "sap.m.ObjectAttribute";
     const propriedadeText = "text";
     const controltypeBotao = "sap.m.Button";

@@ -1,17 +1,36 @@
 <mvc:View
     controllerName="genshin.app.personagem.DetalhesPersonagem"
-    xmlns="sap.ui.table"
-    xmlns:mvc="sap.ui.core.mvc"
     xmlns:m="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
     xmlns:c="sap.ui.core"
     height="100%">
     <m:Page
-        title="{i18n>App.Titulo}"
+        title="{i18n>Detalhes.Titulo}"
         id="idPaginaDetalhesPersonagem"
         enableScrolling="true"
         class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
         showNavButton="true"
-        navButtonPress="retornarNavegacao">
+        navButtonPress="retornarNavegacao"
+        >
+        <m:headerContent>
+            <m:ToggleButton
+            id="toggleEditar"
+            text="{i18n>Editar.Botao}"
+            icon="sap-icon://edit"
+            tooltip="{i18n>Editar.Botao}"
+            visible="true"
+            press="aoPressionarEditar"
+            width="6.5rem"/>
+   
+            <m:ToggleButton
+            id="toggleRemover"
+            text="{i18n>Deletar.Botao}"
+            icon="sap-icon://decline"
+            tooltip="{i18n>Deletar.Botao}"
+            visible="true"
+            press="aoPressionarDeletar"
+            width="6.5rem"/>
+        </m:headerContent>
         <m:content>
             <m:ObjectHeader
                 title="{Name}">
@@ -66,21 +85,6 @@
             </m:ObjectHeader>
         </m:content>
         <m:footer>
-            <m:Toolbar>
-                <m:ToolbarSpacer />
-                <m:Button
-                    text="{i18n>Editar.Botao}"
-                    type="Ghost"
-                    tooltip="{i18n>Editar.Botao}"
-                    press="aoPressionarEditar"
-                    visible="true" />
-                <m:Button
-                    text="{i18n>Deletar.Botao}"
-                    type="Ghost"
-                    tooltip="{i18n>Deletar.Botao}"
-                    press="aoPressionarDeletar"
-                    visible="true" />
-            </m:Toolbar>
         </m:footer>
     </m:Page>
 </mvc:View>

@@ -57,6 +57,11 @@ sap.ui.define([
                         var oType = new DateTime({ pattern: "dd/MM/yyyy" });
                         var oDate = new Date(sData);
                         return oType.formatValue(oDate, "string");
+                    },
+
+                    formatarTitulo: function (stringi18n){
+                        const i18n = "i18n";
+                        return this.getView().getModel(i18n).getResourceBundle().getText(stringi18n)
                     }
         }
 });

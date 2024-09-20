@@ -19,7 +19,7 @@ sap.ui.define([
 ], function (Log, BaseController, JSONModel, MessageToast, DateFormat, jQuery, UI5Date, MessageBox, formatter, Repositorio, Validator, ValueState, mobileLibrary, coreLibrary, Text,Dialog, Button) {
     "use strict";
 
-    const  URL_API = "https://localhost:7085/api/Personagem/";
+    const  URL_API = "https://localhost:7085/api/Personagem";
     const NOME_DO_MODELO = "Personagem";
     const INPUT_NOME = "inputNome";
     const INPUT_ELEMENTO = "inputElemento";
@@ -39,7 +39,7 @@ sap.ui.define([
     const INPUT_RECARGA = "inputRecarga";
     const REQUISICAO_POST = "POST";
     const REQUISICAO_PATCH = "PATCH"
-    const NOME_DO_MODELO_DE_CADASTRO_PERSONAGEM = "PersonagemCadastro"
+    const NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM = "PersonagemRequisicao";
     const i18n = "i18n";
     const valueStateDeErro = "Error";
     const valueStateCerto = "None";
@@ -60,19 +60,32 @@ sap.ui.define([
     const ValidacaoDefesaMsg = "Validacao.Defesa";
     const ValidacaoProficienciaElementalMsg = "Validacao.ProficienciaElemental";
     const QUEBRA_DE_LINHA = "\n";
+    const stringVazia = "";
     let MENSAGENS_DE_ERRO;
+    const ID_DETALHES = "detalhesPersonagem";
+    let requisicao;
+    let urlPagina = window.location.hash;
+    const barra = "/";
+    let idPersonagem;
+    let modeloPersonagem;
+    const modelo_i18n = "modeloTitulo";
+
 
     return BaseController.extend("genshin.app.personagem.CadastroPersonagem", {
         formatter: formatter,
+        idPersonagem: null,
+
 
         onInit: function () {
-            this.getRouter().getRoute("cadastroPersonagem").attachPatternMatched(async (evento) => {
-                return this.aoCoincidirRota(evento);
+            this.getRouter().getRoute("cadastroPersonagem").attachPatternMatched(async () => {
+                return this.aoCoincidirRotaCriar();
+            }, this);
+            this.getRouter().getRoute("edicaoPersonagem").attachPatternMatched(async (evento) => {
+                return this.aoCoincidirRotaEditar(evento);
             }, this);
         },
 
-        aoCoincidirRota: function(evento) {
-            idPersonagem = evento.getParameters().arguments.id;
+        aoCoincidirRotaCriar: function() {
             let view = this.getView();
             this.processarAcao(async () => {
                 await Promise.all([
@@ -80,7 +93,21 @@ sap.ui.define([
                     Repositorio.obterEnumNome(view),
                     Repositorio.obterEnumArma(view),
                     Repositorio.obterEnumElemento(view),
-                    Repositorio.obterPorId(view, id, REQUISICAO_PATCH, NOME_DO_MODELO)
+                    this.preencheri18nCerto()
+                ])
+            })
+        },
+
+        aoCoincidirRotaEditar: function(evento) {
+            idPersonagem = evento.getParameters().arguments.id;
+            let view = this.getView();
+            this.processarAcao(async () => {
+                await Promise.all([
+                    Repositorio.obterPorId(view, idPersonagem, NOME_DO_MODELO, NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM),
+                    Repositorio.obterEnumNome(view),
+                    Repositorio.obterEnumArma(view),
+                    Repositorio.obterEnumElemento(view),
+                    this.preencheri18nCerto()
                 ])
             })
         },
@@ -89,6 +116,22 @@ sap.ui.define([
             const rota = "listaPersonagem";
             this.limparCamposEValueState();
             return this.navegarPara(rota);
+        },
+
+        preencheri18nCerto: function(){
+            let titulo;
+            const tituloCadastro = "Cadastro.Titulo";
+            const tituloEdicao = "Edicao.Titulo"
+            if(idPersonagem == null){
+                titulo = tituloCadastro
+            }
+            else{
+                titulo = tituloEdicao
+            }
+            let modeloTitulo = new JSONModel({
+                Title: titulo
+            })
+            this.getView().setModel(modeloTitulo, modelo_i18n);
         },
          
         obterDadosPersonagem: function(){
@@ -111,7 +154,8 @@ sap.ui.define([
             let nomeUsuario = inputUsuario.getValue();
             let idUsuario = 5;
     
-            let modeloPersonagemCadastro = new JSONModel( {
+            modeloPersonagem = new JSONModel( {
+                id: idPersonagem,
                 nomePersonagem: parseInt(nome),
                 vida: vida,
                 ataque: ataque,
@@ -132,20 +176,30 @@ sap.ui.define([
                 nomeUsuario: nomeUsuario
             })
 
-            this.getView().setModel(modeloPersonagemCadastro, NOME_DO_MODELO_DE_CADASTRO_PERSONAGEM);
+            this.getView().setModel(modeloPersonagem, NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM);
         },
 
-        aoClicarEmSalvar: async function(){
+        aoClicarEmSalvar: function(){
+            if(idPersonagem == null){
+                this.aoClicarEmSalvarCriar();
+            }
+            else{
+                this.aoClicarEmSalvarEditar();
+            }
+        },
+
+        aoClicarEmSalvarCriar: async function(){
             this.obterDadosPersonagem();
-            let dadosPersonagem = this.getView().getModel(NOME_DO_MODELO_DE_CADASTRO_PERSONAGEM).getData();
+            let dadosPersonagem = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM).getData();
             let personagemString = JSON.stringify(dadosPersonagem);
 
             const tituloCaixaDeDialogoDeErro = this.getView().getModel(i18n).getResourceBundle().getText("CadastroErro.Titulo");
             const estadoDoDialogoDeErro = ValueState.Error;
                     
             if (this.validarPersonagem()){
-                let requisicao = await Repositorio.requistarApi(URL_API, personagemString);
-                    if (requisicao.ok) {
+                let resposta = await Repositorio.requistarApi(URL_API, personagemString, REQUISICAO_POST);
+                this.id = resposta?.id
+                    if (resposta.id) {
                         const tituloCaixaDeDialogoDeSucesso = this.getView().getModel(i18n).getResourceBundle().getText("CadastroSucesso.Titulo");
                         const estadoDoDialogoDeSucesso = ValueState.Success;
                         const mensagemDeSucesso = this.getView().getModel(i18n).getResourceBundle().getText("CadastroSucesso.Mensagem");
@@ -153,10 +207,47 @@ sap.ui.define([
                     } 
                     else {
                         let mensagemDeErro = {
-                            title: requisicao.Title,
-                            status: requisicao.Status,
-                            type: requisicao.Type,
-                            details: requisicao.Detail
+                            title: resposta.Title,
+                            status: resposta.Status,
+                            type: resposta.Type,
+                            details: resposta.Detail
+                        };
+
+                        let mensagemFormatada =
+                            "Título: " + mensagemDeErro.title + "\n" +
+                            "Status: " + mensagemDeErro.status + "\n" +
+                            "Tipo: " + mensagemDeErro.type + "\n" +
+                            "Detalhes: " + mensagemDeErro.details;
+
+                        this.abrirDialogo(tituloCaixaDeDialogoDeErro, mensagemFormatada, estadoDoDialogoDeErro);
+
+                        this.getView().byId(INPUT_USUARIO).setValueState(valueStateDeErro);
+                    }
+            }
+        },
+
+        aoClicarEmSalvarEditar: async function(){
+            this.obterDadosPersonagem();
+            let dadosPersonagem = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM).getData();
+            let personagemString = JSON.stringify(dadosPersonagem);
+
+            const tituloCaixaDeDialogoDeErro = this.getView().getModel(i18n).getResourceBundle().getText("CadastroErro.Titulo");
+            const estadoDoDialogoDeErro = ValueState.Error;
+                    
+            if (this.validarPersonagem()){
+                let resposta = await Repositorio.requistarApi(URL_API, personagemString, REQUISICAO_PATCH);
+                    if (resposta.ok) {
+                        const tituloCaixaDeDialogoDeSucesso = this.getView().getModel(i18n).getResourceBundle().getText("CadastroSucesso.Titulo");
+                        const estadoDoDialogoDeSucesso = ValueState.Success;
+                        const mensagemDeSucesso = this.getView().getModel(i18n).getResourceBundle().getText("CadastroSucesso.Mensagem");
+                        this.abrirDialogo(tituloCaixaDeDialogoDeSucesso, mensagemDeSucesso, estadoDoDialogoDeSucesso);
+                    } 
+                    else {
+                        let mensagemDeErro = {
+                            title: resposta.Title,
+                            status: resposta.Status,
+                            type: resposta.Type,
+                            details: resposta.Detail
                         };
 
                         let mensagemFormatada =
@@ -192,7 +283,7 @@ sap.ui.define([
                     type: ButtonType.Emphasized,
                     text: "OK",
                     press: function () {
-                        this.retornarNavegacao();
+                        this.aofecharAbreTelaDeDetalhes();
                     }.bind(this)
                 });
             }
@@ -208,9 +299,18 @@ sap.ui.define([
             this.oErrorMessageDialog.open();
         },
 
+        aofecharAbreTelaDeDetalhes: function () {
+            if(idPersonagem != null){
+                return this.navegarPara(ID_DETALHES, idPersonagem);
+            }
+            else{
+                return this.navegarPara(ID_DETALHES, this.id);
+            }
+    },
+
         limparCamposEValueState: function(){
                 this.obterDadosPersonagem();
-                this.getView().getModel(NOME_DO_MODELO_DE_CADASTRO_PERSONAGEM).setData({});           
+                this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM).setData({});           
                 this.getView().byId(INPUT_NOME).setValueState(valueStateCerto).setValue();
                 this.getView().byId(INPUT_ARMA).setValueState(valueStateCerto).setValue();
                 this.getView().byId(INPUT_ELEMENTO).setValueState(valueStateCerto).setValue();
@@ -243,52 +343,52 @@ sap.ui.define([
         validarPersonagem: function () {
             MENSAGENS_DE_ERRO = "";
 
-            let nomePersonagem = this.getView().getModel(NOME_DO_MODELO_DE_CADASTRO_PERSONAGEM).getData().nomePersonagem;
+            let nomePersonagem = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM).getData().nomePersonagem;
             let nomePersonagemNaoENulo = this.aplicarValidacao(Validator.validarSeCampoPossuiValor(nomePersonagem), INPUT_NOME, ValidacaoNomeMsg);
 
-            let elemento = this.getView().getModel(NOME_DO_MODELO_DE_CADASTRO_PERSONAGEM).getData().elemento;
+            let elemento = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM).getData().elemento;
             let elementoNaoENulo = this.aplicarValidacao(Validator.validarSeCampoPossuiValor(elemento), INPUT_ELEMENTO, ValidacaoElementoMsg);
 
-            let arma = this.getView().getModel(NOME_DO_MODELO_DE_CADASTRO_PERSONAGEM).getData().arma;
+            let arma = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM).getData().arma;
             let armaNaoENulo = this.aplicarValidacao(Validator.validarSeCampoPossuiValor(arma), INPUT_ARMA, ValidacaoArmaMsg);
 
-            let dataDeAquisicao = this.getView().getModel(NOME_DO_MODELO_DE_CADASTRO_PERSONAGEM).getData().dataDeAquisicao;
+            let dataDeAquisicao = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM).getData().dataDeAquisicao;
             let dataDeAquisicaoNaoENulo = this.aplicarValidacao(Validator.validarSeCampoPossuiValor(dataDeAquisicao), INPUT_DATA, ValidacaoDataMsg);
 
-            let nomeUsuario = this.getView().getModel(NOME_DO_MODELO_DE_CADASTRO_PERSONAGEM).getData().nomeUsuario;
+            let nomeUsuario = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM).getData().nomeUsuario;
             let nomeUsuarioNaoENulo = this.aplicarValidacao(Validator.validarSeCampoPossuiValor(nomeUsuario), INPUT_USUARIO, ValidacaoUsuarioMsg);
             
-            let vida = this.getView().getModel(NOME_DO_MODELO_DE_CADASTRO_PERSONAGEM).getData().vida;
+            let vida = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM).getData().vida;
             let vidaNaoENulo = this.aplicarValidacao(Validator.validarSeCampoPossuiValor(vida), INPUT_VIDA, ValidacaoVidaMsg);
 
-            let ataque = this.getView().getModel(NOME_DO_MODELO_DE_CADASTRO_PERSONAGEM).getData().ataque;
+            let ataque = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM).getData().ataque;
             let ataqueNaoENulo = this.aplicarValidacao(Validator.validarSeCampoPossuiValor(ataque), INPUT_ATAQUE, ValidacaoAtaqueMsg);
 
-            let defesa = this.getView().getModel(NOME_DO_MODELO_DE_CADASTRO_PERSONAGEM).getData().defesa;
+            let defesa = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM).getData().defesa;
             let defesaNaoENulo = this.aplicarValidacao(Validator.validarSeCampoPossuiValor(defesa), INPUT_DEFESA, ValidacaoDefesaMsg);
 
-            let proficienciaElemental = this.getView().getModel(NOME_DO_MODELO_DE_CADASTRO_PERSONAGEM).getData().proficienciaElemental;
+            let proficienciaElemental = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM).getData().proficienciaElemental;
             let proficienciaElementalNaoENulo = this.aplicarValidacao(Validator.validarSeCampoPossuiValor(proficienciaElemental), INPUT_PROFICIENCIA, ValidacaoProficienciaElementalMsg);
 
-            let taxaCrit = this.getView().getModel(NOME_DO_MODELO_DE_CADASTRO_PERSONAGEM).getData().taxaCrit;
+            let taxaCrit = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM).getData().taxaCrit;
             let taxaCritNaoENulo = this.aplicarValidacao(Validator.validarSeCampoPossuiValor(taxaCrit), INPUT_TAXA, ValidacaoTaxaCritMsg);
             
-            let danoCrit = this.getView().getModel(NOME_DO_MODELO_DE_CADASTRO_PERSONAGEM).getData().danoCrit;
+            let danoCrit = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM).getData().danoCrit;
             let danoCritNaoENulo = this.aplicarValidacao(Validator.validarSeCampoPossuiValor(danoCrit), INPUT_DANO, ValidacaoDanoCritMsg);
 
-            let bonusCura = this.getView().getModel(NOME_DO_MODELO_DE_CADASTRO_PERSONAGEM).getData().bonusCura;
+            let bonusCura = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM).getData().bonusCura;
             let bonusCuraNaoENulo = this.aplicarValidacao(Validator.validarSeCampoPossuiValor(bonusCura), INPUT_CURA, ValidacaoBonusCuraMsg);
 
-            let recargaDeEnergia = this.getView().getModel(NOME_DO_MODELO_DE_CADASTRO_PERSONAGEM).getData().recargaDeEnergia;
+            let recargaDeEnergia = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM).getData().recargaDeEnergia;
             let recargaDeEnergiaNaoENulo = this.aplicarValidacao(Validator.validarSeCampoPossuiValor(recargaDeEnergia), INPUT_RECARGA, ValidacaoRecargaDeEnergiaMsg);
 
-            let escudo = this.getView().getModel(NOME_DO_MODELO_DE_CADASTRO_PERSONAGEM).getData().escudo;
+            let escudo = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM).getData().escudo;
             let escudoNaoENulo = this.aplicarValidacao(Validator.validarSeCampoPossuiValor(escudo), INPUT_ESCUDO, ValidacaoEscudoMsg);
 
-            let bonusElemental = this.getView().getModel(NOME_DO_MODELO_DE_CADASTRO_PERSONAGEM).getData().bonusElemental;
+            let bonusElemental = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM).getData().bonusElemental;
             let bonusElementalNaoENulo = this.aplicarValidacao(Validator.validarSeCampoPossuiValor(bonusElemental), INPUT_BONUS, ValidacaoBonusElementalMsg);
 
-            let constelacaoLv = this.getView().getModel(NOME_DO_MODELO_DE_CADASTRO_PERSONAGEM).getData().constelacaoLv;
+            let constelacaoLv = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM).getData().constelacaoLv;
             let constelacaoLvNaoENulo = this.aplicarValidacao(Validator.validarSeCampoPossuiValor(constelacaoLv), INPUT_CONSTELACAO, ValidacaoConstelacaoLvMsg);
 
 

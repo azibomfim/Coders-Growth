@@ -49,16 +49,26 @@ sap.ui.define([
                 .then((res) => view.setModel(new JSONModel(res), "enumElemento"))
         },
 
-        requistarApi: async function(urlApi, personagemNovo){
+        requistarApi: async function(urlApi, personagemNovo, requisicao){
+            let status;
             let resposta = await fetch(urlApi, {
-                method: requisicaoPost,
+                method: requisicao,
                 headers: { "Content-type": "application/json"},
                 body: personagemNovo
             })
-            if(resposta.status != 201){
+            if(requisicao == "PATCH"){
+                status = 204
+            }
+            else if (requisicao == "POST"){
+                status = 201
+            }
+            if(resposta.status != status){
                 
                 return resposta.json();  
             };
+            if(status == 201)
+                return resposta.json()
+
             return resposta;
         },
 

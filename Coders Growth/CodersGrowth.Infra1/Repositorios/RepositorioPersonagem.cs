@@ -15,9 +15,10 @@ namespace CodersGrowth.Infra.Repositorios
         {
             _conexaoDados = conexaoDados;
         }
-        public void Criar(Personagem personagem)
+        public int Criar(Personagem personagem)
         {
-            _conexaoDados.Insert(personagem);
+            var id = (int)_conexaoDados.InsertWithInt64Identity(personagem);
+            return id;
         }
 
         public void Editar(Personagem personagem)

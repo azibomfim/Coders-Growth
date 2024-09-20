@@ -12,7 +12,10 @@
 		<Panel>
 			<Toolbar >
 				<Button icon="sap-icon://navigation-left-arrow" press="retornarNavegacao"/>
-				<Title text="{i18n>Cadastro.Titulo}"/>
+				<Title text="{
+				path: 'modeloTitulo>/Title',
+				formatter: '.formatter.formatarTitulo'
+				}"/>
 				<ToolbarSpacer />
 				<Button icon='sap-icon://save' press="aoClicarEmSalvar" text="{i18n>Cadastro.Salvar}" />
 			</Toolbar>
@@ -26,6 +29,11 @@
 						placeholder="{i18n>Cadastro.NomePersonagem}"
 						items="{path: 'enumNome>/'}" 
 						width="100%" 
+						value="{
+						path: 'PersonagemRequisicao>/nomePersonagem',
+						formatter: '.formatter.formatarEnumNome'
+						}"
+						selectedKey="{PersonagemRequisicao>/nomePersonagem}"
 						class="sapUiSmallMarginBottom" >
 							<items>
 								<c:ListItem key="{enumNome>key}" text="{enumNome>descricao}"/>
@@ -37,6 +45,11 @@
 						placeholder="{i18n>Cadastro.Arma}"
 						items="{path: 'enumArma>/'}" 
 						width="100%" 
+						value="{
+						path: 'PersonagemRequisicao>/arma',
+						formatter: '.formatter.formatarEnumArma'
+						}"
+						selectedKey="{PersonagemRequisicao>/arma}"
 						class="sapUiSmallMarginBottom" >
 							<items>
 								<c:ListItem key="{enumArma>key}" text="{enumArma>descricao}"/>
@@ -48,6 +61,11 @@
 						placeholder="{i18n>Cadastro.Elemento}"
 						items="{path: 'enumElemento>/'}" 
 						width="100%" 
+						value="{
+						path: 'PersonagemRequisicao>/elemento',
+						formatter: '.formatter.formatarEnumElemento'
+						}"
+						selectedKey="{PersonagemRequisicao>/elemento}"
 						class="sapUiSmallMarginBottom" >
 							<items>
 								<c:ListItem key="{enumElemento>key}" text="{enumElemento>descricao}"/>
@@ -56,7 +74,8 @@
 						<Label text="{i18n>Cadastro.NomeUsuario}" required="true" />
 						<Input 
 						id="inputNomeUsuario"
-						placeholder="{i18n>Cadastro.NomeUsuario}" />
+						placeholder="{i18n>Cadastro.NomeUsuario}" 
+						value="{PersonagemRequisicao>/nomeUsuario}"/>
 					</VBox>
 						
 					<VBox width="50%" class="sapUiMediumMarginBegin" >
@@ -64,21 +83,25 @@
 						<Input 
 						id="inputConstelacao"
 						placeholder="{i18n>Cadastro.Constelacao}" 
-						class="sapUiSmallMarginBottom" />
+						class="sapUiSmallMarginBottom" 
+						value="{PersonagemRequisicao>/constelacaoLv}"/>
 						<Label text="{i18n>Cadastro.Vida}" required="true"/>
 						<Input 
 						id="inputVida" 
 						placeholder="{i18n>Cadastro.Vida}"
-						class="sapUiSmallMarginBottom"/>
+						class="sapUiSmallMarginBottom"
+						value="{PersonagemRequisicao>/vida}"/>
 						<Label text="{i18n>Cadastro.Ataque}" required="true"/>
 						<Input 
 						id="inputAtaque" 
 						placeholder="{i18n>Cadastro.Ataque}"
-						class="sapUiSmallMarginBottom"/>
+						class="sapUiSmallMarginBottom"
+						value="{PersonagemRequisicao>/ataque}"/>
 						<Label text="{i18n>Cadastro.Defesa}" required="true"/>
 						<Input 
 						id="inputDefesa"
-						placeholder="{i18n>Cadastro.Defesa}"/>
+						placeholder="{i18n>Cadastro.Defesa}"
+						value="{PersonagemRequisicao>/defesa}"/>
 					</VBox>
 					
 					<VBox width="50%" class="sapUiMediumMarginBegin" >
@@ -86,21 +109,25 @@
 						<Input 
 						id="inputProficiencia" 
 						placeholder="{i18n>Cadastro.Proficiencia}"
-						class="sapUiSmallMarginBottom"/>
+						class="sapUiSmallMarginBottom"
+						value="{PersonagemRequisicao>/proficienciaElemental}"/>
 						<Label text="{i18n>Cadastro.Recarga}" required="true"/>
 						<Input 
 						id="inputRecarga" 
 						placeholder="{i18n>Cadastro.Recarga}"
-						class="sapUiSmallMarginBottom"/>
+						class="sapUiSmallMarginBottom"
+						value="{PersonagemRequisicao>/recargaDeEnergia}"/>
 						<Label text="{i18n>Cadastro.DanoCrit}" required="true"/>
 						<Input 
 						id="inputDanoCrit" 
 						placeholder="{i18n>Cadastro.DanoCrit}"
-						class="sapUiSmallMarginBottom"/>
+						class="sapUiSmallMarginBottom"
+						value="{PersonagemRequisicao>/danoCrit}"/>
 						<Label text="{i18n>Cadastro.TaxaCrit}" required="true" />
 						<Input 
 						id="inputTaxaCrit" 
-						placeholder="{i18n>Cadastro.TaxaCrit}" />
+						placeholder="{i18n>Cadastro.TaxaCrit}" 
+						value="{PersonagemRequisicao>/taxaCrit}"/>
 					</VBox>
 
 					<VBox width="50%" class="sapUiMediumMarginBegin" >
@@ -108,27 +135,27 @@
 						<Input 
 						id="inputCura" 
 						placeholder="{i18n>Cadastro.Cura}"
-						class="sapUiSmallMarginBottom" />
+						class="sapUiSmallMarginBottom" 
+						value="{PersonagemRequisicao>/bonusCura}"/>
 						<Label text="{i18n>Cadastro.Escudo}" required="true" />
 						<Input 
 						id="inputEscudo" 
 						placeholder="{i18n>Cadastro.Escudo}"
-						class="sapUiSmallMarginBottom" />
+						class="sapUiSmallMarginBottom" 
+						value="{PersonagemRequisicao>/escudo}"/>
 						<Label text="{i18n>Cadastro.BonusElemental}" required="true" />
 						<Input 
 						id="inputBonusElemental" 
 						placeholder="{i18n>Cadastro.BonusElemental}"
-						class="sapUiSmallMarginBottom" />
+						class="sapUiSmallMarginBottom" 
+						value="{PersonagemRequisicao>/bonusElemental}"/>
 						<Label text="{i18n>Cadastro.Data}" required="true" />
 						<DatePicker
                    			id="inputData"
 							placeholder="{i18n>Cadastro.Data}"
                     		value="{
-								'path':'/dateTime',
-								'type':'sap.ui.model.type.DateTime',
-								'formatOptions': {
-									'pattern': 'dd/MM/yyyy'
-								}
+								path: 'PersonagemRequisicao>/dataDeAquisicao',
+								formatter:'.formatter.formatarData'
 							}"/> 
 					</VBox>
 				</FlexBox>
