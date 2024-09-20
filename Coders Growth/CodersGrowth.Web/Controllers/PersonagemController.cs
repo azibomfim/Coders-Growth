@@ -34,7 +34,8 @@ namespace CodersGrowth.Web.Controllers
         [HttpPost]
         public IActionResult Criar([FromBody] Personagem personagemCriar)
         {
-                _servicoPersonagem.Criar(personagemCriar);
+                var id = _servicoPersonagem.Criar(personagemCriar);
+                personagemCriar.Id = id;
                 return Created($"novoPersonagem/{personagemCriar.Id}", personagemCriar);
         }
 

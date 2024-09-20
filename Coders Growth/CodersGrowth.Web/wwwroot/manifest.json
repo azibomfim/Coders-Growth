@@ -70,7 +70,7 @@
         {
           "pattern": "edicaoPersonagem/{id}",
           "name": "edicaoPersonagem",
-          "target": "edicaoPersonagem"
+          "target": "cadastroPersonagem"
         }
       ],
       "targets": {
@@ -88,11 +88,6 @@
         "detalhesPersonagem": {
           "id": "detalhesPersonagem",
           "name": "DetalhesPersonagem",
-          "path": "genshin.app.personagem"
-        },
-        "edicaoPersonagem": {
-          "id": "edicaoPersonagem",
-          "name": "EdicaoPersonagem",
           "path": "genshin.app.personagem"
         },
         "notFound": {

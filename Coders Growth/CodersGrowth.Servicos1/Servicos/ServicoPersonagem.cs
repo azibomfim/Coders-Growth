@@ -28,10 +28,11 @@ namespace CodersGrowth.Servicos.Servicos
             return _personagemrepositorio.ObterPorId(Id) ?? throw new Exception("Personagem não encontrado.");
         }
 
-        public void Criar(Personagem personagem)
+        public int Criar(Personagem personagem)
         {
             _validacao.ValidateAndThrow(personagem);
-            _personagemrepositorio.Criar(personagem);
+            personagem.Id = _personagemrepositorio.Criar(personagem);
+            return (int)personagem.Id;
         }
 
         public void Editar(Personagem personagem)

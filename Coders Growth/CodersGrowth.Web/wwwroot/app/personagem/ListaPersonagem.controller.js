@@ -69,6 +69,6 @@ sap.ui.define([
         aoPressionarAbreTelaDeDetalhes: function (eventoDeClique) {
                 let idPersonagemSelecionado = eventoDeClique.getParameters().rowBindingContext.getObject().id
                 return this.navegarPara(ID_DETALHES, idPersonagemSelecionado);
-        },
+        }
     });
 });

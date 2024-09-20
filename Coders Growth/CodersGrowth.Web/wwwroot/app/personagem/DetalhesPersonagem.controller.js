@@ -62,7 +62,7 @@ sap.ui.define([
 
         deletarPersonagem: async function () {
             let idPersonagemSelecionado = this.getView().getModel(NOME_DO_MODELO_DE_PERSONAGEM_SELECIONADO).getData().id;
-            let requisicao = await Repositorio.deletarPersonagem(MODELO_DE_REQUISICAO, idPersonagemSelecionado);
+            let requisicao = await Repositorio.deletar(MODELO_DE_REQUISICAO, idPersonagemSelecionado);
 
             let tituloCaixaDeDialogo;
             let mensagem;
