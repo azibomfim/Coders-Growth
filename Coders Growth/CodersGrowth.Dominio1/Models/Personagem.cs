@@ -8,33 +8,33 @@ namespace CodersGrowth.Dominio.Models
     public class Personagem
     {
         [PrimaryKey, Identity]
-        public int Id { get; set; }
+        public int? Id { get; set; }
         [Column("NomePersonagem")]
         public NomeEnum? NomePersonagem { get; set; }
         [Column("Vida")]
-        public int Vida { get; set; }
+        public int? Vida { get; set; }
         [Column("Ataque")]
-        public int Ataque { get; set; }
+        public int? Ataque { get; set; }
         [Column("Defesa")]
-        public int Defesa { get; set; }
+        public int? Defesa { get; set; }
         [Column("ProficienciaElemental")]
-        public int ProficienciaElemental { get; set; }
+        public int? ProficienciaElemental { get; set; }
         [Column("TaxaCrit")]
-        public decimal TaxaCrit { get; set; }
+        public decimal? TaxaCrit { get; set; }
         [Column("DanoCrit")]
-        public decimal DanoCrit { get; set; }
+        public decimal? DanoCrit { get; set; }
         [Column("BonusCura")]
-        public decimal BonusCura { get; set; }
+        public decimal? BonusCura { get; set; }
         [Column("RecargaDeEnergia")]
-        public decimal RecargaDeEnergia { get; set; }
+        public decimal? RecargaDeEnergia { get; set; }
         [Column("Escudo")]
-        public decimal Escudo { get; set; }
+        public decimal? Escudo { get; set; }
         [Column("BonusElemental")]
-        public decimal BonusElemental { get; set; }
+        public decimal? BonusElemental { get; set; }
         [Column("CriadoPorUsuario")]
         public bool? CriadoPorUsuario { get; set; }
         [Column("ConstelacaoLv")]
-        public int ConstelacaoLv { get; set; }
+        public int? ConstelacaoLv { get; set; }
         [Column("DataDeAquisicao")]
         public DateTime? DataDeAquisicao { get; set; }
         [Column("Elemento")]

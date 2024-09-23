@@ -2,6 +2,7 @@
 using CodersGrowth.Dominio.Models;
 using CodersGrowth.Servicos.Servicos;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace CodersGrowth.Web.Controllers
 {
@@ -31,10 +32,11 @@ namespace CodersGrowth.Web.Controllers
         }
 
         [HttpPost]
-        public CreatedResult Criar([FromBody] Personagem personagemCriar)
+        public IActionResult Criar([FromBody] Personagem personagemCriar)
         {
-            _servicoPersonagem.Criar(personagemCriar);
-            return Created($"novoPersonagem/{personagemCriar.Id}", personagemCriar);
+                var id = _servicoPersonagem.Criar(personagemCriar);
+                personagemCriar.Id = id;
+                return Created($"novoPersonagem/{personagemCriar.Id}", personagemCriar);
         }
 
         [HttpPatch]
