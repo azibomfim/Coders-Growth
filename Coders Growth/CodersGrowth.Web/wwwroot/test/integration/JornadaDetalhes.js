@@ -23,12 +23,12 @@ sap.ui.define([
     const bonusElemental = "1";
     const bonusCura = "1";
 
-    opaTest("Ao entrar na tela de detalhes do personagem de id 250, deve exibir seus dados corretamente", (Given, When, Then) => {
+    opaTest("Ao entrar na tela de detalhes do personagem de id 254, deve exibir seus dados corretamente", (Given, When, Then) => {
         Given.iStartMyUIComponent({
             componentConfig: {
                 name: "genshin"
             },
-            hash: "detalhesPersonagem/298"
+            hash: "detalhesPersonagem/260"
         });
         
         Then.naPaginaDetalhes.confiroOsValoresDosAtributos(nomePersonagem);
@@ -62,7 +62,7 @@ sap.ui.define([
                 componentConfig: {
                     name: "genshin"
                 },
-                hash: "detalhesPersonagem/298"
+                hash: "detalhesPersonagem/260"
             });
             
             When.naPaginaDetalhes.pressionoBotaoDeDeletar();

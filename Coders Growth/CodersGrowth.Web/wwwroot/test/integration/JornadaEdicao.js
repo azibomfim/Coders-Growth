@@ -30,7 +30,7 @@ sap.ui.define([
             componentConfig: {
                 name: "genshin"
             },
-            hash: "edicaoPersonagem/230"
+            hash: "edicaoPersonagem/273"
         });
         
         When.naPaginaEdicao.inseridoNomePersonagem(stringVazia);

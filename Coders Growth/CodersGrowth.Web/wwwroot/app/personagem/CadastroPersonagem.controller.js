@@ -61,20 +61,17 @@ sap.ui.define([
     const ValidacaoProficienciaElementalMsg = "Validacao.ProficienciaElemental";
     const QUEBRA_DE_LINHA = "\n";
     const ID_DETALHES = "detalhesPersonagem";
-    let idPersonagem;
-    let modeloPersonagem;
     const modelo_i18n = "modeloTitulo";
     const rotaCadastro = "cadastroPersonagem";
     const rotaEdicao = "edicaoPersonagem";
     const erroTitulo = "CadastroErro.Titulo"
-    const sucessoTitulo = "CadastroSucesso.Titulo"
-    const sucessoMsg = "CadastroSucesso.Mensagem"
-
+    const sucessoTitulo = "CadastroSucesso.Titulo";
+    const sucessoMsg = "CadastroSucesso.Mensagem";
 
     return BaseController.extend("genshin.app.personagem.CadastroPersonagem", {
         formatter: formatter,
         idPersonagem: null,
-
+        mensagensDeErro: null,
 
         onInit: function () {
             this.getRouter().getRoute(rotaCadastro).attachPatternMatched(async () => {
@@ -99,11 +96,11 @@ sap.ui.define([
         },
 
         aoCoincidirRotaEditar: function(evento) {
-            idPersonagem = evento.getParameters().arguments.id;
+            this.idPersonagem = evento.getParameters().arguments.id;
             let view = this.getView();
             this.processarAcao(async () => {
                 await Promise.all([
-                    Repositorio.obterPorId(view, idPersonagem, NOME_DO_MODELO, NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM),
+                    Repositorio.obterPorId(view, this.idPersonagem, NOME_DO_MODELO, NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM),
                     Repositorio.obterEnumNome(view),
                     Repositorio.obterEnumArma(view),
                     Repositorio.obterEnumElemento(view),
@@ -122,7 +119,7 @@ sap.ui.define([
             let titulo;
             const tituloCadastro = "Cadastro.Titulo";
             const tituloEdicao = "Edicao.Titulo"
-            idPersonagem
+            this.idPersonagem
                 ?titulo = tituloEdicao
                 :titulo = tituloCadastro
             let modeloTitulo = new JSONModel({
@@ -153,8 +150,8 @@ sap.ui.define([
             let nomeUsuario = inputUsuario.getValue();
             let idUsuario = usuarioId;
     
-            modeloPersonagem = new JSONModel( {
-                id: idPersonagem,
+            let modeloPersonagem = new JSONModel( {
+                id: this.idPersonagem,
                 nomePersonagem: parseInt(nome),
                 vida: vida,
                 ataque: ataque,
@@ -179,7 +176,7 @@ sap.ui.define([
         },
 
         aoClicarEmSalvar: function(){
-            if(!idPersonagem){
+            if(!this.idPersonagem){
                 this.aoClicarEmSalvarCriar();
             }
             else{
@@ -267,7 +264,6 @@ sap.ui.define([
             var ButtonType = mobileLibrary.ButtonType;
             var DialogType = mobileLibrary.DialogType;
 
-            let botaoCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText("Cadastro.FecharDiaogo.Botao");
             let botao;
 
             if (estadoDoDialogo === ValueState.Error) {
@@ -300,8 +296,9 @@ sap.ui.define([
         },
 
         aofecharAbreTelaDeDetalhes: function () {
-            if(idPersonagem != null){
-                return this.navegarPara(ID_DETALHES, idPersonagem);
+            debugger
+            if(this.idPersonagem){
+                return this.navegarPara(ID_DETALHES, this.idPersonagem);
             }
             else{
                 return this.navegarPara(ID_DETALHES, this.id);
@@ -332,7 +329,7 @@ sap.ui.define([
         aplicarValidacao: function (validacao, idInput, idI18n) {
             if (!validacao) {
                 this.getView().byId(idInput).setValueState(valueStateDeErro);
-                MENSAGENS_DE_ERRO += this.getView().getModel(i18n).getResourceBundle().getText(idI18n) + QUEBRA_DE_LINHA;
+                this.mensagensDeErro += this.getView().getModel(i18n).getResourceBundle().getText(idI18n) + QUEBRA_DE_LINHA;
                 return false;
             } else {
                 this.getView().byId(idInput).setValueState();
@@ -341,7 +338,7 @@ sap.ui.define([
         },
 
         validarPersonagem: function () {
-            let mensagensDeErro = "";
+            this.mensagensDeErro = ""
 
             let nomePersonagem = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM).getData().nomePersonagem;
             let nomePersonagemNaoENulo = this.aplicarValidacao(Validator.validarSeCampoPossuiValor(nomePersonagem), INPUT_NOME, ValidacaoNomeMsg);
@@ -392,10 +389,10 @@ sap.ui.define([
             let constelacaoLvNaoENulo = this.aplicarValidacao(Validator.validarSeCampoPossuiValor(constelacaoLv), INPUT_CONSTELACAO, ValidacaoConstelacaoLvMsg);
 
 
-            if (mensagensDeErro) {
+            if (this.mensagensDeErro) {
                 let tituloCaixaDeDialogoDeErro = this.getView().getModel(i18n).getResourceBundle().getText(erroTitulo);
                 let estadoDoDialogoDeErro = ValueState.Error;
-                this.abrirDialogo(tituloCaixaDeDialogoDeErro, mensagensDeErro, estadoDoDialogoDeErro);
+                this.abrirDialogo(tituloCaixaDeDialogoDeErro, this.mensagensDeErro, estadoDoDialogoDeErro);
             }
             return nomePersonagemNaoENulo && elementoNaoENulo
             && armaNaoENulo && dataDeAquisicaoNaoENulo
