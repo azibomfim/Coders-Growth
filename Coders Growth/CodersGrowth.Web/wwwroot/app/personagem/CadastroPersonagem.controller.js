@@ -296,7 +296,6 @@ sap.ui.define([
         },
 
         aofecharAbreTelaDeDetalhes: function () {
-            debugger
             if(this.idPersonagem){
                 return this.navegarPara(ID_DETALHES, this.idPersonagem);
             }
