@@ -11,13 +11,16 @@ sap.ui.define([
 ], function (Log, BaseController, JSONModel, MessageToast, DateFormat, jQuery, UI5Date, formatter, Repositorio) {
     "use strict";
 
-    const  URL_API = "https://localhost:7085/api/Personagem";
     const FILTRO_NOME = "filtroNome";
     const FILTRO_DATA = "filtroData";
     const FILTRO_USUARIO = "filtroUsuario";
-    const NOME_DO_MODELO = "Personagem";
-    const NOME_DO_MODELO_DE_PERSONAGEM_SELECIONADO = "Personagem";
     const ID_DETALHES = "detalhesPersonagem";
+    const nomeUsuarioURL = "nomeUsuario=";
+    const dataDeAquisicaoURL = "dataDeAquisicao=";
+    const eDataDeAquisicaoURL = "&dataDeAquisicao=";
+    const nomePersonagemURL = "nomePersonagem="
+    const eNomePersonagemURL = "&nomePersonagem="
+    const stringVazia = "";
 
     return BaseController.extend("genshin.app.personagem.ListaPersonagem", {
         formatter: formatter,
@@ -32,7 +35,7 @@ sap.ui.define([
             let view = this.getView();
             this.processarAcao(async () => {
                 await Promise.all([
-                    Repositorio.carregarDadosPersonagem("", view),
+                    Repositorio.carregarDadosPersonagem(stringVazia, view),
                     Repositorio.obterEnumNome(view),
                     Repositorio.obterEnumArma(view),
                     Repositorio.obterEnumElemento(view)
@@ -54,13 +57,13 @@ sap.ui.define([
     
                 let nomePersonagem = this.getView().byId(FILTRO_NOME).getSelectedKey();
     
-                var filtros = "";
+                var filtros = stringVazia;
     
-                filtros = nomeUsuario.length == 0 ? filtros + "" : "nomeUsuario=" + nomeUsuario;
+                filtros = nomeUsuario.length == 0 ? filtros + stringVazia : nomeUsuarioURL + nomeUsuario;
     
-                filtros = dataFormatada.length == 0 ? filtros + "" : (filtros.length == 0 ? filtros + "dataDeAquisicao=" + dataFormatada: filtros + "&dataDeAquisicao=" + dataFormatada);
+                filtros = dataFormatada.length == 0 ? filtros + stringVazia : (filtros.length == 0 ? filtros + dataDeAquisicaoURL + dataFormatada: filtros + eDataDeAquisicaoURL + dataFormatada);
     
-                filtros = nomePersonagem.length == 0 ? filtros + "" : (filtros.length == 0 ? filtros + "nomePersonagem=" + nomePersonagem: filtros + "&nomePersonagem=" + nomePersonagem);
+                filtros = nomePersonagem.length == 0 ? filtros + stringVazia : (filtros.length == 0 ? filtros + nomePersonagemURL + nomePersonagem: filtros + eNomePersonagemURL + nomePersonagem);
     
                 Repositorio.carregarDadosPersonagem(filtros, view);
             });

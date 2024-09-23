@@ -122,7 +122,7 @@ namespace CodersGrowth.Dominio.Enums
         Razor,
         [Description("Rosaria")]
         Rosaria,
-        [Description("Sara Kujo")]
+        [Description("Kujo Sara")]
         Sara,
         [Description("Sayu")]
         Sayu,
@@ -172,7 +172,7 @@ namespace CodersGrowth.Dominio.Enums
         Xingqiu,
         [Description("Xinyan")]
         Xinyan,
-        [Description("Yae")]
+        [Description("Yae Miko")]
         Yae,
         [Description("Yanfei")]
         Yanfei,
