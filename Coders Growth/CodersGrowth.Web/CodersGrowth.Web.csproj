@@ -31,4 +31,8 @@
     <ProjectReference Include="..\CodersGrowth.Infra1\CodersGrowth.Infra.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
 </Project>

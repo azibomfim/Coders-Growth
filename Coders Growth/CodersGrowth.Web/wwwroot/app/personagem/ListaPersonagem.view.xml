@@ -1,0 +1,124 @@
+<mvc:View
+	controllerName="genshin.app.personagem.ListaPersonagem"
+	xmlns="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:u="sap.ui.unified"
+	xmlns:c="sap.ui.core"
+	xmlns:m="sap.m"
+	height="100%">
+	<m:Page
+		showHeader="false"
+		enableScrolling="false"
+		class="sapUiContentPadding">
+		<m:content>
+			<Table
+				rows="{Personagem>/}"
+				id="idTabela"
+				editable="false"
+				enableSelectAll="false"
+				selectionMode="Single"
+				selectionBehavior="RowOnly"
+                cellClick = "aoPressionarAbreTelaDeDetalhes"
+				width="auto"
+                visibleRowCountMode="Auto"
+                enableColumnReordering="false"
+                alternateRowColors="true"
+                minAutoRowCount="5">
+				<extension>
+					<m:OverflowToolbar style="Clear">
+						<m:Title id="title" text="{i18n>ListaPersonagem.Titulo}" />
+						<m:ToolbarSpacer />
+						<m:ComboBox
+                    		id="filtroNome"
+                    		selectedKey="{filtro>/nomePersonagem}"
+                    		placeholder="{i18n>Filtro.NomePersonagem}"
+                    		items="{path: 'enumNome>/'}"
+                    		width="20%"
+                    		change=".aoAlterarFiltrar">
+                    		<m:items>
+                        		<c:ListItem key="{enumNome>key}" text="{enumNome>descricao}"/>
+                    		</m:items>
+                		</m:ComboBox>
+                		<m:DatePicker
+                   			id="filtroData"
+                    		placeholder="{i18n>Filtro.Data}"
+                    		width="20%"
+                    		change=".aoAlterarFiltrar"
+                    		value="{
+								'path':'/dateTime',
+								'type':'sap.ui.model.type.DateTime',
+								'formatOptions': {
+									'pattern': 'dd/MM/yyyy'
+								}
+							}"/>
+						<m:SearchField
+							id="filtroUsuario"
+							placeholder="{i18n>Filtro.NomeUsuario}"
+							value="{ui>/filterValue}"
+							change="aoAlterarFiltrar"
+							showSearchButton="false"
+							width="20%" />
+						<m:ToolbarSeparator />
+					</m:OverflowToolbar>
+				</extension>
+				<columns>
+					<Column class="autoResize">
+						<m:Label text="{i18n>ListaPersonagem.Coluna.Nome}" />
+						<template>
+							<m:Text text="{ 
+										path: 'Personagem>nomePersonagem',
+										formatter: '.formatter.formatarEnumNome'
+									}" 
+								wrapping="false" />
+						</template>
+					</Column>
+					<Column>
+						<m:Label text="{i18n>ListaPersonagem.Coluna.Elemento}" />
+						<template>
+							<m:Text text="{ 
+										path: 'Personagem>elemento',
+										formatter: '.formatter.formatarEnumElemento'
+									}"  
+									wrapping="false" />
+						</template>
+					</Column>
+					<Column>
+						<m:Label text="{i18n>ListaPersonagem.Coluna.Arma}" />
+						<template>
+							<m:Text text="{ 
+										path: 'Personagem>arma',
+										formatter: '.formatter.formatarEnumArma'
+									}"  
+									wrapping="false" />
+						</template>
+					</Column>
+              		<Column>
+						<m:Label text="{i18n>ListaPersonagem.Coluna.Usuario}" />
+						<template>
+							<m:Text text="{Personagem>nomeUsuario}" wrapping="false" />
+						</template>
+					</Column>
+					<Column class="autoResize">
+                        <m:Label
+                            text="{i18n>ListaPersonagem.Coluna.Data}"/>
+                        <template>
+                            <m:Text
+                                text="{
+									path: 'Personagem>dataDeAquisicao',
+									formatter: '.formatter.formatarData'
+								}"
+                                wrapping="false"/>
+                        </template>
+                    </Column>
+				</columns>
+			</Table>
+		</m:content>
+			<m:footer>
+			<m:Toolbar>
+				<m:ToolbarSpacer />
+				<m:Button text="{i18n>Criar.Botao}" press="aoClicarEmCriar"
+					type="Ghost" />
+			</m:Toolbar>
+		</m:footer>
+	</m:Page>
+</mvc:View>

@@ -1,0 +1,100 @@
+{
+  "_version": "1.58.0",
+  "sap.app": {
+    "id": "genshin",
+    "i18n": "i18n/i18n.properties",
+	  "type": "application",
+	  "applicationVersion": {
+		"version": "1.0.0"
+	  }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "dependencies": {
+      "minUI5Version": "1.108.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "genshin.i18n.i18n",
+          "fallbackLocale": ""
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "genshin.app.App",
+      "type": "XML",
+      "id": "app"
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "type": "View",
+        "viewType": "XML",
+        "path": "genshin.app",
+        "controlId": "app",
+        "controlAggregation": "pages",
+        "bypassed": {
+               "target": "notFound"
+            },
+        "async": true
+      },
+      "routes": [
+        {
+          "pattern": "",
+          "name": "listaPersonagem",
+          "target": "listaPersonagem"
+        },
+        {
+          "pattern": "cadastroPersonagem",
+          "name": "cadastroPersonagem",
+          "target": "cadastroPersonagem"
+        },
+        {
+          "pattern": "detalhesPersonagem/{id}",
+          "name": "detalhesPersonagem",
+          "target": "detalhesPersonagem"
+        },
+        {
+          "pattern": "edicaoPersonagem/{id}",
+          "name": "edicaoPersonagem",
+          "target": "cadastroPersonagem"
+        }
+      ],
+      "targets": {
+        "listaPersonagem": {
+          "id": "listaPersonagem",
+          "name": "ListaPersonagem",
+          "path": "genshin.app.personagem",
+          "level": 1
+        },
+        "cadastroPersonagem": {
+          "id": "cadastroPersonagem",
+          "name": "CadastroPersonagem",
+          "path": "genshin.app.personagem"
+        },
+        "detalhesPersonagem": {
+          "id": "detalhesPersonagem",
+          "name": "DetalhesPersonagem",
+          "path": "genshin.app.personagem"
+        },
+        "notFound": {
+          "id": "notFound",
+          "name": "NotFound"
+      }
+      }
+    }
+  }
+}

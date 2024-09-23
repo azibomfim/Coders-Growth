@@ -13,6 +13,8 @@ using FluentValidation;
 using ConfigurationManager = System.Configuration.ConfigurationManager;
 using CodersGrowth.Dominio.Migracoes;
 using CodersGrowth.Dominio.Models;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +42,7 @@ builder.Services.AddLinqToDBContext<ConexaoDados>((provider, options) =>
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
+builder.Services.AddDirectoryBrowser();
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -48,6 +51,30 @@ using (var scope = app.Services.CreateScope())
     runner.MigrateUp();
 }
 app.UseHttpsRedirection();
+app.UseStaticFiles(new StaticFileOptions { ServeUnknownFileTypes = true });
+
+app.Use(async (context, next) =>
+{
+    if (context.Request.Path.StartsWithSegments("/i18n"))
+    {
+        var filePath = Path.Combine(builder.Environment.ContentRootPath, "wwwroot/app/i18n", context.Request.Path.Value.Substring(6));
+        if (File.Exists(filePath))
+        {
+            await context.Response.SendFileAsync(filePath);
+            return;
+        }
+    }
+    await next();
+});
+
+var loggerFactory = app.Services.GetRequiredService<ILoggerFactory>();
+app.UseProblemDetailsExceptionHandler(loggerFactory);
+
+app.UseFileServer(new FileServerOptions
+{
+    FileProvider = new PhysicalFileProvider(
+            Path.Combine(builder.Environment.ContentRootPath, "wwwroot"))
+});
 app.UseRouting();
 app.MapControllers();
 
