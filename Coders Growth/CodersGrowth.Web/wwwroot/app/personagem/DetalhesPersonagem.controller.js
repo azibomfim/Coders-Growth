@@ -18,10 +18,12 @@ sap.ui.define([
     const ID_DETALHES = "detalhesPersonagem";
     const NOME_DO_MODELO_DE_PERSONAGEM_SELECIONADO = "PersonagemSelecionado";
     const MODELO_DE_REQUISICAO = "Personagem";
-    const  URL_API = "https://localhost:7085/api/Personagem/";
     let idPersonagem;
-    const requisicaoDelete = "DELETE";
     const i18n = "i18n"
+    const erroTitulo = "CadastroErro.Titulo"
+    const sucessoTitulo = "CadastroSucesso.Titulo"
+    const sucessoMsg = "RemocaoSucesso.Mensagem"
+    const QUEBRA_DE_LINHA = "\n"
 
     return BaseController.extend(CONTROLLER, {
         formatter: formatter,
@@ -69,11 +71,11 @@ sap.ui.define([
             let estadoDoDialogo;
 
             if (requisicao.ok) {
-                tituloCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText("CadastroSucesso.Titulo");
-                mensagem = this.getView().getModel(i18n).getResourceBundle().getText("RemocaoSucesso.Mensagem");
+                tituloCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText(sucessoTitulo);
+                mensagem = this.getView().getModel(i18n).getResourceBundle().getText(sucessoMsg);
                 estadoDoDialogo = ValueState.Success;
             } else {
-                tituloCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText("CadastroErro.Titulo");
+                tituloCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText(erroTitulo);
                 mensagem = this.criarMensagemDeErro(requisicao);
                 estadoDoDialogo = ValueState.Error;
             }
@@ -82,12 +84,17 @@ sap.ui.define([
         },
 
         abreDialogoDeConfirmacao: function () {
+            const confirmarTitulo = "Remocao.Confirmacao.Titulo"
+            const confirmarMsg = "Remocao.Confirmacao.Mensagem"
+            const confirmarBotao = "Remocao.Confirmacao.BotaoConfirmar"
+            const cancelarBotao = "Remocao.Confirmacao.BotaoCancelar"
+
             let ButtonType = mobileLibrary.ButtonType;
             let DialogType = mobileLibrary.DialogType;
-            let titulo = this.getView().getModel(i18n).getResourceBundle().getText("Remocao.Confirmacao.Titulo");
-            let mensagem = this.getView().getModel(i18n).getResourceBundle().getText("Remocao.Confirmacao.Mensagem");
-            let textoBotaoConfirmar = this.getView().getModel(i18n).getResourceBundle().getText("Remocao.Confirmacao.BotaoConfirmar");
-            let textoBotaoCancelar = this.getView().getModel(i18n).getResourceBundle().getText("Remocao.Confirmacao.BotaoCancelar");
+            let titulo = this.getView().getModel(i18n).getResourceBundle().getText(confirmarTitulo);
+            let mensagem = this.getView().getModel(i18n).getResourceBundle().getText(confirmarMsg);
+            let textoBotaoConfirmar = this.getView().getModel(i18n).getResourceBundle().getText(confirmarBotao);
+            let textoBotaoCancelar = this.getView().getModel(i18n).getResourceBundle().getText(cancelarBotao);
             let valueStateDeConfirmacao = ValueState.Warning;
 
             let botaoConfirmar = new Button({
@@ -133,18 +140,19 @@ sap.ui.define([
             detalhesLimpos = detalhesLimpos.replace(/(\r?\n\s*){2,}/g, '\n\n').trim();
 
             let mensagemFormatada =
-                "Título: " + mensagemDeErro.title + "\n" +
-                "Status: " + mensagemDeErro.status + "\n" +
-                "Tipo: " + mensagemDeErro.type + "\n" +
+                "Título: " + mensagemDeErro.title + QUEBRA_DE_LINHA +
+                "Status: " + mensagemDeErro.status + QUEBRA_DE_LINHA +
+                "Tipo: " + mensagemDeErro.type + QUEBRA_DE_LINHA +
                 "Detalhes: " + detalhesLimpos;
 
             return mensagemFormatada;
         },
 
         abrirDialogo: function (tituloCaixaDeDialogo, mensagem, estadoDoDialogo) {
+            const botaoFecharDialogo = "Cadastro.FecharDiaogo.Botao";
             let ButtonType = mobileLibrary.ButtonType;
             let DialogType = mobileLibrary.DialogType;
-            let botaoCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText("Cadastro.FecharDiaogo.Botao");
+            let botaoCaixaDeDialogo = this.getView().getModel(i18n).getResourceBundle().getText(botaoFecharDialogo);
 
             let botao = new Button({
                 type: ButtonType.Emphasized,

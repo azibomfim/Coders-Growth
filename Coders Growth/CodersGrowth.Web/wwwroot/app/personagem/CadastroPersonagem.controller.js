@@ -60,15 +60,15 @@ sap.ui.define([
     const ValidacaoDefesaMsg = "Validacao.Defesa";
     const ValidacaoProficienciaElementalMsg = "Validacao.ProficienciaElemental";
     const QUEBRA_DE_LINHA = "\n";
-    const stringVazia = "";
-    let MENSAGENS_DE_ERRO;
     const ID_DETALHES = "detalhesPersonagem";
-    let requisicao;
-    let urlPagina = window.location.hash;
-    const barra = "/";
     let idPersonagem;
     let modeloPersonagem;
     const modelo_i18n = "modeloTitulo";
+    const rotaCadastro = "cadastroPersonagem";
+    const rotaEdicao = "edicaoPersonagem";
+    const erroTitulo = "CadastroErro.Titulo"
+    const sucessoTitulo = "CadastroSucesso.Titulo"
+    const sucessoMsg = "CadastroSucesso.Mensagem"
 
 
     return BaseController.extend("genshin.app.personagem.CadastroPersonagem", {
@@ -77,10 +77,10 @@ sap.ui.define([
 
 
         onInit: function () {
-            this.getRouter().getRoute("cadastroPersonagem").attachPatternMatched(async () => {
+            this.getRouter().getRoute(rotaCadastro).attachPatternMatched(async () => {
                 return this.aoCoincidirRotaCriar();
             }, this);
-            this.getRouter().getRoute("edicaoPersonagem").attachPatternMatched(async (evento) => {
+            this.getRouter().getRoute(rotaEdicao).attachPatternMatched(async (evento) => {
                 return this.aoCoincidirRotaEditar(evento);
             }, this);
         },
@@ -132,6 +132,8 @@ sap.ui.define([
         },
          
         obterDadosPersonagem: function(){
+            const usuarioId = 5;
+
             let nome = this.getView().byId(INPUT_NOME).getSelectedKey();
             let arma = this.getView().byId(INPUT_ARMA).getSelectedKey();
             let elemento = this.getView().byId(INPUT_ELEMENTO).getSelectedKey();
@@ -149,7 +151,7 @@ sap.ui.define([
             let proficiencia = this.getView().byId(INPUT_PROFICIENCIA).getValue();
             let recarga = this.getView().byId(INPUT_RECARGA).getValue();
             let nomeUsuario = inputUsuario.getValue();
-            let idUsuario = 5;
+            let idUsuario = usuarioId;
     
             modeloPersonagem = new JSONModel( {
                 id: idPersonagem,
@@ -177,7 +179,7 @@ sap.ui.define([
         },
 
         aoClicarEmSalvar: function(){
-            if(idPersonagem){
+            if(!idPersonagem){
                 this.aoClicarEmSalvarCriar();
             }
             else{
@@ -190,16 +192,16 @@ sap.ui.define([
             let dadosPersonagem = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM).getData();
             let personagemString = JSON.stringify(dadosPersonagem);
 
-            const tituloCaixaDeDialogoDeErro = this.getView().getModel(i18n).getResourceBundle().getText("CadastroErro.Titulo");
+            const tituloCaixaDeDialogoDeErro = this.getView().getModel(i18n).getResourceBundle().getText(erroTitulo);
             const estadoDoDialogoDeErro = ValueState.Error;
                     
             if (this.validarPersonagem()){
                 let resposta = await Repositorio.requistarApi(URL_API, personagemString, REQUISICAO_POST);
                 this.id = resposta?.id
                     if (resposta.id) {
-                        const tituloCaixaDeDialogoDeSucesso = this.getView().getModel(i18n).getResourceBundle().getText("CadastroSucesso.Titulo");
+                        const tituloCaixaDeDialogoDeSucesso = this.getView().getModel(i18n).getResourceBundle().getText(sucessoTitulo);
                         const estadoDoDialogoDeSucesso = ValueState.Success;
-                        const mensagemDeSucesso = this.getView().getModel(i18n).getResourceBundle().getText("CadastroSucesso.Mensagem");
+                        const mensagemDeSucesso = this.getView().getModel(i18n).getResourceBundle().getText(sucessoMsg);
                         this.abrirDialogo(tituloCaixaDeDialogoDeSucesso, mensagemDeSucesso, estadoDoDialogoDeSucesso);
                     } 
                     else {
@@ -211,9 +213,9 @@ sap.ui.define([
                         };
 
                         let mensagemFormatada =
-                            "Título: " + mensagemDeErro.title + "\n" +
-                            "Status: " + mensagemDeErro.status + "\n" +
-                            "Tipo: " + mensagemDeErro.type + "\n" +
+                            "Título: " + mensagemDeErro.title + QUEBRA_DE_LINHA +
+                            "Status: " + mensagemDeErro.status + QUEBRA_DE_LINHA +
+                            "Tipo: " + mensagemDeErro.type + QUEBRA_DE_LINHA +
                             "Detalhes: " + mensagemDeErro.details;
 
                         this.abrirDialogo(tituloCaixaDeDialogoDeErro, mensagemFormatada, estadoDoDialogoDeErro);
@@ -228,15 +230,15 @@ sap.ui.define([
             let dadosPersonagem = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM).getData();
             let personagemString = JSON.stringify(dadosPersonagem);
 
-            const tituloCaixaDeDialogoDeErro = this.getView().getModel(i18n).getResourceBundle().getText("CadastroErro.Titulo");
+            const tituloCaixaDeDialogoDeErro = this.getView().getModel(i18n).getResourceBundle().getText(erroTitulo);
             const estadoDoDialogoDeErro = ValueState.Error;
                     
             if (this.validarPersonagem()){
                 let resposta = await Repositorio.requistarApi(URL_API, personagemString, REQUISICAO_PATCH);
                     if (resposta.ok) {
-                        const tituloCaixaDeDialogoDeSucesso = this.getView().getModel(i18n).getResourceBundle().getText("CadastroSucesso.Titulo");
+                        const tituloCaixaDeDialogoDeSucesso = this.getView().getModel(i18n).getResourceBundle().getText(sucessoTitulo);
                         const estadoDoDialogoDeSucesso = ValueState.Success;
-                        const mensagemDeSucesso = this.getView().getModel(i18n).getResourceBundle().getText("CadastroSucesso.Mensagem");
+                        const mensagemDeSucesso = this.getView().getModel(i18n).getResourceBundle().getText(sucessoMsg);
                         this.abrirDialogo(tituloCaixaDeDialogoDeSucesso, mensagemDeSucesso, estadoDoDialogoDeSucesso);
                     } 
                     else {
@@ -248,9 +250,9 @@ sap.ui.define([
                         };
 
                         let mensagemFormatada =
-                            "Título: " + mensagemDeErro.title + "\n" +
-                            "Status: " + mensagemDeErro.status + "\n" +
-                            "Tipo: " + mensagemDeErro.type + "\n" +
+                            "Título: " + mensagemDeErro.title + QUEBRA_DE_LINHA +
+                            "Status: " + mensagemDeErro.status + QUEBRA_DE_LINHA +
+                            "Tipo: " + mensagemDeErro.type + QUEBRA_DE_LINHA +
                             "Detalhes: " + mensagemDeErro.details;
 
                         this.abrirDialogo(tituloCaixaDeDialogoDeErro, mensagemFormatada, estadoDoDialogoDeErro);
@@ -261,6 +263,7 @@ sap.ui.define([
         },
 
         abrirDialogo: function (tituloCaixaDeDialogo, mensagem, estadoDoDialogo) {
+            const okBotao = "OK"
             var ButtonType = mobileLibrary.ButtonType;
             var DialogType = mobileLibrary.DialogType;
 
@@ -270,7 +273,7 @@ sap.ui.define([
             if (estadoDoDialogo === ValueState.Error) {
                 botao = new Button({
                     type: ButtonType.Emphasized,
-                    text: "OK",
+                    text: okBotao,
                     press: function () {
                         this.oErrorMessageDialog.close();
                     }.bind(this)
@@ -278,7 +281,7 @@ sap.ui.define([
             } else {
                 botao = new Button({
                     type: ButtonType.Emphasized,
-                    text: "OK",
+                    text: okBotao,
                     press: function () {
                         this.aofecharAbreTelaDeDetalhes();
                     }.bind(this)
@@ -338,7 +341,7 @@ sap.ui.define([
         },
 
         validarPersonagem: function () {
-            MENSAGENS_DE_ERRO = "";
+            let mensagensDeErro = "";
 
             let nomePersonagem = this.getView().getModel(NOME_DO_MODELO_DE_REQUISICAO_PERSONAGEM).getData().nomePersonagem;
             let nomePersonagemNaoENulo = this.aplicarValidacao(Validator.validarSeCampoPossuiValor(nomePersonagem), INPUT_NOME, ValidacaoNomeMsg);
@@ -389,10 +392,10 @@ sap.ui.define([
             let constelacaoLvNaoENulo = this.aplicarValidacao(Validator.validarSeCampoPossuiValor(constelacaoLv), INPUT_CONSTELACAO, ValidacaoConstelacaoLvMsg);
 
 
-            if (MENSAGENS_DE_ERRO) {
-                let tituloCaixaDeDialogoDeErro = this.getView().getModel(i18n).getResourceBundle().getText("CadastroErro.Titulo");
+            if (mensagensDeErro) {
+                let tituloCaixaDeDialogoDeErro = this.getView().getModel(i18n).getResourceBundle().getText(erroTitulo);
                 let estadoDoDialogoDeErro = ValueState.Error;
-                this.abrirDialogo(tituloCaixaDeDialogoDeErro, MENSAGENS_DE_ERRO, estadoDoDialogoDeErro);
+                this.abrirDialogo(tituloCaixaDeDialogoDeErro, mensagensDeErro, estadoDoDialogoDeErro);
             }
             return nomePersonagemNaoENulo && elementoNaoENulo
             && armaNaoENulo && dataDeAquisicaoNaoENulo

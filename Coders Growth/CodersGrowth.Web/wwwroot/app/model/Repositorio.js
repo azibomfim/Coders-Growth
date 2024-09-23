@@ -11,16 +11,21 @@ sap.ui.define([
     const urlPesquisaApi = "/api/";
     const barra = "/";
     const requisicaoDelete = "DELETE";
-    const requisicaoPost = "POST"
-
+    const requisicaoPost = "POST";
+    const requisicaoPatch = "PATCH";
+    const stringVazia = "";
+    const interrogacao = "?";
+    const enumNome = "enumNome";
+    const enumArma = "enumArma";
+    const enumElemento = "enumElemento";
 
 
     return {
         carregarDadosPersonagem: async function (filtros, view) {
             const urlPagina = window.location.origin;
             const url = urlPagina + urlPesquisaApi + nomeDoModelo;
-            const urlFiltro = urlPagina + urlPesquisaApi + nomeDoModelo + "?" + filtros;
-            if (filtros == "") {
+            const urlFiltro = urlPagina + urlPesquisaApi + nomeDoModelo + interrogacao + filtros;
+            if (filtros == stringVazia) {
                 await fetch(url)
                     .then(requisicao => requisicao.json())
                     .then(dados => view.setModel(new JSONModel(dados), nomeDoModelo))
@@ -34,19 +39,19 @@ sap.ui.define([
         obterEnumNome: async function(view){
             await fetch ("https://localhost:7085/api/Enum/nomes")
                 .then((res) => res.json())
-                .then(dados => view.setModel(new JSONModel(dados), "enumNome"))
+                .then(dados => view.setModel(new JSONModel(dados), enumNome))
         },
 
         obterEnumArma: async function(view){
             await fetch ("https://localhost:7085/api/Enum/armas")
                 .then((res) => res.json())
-                .then((res) => view.setModel(new JSONModel(res), "enumArma"))
+                .then((res) => view.setModel(new JSONModel(res), enumArma))
         },
 
         obterEnumElemento: async function(view){
             await fetch ("https://localhost:7085/api/Enum/elementos")
                 .then((res) => res.json())
-                .then((res) => view.setModel(new JSONModel(res), "enumElemento"))
+                .then((res) => view.setModel(new JSONModel(res), enumElemento))
         },
 
         requistarApi: async function(urlApi, personagemNovo, requisicao){
@@ -56,10 +61,10 @@ sap.ui.define([
                 headers: { "Content-type": "application/json"},
                 body: personagemNovo
             })
-            if(requisicao == "PATCH"){
+            if(requisicao == requisicaoPatch){
                 status = 204
             }
-            else if (requisicao == "POST"){
+            else if (requisicao == requisicaoPost){
                 status = 201
             }
             if(resposta.status != status){

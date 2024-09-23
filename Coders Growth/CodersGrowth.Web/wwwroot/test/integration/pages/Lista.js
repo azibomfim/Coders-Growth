@@ -12,7 +12,6 @@ sap.ui.define([
     const personagensPorUsuario = 1;
     const personagensPorNome = 3;
     const personagensPorData = 1;
-    const idTabela = "table";
 
 	Opa5.createPageObjects({
 		naPaginaLista: {
